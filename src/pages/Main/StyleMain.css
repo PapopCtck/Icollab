@@ -1,0 +1,14 @@
+.regular {
+ font-family: 'Ubuntu'
+}
+
+.bold{
+ font-family: 'Ubuntu-bold'
+}
+
+@media (max-width: 767px) {
+  .sider{
+    display: none;
+  }
+
+}
