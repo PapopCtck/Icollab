@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Input } from 'antd';
-
+import PropTypes from 'prop-types'
 
 const { Search } = Input;
 
@@ -11,6 +11,7 @@ export class LeftNav extends Component {
         <Search
           placeholder="input search text"
           onSearch={value => console.log(value)}
+          //todo do something about this
           style={{ width: 200 }}
         />
         <Menu.Item key="explore">
@@ -24,4 +25,8 @@ export class LeftNav extends Component {
   }
 }
 
-export default LeftNav
+export default LeftNav;
+
+LeftNav.propTypes = {
+  mode: PropTypes.string,
+};
