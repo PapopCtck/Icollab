@@ -1,4 +1,17 @@
 @import '~antd/dist/antd.css';
+@font-face {
+  font-family: 'Ubuntu';
+  src: url("/font/Ubuntu-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu-Bold';
+  src: url("/font/Ubuntu-Bold.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .App {
   text-align: center;
