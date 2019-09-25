@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Layout } from 'antd';
 
-import { MainNav } from '../../component';
+import { MainNav,MainFooter } from '../../component';
 
 import './StyleMain.css';
 
@@ -27,7 +27,9 @@ export class Main extends Component {
           </Content>
           <Sider className="sider" />
         </Layout>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer>
+          <MainFooter />
+        </Footer>
       </Layout>
     )
   }
