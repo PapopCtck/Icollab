@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, Button, Icon } from 'antd';
 
-import LeftNav from './LeftNav';
-import RightNav from './RightNav';
-
 import './StyleNavBar.css'
 
 class Navbar extends Component {
@@ -23,18 +20,14 @@ class Navbar extends Component {
     });
   };
   render() {
+    const { children, drawer } = this.props;
     return (
       <nav className="menu">
         <div className="logo">
           <Link to="/">Icollab</Link>
         </div>
         <div className="menuContainer">
-          <div className="menuRigth">
-            <RightNav mode="horizontal" />
-          </div>
-          <div className="menuLeft">
-            <LeftNav mode="horizontal" />
-          </div>
+          {children}
           <Button
             className="menuMobile-button"
             type="primary"
@@ -50,8 +43,7 @@ class Navbar extends Component {
             onClose={this.onClose}
             visible={this.state.visible}
           >
-            <LeftNav mode="inline" />
-            <RightNav mode="inline" />
+            {drawer}
           </Drawer>
         </div>
       </nav>

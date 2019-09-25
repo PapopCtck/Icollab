@@ -11,9 +11,10 @@
 }
 
 .logo a {
-  font-size: 25px;
+  font-family: 'Ubuntu-bold';
+  font-size: 30px;
   display: inline-block;
-  padding: 12px 20px;
+  padding: 11px 20px;
 }
 
 .menuContainer .ant-menu-item {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Layout } from 'antd';
 
-import { NavBar } from '../../helpers';
+import { MainNav } from '../../component';
 
 import './StyleMain.css';
 
@@ -12,7 +12,7 @@ export class Main extends Component {
   render() {
     return (
       <Layout className="layout" style={{ height: '100vh', width: '100vw' }}>
-        <NavBar></NavBar>
+        <MainNav></MainNav>
         <Header>
         </Header>
         <Layout>
