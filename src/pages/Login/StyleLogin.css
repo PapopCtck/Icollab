@@ -1,0 +1,43 @@
+.box-container {
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  background-color: white;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #cacaca;
+  border-width: 0.5px; 
+}
+
+.login-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-title {
+  padding: 10px 20px;
+  font-family: 'Ubuntu';
+}
+
+.login-form {
+  max-width: 350px;
+  align-items: center;
+  margin: 0 auto !important;
+}
+
+.login-password {
+  margin: 0 !important;
+}
+
+.login-forgot {
+  margin-top: 10px;
+}
+
+.login-button-container {
+  margin-top: 20px !important;
+}
+
+.login-signup {
+  text-align: center;
+}
