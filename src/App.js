@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Main } from './pages';
+import { Main, Login } from './pages';
 
 import './App.css';
 
@@ -9,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Main} />
+        <Route path="/login" component={Login} />
       </Switch>
     </BrowserRouter>
   );
