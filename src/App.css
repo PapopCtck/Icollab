@@ -35,3 +35,21 @@
 .App-link {
   color: #09d3ac;
 }
+
+.layout {
+  height: 100vh;
+  width: 100vw;
+}
+
+.sider {
+  background: none;
+}
+
+.header-container {
+  background-color: white;
+  padding: 0px;
+}
+
+.ant-layout-footer {
+  background-color: white;
+}

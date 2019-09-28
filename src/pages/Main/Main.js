@@ -11,13 +11,13 @@ const { Header, Content, Footer, Sider } = Layout;
 export class Main extends Component {
   render() {
     return (
-      <Layout className="layout" style={{ height: '100vh', width: '100vw' }}>
-        <MainNav></MainNav>
-        <Header>
+      <Layout className="layout">
+        <Header className="header-container">
+          <MainNav />
         </Header>
         <Layout>
           <Sider className="sider"/>
-          <Content style={{ padding: '0 50px', height: '200px' }}>
+          <Content >
             <div className="regular">
               this is regular
             </div>
