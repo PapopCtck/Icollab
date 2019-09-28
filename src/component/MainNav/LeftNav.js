@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Menu, Input } from 'antd';
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const { Search } = Input;
 
 export class LeftNav extends Component {
   render() {
     return (
-      <Menu mode={this.props.mode}>
+      <Menu mode={this.props.mode} >
         <Search
           placeholder="input search text"
           onSearch={value => console.log(value)}
@@ -15,10 +16,10 @@ export class LeftNav extends Component {
           style={{ width: 200 }}
         />
         <Menu.Item key="explore">
-          <a href="#">explore</a>
+          <Link to="/">explore</Link>
         </Menu.Item>
         <Menu.Item key="start">
-          <a href="#">start a project</a>
+          <Link to="/">start a project</Link>
         </Menu.Item>
       </Menu>
     )

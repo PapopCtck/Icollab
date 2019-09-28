@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 class RightNav extends Component {
   render() {
     return (
-      <Menu mode={this.props.mode}>
-        <Menu.Item key="mail">
-          <a href="">Signin</a>
+      <Menu mode={this.props.mode} selectable={false}>
+        <Menu.Item key="signup">
+          <Link to="/">Signup</Link>
         </Menu.Item>
-        <Menu.Item key="app">
-          <a href="">Signup</a>
+        <Menu.Item key="login">
+          <Link to="/login">Login</Link>
         </Menu.Item>
       </Menu>
     );
