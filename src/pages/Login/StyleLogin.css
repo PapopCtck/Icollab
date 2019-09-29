@@ -1,4 +1,4 @@
-.box-container {
+.login-box-container {
   width: 400px;
   height: 500px;
   margin: auto;
@@ -40,4 +40,16 @@
 
 .login-signup {
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .login-box-container {
+    margin: 0px;
+    border-style: none;
+    border-top-style: solid;
+    border-bottom-style: solid; 
+    border-radius: 0px;
+    border-width: 0.5px; 
+  }
+
 }

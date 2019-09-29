@@ -10,6 +10,15 @@ const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 
 export class Login extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -20,13 +29,22 @@ export class Login extends Component {
         <Layout>
           <Sider className="sider" />
           <Content className="login-content">
-            <div className="box-container">
+            <div className="login-box-container">
               <Title level={2} className="login-title">Login</Title>
-              <Form className="login-form">
+              <Form className="login-form" onSubmit={this.handleSubmit}>
                 <h4>Email</h4>
                 <Form.Item>
                   {getFieldDecorator('username', {
-                    rules: [{ required: true, message: 'Please input your username!' }],
+                    rules: [
+                      {
+                        type: 'email',
+                        message: 'The input is not valid E-mail!',
+                      },
+                      {
+                        required: true,
+                        message: 'Please input your username!',
+                      },
+                    ],
                   })(
                     <Input
                       prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -59,7 +77,7 @@ export class Login extends Component {
               </Form>
               <div className="login-signup">
                 Not account?&nbsp;
-                <Link to="#">
+                <Link to="/register">
                   Create one!
                 </Link>
               </div>
