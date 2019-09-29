@@ -11,8 +11,8 @@ export class LeftFooter extends Component {
         <div className="left-footer-menu">
           <Link to="/">explore</Link>
           <Link to="/">start a project</Link>
-          <Link to="/">login</Link>
-          <Link to="/">signup</Link>
+          <Link to="/login">login</Link>
+          <Link to="/register">signup</Link>
         </div>
       </div>
     )

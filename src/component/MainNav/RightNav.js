@@ -9,7 +9,7 @@ class RightNav extends Component {
     return (
       <Menu mode={this.props.mode} selectable={false}>
         <Menu.Item key="signup">
-          <Link to="/">Signup</Link>
+          <Link to="/register">Signup</Link>
         </Menu.Item>
         <Menu.Item key="login">
           <Link to="/login">Login</Link>
