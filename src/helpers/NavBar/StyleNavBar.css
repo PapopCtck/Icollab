@@ -65,7 +65,7 @@
   margin: 15px 10px !important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 772px) {
   .menuMobile-button {
     display: inline-block !important;
   }
