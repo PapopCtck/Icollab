@@ -1,0 +1,84 @@
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 30vh;
+  line-height: 30vh;
+  max-height: 450px;
+  background: #555555;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.ant-carousel .slick-slide h3 {
+  color: transparent;
+}
+.carousel-container {
+  width: fit-content;
+}
+
+.carousel-display-container {
+  display: flex;
+}
+
+.carousel-display {
+  width: 30vw;
+  min-width: 360px;
+}
+
+.left-circle{
+  font-size: 30px;
+  position: absolute;
+  color: white !important;
+  align-self: center;
+  padding: 10px;
+  margin-left: 20px;
+  z-index: 10;
+}
+
+.right-circle{
+  font-size: 30px;
+  position: absolute;
+  color: white !important;
+  align-self: center;
+  padding: 10px;
+  z-index: 10;
+  margin-left: calc(30vw - 65px)
+}
+
+.carousel-choice-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.active-choice{
+  border-radius: 0 !important;
+  border-bottom: 2px solid #FA6980 !important;
+}
+
+.carousel-choice-container .choice{
+  border-radius: 0 !important;
+  border-bottom: 2px solid transparent;
+}
+@media (max-width: 1150px) {
+  .carousel-display {
+    width: calc(100vw - 400px);
+  }
+  .right-circle{
+    margin-left: calc(100vw - 460px);
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  .ant-carousel .slick-slide {
+    border-radius: 0px;
+  }
+  .carousel-display {
+    width: 100vw;
+  }
+  .right-circle{
+    margin-left: 0px;
+    right: 0;
+    margin-right: 20px;
+  }
+}
