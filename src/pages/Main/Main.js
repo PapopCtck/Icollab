@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Layout } from 'antd';
 
-import { MainNav,MainFooter } from '../../component';
+import { MainNav, MainFooter, LandingCarousel } from '../../component';
 
 import './StyleMain.css';
 
@@ -16,8 +16,22 @@ export class Main extends Component {
           <MainNav />
         </Header>
         <Layout>
-          <Sider className="sider"/>
+          <Sider className="sider" />
           <Content >
+            <div className="landing-title">
+              <span className="bold">FEATURED</span>
+            </div>
+            <LandingCarousel>
+              <div className="slide1">
+                <h3>1</h3>
+              </div>
+              <div className="slide2">
+                <h3>2</h3>
+              </div>
+              <div className="slide3">
+                <h3>3</h3>
+              </div>
+            </LandingCarousel>
             <div className="regular">
               this is regular
             </div>

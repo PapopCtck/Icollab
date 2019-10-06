@@ -6,9 +6,22 @@
  font-family: 'Ubuntu-bold'
 }
 
+.landing-title {
+  padding: 10px;
+}
+
 @media (max-width: 767px) {
   .sider{
     display: none;
   }
 
+}
+.slide1 {
+  background: url("https://static.pexels.com/photos/302889/pexels-photo-302889.jpeg") no-repeat center top/cover;
+}
+.slide2 {
+  background: url("https://static.pexels.com/photos/302892/pexels-photo-302892.jpeg") no-repeat center top/cover;
+}
+.slide3 {
+  background: url("https://static.pexels.com/photos/226633/pexels-photo-226633.jpeg") no-repeat center top/cover;
 }
