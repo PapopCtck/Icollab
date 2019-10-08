@@ -9,7 +9,51 @@ import './StyleMain.css';
 const { Header, Content, Footer, Sider } = Layout;
 
 export class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      featuredProject: [
+        {
+          projectTitle: 'Beach trash collector robot 1',
+          projectLevel: ['enterprise'],
+          roleNeeded: ['mechanical Engineer'],
+          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectStarter: {
+            userImg: 'BM',
+            userId: '01231234',
+            fullName: 'Brenda Mercer',
+            userAssociation: ['MIT Student', 'Computer Engineering'],
+          },
+        },
+        {
+          projectTitle: 'Beach trash collector robot 2',
+          projectLevel: ['enterprise'],
+          roleNeeded: ['mechanical Engineer'],
+          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectStarter: {
+            userImg: 'BM',
+            userId: '01231234',
+            fullName: 'Brenda Mercer',
+            userAssociation: ['MIT Student', 'Computer Engineering'],
+          },
+        },
+        {
+          projectTitle: 'Beach trash collector robot 3',
+          projectLevel: ['enterprise'],
+          roleNeeded: ['mechanical Engineer'],
+          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectStarter: {
+            
+            userId: '01231234',
+            fullName: 'Brenda Mercer',
+            userAssociation: ['MIT Student', 'Computer Engineering'],
+          },
+        },
+      ],
+    }
+  }
   render() {
+    const { featuredProject } = this.state;
     return (
       <Layout className="layout">
         <Header className="header-container">
@@ -21,7 +65,7 @@ export class Main extends Component {
             <div className="landing-title">
               <span className="bold">FEATURED</span>
             </div>
-            <LandingCarousel>
+            <LandingCarousel featuredProject={featuredProject}>
               <div className="slide1">
                 <h3>1</h3>
               </div>
