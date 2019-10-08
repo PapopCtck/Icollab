@@ -23,6 +23,7 @@ export class CarouselDisplay extends Component {
     this.setState({
       activeChoice: to,
     })
+    this.props.getCarouselPosition(to);
   }
   
   goToSlide = (e) => {
@@ -66,4 +67,5 @@ export default CarouselDisplay;
 
 CarouselDisplay.propTypes = {
   children: PropTypes.any,
+  getCarouselPosition: PropTypes.func,
 }
