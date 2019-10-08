@@ -14,6 +14,7 @@ export class MainNav extends Component {
         <div className="menuRigth">
           <RightNav mode="horizontal" />
         </div>
+        <div className="vertical-line"></div>
         <div className="menuLeft">
           <LeftNav mode="horizontal" />
         </div>
