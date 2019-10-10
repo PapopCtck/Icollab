@@ -6,7 +6,7 @@ import { MainNav, MainFooter, LandingCarousel } from '../../component';
 
 import './StyleMain.css';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export class Main extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export class Main extends Component {
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectStarter: {
-            
+
             userId: '01231234',
             fullName: 'Brenda Mercer',
             userAssociation: ['MIT Student', 'Computer Engineering'],
@@ -60,30 +60,31 @@ export class Main extends Component {
           <MainNav />
         </Header>
         <Layout>
-          <Sider className="sider" />
           <Content >
-            <div className="landing-title">
-              <span className="bold">FEATURED</span>
-            </div>
-            <LandingCarousel featuredProject={featuredProject}>
-              <div className="slide1">
-                <h3>1</h3>
+            <div className="page-wrapper">
+              <div className="landing-title">
+                <span className="bold">FEATURED</span>
               </div>
-              <div className="slide2">
-                <h3>2</h3>
+              <LandingCarousel featuredProject={featuredProject}>
+                <div className="slide1">
+                  <h3>1</h3>
+                </div>
+                <div className="slide2">
+                  <h3>2</h3>
+                </div>
+                <div className="slide3">
+                  <h3>3</h3>
+                </div>
+              </LandingCarousel>
+              <span className="bold">TRENDING</span>
+              <div className="regular">
+                this is regular
               </div>
-              <div className="slide3">
-                <h3>3</h3>
+              <div className="bold">
+                this is bold
               </div>
-            </LandingCarousel>
-            <div className="regular">
-              this is regular
-            </div>
-            <div className="bold">
-              this is bold
             </div>
           </Content>
-          <Sider className="sider" />
         </Layout>
         <Footer>
           <MainFooter />
