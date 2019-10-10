@@ -6,7 +6,7 @@ import { MainNav, MainFooter } from '../../component';
 
 import './StyleRegister.css';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 export class Register extends Component {
@@ -37,7 +37,6 @@ export class Register extends Component {
           <MainNav />
         </Header>
         <Layout>
-          <Sider className="sider" />
           <Content className="register-content">
             <div className="register-box-container">
               <Title level={2} className="register-title">Register</Title>
@@ -153,7 +152,6 @@ export class Register extends Component {
               </div>
             </div>
           </Content>
-          <Sider className="sider" />
         </Layout>
         <Footer>
           <MainFooter />

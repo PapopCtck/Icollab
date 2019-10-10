@@ -6,7 +6,7 @@ import { MainNav, MainFooter } from '../../component';
 
 import './StyleLogin.css';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
 export class Login extends Component {
@@ -27,7 +27,6 @@ export class Login extends Component {
           <MainNav />
         </Header>
         <Layout>
-          <Sider className="sider" />
           <Content className="login-content">
             <div className="login-box-container">
               <Title level={2} className="login-title">Login</Title>
@@ -83,7 +82,6 @@ export class Login extends Component {
               </div>
             </div>
           </Content>
-          <Sider className="sider" />
         </Layout>
         <Footer>
           <MainFooter />
