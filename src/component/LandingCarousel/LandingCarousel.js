@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar } from 'antd';
+import { Avatar, Typography } from 'antd';
 
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { CarouselDisplay } from '../../helpers';
 
 import './StyleLandingCarousel.css';
+
+const { Title } = Typography;
 
 export class LandingCarousel extends Component {
   constructor(props) {
@@ -38,7 +40,9 @@ export class LandingCarousel extends Component {
         </CarouselDisplay>
         <div className="carousel-content-container">
           <div className="carousel-content-title">
-            {featuredProject[activeChoice].projectTitle}
+            <Title level={2}>
+              {featuredProject[activeChoice].projectTitle}
+            </Title>
           </div>
           <div className="carousel-content-sub-title">
             <span className="carousel-content-static">
@@ -58,21 +62,23 @@ export class LandingCarousel extends Component {
             &quot;
             {featuredProject[activeChoice].projectDescription}
             &quot;
-            <br />
-            <Link to="#">Learn more...</Link>
+            <div className="carousel-content-learnmore">
+              <Link to="#">Learn more...</Link>
+            </div>
           </div>
           <div className="carousel-content-starter-container">
-            <Avatar className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarter.userImg ? '' : 'user'} >{featuredProject[activeChoice].projectStarter.userImg}</Avatar>
-            <div className="carousel-content-starter-name">
-              {featuredProject[activeChoice].projectStarter.fullName}
-            </div>
-            <div className="crousel-content-starter-assoc">
-              {
-                featuredProject[activeChoice].projectStarter.userAssociation.map(assoc => assoc)
-              }
+            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarter.userImg ? '' : 'user'} >{featuredProject[activeChoice].projectStarter.userImg}</Avatar>
+            <div className="carousel-content-starter-detail">
+              <div className="carousel-content-starter-name">
+                {featuredProject[activeChoice].projectStarter.fullName}
+              </div>
+              <div className="crousel-content-starter-assoc">
+                {
+                  featuredProject[activeChoice].projectStarter.userAssociation.map(assoc => assoc)
+                }
+              </div>
             </div>
             <div>
-
             </div>
           </div>
         </div>

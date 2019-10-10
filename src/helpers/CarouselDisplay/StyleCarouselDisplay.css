@@ -59,17 +59,20 @@
   border-bottom: 2px solid transparent;
 }
 @media (max-width: 1150px) {
+  .carousel-container {
+    margin-bottom: 15px;
+  }
   .carousel-display {
-    width: calc(100vw - 400px);
+    width: calc(100vw - 48px);
   }
   .right-circle{
-    margin-left: calc(100vw - 460px);
+    margin-left: calc(100vw - 118px);
   }
 }
 
 
 
-@media (max-width: 767px) {
+@media (max-width: 792px) {
   .ant-carousel .slick-slide {
     border-radius: 0px;
   }
