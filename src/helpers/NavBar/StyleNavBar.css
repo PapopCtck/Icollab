@@ -21,7 +21,6 @@
 }
 
 .menuContainer .ant-menu-item {
-  margin: 20px 0px !important;
   padding: 0px 5px;
 }
 
@@ -30,11 +29,10 @@
 }
 
 .menuContainer .ant-menu-item a, .menuContainer .ant-menu-submenu-title a {
-  padding: 10px 15px;
+  padding: 8px 15px;
 }
 
 .menuContainer .ant-menu-horizontal {
-  line-height: 0px;
   border-bottom: none;
 }
 
