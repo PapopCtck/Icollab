@@ -13,9 +13,9 @@
   font-style: normal;
 }
 
-.layout {
-  min-height: 99vh;
-  min-width: 99vw;
+:root {
+  --main-border-color: rgb(190, 190, 190);
+  --main-accent-color: #4BD4FF;
 }
 
 .sider {
