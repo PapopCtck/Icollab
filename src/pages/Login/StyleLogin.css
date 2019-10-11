@@ -1,7 +1,7 @@
 .login-box-container {
   width: 400px;
   height: 500px;
-  margin: auto;
+  margin: 130px 0px;
   background-color: white;
   border-style: solid;
   border-radius: 5px;
@@ -46,8 +46,6 @@
   .login-box-container {
     margin: 0px;
     border-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid; 
     border-radius: 0px;
     border-width: 0.5px; 
   }

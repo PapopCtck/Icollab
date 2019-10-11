@@ -1,3 +1,7 @@
+.ant-layout-footer {
+  border-top: 1px solid var(--main-border-color);
+}
+
 .footer-left {
   float: left;
 }

@@ -7,6 +7,10 @@
   color: black;
 }
 
+.ant-layout-content {
+  background: white;
+}
+
 .page-wrapper {
   position: relative;
   width: 100%;

@@ -1,5 +1,5 @@
 .header-container {
-  border-bottom: solid 1px #B9B9B9;
+  border-bottom: solid 1px var(--main-border-color);
   box-shadow: 0 0 30px #f3f1f1;
 }
 
@@ -69,7 +69,7 @@
 }
 
 div.vertical-line {
-  border-left: 1px solid #808080;
+  border-left: 1px solid var(--main-border-color);
   float: right;
   height: 30px;
   margin: 15px 5px;

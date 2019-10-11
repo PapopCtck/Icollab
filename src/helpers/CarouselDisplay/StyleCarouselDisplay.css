@@ -1,9 +1,9 @@
-.ant-carousel .slick-slide {
+.carousel-container .ant-carousel .slick-slide {
   text-align: center;
   height: 30vh;
   line-height: 30vh;
   max-height: 450px;
-  background: #555555;
+  background: white;
   overflow: hidden;
   border-radius: 15px;
 }
@@ -73,7 +73,7 @@
 
 
 @media (max-width: 792px) {
-  .ant-carousel .slick-slide {
+  .carousel-container .ant-carousel .slick-slide {
     border-radius: 0px;
   }
   .carousel-display {
