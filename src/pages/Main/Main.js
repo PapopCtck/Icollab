@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Layout } from 'antd';
 
-import { MainNav, MainFooter, LandingCarousel } from '../../component';
+import { MainNav, MainFooter, LandingCarousel, LandingTrendingCard } from '../../component';
 
 import './StyleMain.css';
 
@@ -19,7 +19,7 @@ export class Main extends Component {
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectStarter: {
-            userImg: 'BM',
+            userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
             fullName: 'Brenda Mercer',
             userAssociation: ['MIT Student', 'Computer Engineering'],
@@ -76,13 +76,7 @@ export class Main extends Component {
                   <h3>3</h3>
                 </div>
               </LandingCarousel>
-              <span className="bold">TRENDING</span>
-              <div className="regular">
-                this is regular
-              </div>
-              <div className="bold">
-                this is bold
-              </div>
+              <LandingTrendingCard />
             </div>
           </Content>
         </Layout>
