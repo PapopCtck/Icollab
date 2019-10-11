@@ -19,7 +19,6 @@ export class LandingCarousel extends Component {
     }
   }
   getCarouselPosition = (activeChoice) => {
-    console.log('choice', activeChoice)
     this.setState({
       activeChoice,
     })
@@ -67,7 +66,7 @@ export class LandingCarousel extends Component {
             </div>
           </div>
           <div className="carousel-content-starter-container">
-            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarter.userImg ? '' : 'user'} >{featuredProject[activeChoice].projectStarter.userImg}</Avatar>
+            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarter.userImg ? '' : 'user'} src={featuredProject[activeChoice].projectStarter.userImg} >{featuredProject[activeChoice].projectStarter.userImg}</Avatar>
             <div className="carousel-content-starter-detail">
               <div className="carousel-content-starter-name">
                 {featuredProject[activeChoice].projectStarter.fullName}
