@@ -44,7 +44,7 @@ export class CarouselDisplay extends Component {
       <div className="carousel-container">
         <div className="carousel-display-container">
           <Icon className="left-circle" type="left-circle" onClick={this.previous} />
-          <Carousel className="carousel-display" ref={ref => this.carousel = ref} autoplay={false} beforeChange={(from,to) => this.changeSlide(from,to)} pauseOnHover dots={false} adaptiveHeight>
+          <Carousel className="carousel-display" ref={ref => this.carousel = ref} autoplay beforeChange={(from,to) => this.changeSlide(from,to)} pauseOnHover dots={false}>
             {this.props.children}
           </Carousel>
           <Icon className="right-circle" type="right-circle" onClick={this.next} />
@@ -53,10 +53,6 @@ export class CarouselDisplay extends Component {
           {
             this.renderSliderChoice()
           }
-          {/* <span>1</span>
-          <span>2</span>
-          <span>3</span> */}
-
         </div>
       </div>
     )
