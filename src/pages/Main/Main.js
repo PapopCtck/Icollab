@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 
 import { Layout } from 'antd';
 
-import { MainNav, MainFooter, LandingCarousel, LandingTrendingCard } from '../../component';
+import {
+  MainNav,
+  MainFooter,
+  LandingCarousel,
+  LandingTrendingCard,
+  LandingStartProject,
+} from '../../component';
 
 import './StyleMain.css';
 
@@ -77,6 +83,7 @@ export class Main extends Component {
                 </div>
               </LandingCarousel>
               <LandingTrendingCard />
+              <LandingStartProject />
             </div>
           </Content>
         </Layout>
