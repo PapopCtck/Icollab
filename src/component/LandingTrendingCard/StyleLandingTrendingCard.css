@@ -1,3 +1,7 @@
+.landing-trending-container {
+  border-bottom: 1px solid var(--main-border-color);
+}
+
 .landing-trending-header-right {
   float: right;
 }
@@ -11,7 +15,7 @@
 }
 
 .carouselcard-container {
-  margin: 30px 0;
+  margin: 30px 0 50px 0;
 }
 
 .carouselcard-content-row {
