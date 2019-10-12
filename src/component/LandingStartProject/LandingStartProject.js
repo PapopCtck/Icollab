@@ -10,7 +10,7 @@ export class LandingStartProject extends Component {
       <div className="start-project-container">
         <h2 className="bold">Got an idea?</h2>
         <p>Start your own project now.Its completely free!</p>
-        <Button className="start-project-button bold" type="primary"><Link to="#">LEARN MORE</Link></Button> 
+        <Button className="start-project-button bold" type="primary" size="large"><Link to="#">LEARN MORE</Link></Button> 
       </div>
     )
   }

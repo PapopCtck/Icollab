@@ -16,6 +16,7 @@
 :root {
   --main-border-color: rgb(190, 190, 190);
   --main-accent-color: #4BD4FF;
+  --main-accent-hover: #87E2FF;
 }
 
 .sider {

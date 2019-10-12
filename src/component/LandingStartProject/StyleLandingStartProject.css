@@ -3,5 +3,13 @@
   margin: 40px 0px;
 }
 .start-project-button {
+  font-size: 14px !important;
+  background: var(--main-accent-color) !important;
+  border-color: var(--main-accent-color) !important;
   margin: 20px 0px;
+}
+
+.start-project-button:hover {
+  background: var(--main-accent-hover) !important;
+  border-color: var(--main-accent-hover) !important;
 }
