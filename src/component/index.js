@@ -6,9 +6,12 @@ import LandingCarousel from './LandingCarousel/LandingCarousel';
 
 import LandingTrendingCard from './LandingTrendingCard/LandingTrendingCard';
 
+import LandingStartProject from './LandingStartProject/LandingStartProject';
+
 export {
   MainNav,
   MainFooter,
   LandingCarousel,
   LandingTrendingCard,
+  LandingStartProject,
 }
