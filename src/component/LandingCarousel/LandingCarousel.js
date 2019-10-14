@@ -34,9 +34,7 @@ export class LandingCarousel extends Component {
 
     return (
       <div className="landing-carousel-container">
-        <CarouselDisplay getCarouselPosition={this.getCarouselPosition} {...this.props}>
-          {this.props.children}
-        </CarouselDisplay>
+        <CarouselDisplay getCarouselPosition={this.getCarouselPosition} {...this.props} />
         <div className="carousel-content-container">
           <div className="carousel-content-title">
             <Title level={2}>
@@ -62,7 +60,7 @@ export class LandingCarousel extends Component {
             {featuredProject[activeChoice].projectDescription}
             &quot;
             <div className="carousel-content-learnmore">
-              <Link to="#">Learn more...</Link>
+              <Link to={'/project/'+featuredProject[activeChoice].projectId}>Learn more...</Link>
             </div>
           </div>
           <div className="carousel-content-starter-container">
