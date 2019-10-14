@@ -28,6 +28,12 @@
   padding: 0 30px;
 }
 
+.carouselcard-container .ant-card-body {
+  height: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media (max-width: 792px) {
   .landing-trending-container {
     padding: 0 15px;

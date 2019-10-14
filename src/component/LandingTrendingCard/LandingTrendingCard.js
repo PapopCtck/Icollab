@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Carousel, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 
 import './StyleLandingTrendingCard.css';
 
@@ -24,6 +25,10 @@ const responsive = [
 ]
 
 export class LandingTrendingCard extends Component {
+  onCardClick = (target) => {
+    this.props.history.push('/project/' + target)
+  }
+
   next = () => {
     this.carousel.next();
   }
@@ -33,54 +38,31 @@ export class LandingTrendingCard extends Component {
   }
 
   render() {
+    const { trendingProject } = this.props;
     return (
       <div className="landing-trending-container">
         <div className="landing-trending-header">
           <span className="bold">TRENDING</span>
           <div className="landing-trending-header-right">
-            <Icon className="landing-trending-icon" type="left" onClick={this.previous}/>
-            <Icon className="landing-trending-icon" type="right" onClick={this.next}/>
+            <Icon className="landing-trending-icon" type="left" onClick={this.previous} />
+            <Icon className="landing-trending-icon" type="right" onClick={this.next} />
           </div>
         </div>
         <div className="carouselcard-container">
           <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
-            <Card
-              cover={<img className="carouselcard-img" alt="example" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="1" description="www.instagram.com" />
-            </Card>
-            <Card
-              cover={<img alt="example" className="carouselcard-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="2" description="www.instagram.com" />
-            </Card>
-            <Card
-              cover={<img alt="example" className="carouselcard-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="3" description="www.instagram.com" />
-            </Card>
-
-            <Card
-              cover={<img alt="example" className="carouselcard-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="4" description="www.instagram.com" />
-            </Card>
-            <Card
-              cover={<img alt="example" className="carouselcard-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="5" description="www.instagram.com" />
-            </Card>
-            <Card
-              cover={<img alt="example" className="carouselcard-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
-            >
-              <Meta title="6" description="www.instagram.com" />
-            </Card>
-
+            {trendingProject.map((data) =>
+              <Card
+                cover={<img className="carouselcard-img" alt="example" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
+                key={data.projectId}
+                onClick={() => this.onCardClick(data.projectId)}
+              >
+                <Meta title={data.projectTitle} description={data.projectDescription} />
+              </Card>)}
           </Carousel>
         </div>
-      </div>
+      </div >
     )
   }
 }
 
-export default LandingTrendingCard;
+export default withRouter(LandingTrendingCard);
