@@ -8,10 +8,13 @@ import LandingTrendingCard from './LandingTrendingCard/LandingTrendingCard';
 
 import LandingStartProject from './LandingStartProject/LandingStartProject';
 
+import ProjectDetailHeader from './ProjectDetailHeader/ProjectDetailHeader';
+
 export {
   MainNav,
   MainFooter,
   LandingCarousel,
   LandingTrendingCard,
   LandingStartProject,
+  ProjectDetailHeader,
 }
