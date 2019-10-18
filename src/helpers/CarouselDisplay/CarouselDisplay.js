@@ -51,7 +51,7 @@ export class CarouselDisplay extends Component {
         <div className="carousel-display-container">
           <Icon className="left-circle" type="left-circle" onClick={this.previous} />
           <Carousel className="carousel-display" ref={ref => this.carousel = ref} autoplay beforeChange={(from, to) => this.changeSlide(from, to)} pauseOnHover dots={false}>
-            {this.props.featuredProject.map((data, idx) => <div className={'slide' + (idx + 1)} onClick={() => this.onSlideClick(data.projectId)}>{idx + 1}</div>)}
+            {this.props.featuredProject.map((data) => <img key={data.projectId} alt={data.projectTitle} src={data.projectThumbnail} onClick={() => this.onSlideClick(data.projectId)}></img>)}
           </Carousel>
           <Icon className="right-circle" type="right-circle" onClick={this.next} />
         </div>

@@ -52,7 +52,7 @@ export class LandingTrendingCard extends Component {
           <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
             {trendingProject.map((data) =>
               <Card
-                cover={<img className="carouselcard-img" alt="example" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg" />}
+                cover={<img className="carouselcard-img" alt="example" src={data.projectThumbnail}/>}
                 key={data.projectId}
                 onClick={() => this.onCardClick(data.projectId)}
               >
