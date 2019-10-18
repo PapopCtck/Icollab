@@ -9,10 +9,10 @@ export class LeftFooter extends Component {
           <Link to="/">Icollab</Link>
         </div>
         <div className="left-footer-menu">
-          <Link to="/">explore</Link>
-          <Link to="/">start a project</Link>
-          <Link to="/login">login</Link>
-          <Link to="/register">signup</Link>
+          <Link className="left-footer-menuitem" to="/">explore</Link>
+          <Link className="left-footer-menuitem" to="/">start a project</Link>
+          <Link className="left-footer-menuitem" to="/login">login</Link>
+          <Link className="left-footer-menuitem" to="/register">signup</Link>
         </div>
       </div>
     )
