@@ -25,6 +25,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://static.pexels.com/photos/302889/pexels-photo-302889.jpeg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -38,6 +39,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://static.pexels.com/photos/302892/pexels-photo-302892.jpeg',
           projectStarter: {
             userImg: 'BM',
             userId: '01231234',
@@ -51,6 +53,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://static.pexels.com/photos/226633/pexels-photo-226633.jpeg',
           projectStarter: {
 
             userId: '01231234',
@@ -66,6 +69,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -79,6 +83,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -92,6 +97,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -105,6 +111,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash or something even longer bra bra bra',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -118,6 +125,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
@@ -131,6 +139,7 @@ export class Main extends Component {
           projectLevel: ['enterprise'],
           roleNeeded: ['mechanical Engineer'],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
+          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarter: {
             userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             userId: '01231234',
