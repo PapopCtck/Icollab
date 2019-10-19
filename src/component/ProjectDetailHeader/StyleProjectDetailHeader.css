@@ -11,12 +11,36 @@
   height: 35vh;
   line-height: 35vh;
   max-height: 450px;
-  width: 30vw;
+  min-width: 400px;
+  width: 100%;
   overflow: hidden;
+}
+
+.detailheader-carousel-content {
+  margin-top: 5px;
 }
 
 .detailheader-image {
   width: inherit;
+  min-width: 400px;
+}
+
+.detailheader-carousel-content-container {
+  width: 100%;
+}
+
+.detailheader-carousel-applybtn {
+  margin-top: 15px;
+}
+
+.detailheader-carousel-contact-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detailheader-carousel-report-container {
+  text-align: center;
 }
 
 @media (max-width:1150px){
@@ -29,6 +53,9 @@
   }
   .detailcarousel-content-container {
     border-top: none;
+  }
+  .detailheader-carousel-content-sub-title {
+    margin-left: 0;
   }
 }
 
