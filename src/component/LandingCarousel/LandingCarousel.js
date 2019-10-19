@@ -46,13 +46,13 @@ export class LandingCarousel extends Component {
               level :
             </span>
             <span className="carousel-content-level">
-              {featuredProject[activeChoice].projectLevel.map(level => level)}
+              {featuredProject[activeChoice].projectLevel.map((level,idx) => idx===0 ? level : ', '+level )}
             </span>
             <span className="carousel-content-static">
               role needed :
             </span>
             <span className="carousel-content-role">
-              {featuredProject[activeChoice].roleNeeded.map(role => role)}
+              {featuredProject[activeChoice].roleNeeded.map((role,idx) => idx===0 ? role : ', '+role )}
             </span>
           </div>
           <div className="carousel-content-description">
