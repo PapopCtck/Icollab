@@ -10,34 +10,34 @@ export class DetailHeader extends Component {
   render() {
     const { projectDetail, projectId } = this.props;
     return (
-      <div className="detailheader-carousel-container">
+      <div className="detailheader-container">
         <div className="detailheader-image-container">
           <img className="detailheader-image" src={projectDetail.projectThumbnail} alt={projectDetail.projectTitle} />
         </div>
-        <div className="carousel-content-container detailheader-carousel-content-container">
-          <div className="carousel-content-title">
+        <div className="detailheader-content-container">
+          <div className="detailheader-content-title">
             <Title level={2}>
               {projectDetail.projectTitle + ' ' + projectId}
             </Title>
           </div>
-          <div className="carousel-content-sub-title detailheader-carousel-content-sub-title">
-            <div className="carousel-content-level detailheader-carousel-content">
+          <div className="detailheader-content-sub-title" >
+            <div className="detailheader-content-level detailheader-carousel-content">
               <span className="bold">level : </span>
               {projectDetail.projectLevel.map((level, idx) => idx === 0 ? level : ', ' + level)}
             </div>
-            <div className="carousel-content-role detailheader-carousel-content">
+            <div className="detailheader-content-role detailheader-carousel-content">
               <span className="bold">role needed : </span>
               {projectDetail.roleNeeded.map((role, idx) => idx === 0 ? role : ', ' + role)}
             </div>
-            <div className="carousel-content-industry detailheader-carousel-content">
+            <div className="detailheader-content-industry detailheader-carousel-content">
               <span className="bold">Industry : </span>
               {projectDetail.projectIndustry.map((ind, idx) => idx === 0 ? ind : ', ' + ind)}
             </div>
-            <div className="carousel-content-location detailheader-carousel-content">
+            <div className="detailheader-content-location detailheader-carousel-content">
               <span className="bold">location : </span>
               {projectDetail.projectLocation}
             </div>
-            <Button className="detailheader-carousel-applybtn" type="primary" block>
+            <Button className="detailheader-applybtn" type="primary" block>
               Apply now
             </Button>
             <div className="detailheader-carousel-contact-container">
