@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Layout } from 'antd';
 
 
-import { MainNav, MainFooter, ProjectDetailHeader } from '../../component';
+import { MainNav, MainFooter, ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
 import './StyleProjectDetail.css';
 
@@ -14,9 +14,11 @@ export class ProjectDetail extends Component {
     this.state = {
       projectDetail: {
         projectId: '1',
-        projectTitle: 'Beach trash collector robot 1',
+        projectTitle: 'Beach trash collector robot',
         projectLevel: ['enterprise'],
         roleNeeded: ['mechanical Engineer'],
+        projectIndustry: ['robotic','mechanic'],
+        projectLocation: 'Bangkok',
         projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
         projectThumbnail: 'https://static.pexels.com/photos/302889/pexels-photo-302889.jpeg',
         projectStarter: {
@@ -37,9 +39,9 @@ export class ProjectDetail extends Component {
         </Header>
         <Content>
           <div className="page-wrapper project-detail-container">
-            <ProjectDetailHeader projectDetail={projectDetail} />
-            ProjectDetail
-            {this.props.match.params.id}
+            <ProjectDetailHeader projectDetail={projectDetail} projectId={this.props.match.params.id}/>
+            {/* projectId is temp will remove in the future */}
+            <ProjectDetailContent/>
           </div>
         </Content>
         <Footer>
