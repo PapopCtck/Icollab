@@ -21,7 +21,7 @@
 
 .carousel-display {
   width: 30vw;
-  min-width: 360px;
+  min-width: 450px;
 }
 
 .left-circle{
@@ -58,6 +58,13 @@
   border-radius: 0 !important;
   border-bottom: 2px solid transparent;
 }
+
+@media (max-width: 1500px) {
+  .right-circle{
+    margin-left: 380px;
+  }
+}
+
 @media (max-width: 1150px) {
   .carousel-container {
     margin-bottom: 15px;
