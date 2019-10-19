@@ -10,6 +10,8 @@ import LandingStartProject from './LandingStartProject/LandingStartProject';
 
 import ProjectDetailHeader from './ProjectDetailHeader/ProjectDetailHeader';
 
+import ProjectDetailContent from './ProjectDetailContent/ProjectDetailContent';
+
 export {
   MainNav,
   MainFooter,
@@ -17,4 +19,5 @@ export {
   LandingTrendingCard,
   LandingStartProject,
   ProjectDetailHeader,
+  ProjectDetailContent,
 }
