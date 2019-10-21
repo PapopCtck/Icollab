@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Button, Icon } from 'antd';
+import PropTypes from 'prop-types'
 
 import './StyleProjectDetailHeader.css';
 
@@ -27,7 +28,7 @@ export class DetailHeader extends Component {
             </div>
             <div className="detailheader-content-role detailheader-carousel-content">
               <span className="bold">role needed : </span>
-              {projectDetail.roleNeeded.map((role, idx) => idx === 0 ? role : ', ' + role)}
+              {projectDetail.roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
             </div>
             <div className="detailheader-content-industry detailheader-carousel-content">
               <span className="bold">Industry : </span>
@@ -58,3 +59,8 @@ export class DetailHeader extends Component {
 }
 
 export default DetailHeader
+
+DetailHeader.propTypes = {
+  projectDetail: PropTypes.object, 
+  projectId: PropTypes.string,
+};
