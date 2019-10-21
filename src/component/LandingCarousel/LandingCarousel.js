@@ -46,13 +46,13 @@ export class LandingCarousel extends Component {
               level :
             </span>
             <span className="carousel-content-level">
-              {featuredProject[activeChoice].projectLevel.map((level,idx) => idx===0 ? level : ', '+level )}
+              {featuredProject[activeChoice].projectLevel.map((level, idx) => idx === 0 ? level : ', ' + level)}
             </span>
             <span className="carousel-content-static">
               role needed :
             </span>
             <span className="carousel-content-role">
-              {featuredProject[activeChoice].roleNeeded.map((role,idx) => idx===0 ? role : ', '+role )}
+              {featuredProject[activeChoice].roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
             </span>
           </div>
           <div className="carousel-content-description">
@@ -60,18 +60,18 @@ export class LandingCarousel extends Component {
             {featuredProject[activeChoice].projectDescription}
             &quot;
             <div className="carousel-content-learnmore">
-              <Link to={'/project/'+featuredProject[activeChoice].projectId}>Learn more...</Link>
+              <Link to={'/project/' + featuredProject[activeChoice].projectId}>Learn more...</Link>
             </div>
           </div>
           <div className="carousel-content-starter-container">
-            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarter.userImg ? '' : 'user'} src={featuredProject[activeChoice].projectStarter.userImg} >{featuredProject[activeChoice].projectStarter.userImg}</Avatar>
+            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarters[0].userImg ? '' : 'user'} src={featuredProject[activeChoice].projectStarters[0].userImg} >{featuredProject[activeChoice].projectStarters[0].userImg}</Avatar>
             <div className="carousel-content-starter-detail">
               <div className="carousel-content-starter-name">
-                {featuredProject[activeChoice].projectStarter.fullName}
+                {featuredProject[activeChoice].projectStarters[0].fullName}
               </div>
               <div className="crousel-content-starter-assoc">
                 {
-                  featuredProject[activeChoice].projectStarter.userAssociation.map(assoc => assoc)
+                  featuredProject[activeChoice].projectStarters[0].userAssociation.map(assoc => assoc)
                 }
               </div>
             </div>
