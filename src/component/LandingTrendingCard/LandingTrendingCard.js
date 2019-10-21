@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Carousel, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './StyleLandingTrendingCard.css';
 
@@ -66,3 +67,7 @@ export class LandingTrendingCard extends Component {
 }
 
 export default withRouter(LandingTrendingCard);
+
+LandingTrendingCard.propTypes = {
+  trendingProject: PropTypes.object,
+}
