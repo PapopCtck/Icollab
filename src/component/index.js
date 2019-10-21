@@ -12,6 +12,8 @@ import ProjectDetailHeader from './ProjectDetailHeader/ProjectDetailHeader';
 
 import ProjectDetailContent from './ProjectDetailContent/ProjectDetailContent';
 
+import ProjectDetailStory from './ProjectDetailStory/ProjectDetailStory';
+
 export {
   MainNav,
   MainFooter,
@@ -20,4 +22,5 @@ export {
   LandingStartProject,
   ProjectDetailHeader,
   ProjectDetailContent,
+  ProjectDetailStory,
 }
