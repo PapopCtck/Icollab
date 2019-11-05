@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { Layout } from 'antd';
 
-
-import { MainNav, MainFooter, ProjectDetailHeader, ProjectDetailContent } from '../../component';
+import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
 import './StyleProjectDetail.css';
-
-const { Header, Content, Footer } = Layout;
 
 export class ProjectDetail extends Component {
   constructor(props) {
@@ -16,7 +12,7 @@ export class ProjectDetail extends Component {
         projectId: '1',
         projectTitle: 'Beach trash collector robot',
         projectLevel: ['enterprise'],
-        roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+        roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
         projectIndustry: ['robotic', 'mechanic'],
         projectLocation: 'Bangkok',
         projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
@@ -50,21 +46,11 @@ export class ProjectDetail extends Component {
   render() {
     const { projectDetail } = this.state;
     return (
-      <Layout>
-        <Header className="header-container">
-          <MainNav />
-        </Header>
-        <Content>
-          <div className="page-wrapper project-detail-container">
-            <ProjectDetailHeader projectDetail={projectDetail} projectId={this.props.match.params.id} />
-            {/* projectId is temp will remove in the future */}
-            <ProjectDetailContent projectDetail={projectDetail} />
-          </div>
-        </Content>
-        <Footer>
-          <MainFooter />
-        </Footer>
-      </Layout>
+      <div className="page-wrapper project-detail-container">
+        <ProjectDetailHeader projectDetail={projectDetail} projectId={this.props.match.params.id} />
+        {/* projectId is temp will remove in the future */}
+        <ProjectDetailContent projectDetail={projectDetail} />
+      </div>
     )
   }
 }

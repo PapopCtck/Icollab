@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
 
-import { Layout } from 'antd';
-
 import {
-  MainNav,
-  MainFooter,
   LandingCarousel,
   LandingTrendingCard,
   LandingStartProject,
 } from '../../component';
 
 import './StyleMain.css';
-
-const { Header, Content, Footer } = Layout;
 
 export class Main extends Component {
   constructor(props) {
@@ -23,7 +17,7 @@ export class Main extends Component {
           projectId: '1',
           projectTitle: 'Beach trash collector robot 1',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://static.pexels.com/photos/302889/pexels-photo-302889.jpeg',
           projectStarters: [
@@ -39,7 +33,7 @@ export class Main extends Component {
           projectId: '2',
           projectTitle: 'Beach trash collector robot 2',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://static.pexels.com/photos/302892/pexels-photo-302892.jpeg',
           projectStarters: [
@@ -55,7 +49,7 @@ export class Main extends Component {
           projectId: '3',
           projectTitle: 'Beach trash collector robot 3',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://static.pexels.com/photos/226633/pexels-photo-226633.jpeg',
           projectStarters: [
@@ -73,7 +67,7 @@ export class Main extends Component {
           projectId: '4',
           projectTitle: 'One developer one cat',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -89,7 +83,7 @@ export class Main extends Component {
           projectId: '5',
           projectTitle: 'I don\'t like sand',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -105,7 +99,7 @@ export class Main extends Component {
           projectId: '6',
           projectTitle: 'It\'s probably cold to go alone',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -121,7 +115,7 @@ export class Main extends Component {
           projectId: '7',
           projectTitle: 'One developer one cat 2',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash or something even longer bra bra bra',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -137,7 +131,7 @@ export class Main extends Component {
           projectId: '8',
           projectTitle: 'I don\'t like sand 2',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -153,7 +147,7 @@ export class Main extends Component {
           projectId: '9',
           projectTitle: 'It\'s probably cold to go alone 2',
           projectLevel: ['enterprise'],
-          roleNeeded: [{ title : 'mechanical Engineer', jobSkill : ['Python', 'C++', 'Linux', 'R'] ,jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...' , neededAmount: 1 , gotAmount: 0 }],
+          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
           projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
           projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
           projectStarters: [
@@ -172,26 +166,14 @@ export class Main extends Component {
   render() {
     const { featuredProject, trendingProject } = this.state;
     return (
-      <Layout className="layout">
-        <Header className="header-container">
-          <MainNav />
-        </Header>
-        <Layout>
-          <Content >
-            <div className="page-wrapper">
-              <div className="landing-title">
-                <span className="bold">FEATURED</span>
-              </div>
-              <LandingCarousel featuredProject={featuredProject} />
-              <LandingTrendingCard trendingProject={trendingProject} />
-              <LandingStartProject />
-            </div>
-          </Content>
-        </Layout>
-        <Footer>
-          <MainFooter />
-        </Footer>
-      </Layout>
+      <div className="page-wrapper">
+        <div className="landing-title">
+          <span className="bold">FEATURED</span>
+        </div>
+        <LandingCarousel featuredProject={featuredProject} />
+        <LandingTrendingCard trendingProject={trendingProject} />
+        <LandingStartProject />
+      </div>
     )
   }
 }
