@@ -75,7 +75,7 @@ div.vertical-line {
   margin: 15px 5px;
 }
 
-@media (max-width: 772px) {
+@media (max-width: 783px) {
   .menuMobile-button {
     display: inline-block !important;
   }
