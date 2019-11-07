@@ -4,7 +4,7 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
-export function register(registerForm) {
+export function fetchRegister(registerForm) {
   return async dispatch => {
     try {
       const res = await fetch(`${host}/v1/users/register`, {

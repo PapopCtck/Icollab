@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { register } from './Authentication';
+import { fetchRegister } from './Authentication';
 
 
 const rootReducer = combineReducers({
-  register,
+  fetchRegister,
 });
 
 export default rootReducer;

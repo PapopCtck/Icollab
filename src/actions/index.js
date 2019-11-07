@@ -1,12 +1,12 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  register,
+  fetchRegister,
 } from './Authentication';
 
 
 export {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  register,
+  fetchRegister,
 };

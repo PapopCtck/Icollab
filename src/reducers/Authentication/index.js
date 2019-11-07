@@ -3,7 +3,7 @@ import {
   REGISTER_FAILURE,
 } from '../../actions';
 
-export function register(state = {}, action) {
+export function fetchRegister(state = {}, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
       return Object.assign({}, state, { ...action });
