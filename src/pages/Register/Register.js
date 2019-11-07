@@ -1,12 +1,29 @@
 import React, { Component } from 'react'
-import { Typography, Form, Input, Icon, Button, Checkbox } from 'antd';
+import {
+  Typography,
+  Form,
+  Input,
+  Icon,
+  Button,
+  Checkbox,
+  Modal,
+} from 'antd';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { fetchRegister } from '../../actions';
 
 import './StyleRegister.css';
 
 const { Title } = Typography;
 
 export class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+    }
+  }
   compareToFirstPassword = (rule, value, callback) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
@@ -18,15 +35,40 @@ export class Register extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, registerForm) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        this.setState({ loading: true });
+        console.log('Received values of form: ', registerForm);
+        this.props.dispatch(fetchRegister(registerForm)).then((res) => {
+          if (res.status === 200) {
+            this.modalSuccess();
+            this.setState({ loading: false });
+          } else {
+            this.modalError();
+            this.setState({ loading: false });
+          }
+        });
       }
     });
   };
 
+  modalSuccess = () => {
+    Modal.success({
+      content: 'Registration Success!',
+    });
+  }
+
+  modalError = () => {
+    Modal.error({
+      title: 'Unexpected Error',
+      content: 'We\'re unable to register for you right now.Please try again later',
+    });
+  }
+
+
 
   render() {
+    const { loading } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="register-content">
@@ -55,7 +97,7 @@ export class Register extends Component {
             </Form.Item>
             <h4>Email</h4>
             <Form.Item>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('email', {
                 rules: [
                   {
                     type: 'email',
@@ -63,7 +105,7 @@ export class Register extends Component {
                   },
                   {
                     required: true,
-                    message: 'Please input your username!',
+                    message: 'Please input your email!',
                   },
                 ],
               })(
@@ -110,6 +152,7 @@ export class Register extends Component {
                 valuePropName: 'checked',
                 rules: [{
                   required: true,
+                  message: 'You need to agree in order to register!',
                 }],
               })(
                 <Checkbox>
@@ -131,7 +174,7 @@ export class Register extends Component {
               )}
             </Form.Item>
             <Form.Item className="register-button-container">
-              <Button type="primary" htmlType="submit" className="register-button" block>
+              <Button type="primary" htmlType="submit" className="register-button" block loading={loading}>
                 Register
               </Button>
             </Form.Item>
@@ -150,4 +193,8 @@ export class Register extends Component {
 
 const WrappedRegisterForm = Form.create({ name: 'register' })(Register);
 
-export default WrappedRegisterForm
+const mapStateToProps = state => {
+  const fetchRegister = state.fetchRegister.data;
+  return { fetchRegister };
+}
+export default connect(mapStateToProps)(WrappedRegisterForm);
