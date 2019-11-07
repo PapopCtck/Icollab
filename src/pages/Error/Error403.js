@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Result, Button } from 'antd';
+import PropTypes from 'prop-types';
 
 export class Error403 extends Component {
   render() {
@@ -15,3 +16,9 @@ export class Error403 extends Component {
 }
 
 export default Error403
+
+Error403.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+}
