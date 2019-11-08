@@ -1,23 +1,63 @@
 import React, { Component } from 'react';
-import { Typography, Form, Input, Icon, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Typography, Form, Input, Icon, Button, Modal } from 'antd';
+import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { fetchLogin } from '../../actions';
 
 import './StyleLogin.css';
 
 const { Title } = Typography;
 
 export class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      redirect: false,
+    }
+  }
+
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchLogin !== this.props.fetchLogin) {
+      const fetchLogin = this.props.fetchLogin;
+      this.setState({ fetchLogin });
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, loginForm) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        this.setState({ loading: true });
+        console.log('Received values of form: ', loginForm);
+        this.props.dispatch(fetchLogin(loginForm)).then((res) => {
+          if (res.status === 200) {
+            this.setState({ loading: false, redirect: true });
+          } else {
+            this.modalError();
+            this.setState({ loading: false });
+          }
+        });
       }
     });
   };
 
+  modalError = () => {
+    Modal.error({
+      title: 'Unexpected Error',
+      content: 'Something went wrong. Please try again later',
+    });
+  }
+
   render() {
+    const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
+    if (redirect) {
+      return (<Redirect to="/" />)
+    }
     return (
       <div className="login-content">
         <div className="login-box-container">
@@ -61,7 +101,7 @@ export class Login extends Component {
               </Link>
             </div>
             <Form.Item className="login-button-container">
-              <Button type="primary" htmlType="submit" className="login-button" block>
+              <Button type="primary" htmlType="submit" className="login-button" block loading={loading}>
                 Log in
               </Button>
             </Form.Item>
@@ -81,4 +121,18 @@ export class Login extends Component {
 
 const WrappedNormalLoginForm = Form.create({ name: 'login' })(Login);
 
-export default WrappedNormalLoginForm
+const mapStateToProps = state => {
+  const fetchLogin = state.fetchLogin.data;
+  return { fetchLogin };
+}
+
+export default connect(mapStateToProps)(WrappedNormalLoginForm)
+
+Login.propTypes = {
+  dispatch:PropTypes.func,
+  fetchLogin: PropTypes.object,
+  form: PropTypes.shape({
+    getFieldDecorator: PropTypes.func,
+    validateFieldsAndScroll: PropTypes.func,
+  }),
+}
