@@ -13,6 +13,10 @@ import { connect } from 'react-redux';
 
 import { fetchRegister } from '../../actions';
 
+// import { Loading } from '../../helpers';
+
+import PropTypes from 'prop-types';
+
 import './StyleRegister.css';
 
 const { Title } = Typography;
@@ -22,8 +26,17 @@ export class Register extends Component {
     super(props);
     this.state = {
       loading: false,
+      fetchRegister: null,
     }
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchRegister !== this.props.fetchRegister) {
+      const fetchRegister = this.props.fetchRegister;
+      this.setState({ fetchRegister });
+    }
+  }
+
   compareToFirstPassword = (rule, value, callback) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
@@ -61,7 +74,7 @@ export class Register extends Component {
   modalError = () => {
     Modal.error({
       title: 'Unexpected Error',
-      content: 'We\'re unable to register for you right now.Please try again later',
+      content: 'We\'re unable to register for you right now. Please try again later',
     });
   }
 
@@ -197,4 +210,15 @@ const mapStateToProps = state => {
   const fetchRegister = state.fetchRegister.data;
   return { fetchRegister };
 }
+
 export default connect(mapStateToProps)(WrappedRegisterForm);
+
+Register.propTypes = {
+  dispatch: PropTypes.func,
+  fetchRegister: PropTypes.object,
+  form: PropTypes.shape({
+    getFieldDecorator: PropTypes.func,
+    validateFieldsAndScroll: PropTypes.func,
+    getFieldValue: PropTypes.func,
+  }),
+}

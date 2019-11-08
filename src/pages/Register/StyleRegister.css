@@ -1,12 +1,17 @@
 .register-box-container {
   width: 400px;
   height: auto;
-  margin: 50px auto;
+  margin: 0 auto;
   background-color: white;
   border-style: solid;
   border-radius: 5px;
   border-color: #cacaca;
   border-width: 0.5px; 
+}
+
+.register-content {
+  padding: 50px 0px;
+  background-color: var(--background-color-gray);
 }
 
 .register-title {
