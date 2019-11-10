@@ -8,7 +8,7 @@ import {
   Checkbox,
   Modal,
 } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchRegister } from '../../actions';
@@ -27,6 +27,8 @@ export class Register extends Component {
     this.state = {
       loading: false,
       fetchRegister: null,
+      redirect: false,
+      errorContent: null,
     }
   }
 
@@ -57,8 +59,8 @@ export class Register extends Component {
             this.modalSuccess();
             this.setState({ loading: false });
           } else {
+            this.setState({ loading: false, errorContent: res.data });
             this.modalError();
-            this.setState({ loading: false });
           }
         });
       }
@@ -68,21 +70,28 @@ export class Register extends Component {
   modalSuccess = () => {
     Modal.success({
       content: 'Registration Success!',
+      onOk: () => {
+        this.setState({ redirect: true });
+      },
     });
   }
 
   modalError = () => {
+    const { errorContent } = this.state;
     Modal.error({
       title: 'Unexpected Error',
-      content: 'We\'re unable to register for you right now. Please try again later',
+      content: errorContent ? Object.keys(errorContent)[0] :'We\'re unable to register for you right now. Please try again later',
     });
   }
 
 
 
   render() {
-    const { loading } = this.state;
+    const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
+    if (redirect) {
+      return (<Redirect to="/" />)
+    }
     return (
       <div className="register-content">
         <div className="register-box-container">
