@@ -4,6 +4,7 @@ import { Typography, Form, Input, Icon, Button, Modal } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { getCookie } from '../../helpers';
 import { fetchLogin } from '../../actions';
 
 import './StyleLogin.css';
@@ -19,7 +20,7 @@ export class Login extends Component {
     }
   }
 
-  
+
   componentDidUpdate(prevProps) {
     if (prevProps.fetchLogin !== this.props.fetchLogin) {
       const fetchLogin = this.props.fetchLogin;
@@ -55,7 +56,7 @@ export class Login extends Component {
   render() {
     const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
-    if (redirect) {
+    if (redirect || getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
@@ -65,7 +66,7 @@ export class Login extends Component {
           <Form className="login-form" onSubmit={this.handleSubmit}>
             <h4>Email</h4>
             <Form.Item>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('email', {
                 rules: [
                   {
                     type: 'email',
@@ -129,7 +130,7 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(WrappedNormalLoginForm)
 
 Login.propTypes = {
-  dispatch:PropTypes.func,
+  dispatch: PropTypes.func,
   fetchLogin: PropTypes.object,
   form: PropTypes.shape({
     getFieldDecorator: PropTypes.func,
