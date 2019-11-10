@@ -18,6 +18,7 @@ import { fetchRegister } from '../../actions';
 import PropTypes from 'prop-types';
 
 import './StyleRegister.css';
+import { getCookie } from '../../helpers';
 
 const { Title } = Typography;
 
@@ -89,7 +90,7 @@ export class Register extends Component {
   render() {
     const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
-    if (redirect) {
+    if (redirect || getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
