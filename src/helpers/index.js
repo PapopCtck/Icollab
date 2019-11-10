@@ -6,6 +6,12 @@ import FNRedirect from './Functions/FNRedirect';
 
 import Loading from './Loading/Loading';
 
+import {
+  getCookie,
+  deleteCookie,
+  createCookie,
+} from './Cookie/Cookie';
+
 export {
   //NavBar
   NavBar,
@@ -15,4 +21,8 @@ export {
   FNRedirect,
   //Loading
   Loading,
+  //Cookie
+  getCookie,
+  deleteCookie,
+  createCookie,
 }

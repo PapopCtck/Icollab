@@ -1,4 +1,4 @@
-import { FNRedirect } from '../../helpers';
+import { FNRedirect, createCookie } from '../../helpers';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
@@ -24,7 +24,14 @@ export function fetchRegister(registerForm) {
           data,
           status: res.status,
         });
-      } else if (res.status === 500 || res.status === 502 ) {
+      } else if (res.status === 400) {
+        return dispatch({
+          type: REGISTER_FAILURE,
+          data,
+          status: res.status,
+        });
+      }
+      else if (res.status === 500 || res.status === 502) {
         return FNRedirect('/500');
       }
       return dispatch({
@@ -53,12 +60,20 @@ export function fetchLogin(loginForm) {
       const data = await res.json();
 
       if (res.status === 200) {
+        createCookie('icollab_token',data.token, 1);
         return dispatch({
           type: LOGIN_SUCCESS,
           data,
           status: res.status,
         });
-      } else if (res.status === 500 || res.status === 502 ) {
+      } else if (res.status === 400) {
+        return dispatch({
+          type: LOGIN_FAILURE,
+          data,
+          status: res.status,
+        });
+      }
+      else if (res.status === 500 || res.status === 502) {
         return FNRedirect('/500');
       }
       return dispatch({
