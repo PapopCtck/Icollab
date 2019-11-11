@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import { Menu } from 'antd';
+import { Menu, Icon, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getCookie, deleteCookie } from '../../helpers';
 
+const { SubMenu } = Menu;
+
 class RightNav extends Component {
   render() {
     if (getCookie('icollab_token')) {
+      if (this.props.mode === 'inline') {
+        return (
+          <Menu mode={this.props.mode} selectable={false}>
+            <Menu.Item key="logout">
+              <Link to="/" className="rightnav-logout" onClick={() => deleteCookie('icollab_token')}>Logout</Link>
+            </Menu.Item>
+          </Menu>
+        );
+      }
       return (
         <Menu mode={this.props.mode} selectable={false}>
-          <Menu.Item key="logout">
-            <Link to="/" onClick={() => deleteCookie('icollab_token')}>Logout</Link>
-          </Menu.Item>
+          <SubMenu
+            title={
+              <div className="rightnav-title">
+                <span className="rightnav-avatar" >
+                  <Avatar size="large" icon="user" />
+                </span>
+                <Icon type="caret-down" />
+              </div>
+            }
+          >
+            <Menu.Item key="logout">
+              <Link to="/" className="rightnav-logout" onClick={() => deleteCookie('icollab_token')}>Logout</Link>
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       )
     }

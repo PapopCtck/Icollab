@@ -16,15 +16,6 @@ export class Login extends Component {
     super(props);
     this.state = {
       loading: false,
-      redirect: false,
-    }
-  }
-
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.fetchLogin !== this.props.fetchLogin) {
-      const fetchLogin = this.props.fetchLogin;
-      this.setState({ fetchLogin });
     }
   }
 
@@ -35,9 +26,7 @@ export class Login extends Component {
         this.setState({ loading: true });
         console.log('Received values of form: ', loginForm);
         this.props.dispatch(fetchLogin(loginForm)).then((res) => {
-          if (res.status === 200) {
-            this.setState({ loading: false, redirect: true });
-          } else {
+          if (res.status !== 200) {
             this.modalError();
             this.setState({ loading: false });
           }
@@ -54,9 +43,9 @@ export class Login extends Component {
   }
 
   render() {
-    const { loading, redirect } = this.state;
+    const { loading } = this.state;
     const { getFieldDecorator } = this.props.form;
-    if (redirect || getCookie('icollab_token')) {
+    if (getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
