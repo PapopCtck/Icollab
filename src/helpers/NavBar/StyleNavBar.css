@@ -1,0 +1,110 @@
+.header-container {
+  border-bottom: solid 1px var(--main-border-color);
+  box-shadow: 0 0 30px #f3f1f1;
+}
+
+.menu {
+  background-color: white;
+  padding: 0 20px;
+  font-family: 'Ubuntu';
+}
+
+.logo {
+  float: left;
+}
+
+.logo a {
+  font-family: 'Ubuntu-bold';
+  font-size: 30px;
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.menuContainer .ant-menu-item {
+  padding: 0px 5px;
+}
+
+.menuContainer .ant-menu-submenu-title {
+  padding: 8px 10px;
+}
+
+.menuContainer .ant-menu-item a, .menuContainer .ant-menu-submenu-title a {
+  padding: 8px 15px;
+}
+
+.menuContainer .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.menuContainer .menuLeft {
+  float: right;
+}
+
+.menuContainer .menuRigth {
+  float: right;
+}
+
+.menuMobile-button {
+  float: right;
+  height: 32px;
+  padding: 6px;
+  margin-top: 8px;
+  display: none !important;
+  /* use of important to overwrite ant-btn */
+  background: #3e91f7;
+}
+
+.menuDrawer .ant-drawer-body {
+  padding: 0 !important;
+}
+
+/* align header of Drawer with header of page */
+
+.menuDrawer .ant-drawer-header {
+  padding: 14px 24px !important;
+}
+
+.ant-input-search {
+  margin: 15px 10px !important;
+}
+
+div.vertical-line {
+  border-left: 1px solid var(--main-border-color);
+  float: right;
+  height: 30px;
+  margin: 15px 5px;
+}
+
+.rightnav-title .anticon{
+  margin-right: 0 !important;
+  font-size: 20px !important;
+}
+
+.rightnav-avatar {
+  margin-right: 10px;
+}
+
+.rightnav-logout {
+  color: rgba(255, 0, 0, 0.65) !important;
+}
+
+@media (max-width: 783px) {
+  .menuMobile-button {
+    display: inline-block !important;
+  }
+  .menuLeft, .menuRigth {
+    display: none;
+  }
+  .menuLogo a {
+    margin-left: -20px;
+  }
+  .menuContainer .ant-menu-item, .menuContainer .ant-menu-submenu-title {
+    padding: 1px 20px;
+  }
+  .menuLogo a {
+    padding: 10px 20px;
+  }
+  div.vertical-line {
+    display: none;
+  }
+}

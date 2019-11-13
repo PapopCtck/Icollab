@@ -1,24 +1,36 @@
 @import '~antd/dist/antd.css';
-
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Ubuntu';
+  src: url("/font/Ubuntu-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
+@font-face {
+  font-family: 'Ubuntu-Bold';
+  src: url("/font/Ubuntu-Bold.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+:root {
+  --main-border-color: rgb(190, 190, 190);
+  --main-accent-color: #4BD4FF;
+  --main-accent-hover: #87E2FF;
+  --bg-loading: rgba(0,0,0,0.5);
+  --bg-box-loading: #ffffff;
+  --background-color-gray: #F1F1F1;
 }
 
-.App-link {
-  color: #09d3ac;
+.sider {
+  background: none;
+}
+
+.header-container {
+  background-color: white;
+  padding: 0px;
+}
+
+.ant-layout-footer {
+  background-color: white;
 }

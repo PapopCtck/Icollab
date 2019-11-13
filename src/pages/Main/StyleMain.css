@@ -1,0 +1,30 @@
+.regular {
+  font-family: 'Ubuntu'
+}
+
+.bold {
+  font-family: 'Ubuntu-bold';
+  color: black;
+}
+
+.ant-layout-content {
+  background: white;
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.landing-title {
+  padding: 10px;
+}
+
+@media (max-width: 792px) {
+  .page-wrapper {
+    padding: 0;
+  }
+}

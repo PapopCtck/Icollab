@@ -1,0 +1,41 @@
+.landing-trending-container {
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.landing-trending-header-right {
+  float: right;
+}
+
+.landing-trending-icon {
+  margin: 0 10px;
+}
+
+.landing-trending-icon:hover {
+  color: var(--main-accent-color);
+}
+
+.carouselcard-container {
+  margin: 30px 0 50px 0;
+}
+
+.carouselcard-content-row {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.carouselcard-container .slick-slide {
+  padding: 0 30px;
+}
+
+.carouselcard-container .ant-card-body {
+  height: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 792px) {
+  .landing-trending-container {
+    padding: 0 15px;
+  }
+}

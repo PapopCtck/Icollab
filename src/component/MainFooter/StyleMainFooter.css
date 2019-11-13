@@ -1,0 +1,85 @@
+.ant-layout-footer {
+  border-top: 1px solid var(--main-border-color);
+}
+
+.footer-left {
+  float: left;
+}
+
+.footer-right {
+  float: right;
+}
+
+.left-footer-container {
+  display: flex;
+  margin: 0px 20px;
+}
+
+.right-footer-container {
+  display: flex;
+  margin: 0px 20px;
+}
+
+.left-footer-icon a {
+  font-family: 'Ubuntu-bold';
+  font-size: 25px;
+}
+
+.left-footer-menu {
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-footer-email {
+  max-width: 250px;
+  margin: 10px 20px;
+}
+
+.input-bottom-text {
+  margin-top: 10px;
+  font-size: 10px;
+  color: rgba(0, 0, 0, .25)
+}
+
+.right-footer-social {
+  margin-left: 20px;
+}
+
+.primary-icon {
+  color: rgb(75,212,255) !important;
+}
+
+.social-icon{
+  margin: 20px 10px;
+  font-size: 20px;
+}
+
+@media (max-width: 895px){
+  .footer-left {
+    float: none;
+  }
+  .left-footer-container {
+    justify-content: space-evenly;
+  }
+
+  .left-footer-menuitem {
+    margin: 0 10px;
+  }
+  
+  .footer-right {
+    float: none;
+  }
+  .right-footer-container {
+    display: block;
+    margin-top: 20px;
+  }
+  .right-footer-social {
+    text-align: center;
+  }
+  .right-footer-email {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+}
