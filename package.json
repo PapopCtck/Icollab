@@ -10,10 +10,11 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -34,6 +35,5 @@
     ]
   },
   "devDependencies": {
-    "redux-logger": "^3.0.6"
   }
 }
