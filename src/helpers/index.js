@@ -6,6 +6,8 @@ import FNRedirect from './Functions/FNRedirect';
 
 import Loading from './Loading/Loading';
 
+import ThailandStateSelect from './ThailandStateSelect/ThailandStateSelect';
+
 import {
   getCookie,
   deleteCookie,
@@ -25,4 +27,6 @@ export {
   getCookie,
   deleteCookie,
   createCookie,
+  //StateSelect
+  ThailandStateSelect,
 }
