@@ -22,10 +22,6 @@
   --background-color-gray: #F1F1F1;
 }
 
-.sider {
-  background: none;
-}
-
 .header-container {
   background-color: white;
   padding: 0px;
@@ -33,4 +29,13 @@
 
 .ant-layout-footer {
   background-color: white;
+}
+
+.regular {
+  font-family: 'Ubuntu'
+}
+
+.bold {
+  font-family: 'Ubuntu-bold';
+  color: black;
 }
