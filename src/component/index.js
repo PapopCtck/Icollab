@@ -14,6 +14,10 @@ import ProjectDetailContent from './ProjectDetailContent/ProjectDetailContent';
 
 import ProjectDetailStory from './ProjectDetailStory/ProjectDetailStory';
 
+import ExploreCondition from './ExploreCondition/ExploreCondition';
+
+import ExploreResult from './ExploreResult/ExploreResult';
+
 export {
   MainNav,
   MainFooter,
@@ -23,4 +27,6 @@ export {
   ProjectDetailHeader,
   ProjectDetailContent,
   ProjectDetailStory,
+  ExploreCondition,
+  ExploreResult,
 }
