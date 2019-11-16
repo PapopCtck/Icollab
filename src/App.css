@@ -39,3 +39,25 @@
   font-family: 'Ubuntu-bold';
   color: black;
 }
+
+.ant-layout-content {
+  background: white;
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.primary-text {
+  color: var(--main-accent-color);
+}
+
+@media (max-width: 792px) {
+  .page-wrapper {
+    padding: 0;
+  }
+}
