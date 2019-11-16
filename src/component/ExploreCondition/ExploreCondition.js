@@ -10,13 +10,6 @@ const { Search } = Input;
 
 export class ExploreCondition extends Component {
 
-  handleChange = (text) => {
-    console.log(text);
-  }
-
-  handleSearch = (text) => {
-    console.log(text);
-  }
 
   render() {
     return (
@@ -27,17 +20,17 @@ export class ExploreCondition extends Component {
               className="explore-condition-select"
               mode="multiple"
               placeholder="Select category"
-              onChange={this.handleChange}
+              onChange={this.props.handleChange}
             >
               <Option value="computer">Computer</Option>
               <Option value="mechanic">Mechanic</Option>
               <Option value="robotic">Robotic</Option>
             </Select>
-            <Select className="explore-condition-select" placeholder="Select Role" onChange={this.handleChange}>
+            <Select className="explore-condition-select" placeholder="Select Role" onChange={this.props.handleChange}>
               <Option value="developer">Developer</Option>
               <Option value="engineer">Engineer</Option>
             </Select>
-            <ThailandStateSelect />
+            <ThailandStateSelect onChange={this.props.handleChange}/>
           </div>
           <div className="bold explore-condition-or">
             - OR -
@@ -46,7 +39,7 @@ export class ExploreCondition extends Component {
             <Search
               className="explore-condition-search"
               placeholder="input search text"
-              onSearch={this.handleSearch}
+              onSearch={this.props.handleSearch}
             />
 
           </div>
