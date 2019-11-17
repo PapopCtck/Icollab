@@ -6,13 +6,16 @@ const { Option } = Select;
 
 export class ThailandStateSelect extends Component {
   render() {
+    const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass } = this.props;
     return (
       <Select
-        className="explore-condition-select"
-        placeholder={this.props.placeholder ? this.props.placeholder : 'Select state' }
-        onChange={this.props.onChange}
-        mode="multiple"
-        suffixIcon={this.props.suffixIcon ? this.props.suffixIcon : <Icon type="compass" style={{ color: 'rgba(0,0,0,.5)' }} />}>
+        className={`explore-condition-select ${additionalClass}`}
+        placeholder={placeholder ? placeholder : 'Select state'}
+        onChange={onChange}
+        mode={multiple ? 'multiple' : 'default'}
+        suffixIcon={suffixIcon ? suffixIcon : <Icon type="compass" style={{ color: 'rgba(0,0,0,.5)' }} />}
+        disabled={disabled ? true : false}
+      >
         <Option value="กรุงเทพมหานคร">กรุงเทพมหานคร</Option>
         <Option value="กระบี่">กระบี่ </Option>
         <Option value="กาญจนบุรี">กาญจนบุรี </Option>
@@ -102,4 +105,5 @@ ThailandStateSelect.propTypes = {
   onChange: PropTypes.func,
   suffixIcon: PropTypes.any,
   placeholder: PropTypes.string,
+  multiple: PropTypes.bool,
 }
