@@ -14,6 +14,8 @@ import Error500 from './Error/Error500';
 
 import Explore from './Explore/Explore';
 
+import Profile from './Profile/Profile';
+
 export { 
   //Landing Page
   Main,
@@ -28,4 +30,5 @@ export {
   Error500,
   //Explore page
   Explore,
+  Profile,
 };
