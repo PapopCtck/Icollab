@@ -12,7 +12,7 @@ class RightNav extends Component {
     if (getCookie('icollab_token')) {
       if (this.props.mode === 'inline') {
         return (
-          <Menu mode={this.props.mode} selectable={false}>
+          <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
             <Menu.Item key="profile">
               <Link to="/profile" className="rightnav-profile">Profile</Link>
             </Menu.Item>
@@ -28,7 +28,7 @@ class RightNav extends Component {
             title={
               <div className="rightnav-title">
                 <span className="rightnav-avatar" >
-                  <Avatar size="large" icon="user" onClick={() => this.props.history.push('/profile')}/>
+                  <Avatar size="large" icon="user" onClick={() => this.props.history.push('/profile')} />
                 </span>
                 <Icon type="caret-down" />
               </div>
@@ -42,7 +42,7 @@ class RightNav extends Component {
       )
     }
     return (
-      <Menu mode={this.props.mode} selectable={false}>
+      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
           <Link to="/register">Signup</Link>
         </Menu.Item>

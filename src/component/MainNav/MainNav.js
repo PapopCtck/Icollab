@@ -6,11 +6,19 @@ import RightNav from './RightNav';
 import LeftNav from './LeftNav';
 
 export class MainNav extends Component {
-
-  renderRightDrawer = () => <div><LeftNav mode="inline" /> <RightNav mode="inline" /></div>
+  state = {
+    drawerVisible: false,
+  }
+  toggleDrawer = () => {
+    const { drawerVisible } = this.state;
+    this.setState({
+      drawerVisible: !drawerVisible,
+    }, () => console.log('toggle'))
+  }
+  renderRightDrawer = () => <div><LeftNav onClick={this.toggleDrawer} mode="inline" /> <RightNav onClick={this.toggleDrawer} mode="inline" /></div>
   render() {
     return (
-      <NavBar drawer={this.renderRightDrawer()}>
+      <NavBar visible={this.state.drawerVisible} toggleDrawer={this.toggleDrawer} drawer={this.renderRightDrawer()}>
         <div className="menuRigth">
           <RightNav mode="horizontal" />
         </div>
