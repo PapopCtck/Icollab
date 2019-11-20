@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Icon, Avatar } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getCookie, deleteCookie } from '../../helpers';
@@ -12,7 +12,10 @@ class RightNav extends Component {
     if (getCookie('icollab_token')) {
       if (this.props.mode === 'inline') {
         return (
-          <Menu mode={this.props.mode} selectable={false}>
+          <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+            <Menu.Item key="profile">
+              <Link to="/profile" className="rightnav-profile">Profile</Link>
+            </Menu.Item>
             <Menu.Item key="logout">
               <Link to="/" className="rightnav-logout" onClick={() => deleteCookie('icollab_token')}>Logout</Link>
             </Menu.Item>
@@ -25,7 +28,7 @@ class RightNav extends Component {
             title={
               <div className="rightnav-title">
                 <span className="rightnav-avatar" >
-                  <Avatar size="large" icon="user" />
+                  <Avatar size="large" icon="user" onClick={() => this.props.history.push('/profile')} />
                 </span>
                 <Icon type="caret-down" />
               </div>
@@ -39,7 +42,7 @@ class RightNav extends Component {
       )
     }
     return (
-      <Menu mode={this.props.mode} selectable={false}>
+      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
           <Link to="/register">Signup</Link>
         </Menu.Item>
@@ -50,7 +53,7 @@ class RightNav extends Component {
     );
   }
 }
-export default RightNav;
+export default withRouter(RightNav);
 
 RightNav.propTypes = {
   mode: PropTypes.string,

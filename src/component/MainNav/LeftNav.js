@@ -8,7 +8,7 @@ const { Search } = Input;
 export class LeftNav extends Component {
   render() {
     return (
-      <Menu mode={this.props.mode} >
+      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Search
           placeholder="input search text"
           onSearch={value => console.log(value)}
@@ -16,7 +16,7 @@ export class LeftNav extends Component {
           style={{ width: 200 }}
         />
         <Menu.Item key="explore">
-          <Link to="/">explore</Link>
+          <Link to="/explore">explore</Link>
         </Menu.Item>
         <Menu.Item key="start">
           <Link to="/">start a project</Link>

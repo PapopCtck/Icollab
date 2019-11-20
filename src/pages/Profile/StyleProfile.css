@@ -1,0 +1,39 @@
+.profile-container {
+  display: flex;
+  padding: 15px;
+}
+
+.profile-left {
+  width: 25%;
+  margin: 20px 0;
+  padding: 10px;
+  border-right: 0.5px solid var(--main-border-color);
+  text-align: center;
+}
+
+.profile-right {
+  width: 100%;
+  padding: 20px;
+}
+
+.profile-city {
+   max-width: unset;
+   margin: 0 !important;
+}
+
+.profile-edit-button {
+ float: right;
+}
+
+@media(max-width:600px){
+  .profile-container {
+    display: block;
+  }
+  .profile-left {
+    width: auto;
+    padding: 30px 15px;
+    margin: 0 15px;
+    border-right: none;
+    border-bottom: 0.5px solid var(--main-border-color);
+  }  
+}

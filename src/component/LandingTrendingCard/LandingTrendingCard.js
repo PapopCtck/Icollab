@@ -51,13 +51,36 @@ export class LandingTrendingCard extends Component {
         </div>
         <div className="carouselcard-container">
           <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
-            {trendingProject.map((data) =>
+            {trendingProject.map((project) =>
               <Card
-                cover={<img className="carouselcard-img" alt="example" src={data.projectThumbnail}/>}
-                key={data.projectId}
-                onClick={() => this.onCardClick(data.projectId)}
+                onClick={() => this.onCardClick(project.projectId)}
+                cover={
+                  <img
+                    alt="example"
+                    src={project.projectThumbnail ? project.projectThumbnail : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
+                  />
+                }
               >
-                <Meta title={data.projectTitle} description={data.projectDescription} />
+                <Meta
+                  title={project.projectTitle}
+                  description={
+                    <div className="explore-card-container">
+                      <div className="explore-card-description-text">
+                        {project.projectDescription}
+                      </div>
+                      <div className="explore-card-role">
+                        role needed : {project.roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
+                      </div>
+                      <div className="explore-card-bottom">
+                        <span className="explore-card-bottom-left">
+                          <Icon type="clock-circle" />
+                          <span className="explore-card-time-text">2m ago</span>
+                        </span>
+                        <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span>
+                      </div>
+                    </div>
+                  }
+                />
               </Card>)}
           </Carousel>
         </div>
