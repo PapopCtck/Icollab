@@ -53,30 +53,33 @@ export class LandingTrendingCard extends Component {
           <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
             {trendingProject.map((project) =>
               <Card
-                onClick={() => this.onCardClick(project.projectId)}
+                onClick={() => this.onCardClick(project.project_uid)}
                 cover={
                   <img
+                    style={{ maxHeight: '240px', minHeight: '240px' }}
                     alt="example"
-                    src={project.projectThumbnail ? project.projectThumbnail : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
+                    src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
                   />
                 }
               >
                 <Meta
-                  title={project.projectTitle}
+                  title={project.projecttitle}
                   description={
                     <div className="explore-card-container">
                       <div className="explore-card-description-text">
-                        {project.projectDescription}
+                        {project.projectdescription}
                       </div>
                       <div className="explore-card-role">
-                        role needed : {project.roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
+                        {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
+                        role needed : {project.roleneeded}
                       </div>
                       <div className="explore-card-bottom">
                         <span className="explore-card-bottom-left">
                           <Icon type="clock-circle" />
                           <span className="explore-card-time-text">2m ago</span>
                         </span>
-                        <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span>
+                        {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
+                        <span className="explore-card-bottom-right">by {project.projectstarter ? project.projectstarter : 'John doe'}</span>
                       </div>
                     </div>
                   }
