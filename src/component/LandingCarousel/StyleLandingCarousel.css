@@ -36,6 +36,7 @@
 .carousel-content-starter-name {
   color: black;
   font-size: 16px;
+  float: right;
 }
 
 .carousel-content-learnmore {

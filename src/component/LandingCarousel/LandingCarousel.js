@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Typography } from 'antd';
+import { Typography } from 'antd';
 
 import PropTypes from 'prop-types';
 
@@ -38,7 +38,7 @@ export class LandingCarousel extends Component {
         <div className="carousel-content-container">
           <div className="carousel-content-title">
             <Title level={2}>
-              {featuredProject[activeChoice].projectTitle}
+              {featuredProject[activeChoice].projecttitle}
             </Title>
           </div>
           <div className="carousel-content-sub-title">
@@ -46,36 +46,36 @@ export class LandingCarousel extends Component {
               level :
             </span>
             <span className="carousel-content-level">
-              {featuredProject[activeChoice].projectLevel.map((level, idx) => idx === 0 ? level : ', ' + level)}
+              {/* {featuredProject[activeChoice].projectLevel.map((level, idx) => idx === 0 ? level : ', ' + level)} */}
+              {featuredProject[activeChoice].projectlevel}
             </span>
             <span className="carousel-content-static">
               role needed :
             </span>
             <span className="carousel-content-role">
-              {featuredProject[activeChoice].roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
+              {/* {featuredProject[activeChoice].roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
+              {featuredProject[activeChoice].roleneeded}
             </span>
           </div>
           <div className="carousel-content-description">
             &quot;
-            {featuredProject[activeChoice].projectDescription}
+            {featuredProject[activeChoice].projectdescription}
             &quot;
             <div className="carousel-content-learnmore">
-              <Link to={'/project/' + featuredProject[activeChoice].projectId}>Learn more...</Link>
+              <Link to={'/project/' + featuredProject[activeChoice].project_uid}>Learn more...</Link>
             </div>
           </div>
           <div className="carousel-content-starter-container">
-            <Avatar size={50} className="carousel-content-starter-avatar" icon={featuredProject[activeChoice].projectStarters[0].userImg ? '' : 'user'} src={featuredProject[activeChoice].projectStarters[0].userImg} >{featuredProject[activeChoice].projectStarters[0].userImg}</Avatar>
             <div className="carousel-content-starter-detail">
               <div className="carousel-content-starter-name">
-                {featuredProject[activeChoice].projectStarters[0].fullName}
+                {/* {featuredProject[activeChoice].projectStarters[0].fullName} */}
+                by John Doe
               </div>
               <div className="crousel-content-starter-assoc">
-                {
+                {/* {
                   featuredProject[activeChoice].projectStarters[0].userAssociation.map(assoc => assoc)
-                }
+                } */}
               </div>
-            </div>
-            <div>
             </div>
           </div>
         </div>
