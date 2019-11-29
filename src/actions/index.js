@@ -9,6 +9,13 @@ import {
   fetchLogin,
 } from './Authentication';
 
+import {
+  //getproject
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_FAILURE,
+  fetchGetProjects,
+} from './Projects';
+
 
 export {
   //register
@@ -19,4 +26,8 @@ export {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   fetchLogin,
+  //getProject
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_FAILURE,
+  fetchGetProjects,
 };
