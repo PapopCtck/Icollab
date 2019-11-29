@@ -1,110 +1,23 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 
 import { ExploreCondition, ExploreResult } from '../../component';
+
+import { fetchGetProjects } from '../../actions';
 
 export class Explore extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultProjects: [
-        {
-          projectId: '4',
-          projectTitle: 'One developer one cat',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Brenda Mercer',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-        {
-          projectId: '5',
-          projectTitle: 'I don\'t like sand',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Anakin Skywalker',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-        {
-          projectId: '6',
-          projectTitle: 'It\'s probably cold to go alone',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Mr.lonely',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-        {
-          projectId: '7',
-          projectTitle: 'One developer one cat 2',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash or something even longer bra bra bra',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Brenda Mercer',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-        {
-          projectId: '8',
-          projectTitle: 'I don\'t like sand 2',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Anakin Skywalker',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-        {
-          projectId: '9',
-          projectTitle: 'It\'s probably cold to go alone 2',
-          projectLevel: ['enterprise'],
-          roleNeeded: [{ title: 'mechanical Engineer', jobSkill: ['Python', 'C++', 'Linux', 'R'], jobDescription: 'you will be develop a program with a computer to control our precious robot that can save a humanity ...', neededAmount: 1, gotAmount: 0 }],
-          projectDescription: '...A project that aim to save the world. Nowadays people seems to ignore how much we destroy our earth with or trash',
-          projectThumbnail: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg',
-          projectStarters: [
-            {
-              userImg: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-              userId: '01231234',
-              fullName: 'Mr.lonely',
-              userAssociation: ['MIT Student', 'Computer Engineering'],
-            },
-          ],
-        },
-      ],
+      resultProjects: null,
+    }
+    props.dispatch(fetchGetProjects());
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchGetProjects !== this.props.fetchGetProjects) {
+      const fetchGetProjects = this.props.fetchGetProjects;
+      this.setState({ resultProjects: fetchGetProjects.Project },() => console.log(this.state));
     }
   }
 
@@ -131,4 +44,10 @@ export class Explore extends Component {
   }
 }
 
-export default Explore
+const mapStateToProps = state => {
+  const fetchGetProjects = state.fetchGetProjects.data;
+  return { fetchGetProjects };
+}
+
+
+export default connect(mapStateToProps)(Explore)
