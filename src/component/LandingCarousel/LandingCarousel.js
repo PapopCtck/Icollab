@@ -61,9 +61,9 @@ export class LandingCarousel extends Component {
             &quot;
             {featuredProject[activeChoice].projectdescription}
             &quot;
-            <div className="carousel-content-learnmore">
-              <Link to={'/project/' + featuredProject[activeChoice].project_uid}>Learn more...</Link>
-            </div>
+          </div>
+          <div className="carousel-content-learnmore">
+            <Link to={'/project/' + featuredProject[activeChoice].project_uid}>Learn more...</Link>
           </div>
           <div className="carousel-content-starter-container">
             <div className="carousel-content-starter-detail">
