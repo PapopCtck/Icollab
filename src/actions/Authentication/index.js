@@ -61,6 +61,7 @@ export function fetchLogin(loginForm) {
 
       if (res.status === 200) {
         createCookie('icollab_token',data.token, 1);
+        createCookie('icollab_userinfo',JSON.stringify(data.data), 1);
         return dispatch({
           type: LOGIN_SUCCESS,
           data,
