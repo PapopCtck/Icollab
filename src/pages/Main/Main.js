@@ -28,17 +28,13 @@ export class Main extends Component {
     }
   }
 
-  getFeaturedProject = (resultProjects) => {
-    return resultProjects.slice(0, 6);
-  }
-  
-  getTrendingProject = (resultProjects) => {
-    return resultProjects.slice(6,12)
-  }
+  getFeaturedProject = (resultProjects) => resultProjects.slice(0, 6)
+
+  getTrendingProject = (resultProjects) => resultProjects.slice(6, 12)
 
   render() {
     const { resultProjects } = this.state;
-    if(!resultProjects){
+    if (!resultProjects) {
       return <Loading />
     }
     return (
