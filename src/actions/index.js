@@ -20,6 +20,12 @@ import {
   fetchProjectsById,
 } from './Projects';
 
+import {
+  GET_PROFILE_SUCCESS,
+  GET_PROFILE_FAILURE,
+  fetchGetProfile,
+} from './Profile';
+
 
 export {
   //register
@@ -38,4 +44,8 @@ export {
   FETCH_PROJECT_ID_SUCCESS,
   FETCH_PROJECT_ID_FAILURE,
   fetchProjectsById,
+  //getprofile
+  GET_PROFILE_SUCCESS,
+  GET_PROFILE_FAILURE,
+  fetchGetProfile,
 };
