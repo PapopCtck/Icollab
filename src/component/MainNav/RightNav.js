@@ -31,7 +31,6 @@ class RightNav extends Component {
   }
 
   render() {
-    const test = 'H';
     if (getCookie('icollab_token')) {
       const userInfo = JSON.parse(getCookie('icollab_userinfo'));
       console.log('cookie==>', userInfo[0].name)
