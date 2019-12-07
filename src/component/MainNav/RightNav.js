@@ -17,6 +17,7 @@ class RightNav extends Component {
 
   logout = () => {
     deleteCookie('icollab_token');
+    deleteCookie('icollab_userinfo');
     this.modalSuccess();
   }
 
