@@ -28,9 +28,13 @@ export class Main extends Component {
     }
   }
 
-  getFeaturedProject = (resultProjects) => resultProjects.slice(0, 6)
+  // getFeaturedProject = (resultProjects) => resultProjects.slice(0, 6)
 
-  getTrendingProject = (resultProjects) => resultProjects.slice(6, 12)
+  // getTrendingProject = (resultProjects) => resultProjects.slice(6, 12)
+
+  getTrendingProject = (resultProjects) => resultProjects.filter((project) => project.highlight === true)
+
+  getFeaturedProject = (resultProjects) => resultProjects.filter((project) => project.superhighlight === true)
 
   render() {
     const { resultProjects } = this.state;
