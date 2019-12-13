@@ -3,6 +3,8 @@ import { Card, Carousel, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { timeSince } from '../../helpers';
+
 import './StyleLandingTrendingCard.css';
 
 const { Meta } = Card;
@@ -76,7 +78,7 @@ export class LandingTrendingCard extends Component {
                       <div className="explore-card-bottom">
                         <span className="explore-card-bottom-left">
                           <Icon type="clock-circle" />
-                          <span className="explore-card-time-text">2m ago</span>
+                          <span className="explore-card-time-text">{timeSince(project.createat)}</span>
                         </span>
                         {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
                         <span className="explore-card-bottom-right">by {project.projectstarter ? project.projectstarter : 'John doe'}</span>
