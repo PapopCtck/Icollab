@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Checkbox, Select, Row, Col, Card, Icon, Button } from 'antd';
 
-import { Loading } from '../../helpers';
+import { Loading, timeSince } from '../../helpers';
 
 import './StyleExploreResult.css';
 
@@ -32,13 +32,13 @@ export class ExploreResult extends Component {
 
   renderCard = (resultProjects, count) => {
     let returnArray = [];
-    for (let index = 0; index < count && index < resultProjects.length ; index++) {
+    for (let index = 0; index < count && index < resultProjects.length; index++) {
       const project = resultProjects[index];
       returnArray.push(
         <Col xs={24} sm={12} md={12} lg={8} >
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
-            style={{ width: 325, margin: '20px auto', maxHeight: '425px', minHeight: '425px' }}
+            style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
             cover={
               <img
                 style={{ maxHeight: '240px', minHeight: '240px' }}
@@ -61,7 +61,7 @@ export class ExploreResult extends Component {
                   <div className="explore-card-bottom">
                     <span className="explore-card-bottom-left">
                       <Icon type="clock-circle" />
-                      <span className="explore-card-time-text">2m ago</span>
+                      <span className="explore-card-time-text">{timeSince(project.createat)}</span>
                     </span>
                     {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
                     <span className="explore-card-bottom-right">by {project.projectstarters ? project.projectstarters : 'John doe'}</span>
@@ -78,7 +78,7 @@ export class ExploreResult extends Component {
 
   render() {
     const { cardCount } = this.state;
-    const { resultProjects } = this.props;
+    const { resultProjects, handleSortSelect } = this.props;
     if (!resultProjects) {
       return <Loading />
     }
@@ -108,9 +108,9 @@ export class ExploreResult extends Component {
               </span>
               <span className="bold explore-result-sortby">
                 <span className="explore-result-sortby-text">Sort by</span>
-                <Select defaultValue="Trending" style={{ width: 120 }} onChange={this.props.handleChange}>
-                  <Option value="Trending">Trending</Option>
+                <Select defaultValue="DateAdded" style={{ width: 120 }} onChange={handleSortSelect}>
                   <Option value="DateAdded">Date Added</Option>
+                  <Option value="Trending">Trending</Option>
                   <Option value="Update">Latest update</Option>
                 </Select>
               </span>
@@ -123,7 +123,7 @@ export class ExploreResult extends Component {
           </div>
           <div className="explore-result-foot-container">
             <Button size="large" type="primary" disabled={cardCount >= resultProjects.length} onClick={this.loadMore}>
-              {cardCount >= resultProjects.length ? 'No more' :'Show more!'}
+              {cardCount >= resultProjects.length ? 'No more' : 'Show more!'}
             </Button>
           </div>
         </div>

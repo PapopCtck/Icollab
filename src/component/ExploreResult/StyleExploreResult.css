@@ -44,7 +44,15 @@
 }
 
 .explore-card-description-text {
-  max-height: 70px;
+  min-height: 65px;
+  max-height: 65px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explore-card-role {
+  min-height: 42px;
+  max-height: 42px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
