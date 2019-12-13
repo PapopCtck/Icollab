@@ -4,6 +4,8 @@ import CarouselDisplay from './CarouselDisplay/CarouselDisplay';
 
 import FNRedirect from './Functions/FNRedirect';
 
+import { timeSince, formatDate } from './Functions/FNTime';
+
 import Loading from './Loading/Loading';
 
 import ThailandStateSelect from './ThailandStateSelect/ThailandStateSelect';
@@ -21,6 +23,8 @@ export {
   CarouselDisplay,
   //Function
   FNRedirect,
+  timeSince,
+  formatDate,
   //Loading
   Loading,
   //Cookie
