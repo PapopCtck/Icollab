@@ -63,6 +63,22 @@
   margin-bottom: 70px;
 }
 
+.card-status-banner {
+  position: absolute;
+  left: 0;
+  top: 25px;
+  padding: 8px 15px;
+  color: white !important;
+}
+
+.status-featured {
+  background: var(--main-highlight-color);
+}
+
+.status-sponsered {
+  background: var(--main-accent-color);
+}
+
 @media(max-width: 586px){
   .explore-result-head-right {
     float: none;

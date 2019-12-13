@@ -36,6 +36,7 @@ export class ExploreResult extends Component {
       const project = resultProjects[index];
       returnArray.push(
         <Col xs={24} sm={12} md={12} lg={8} >
+          
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
             style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
@@ -51,6 +52,8 @@ export class ExploreResult extends Component {
               title={project.projecttitle}
               description={
                 <div className="explore-card-container">
+                  {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
+                  {index === 1 ? <span className="card-status-banner bold status-sponsered">Sponsered</span> : null}
                   <div className="explore-card-description-text">
                     {project.projectdescription}
                   </div>
