@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Avatar, Form, Input, Button } from 'antd';
 
-import { ThailandStateSelect } from '../../helpers';
+import { fetchGetProfile } from '../../actions';
+
+import { ThailandStateSelect, getCookie, Loading } from '../../helpers';
 
 import './StyleProfile.css';
 export class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+    if (getCookie('icollab_userinfo')) {
+      const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
+      console.log(id)
+      props.dispatch(fetchGetProfile({ id }));
+    } else {
+      props.history.push('/');
+    }
+
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchGetProfile !== this.props.fetchGetProfile) {
+      const fetchGetProfile = this.props.fetchGetProfile;
+      this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
+    }
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -18,6 +42,10 @@ export class Profile extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { user } = this.state;
+    if (!user) {
+      return <Loading />
+    }
     return (
       <div className="page-wrapper">
         <div className="profile-container">
@@ -30,6 +58,7 @@ export class Profile extends Component {
               <h4>Email</h4>
               <Form.Item>
                 {getFieldDecorator('email', {
+                  initialValue: user.email,
                   rules: [
                     {
                       type: 'email',
@@ -40,11 +69,12 @@ export class Profile extends Component {
                       message: 'Please input your E-mail!',
                     },
                   ],
-                })(<Input placeholder="Email" disabled />)}
+                })(<Input placeholder="Email" disabled/>)}
               </Form.Item>
               <h4>First Name</h4>
               <Form.Item>
                 {getFieldDecorator('firstName', {
+                  initialValue: user.name,
                   rules: [{ required: true, message: 'Please input your first name!' }],
                 })(
                   <Input
@@ -56,6 +86,7 @@ export class Profile extends Component {
               <h4>Last Name</h4>
               <Form.Item>
                 {getFieldDecorator('lastName', {
+                  initialValue: user.lastname,
                   rules: [{ required: true, message: 'Please input your last name!' }],
                 })(
                   <Input
@@ -121,7 +152,7 @@ export class Profile extends Component {
                 )}
               </Form.Item>
               <Form.Item>
-                <Button className="profile-edit-button" type="primary" htmlType="submit">
+                <Button className="profile-edit-button" type="primary">
                   Edit
                 </Button>
               </Form.Item>
@@ -135,4 +166,9 @@ export class Profile extends Component {
 
 const WrappedProfileForm = Form.create({ name: 'profile' })(Profile);
 
-export default WrappedProfileForm;
+const mapStateToProps = state => {
+  const fetchGetProfile = state.fetchGetProfile.data;
+  return { fetchGetProfile };
+}
+
+export default connect(mapStateToProps)(WrappedProfileForm);

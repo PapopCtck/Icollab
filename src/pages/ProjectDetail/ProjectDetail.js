@@ -1,14 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
+import { fetchProjectsById } from '../../actions';
+
 import './StyleProjectDetail.css';
+import { Loading } from '../../helpers';
 
 export class ProjectDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projectDetail: {
+      projectDetail: null,
+      mockupData: {
         projectId: '1',
         projectTitle: 'Beach trash collector robot',
         projectLevel: ['enterprise'],
@@ -42,17 +47,33 @@ export class ProjectDetail extends Component {
         ],
       },
     }
+    props.dispatch(fetchProjectsById({ id: this.props.match.params.id }));
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchProjectsById !== this.props.fetchProjectsById) {
+      const fetchProjectsById = this.props.fetchProjectsById;
+      this.setState({ projectDetail: fetchProjectsById }, () => console.log(this.state));
+    }
+  }
+
   render() {
-    const { projectDetail } = this.state;
+    const { projectDetail,mockupData } = this.state;
+    if (!projectDetail) {
+      return <Loading />
+    }
     return (
       <div className="page-wrapper project-detail-container">
-        <ProjectDetailHeader projectDetail={projectDetail} projectId={this.props.match.params.id} />
-        {/* projectId is temp will remove in the future */}
-        <ProjectDetailContent projectDetail={projectDetail} />
+        <ProjectDetailHeader projectDetail={projectDetail} />
+        <ProjectDetailContent projectDetail={projectDetail} mockupData={mockupData} />
       </div>
     )
   }
 }
 
-export default ProjectDetail
+const mapStateToProps = state => {
+  const fetchProjectsById = state.fetchProjectsById.data;
+  return { fetchProjectsById };
+}
+
+export default connect(mapStateToProps)(ProjectDetail)

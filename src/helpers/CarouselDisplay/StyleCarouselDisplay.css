@@ -59,6 +59,10 @@
   border-bottom: 2px solid transparent;
 }
 
+.carousel-image {
+  height: 310px;
+}
+
 @media (max-width: 1500px) {
   .right-circle{
     margin-left: 380px;

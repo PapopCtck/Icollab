@@ -44,7 +44,15 @@
 }
 
 .explore-card-description-text {
-  max-height: 70px;
+  min-height: 65px;
+  max-height: 65px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explore-card-role {
+  min-height: 42px;
+  max-height: 42px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -53,6 +61,22 @@
   text-align: center;
   margin-top: 60px;
   margin-bottom: 70px;
+}
+
+.card-status-banner {
+  position: absolute;
+  left: 0;
+  top: 25px;
+  padding: 8px 15px;
+  color: white !important;
+}
+
+.status-featured {
+  background: var(--main-highlight-color);
+}
+
+.status-sponsered {
+  background: var(--main-accent-color);
 }
 
 @media(max-width: 586px){

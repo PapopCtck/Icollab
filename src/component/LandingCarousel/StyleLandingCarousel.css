@@ -22,6 +22,9 @@
 .carousel-content-description {
   max-width: 500px;
   margin-top: 10px;
+  max-height: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .carousel-content-starter-container {
@@ -36,6 +39,7 @@
 .carousel-content-starter-name {
   color: black;
   font-size: 16px;
+  float: right;
 }
 
 .carousel-content-learnmore {
