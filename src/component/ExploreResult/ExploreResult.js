@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Checkbox, Select, Row, Col, Card, Icon, Button } from 'antd';
 
+import { Loading, timeSince } from '../../helpers';
+
 import './StyleExploreResult.css';
 
 const { Option } = Select;
@@ -9,10 +11,11 @@ const { Option } = Select;
 const { Meta } = Card;
 
 export class ExploreResult extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       loading: false,
+      cardCount: 9,
     };
   }
 
@@ -21,13 +24,67 @@ export class ExploreResult extends Component {
   }
 
   loadMore = () => {
+    const { cardCount } = this.state;
     this.setState({
-      loading: true,
+      cardCount: cardCount + 9,
     })
   }
 
+  renderCard = (resultProjects, count) => {
+    let returnArray = [];
+    for (let index = 0; index < count && index < resultProjects.length; index++) {
+      const project = resultProjects[index];
+      returnArray.push(
+        <Col xs={24} sm={12} md={12} lg={8} >
+          
+          <Card
+            onClick={() => this.onCardClick(project.project_uid)}
+            style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
+            cover={
+              <img
+                style={{ maxHeight: '240px', minHeight: '240px' }}
+                alt="example"
+                src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
+              />
+            }
+          >
+            <Meta
+              title={project.projecttitle}
+              description={
+                <div className="explore-card-container">
+                  {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
+                  {index === 1 ? <span className="card-status-banner bold status-sponsered">Sponsered</span> : null}
+                  <div className="explore-card-description-text">
+                    {project.projectdescription}
+                  </div>
+                  <div className="explore-card-role">
+                    {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
+                    role needed : {project.roleneeded}
+                  </div>
+                  <div className="explore-card-bottom">
+                    <span className="explore-card-bottom-left">
+                      <Icon type="clock-circle" />
+                      <span className="explore-card-time-text">{timeSince(project.createat)}</span>
+                    </span>
+                    {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
+                    <span className="explore-card-bottom-right">by {project.projectstarters ? project.projectstarters : 'John doe'}</span>
+                  </div>
+                </div>
+              }
+            />
+          </Card>
+        </Col>
+      )
+    }
+    return returnArray;
+  }
+
   render() {
-    const { resultProjects } = this.props;
+    const { cardCount } = this.state;
+    const { resultProjects, handleSortSelect } = this.props;
+    if (!resultProjects) {
+      return <Loading />
+    }
     return (
       <div className="page-wrapper">
         <div className="explore-result-container">
@@ -37,7 +94,7 @@ export class ExploreResult extends Component {
                 Explore
               </span>
               <span className="bold explore-result-head-text primary-text">
-                999 Project
+                {resultProjects.length} Project
               </span>
               <span className="explore-result-head-text">
                 in
@@ -54,9 +111,9 @@ export class ExploreResult extends Component {
               </span>
               <span className="bold explore-result-sortby">
                 <span className="explore-result-sortby-text">Sort by</span>
-                <Select defaultValue="Trending" style={{ width: 120 }} onChange={this.props.handleChange}>
-                  <Option value="Trending">Trending</Option>
+                <Select defaultValue="DateAdded" style={{ width: 120 }} onChange={handleSortSelect}>
                   <Option value="DateAdded">Date Added</Option>
+                  <Option value="Trending">Trending</Option>
                   <Option value="Update">Latest update</Option>
                 </Select>
               </span>
@@ -64,47 +121,12 @@ export class ExploreResult extends Component {
           </div>
           <div className="explore-result-body-container">
             <Row gutter={[16, 16]}>
-              {
-                resultProjects.map((project) =>
-                  <Col xs={24} sm={12} md={12} lg={8} >
-                    <Card
-                      onClick={() => this.onCardClick(project.projectId)}
-                      style={{ width: 325, margin: '20px auto', maxHeight: '425px' }}
-                      cover={
-                        <img
-                          alt="example"
-                          src={project.projectThumbnail ? project.projectThumbnail : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
-                        />
-                      }
-                    >
-                      <Meta
-                        title={project.projectTitle}
-                        description={
-                          <div className="explore-card-container">
-                            <div className="explore-card-description-text">
-                              {project.projectDescription}
-                            </div>
-                            <div className="explore-card-role">
-                              role needed : {project.roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)}
-                            </div>
-                            <div className="explore-card-bottom">
-                              <span className="explore-card-bottom-left">
-                                <Icon type="clock-circle" />
-                                <span className="explore-card-time-text">2m ago</span>
-                              </span>
-                              <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span>
-                            </div>
-                          </div>
-                        }
-                      />
-                    </Card>
-                  </Col>
-                )}
+              {this.renderCard(resultProjects, cardCount)}
             </Row>
           </div>
           <div className="explore-result-foot-container">
-            <Button size="large" type="primary" loading={this.state.loading} onClick={this.loadMore}>
-              Show more!
+            <Button size="large" type="primary" disabled={cardCount >= resultProjects.length} onClick={this.loadMore}>
+              {cardCount >= resultProjects.length ? 'No more' : 'Show more!'}
             </Button>
           </div>
         </div>
