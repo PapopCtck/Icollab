@@ -17,13 +17,10 @@
   --main-border-color: rgb(190, 190, 190);
   --main-accent-color: #4BD4FF;
   --main-accent-hover: #87E2FF;
+  --main-highlight-color: #FF4BA5;
   --bg-loading: rgba(0,0,0,0.5);
   --bg-box-loading: #ffffff;
   --background-color-gray: #F1F1F1;
-}
-
-.sider {
-  background: none;
 }
 
 .header-container {
@@ -33,4 +30,35 @@
 
 .ant-layout-footer {
   background-color: white;
+}
+
+.regular {
+  font-family: 'Ubuntu'
+}
+
+.bold {
+  font-family: 'Ubuntu-bold';
+  color: black;
+}
+
+.ant-layout-content {
+  background: white;
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.primary-text {
+  color: var(--main-accent-color);
+}
+
+@media (max-width: 792px) {
+  .page-wrapper {
+    padding: 0;
+  }
 }

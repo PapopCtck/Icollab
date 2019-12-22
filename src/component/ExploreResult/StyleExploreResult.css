@@ -1,0 +1,97 @@
+.explore-result-container {
+  margin: 15px 0;
+}
+
+.explore-result-title {
+  font-size: 25px;
+}
+
+.explore-result-head-right {
+  float: right;
+  margin: 5px 0;
+}
+
+.explore-result-head-text {
+  margin: 10px 5px;
+}
+
+.explore-result-sortby {
+  color: rgba(0,0,0,.65) !important;
+}
+
+.explore-result-sortby-text {
+  margin: 0 10px;
+}
+
+.explore-result-body-container {
+  margin-top: 20px;
+}
+
+.explore-card-bottom-left {
+  float: left;
+}
+
+.explore-card-bottom-right {
+  float: right;
+}
+
+.explore-card-bottom {
+  margin-top: 15px;
+}
+
+.explore-card-time-text {
+  margin-left: 5px;
+}
+
+.explore-card-description-text {
+  min-height: 65px;
+  max-height: 65px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explore-card-role {
+  min-height: 42px;
+  max-height: 42px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explore-result-foot-container {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.card-status-banner {
+  position: absolute;
+  left: 0;
+  top: 25px;
+  padding: 8px 15px;
+  color: white !important;
+}
+
+.status-featured {
+  background: var(--main-highlight-color);
+}
+
+.status-sponsered {
+  background: var(--main-accent-color);
+}
+
+@media(max-width: 586px){
+  .explore-result-head-right {
+    float: none;
+    margin-left: 10px;
+    display: block;
+    text-align: center;
+  }
+  .explore-result-sortby {
+    display: inline-block;
+    margin-top:10px;
+  }
+  .explore-result-sortby-text {
+    margin: 0;
+    margin-right: 10px;
+  }
+}

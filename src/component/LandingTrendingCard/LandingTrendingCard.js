@@ -3,6 +3,8 @@ import { Card, Carousel, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { timeSince } from '../../helpers';
+
 import './StyleLandingTrendingCard.css';
 
 const { Meta } = Card;
@@ -51,13 +53,39 @@ export class LandingTrendingCard extends Component {
         </div>
         <div className="carouselcard-container">
           <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
-            {trendingProject.map((data) =>
+            {trendingProject.map((project) =>
               <Card
-                cover={<img className="carouselcard-img" alt="example" src={data.projectThumbnail}/>}
-                key={data.projectId}
-                onClick={() => this.onCardClick(data.projectId)}
+                onClick={() => this.onCardClick(project.project_uid)}
+                cover={
+                  <img
+                    style={{ maxHeight: '240px', minHeight: '240px' }}
+                    alt="example"
+                    src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
+                  />
+                }
               >
-                <Meta title={data.projectTitle} description={data.projectDescription} />
+                <Meta
+                  title={project.projecttitle}
+                  description={
+                    <div className="explore-card-container">
+                      <div className="explore-card-description-text">
+                        {project.projectdescription}
+                      </div>
+                      <div className="explore-card-role">
+                        {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
+                        role needed : {project.roleneeded}
+                      </div>
+                      <div className="explore-card-bottom">
+                        <span className="explore-card-bottom-left">
+                          <Icon type="clock-circle" />
+                          <span className="explore-card-time-text">{timeSince(project.createat)}</span>
+                        </span>
+                        {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
+                        <span className="explore-card-bottom-right">by {project.projectstarter ? project.projectstarter : 'John doe'}</span>
+                      </div>
+                    </div>
+                  }
+                />
               </Card>)}
           </Carousel>
         </div>

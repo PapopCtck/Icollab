@@ -21,7 +21,7 @@
 
 .carousel-display {
   width: 30vw;
-  min-width: 450px;
+  min-height: 200px;
 }
 
 .left-circle{
@@ -57,6 +57,10 @@
 .carousel-choice-container .choice{
   border-radius: 0 !important;
   border-bottom: 2px solid transparent;
+}
+
+.carousel-image {
+  height: 310px;
 }
 
 @media (max-width: 1500px) {

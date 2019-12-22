@@ -1,0 +1,59 @@
+.explore-condition-container {
+  min-height: 20vh;
+  background: url('/assets/explore-banner.jpg') lightblue;
+  background-position: 0 60%;
+  background-size: cover;
+  padding: 30px 40px;
+}
+
+.explore-condition-select-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.explore-condition-select {
+  width: 250px;
+}
+
+.explore-condition-select-container .ant-select-selection--multiple {
+  overflow: auto;
+  max-height: 36px;
+}
+
+.explore-condition-or {
+  text-align: center;
+  margin: 20px 0px;
+  color: white !important;
+  font-size: 22px;
+}
+.explore-condition-search-container {
+  display: block;
+  text-align: center;
+}
+
+.explore-condition-search {
+  width: 400px !important;
+}
+
+@media(max-width:850px) {
+
+  .explore-condition-select-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .explore-condition-select {
+    margin: 10px 5px !important;
+  }
+  .explore-condition-select {
+    width: 100%;
+    max-width: 400px;
+  }
+  .explore-condition-search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .explore-condition-search {
+    margin: 0 !important;
+  }
+}

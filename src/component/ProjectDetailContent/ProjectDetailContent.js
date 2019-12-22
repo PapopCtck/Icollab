@@ -10,11 +10,11 @@ const { TabPane } = Tabs;
 
 export class ProjectDetailContent extends Component {
   render() {
-    const { projectDetail } = this.props;
+    const { projectDetail,mockupData } = this.props;
     return (
       <Tabs tabBarStyle={{ 'borderBottom': 'none', 'marginLeft': '60px' }} defaultActiveKey="1" animated={false}>
         <TabPane tab="Story" key="1">
-          <ProjectDetailStory projectDetail={projectDetail} />
+          <ProjectDetailStory projectDetail={projectDetail} mockupData={mockupData} />
         </TabPane>
         <TabPane tab="FAQ" key="2" disabled>
           Content of Tab Pane 2

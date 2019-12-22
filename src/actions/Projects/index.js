@@ -1,32 +1,31 @@
-import { FNRedirect, createCookie } from '../../helpers';
+import { FNRedirect } from '../../helpers';
 
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
+export const FETCH_PROJECTS_FAILURE = 'FETCH_PROJECTS_FAILURE';
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const FETCH_PROJECT_ID_SUCCESS = 'FETCH_PROJECT_ID_SUCCESS';
+export const FETCH_PROJECT_ID_FAILURE = 'FETCH_PROJECT_ID_FAILURE';
 
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
-export function fetchRegister(registerForm) {
+export function fetchGetProjects() {
   return async dispatch => {
     try {
-      const res = await fetch(`${host}/v1/users/register`, {
-        method: 'POST',
-        body: JSON.stringify(registerForm),
+      const res = await fetch(`${host}/v2/users/getDataProject`, {
+        method: 'GET',
         headers: new Headers({ 'Content-Type': 'application/json' }),
       });
       const data = await res.json();
 
       if (res.status === 200) {
         return dispatch({
-          type: REGISTER_SUCCESS,
+          type: FETCH_PROJECTS_SUCCESS,
           data,
           status: res.status,
         });
       } else if (res.status === 400) {
         return dispatch({
-          type: REGISTER_FAILURE,
+          type: FETCH_PROJECTS_FAILURE,
           data,
           status: res.status,
         });
@@ -35,13 +34,13 @@ export function fetchRegister(registerForm) {
         return FNRedirect('/500');
       }
       return dispatch({
-        type: REGISTER_FAILURE,
+        type: FETCH_PROJECTS_FAILURE,
         data: null,
         status: res.status ? res.status : res,
       })
     } catch (err) {
       return dispatch({
-        type: REGISTER_FAILURE,
+        type: FETCH_PROJECTS_FAILURE,
         data: null,
         status: err.status ? err.status : err,
       });
@@ -49,27 +48,26 @@ export function fetchRegister(registerForm) {
   };
 }
 
-export function fetchLogin(loginForm) {
+
+export function fetchProjectsById(projectId) {
   return async dispatch => {
     try {
-      const res = await fetch(`${host}/v1/users/login`, {
+      const res = await fetch(`${host}/v2/users/jectid`, {
         method: 'POST',
-        body: JSON.stringify(loginForm),
+        body: JSON.stringify(projectId),
         headers: new Headers({ 'Content-Type': 'application/json' }),
       });
       const data = await res.json();
 
       if (res.status === 200) {
-        createCookie('icollab_token',data.token, 1);
-        createCookie('icollab_userinfo',JSON.stringify(data.data), 1);
         return dispatch({
-          type: LOGIN_SUCCESS,
+          type: FETCH_PROJECT_ID_SUCCESS,
           data,
           status: res.status,
         });
       } else if (res.status === 400) {
         return dispatch({
-          type: LOGIN_FAILURE,
+          type: FETCH_PROJECT_ID_FAILURE,
           data,
           status: res.status,
         });
@@ -78,13 +76,13 @@ export function fetchLogin(loginForm) {
         return FNRedirect('/500');
       }
       return dispatch({
-        type: LOGIN_FAILURE,
+        type: FETCH_PROJECT_ID_FAILURE,
         data: null,
         status: res.status ? res.status : res,
       })
     } catch (err) {
       return dispatch({
-        type: LOGIN_FAILURE,
+        type: FETCH_PROJECT_ID_FAILURE,
         data: null,
         status: err.status ? err.status : err,
       });

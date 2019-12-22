@@ -6,7 +6,6 @@ import './StyleNavBar.css'
 
 class Navbar extends Component {
   state = {
-    current: 'mail',
     visible: false,
   }
   onClose = () => {
@@ -20,7 +19,7 @@ class Navbar extends Component {
     });
   };
   render() {
-    const { children, drawer } = this.props;
+    const { children, drawer, toggleDrawer, visible } = this.props;
     return (
       <nav className="menu">
         <div className="logo">
@@ -31,17 +30,17 @@ class Navbar extends Component {
           <Button
             className="menuMobile-button"
             type="primary"
-            onClick={this.showDrawer}
+            onClick={toggleDrawer ? toggleDrawer : this.showDrawer}
           >
             <Icon type="align-right" />
           </Button>
           <Drawer
-            title="Basic Drawer"
+            title="Menu"
             placement="right"
             className="menuDrawer"
             closable={false}
-            onClose={this.onClose}
-            visible={this.state.visible}
+            onClose={toggleDrawer ? toggleDrawer : this.onClose}
+            visible={visible ? visible : this.state.visible}
           >
             {drawer}
           </Drawer>

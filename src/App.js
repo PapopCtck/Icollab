@@ -9,6 +9,8 @@ import {
   Error403,
   Error500,
   Error404,
+  Explore,
+  Profile,
 } from './pages';
 
 import './App.css';
@@ -30,6 +32,8 @@ function App() {
               <Route sensitive strict path="/login" component={Login} />
               <Route sensitive strict path="/register" component={Register} />
               <Route sensitive strict path="/project/:id" component={ProjectDetail} />
+              <Route sensitive strict path="/explore" component={Explore} />
+              <Route sensitive strict path="/profile" component={Profile} />
               <Route sensitive strict path="/403" component={Error403} />
               <Route sensitive strict path="/500" component={Error500} />
               <Route sensitive strict component={Error404} />

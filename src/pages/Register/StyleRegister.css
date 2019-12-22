@@ -1,12 +1,12 @@
 .register-box-container {
-  width: 400px;
+  max-width: 400px;
   height: auto;
   margin: 0 auto;
   background-color: white;
   border-style: solid;
   border-radius: 5px;
-  border-color: #cacaca;
-  border-width: 0.5px; 
+  border-color: var(--main-border-color);
+  border-width: 0.5px;
 }
 
 .register-content {
@@ -50,12 +50,12 @@
 
 @media (max-width: 767px) {
   .register-box-container {
-    margin: 0px;
     border-style: none;
-    border-top-style: solid;
-    border-bottom-style: solid; 
-    border-radius: 0px;
-    border-width: 0.5px; 
   }
+}
 
+@media(max-width: 450px) {
+  .register-content {
+    padding: 0;
+  }
 }
