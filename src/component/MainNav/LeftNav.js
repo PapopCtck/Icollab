@@ -19,7 +19,7 @@ export class LeftNav extends Component {
           <Link to="/explore">explore</Link>
         </Menu.Item>
         <Menu.Item key="start">
-          <Link to="/">start a project</Link>
+          <Link to="/createproject">start a project</Link>
         </Menu.Item>
       </Menu>
     )

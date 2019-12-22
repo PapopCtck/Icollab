@@ -11,6 +11,7 @@ import {
   Error404,
   Explore,
   Profile,
+  CreateProject,
 } from './pages';
 
 import './App.css';
@@ -36,6 +37,7 @@ function App() {
               <Route sensitive strict path="/profile" component={Profile} />
               <Route sensitive strict path="/403" component={Error403} />
               <Route sensitive strict path="/500" component={Error500} />
+              <Route sensitive strict path="/createproject" component={CreateProject} />
               <Route sensitive strict component={Error404} />
             </Switch>
           </Content>
