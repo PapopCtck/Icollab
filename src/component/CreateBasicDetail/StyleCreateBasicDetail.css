@@ -1,0 +1,22 @@
+.create-basic-container {
+    margin: 250px auto;
+}
+
+.create-basic-header-container {
+    text-align: center;
+}
+
+.create-basic-select-container{
+    display: flex;
+    justify-content: center;
+}
+
+.create-basic-select-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-basic-select{
+    margin-top: 20px;
+}
+

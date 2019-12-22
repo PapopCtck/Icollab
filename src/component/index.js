@@ -18,6 +18,8 @@ import ExploreCondition from './ExploreCondition/ExploreCondition';
 
 import ExploreResult from './ExploreResult/ExploreResult';
 
+import CreateBasicDetail from './CreateBasicDetail/CreateBasicDetail';
+
 export {
   MainNav,
   MainFooter,
@@ -29,4 +31,5 @@ export {
   ProjectDetailStory,
   ExploreCondition,
   ExploreResult,
+  CreateBasicDetail,
 }
