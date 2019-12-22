@@ -16,6 +16,8 @@ import Explore from './Explore/Explore';
 
 import Profile from './Profile/Profile';
 
+import CreateProject from './Create/CreateProject';
+
 export { 
   //Landing Page
   Main,
@@ -31,4 +33,6 @@ export {
   //Explore page
   Explore,
   Profile,
+  //CreateProject page
+  CreateProject,
 };
