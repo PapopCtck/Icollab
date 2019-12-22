@@ -9,6 +9,7 @@ export class ThailandStateSelect extends Component {
     const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass } = this.props;
     return (
       <Select
+        showSearch
         className={`explore-condition-select ${additionalClass}`}
         placeholder={placeholder ? placeholder : 'Select state'}
         onChange={onChange}
