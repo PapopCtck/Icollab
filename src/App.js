@@ -23,9 +23,12 @@ function App() {
   return (
     <BrowserRouter>
       <Layout className="layout">
-        <Header className="header-container">
-          <Route sensitive strict exact component={MainNav} />
-        </Header>
+        <Switch>
+          <Route sensitive strict exact path="/createproject" component={null} />
+          <Header className="header-container">
+            <Route sensitive strict exact component={MainNav} />
+          </Header>
+        </Switch>
         <Layout>
           <Content >
             <Switch>
@@ -42,9 +45,12 @@ function App() {
             </Switch>
           </Content>
         </Layout>
-        <Footer>
-          <Route sensitive strict exact component={MainFooter} />
-        </Footer>
+        <Switch>
+          <Route sensitive strict exact path="/createproject" component={null} />
+          <Footer>
+            <Route sensitive strict exact component={MainFooter} />
+          </Footer>
+        </Switch>
       </Layout>
 
     </BrowserRouter>
