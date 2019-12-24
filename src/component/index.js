@@ -20,6 +20,8 @@ import ExploreResult from './ExploreResult/ExploreResult';
 
 import CreateBasicDetail from './CreateBasicDetail/CreateBasicDetail';
 
+import CreateDetail from './CreateDetail/CreateDetail';
+
 export {
   MainNav,
   MainFooter,
@@ -32,4 +34,5 @@ export {
   ExploreCondition,
   ExploreResult,
   CreateBasicDetail,
+  CreateDetail,
 }
