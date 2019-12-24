@@ -22,7 +22,7 @@
 .carousel-content-description {
   max-width: 500px;
   margin-top: 10px;
-  max-height: 130px;
+  height: 130px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -48,6 +48,9 @@
 }
 
 @media (max-width: 1150px) {
+  .carousel-content-description {
+    height: auto;
+  }
   .landing-carousel-container {
     display: block;
     padding-bottom: 10px;
