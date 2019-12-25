@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Menu, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const { Search } = Input;
 
 export class LeftNav extends Component {
   render() {
+    const { pathname } = this.props.location;
     return (
       <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Search
@@ -19,15 +20,22 @@ export class LeftNav extends Component {
           <Link to="/explore">explore</Link>
         </Menu.Item>
         <Menu.Item key="start">
-          <Link to="/createproject">start a project</Link>
+          {
+            pathname === '/createproject' ? <Link to="/createproject" onClick={() => window.location.reload()}>start a project</Link> : <Link to="/createproject">start a project</Link>
+          }
+
         </Menu.Item>
       </Menu>
     )
   }
 }
 
-export default LeftNav;
+export default withRouter(LeftNav);
 
 LeftNav.propTypes = {
   mode: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  onClick: PropTypes.func,
 };
