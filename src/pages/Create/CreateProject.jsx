@@ -29,8 +29,13 @@ export class CreateProject extends Component {
     this.setState({ show: false })
   }
 
+  onFinish = () => {
+    //todo add logic here
+    console.log('finish')
+  }
+
   setImage = (projectImage) => {
-    this.setState({ projectImage },() => console.log(this.state));
+    this.setState({ projectImage }, () => console.log(this.state));
   }
 
   render() {
@@ -38,7 +43,14 @@ export class CreateProject extends Component {
     return (
       <div className="create-project-container">
         <CreateBasicDetail onSelect={this.onSelect} onFinishBasic={this.onFinishBasic} show={show} />
-        <CreateDetail onSelect={this.onSelect} show={show} onInput={this.onInput} onImageUpload={this.onImageUpload} imageUrl={imageUrl} setImage={this.setImage} />
+        <CreateDetail
+          onSelect={this.onSelect}
+          show={show}
+          onInput={this.onInput}
+          onImageUpload={this.onImageUpload}
+          imageUrl={imageUrl}
+          setImage={this.setImage}
+          onFinish={this.onFinish} />
       </div>
     )
   }
