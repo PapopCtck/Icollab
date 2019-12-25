@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Upload, Icon, message, Spin } from 'antd';
+import PropTypes from 'prop-types';
 
 const { Dragger } = Upload;
 
@@ -57,7 +58,7 @@ export const ImageUploader = ({ onImageUpload, imageUrl, setImage }) => {
   return (
     <Dragger {...props} onChange={(info) => onChange(info, setLoading, onImageUpload)} beforeUpload={(file) => beforeUpload(file, setImage)}>
       {
-        imageUrl ? <img src={imageUrl ? imageUrl : ''} /> : loading ? <Spin indicator={antIcon} /> :
+        imageUrl ? <img alt="preview" src={imageUrl ? imageUrl : ''} /> : loading ? <Spin indicator={antIcon} /> :
           <div>
             <p className="ant-upload-drag-icon">
               <Icon type="picture" />
@@ -69,3 +70,8 @@ export const ImageUploader = ({ onImageUpload, imageUrl, setImage }) => {
   )
 };
 
+ImageUploader.propTypes = {
+  onImageUpload: PropTypes.func, 
+  imageUrl: PropTypes.string, 
+  setImage: PropTypes.func,
+}

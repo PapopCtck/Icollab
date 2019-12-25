@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Select, Button, Typography, Layout } from 'antd';
 import QueueAnim from 'rc-queue-anim';
+import PropTypes from 'prop-types';
 
 import { MainNav } from '../../component';
 
@@ -36,7 +37,7 @@ export class CreateBasicDetail extends Component {
                         <div className="create-basic-select">
                           <h4 className="create-basic-select-label">project category</h4>
                           <Select
-                            style={{ width: 200 }}
+                            style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
                             onChange={(value) => onSelect(value, 'category')}
@@ -52,7 +53,7 @@ export class CreateBasicDetail extends Component {
                         <div className="create-basic-select">
                           <h4 className="create-basic-select-label">location</h4>
                           <Select
-                            style={{ width: 200 }}
+                            style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
                             onChange={(value) => onSelect(value, 'location')}
@@ -68,7 +69,7 @@ export class CreateBasicDetail extends Component {
                         <div className="create-basic-select">
                           <h4 className="create-basic-select-label">skill level</h4>
                           <Select
-                            style={{ width: 200 }}
+                            style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
                             onChange={(value) => onSelect(value, 'skill')}
@@ -99,3 +100,9 @@ export class CreateBasicDetail extends Component {
 }
 
 export default CreateBasicDetail
+
+CreateBasicDetail.propTypes = {
+  onFinishBasic: PropTypes.func, 
+  show: PropTypes.bool, 
+  onSelect: PropTypes.func,
+}

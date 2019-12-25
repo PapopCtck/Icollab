@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Checkbox, Select, Row, Col, Card, Icon, Button } from 'antd';
+import PropTypes from 'prop-types';
 
 import { Loading, timeSince } from '../../helpers';
 
@@ -136,3 +137,12 @@ export class ExploreResult extends Component {
 }
 
 export default withRouter(ExploreResult)
+
+ExploreResult.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+  resultProjects: PropTypes.array, 
+  handleSortSelect: PropTypes.func,
+  handleCheck: PropTypes.func,
+}

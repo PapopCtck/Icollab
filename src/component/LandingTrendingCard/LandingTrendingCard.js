@@ -98,4 +98,7 @@ export default withRouter(LandingTrendingCard);
 
 LandingTrendingCard.propTypes = {
   trendingProject: PropTypes.object,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
 }

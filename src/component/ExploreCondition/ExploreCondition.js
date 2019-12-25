@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Select, Input } from 'antd';
+import PropTypes from 'prop-types';
 
 import { ThailandStateSelect } from '../../helpers'
 
@@ -50,4 +51,9 @@ export class ExploreCondition extends Component {
   }
 }
 
-export default ExploreCondition
+export default ExploreCondition;
+
+ExploreCondition.propTypes = {
+  handleChange: PropTypes.func,
+  handleSearch: PropTypes.func,
+}
