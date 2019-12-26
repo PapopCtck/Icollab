@@ -10,6 +10,7 @@ export class CreateProject extends Component {
     this.state = {
       show: true,
       imageUrl: '',
+      projectStory: null,
     }
   }
 
@@ -19,6 +20,10 @@ export class CreateProject extends Component {
 
   onInput = (e) => {
     this.setState({ [e.target.id]: e.target.value }, () => console.log(this.state))
+  }
+
+  onEditorInput = (html) => {
+    this.setState({ projectStory: html }, () => console.log(this.state))
   }
 
   onImageUpload = (imageUrl) => {
@@ -39,7 +44,7 @@ export class CreateProject extends Component {
   }
 
   render() {
-    const { show, imageUrl } = this.state;
+    const { show, imageUrl, projectStory } = this.state;
     return (
       <div className="create-project-container">
         <CreateBasicDetail onSelect={this.onSelect} onFinishBasic={this.onFinishBasic} show={show} />
@@ -50,7 +55,10 @@ export class CreateProject extends Component {
           onImageUpload={this.onImageUpload}
           imageUrl={imageUrl}
           setImage={this.setImage}
-          onFinish={this.onFinish} />
+          onFinish={this.onFinish}
+          projectStory={projectStory}
+          onEditorInput={this.onEditorInput}
+        />
       </div>
     )
   }
