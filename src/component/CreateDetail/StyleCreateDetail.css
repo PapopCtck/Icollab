@@ -11,3 +11,12 @@
 .ant-upload.ant-upload-drag {
   max-width: 700px ;
 }
+
+.create-detail-story-container .ql-editor{
+  min-height: 18em;
+}
+
+.create-detail-story-editor {
+  margin-bottom: 60px;
+  max-width: 1200px;
+}

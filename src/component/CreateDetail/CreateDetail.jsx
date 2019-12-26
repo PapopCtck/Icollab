@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Typography, Select } from 'antd';
+import ReactQuill from 'react-quill';
 import QueueAnim from 'rc-queue-anim';
 import PropTypes from 'prop-types';
 
@@ -9,13 +10,15 @@ import {
   ImageUploader,
 } from '../../helpers';
 
+import 'react-quill/dist/quill.snow.css';
+
 import './StyleCreateDetail.css';
 
 const { Title } = Typography;
 
 export class CreateDetail extends Component {
   render() {
-    const { show, onInput, onSelect, imageUrl, onImageUpload, setImage, onFinish } = this.props;
+    const { show, onInput, onSelect, imageUrl, onImageUpload, setImage, onFinish, projectStory, onEditorInput } = this.props;
     return (
       <div className="create-detail-container">
         <QueueAnim className="create-basic" delay={1000} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
@@ -39,7 +42,7 @@ export class CreateDetail extends Component {
                   <Title level={4} className="create-title">Story</Title>
                   <p className="create-description">
                     Tell people why they should be excited about your project. Get specific but be clear and be brief..</p>
-                  <CreateDetailBasic onInput={onInput} onSelect={onSelect} imageUrl={imageUrl} onImageUpload={onImageUpload} setImage={setImage} />
+                  <CreateStory onInput={onEditorInput} value={projectStory} />
                 </Tab>
                 <Tab label="FAQ" header="Frequently Ask Question">
                   test3
@@ -104,3 +107,46 @@ CreateDetailBasic.propTypes = {
   onImageUpload: PropTypes.func,
   setImage: PropTypes.func,
 }
+
+const modules = {
+  toolbar: [
+    [{ 'header': '1' }, { 'header': '2' }],
+    [{ size: [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+    ['link', 'image'],
+    ['clean'],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+}
+/* 
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+
+const formats = [
+  'header', 'size',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image',
+]
+
+export const CreateStory = ({ onInput, value }) => (
+  <div className="create-detail-story-container">
+    <h4 className="bold">Project Description</h4>
+    <p className="regular">Describe what you planning to do, why are you doing it, how you plan to make it happen, and who you are.</p>
+    <ReactQuill
+      className="create-detail-story-editor"
+      placeholder="Write a story of your project. Don't be shy."
+      theme="snow"
+      onChange={onInput}
+      value={value}
+      modules={modules}
+      formats={formats}
+    />
+  </div>
+)
+
