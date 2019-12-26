@@ -118,14 +118,9 @@ const modules = {
     ['clean'],
   ],
   clipboard: {
-    // toggle to add extra line breaks when pasting HTML:
     matchVisual: false,
   },
 }
-/* 
- * Quill editor formats
- * See https://quilljs.com/docs/formats/
- */
 
 const formats = [
   'header', 'size',
@@ -150,3 +145,7 @@ export const CreateStory = ({ onInput, value }) => (
   </div>
 )
 
+CreateStory.propTypes = {
+  onInput: PropTypes.func,
+  value: PropTypes.string,
+}
