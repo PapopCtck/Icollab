@@ -11,23 +11,12 @@ export class CreateProject extends Component {
       show: true,
       imageUrl: '',
       projectStory: null,
+      qaforms: null,
     }
-  }
-
-  onSelect = (value, name) => {
-    this.setState({ [name]: value }, () => console.log(this.state))
   }
 
   onInput = (e) => {
     this.setState({ [e.target.id]: e.target.value }, () => console.log(this.state))
-  }
-
-  onEditorInput = (html) => {
-    this.setState({ projectStory: html }, () => console.log(this.state))
-  }
-
-  onImageUpload = (imageUrl) => {
-    this.setState({ imageUrl })
   }
 
   onFinishBasic = () => {
@@ -35,29 +24,55 @@ export class CreateProject extends Component {
   }
 
   onFinish = () => {
-    //todo add logic here
-    console.log('finish')
+    //todo add logic here 
+    console.log(this.formatQuestion())
+    console.log('finish');
   }
 
-  setImage = (projectImage) => {
-    this.setState({ projectImage }, () => console.log(this.state));
+  handleChange = (value, name) => {
+    this.setState({ [name]: value }, () => console.log(this.state))
+  }
+
+  formatQuestion = () => {
+    const { qaforms } = this.state;
+    const { question, answer } = qaforms;
+    let merged = [];
+    console.log('Received values of form: ', qaforms);
+    if (!question) {
+      console.log('no question');
+      return;
+    } else {
+      for (let i = 0; i < question.length; i++) {
+        if (!question[i].value && !answer[i].value) {
+          continue;
+        } else if (!question[i].value || !answer[i].value) {
+          console.log('missing');
+          merged = false;
+          break;
+        } else {
+          merged.push({
+            'question': question[i].value,
+            'answer': answer[i].value,
+          })
+        }
+
+      }
+    }
+    return merged;
   }
 
   render() {
     const { show, imageUrl, projectStory } = this.state;
     return (
       <div className="create-project-container">
-        <CreateBasicDetail onSelect={this.onSelect} onFinishBasic={this.onFinishBasic} show={show} />
+        <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} />
         <CreateDetail
-          onSelect={this.onSelect}
+          handleChange={this.handleChange}
           show={show}
           onInput={this.onInput}
-          onImageUpload={this.onImageUpload}
           imageUrl={imageUrl}
-          setImage={this.setImage}
           onFinish={this.onFinish}
           projectStory={projectStory}
-          onEditorInput={this.onEditorInput}
         />
       </div>
     )
