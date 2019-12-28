@@ -10,7 +10,7 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 
-function onChange(info, setLoading, callback) {
+function onChange(info, setLoading, handleChange) {
   if (info.file.status === 'uploading') {
     console.log(info.file, info.fileList);
     setLoading(true)
@@ -19,7 +19,7 @@ function onChange(info, setLoading, callback) {
   if (info.file.status === 'done') {
     setLoading(false)
     getBase64(info.file.originFileObj, imageUrl =>
-      callback(imageUrl),
+      handleChange(imageUrl,'imageUrl'),
     );
   } else if (info.file.status === 'error') {
     setLoading(false)
@@ -28,7 +28,7 @@ function onChange(info, setLoading, callback) {
 }
 
 
-function beforeUpload(file, setImage) {
+function beforeUpload(file, handleChange) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!');
@@ -38,7 +38,7 @@ function beforeUpload(file, setImage) {
     message.error('Image must smaller than 6MB!');
   }
   if (isJpgOrPng && isLt6M) {
-    setImage(file)
+    handleChange(file,'image')
   }
   return isJpgOrPng && isLt6M;
 }
@@ -52,11 +52,11 @@ const props = {
 
 };
 
-export const ImageUploader = ({ onImageUpload, imageUrl, setImage }) => {
+export const ImageUploader = ({ handleChange, imageUrl }) => {
   const [loading, setLoading] = useState(false);
   const antIcon = <Icon type="loading" style={{ fontSize: 60 }} spin />;
   return (
-    <Dragger {...props} onChange={(info) => onChange(info, setLoading, onImageUpload)} beforeUpload={(file) => beforeUpload(file, setImage)}>
+    <Dragger {...props} onChange={(info) => onChange(info, setLoading, handleChange)} beforeUpload={(file) => beforeUpload(file, handleChange)}>
       {
         imageUrl ? <img alt="preview" src={imageUrl ? imageUrl : ''} /> : loading ? <Spin indicator={antIcon} /> :
           <div>
@@ -71,7 +71,7 @@ export const ImageUploader = ({ onImageUpload, imageUrl, setImage }) => {
 };
 
 ImageUploader.propTypes = {
-  onImageUpload: PropTypes.func, 
-  imageUrl: PropTypes.string, 
+  onImageUpload: PropTypes.func,
+  imageUrl: PropTypes.string,
   setImage: PropTypes.func,
 }
