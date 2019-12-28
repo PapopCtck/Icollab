@@ -8,6 +8,8 @@ import {
   TabsBar,
   Tab,
   ImageUploader,
+  DynamicForm,
+  UserSearch,
 } from '../../helpers';
 
 import 'react-quill/dist/quill.snow.css';
@@ -18,7 +20,7 @@ const { Title } = Typography;
 
 export class CreateDetail extends Component {
   render() {
-    const { show, onInput, onSelect, imageUrl, onImageUpload, setImage, onFinish, projectStory, onEditorInput } = this.props;
+    const { show, onInput, handleChange, imageUrl, onFinish, projectStory } = this.props;
     return (
       <div className="create-detail-container">
         <QueueAnim className="create-basic" delay={1000} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
@@ -33,22 +35,27 @@ export class CreateDetail extends Component {
                       and in searches.</p>
                   <CreateDetailBasic
                     onInput={onInput}
-                    onSelect={onSelect}
+                    handleChange={handleChange}
                     imageUrl={imageUrl}
-                    onImageUpload={onImageUpload}
-                    setImage={setImage} />
+                  />
                 </Tab>
                 <Tab label="Story" header="Project Story">
                   <Title level={4} className="create-title">Story</Title>
                   <p className="create-description">
                     Tell people why they should be excited about your project. Get specific but be clear and be brief..</p>
-                  <CreateStory onInput={onEditorInput} value={projectStory} />
+                  <CreateStory handleChange={handleChange} value={projectStory} />
                 </Tab>
                 <Tab label="FAQ" header="Frequently Ask Question">
-                  test3
+                  <Title level={4} className="create-title">FAQ</Title>
+                  <p className="create-description">
+                    The FAQ section should provide the most common details that peoples are looking for when evaluating your project.</p>
+                  <DynamicForm onChange={handleChange} />
                 </Tab>
                 <Tab label="People" header="Add People">
-                  test4
+                  <Title level={4} className="create-title">Contributor</Title>
+                  <p className="create-description">
+                    Add people who are working for this project or contribute something to the project.</p>
+                  <UserSearch style={{ maxWidth: '700px' }} />
                 </Tab>
                 <Tab label="Extras" header="Extras">
                   test5
@@ -75,7 +82,7 @@ CreateDetail.propTypes = {
   onFinish: PropTypes.func,
 }
 
-export const CreateDetailBasic = ({ onInput, onSelect, imageUrl, onImageUpload, setImage }) => (
+export const CreateDetailBasic = ({ onInput, handleChange, imageUrl }) => (
   <div className="create-detail-basic-container">
     <div className="create-detail-basic-option">
       <h4 className="bold">Project Title</h4>
@@ -85,17 +92,17 @@ export const CreateDetailBasic = ({ onInput, onSelect, imageUrl, onImageUpload, 
     <div className="create-detail-basic-option">
       <h4 className="bold">Project Tagline</h4>
       <p className="regular">Provide a short description that best describes your project to your audience.</p>
-      <Input style={{ maxWidth: '700px' }} placeholder="Basic usage" id="projectTagline" onChange={onInput} />
+      <Input style={{ maxWidth: '700px' }} placeholder="Basic usage" id="projectDescription" onChange={onInput} />
     </div>
     <div className="create-detail-basic-option">
       <h4 className="bold">Project Image</h4>
       <p className="regular">Upload a square image that represents your project.</p>
-      <ImageUploader imageUrl={imageUrl} onImageUpload={onImageUpload} setImage={setImage} />
+      <ImageUploader imageUrl={imageUrl} handleChange={handleChange} />
     </div>
     <div className="create-detail-basic-option">
       <h4 className="bold">Tags</h4>
       <p className="regular">Enter up to five keywords that best describe your project.</p>
-      <Select mode="tags" style={{ width: '100%', maxWidth: '700px' }} placeholder="Tags Mode" onChange={(change) => onSelect(change, 'tags')} />
+      <Select mode="tags" style={{ width: '100%', maxWidth: '700px' }} placeholder="Tags Mode" onChange={(change) => handleChange(change, 'tags')} />
     </div>
   </div>
 );
@@ -129,7 +136,7 @@ const formats = [
   'link', 'image',
 ]
 
-export const CreateStory = ({ onInput, value }) => (
+export const CreateStory = ({ handleChange, value }) => (
   <div className="create-detail-story-container">
     <h4 className="bold">Project Description</h4>
     <p className="regular">Describe what you planning to do, why are you doing it, how you plan to make it happen, and who you are.</p>
@@ -137,7 +144,7 @@ export const CreateStory = ({ onInput, value }) => (
       className="create-detail-story-editor"
       placeholder="Write a story of your project. Don't be shy."
       theme="snow"
-      onChange={onInput}
+      onChange={(html) => handleChange(html, 'projectStory')}
       value={value}
       modules={modules}
       formats={formats}
