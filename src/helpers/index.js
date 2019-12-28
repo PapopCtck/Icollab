@@ -16,14 +16,16 @@ import {
   createCookie,
 } from './Cookie/Cookie';
 
-import { 
+import {
   TabsBar,
   Tab,
 } from './TabsBar/TabsBar';
 
-import {
-  ImageUploader,
-} from './ImageUploader/ImageUploader';
+import { ImageUploader } from './ImageUploader/ImageUploader';
+
+import { DynamicForm } from './DynamicForm/DynamicForm';
+
+import UserSearch from './UserSearch/UserSearch';
 
 export {
   //NavBar
@@ -47,4 +49,8 @@ export {
   Tab,
   //ImageUploader
   ImageUploader,
+  //DynamicForm
+  DynamicForm,
+  //UserSearch
+  UserSearch,
 }
