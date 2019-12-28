@@ -13,7 +13,7 @@ const { Header, Content } = Layout;
 
 export class CreateBasicDetail extends Component {
   render() {
-    const { onFinishBasic, show, onSelect } = this.props;
+    const { onFinishBasic, show, handleChange } = this.props;
     return (
 
       <QueueAnim className="create-basic" delay={500} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
@@ -40,7 +40,7 @@ export class CreateBasicDetail extends Component {
                             style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
-                            onChange={(value) => onSelect(value, 'category')}
+                            onChange={(value) => handleChange(value, 'category')}
                             filterOption={(input, option) =>
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
@@ -56,7 +56,7 @@ export class CreateBasicDetail extends Component {
                             style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
-                            onChange={(value) => onSelect(value, 'location')}
+                            onChange={(value) => handleChange(value, 'location')}
                             filterOption={(input, option) =>
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
@@ -72,7 +72,7 @@ export class CreateBasicDetail extends Component {
                             style={{ width: 300 }}
                             placeholder="Select a person"
                             optionFilterProp="children"
-                            onChange={(value) => onSelect(value, 'skill')}
+                            onChange={(value) => handleChange(value, 'skill')}
                             filterOption={(input, option) =>
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
