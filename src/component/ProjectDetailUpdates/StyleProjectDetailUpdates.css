@@ -1,0 +1,13 @@
+.projectdetail-updates-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1150px) {
+  .projectdetail-updates-container {
+    display: block;
+  }
+  .projectdetail-sider {
+    display: none;
+  }
+}
