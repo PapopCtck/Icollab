@@ -27,6 +27,8 @@ import { DynamicForm } from './DynamicForm/DynamicForm';
 
 import UserSearch from './UserSearch/UserSearch';
 
+import { UpdateBox } from './UpdateBox/UpdateBox';
+
 export {
   //NavBar
   NavBar,
@@ -53,4 +55,6 @@ export {
   DynamicForm,
   //UserSearch
   UserSearch,
+  //UpdateBox
+  UpdateBox,
 }
