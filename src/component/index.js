@@ -14,6 +14,12 @@ import ProjectDetailContent from './ProjectDetailContent/ProjectDetailContent';
 
 import ProjectDetailStory from './ProjectDetailStory/ProjectDetailStory';
 
+import ProjectDetailFAQ from './ProjectDetailFAQ/ProjectDetailFAQ';
+
+import ProjectDetailUpdates from './ProjectDetailUpdates/ProjectDetailUpdates';
+
+import ProjectDetailComments from './ProjectDetailComments/ProjectDetailComments';
+
 import ExploreCondition from './ExploreCondition/ExploreCondition';
 
 import ExploreResult from './ExploreResult/ExploreResult';
@@ -31,6 +37,9 @@ export {
   ProjectDetailHeader,
   ProjectDetailContent,
   ProjectDetailStory,
+  ProjectDetailFAQ,
+  ProjectDetailUpdates,
+  ProjectDetailComments,
   ExploreCondition,
   ExploreResult,
   CreateBasicDetail,
