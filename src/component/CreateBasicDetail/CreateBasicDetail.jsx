@@ -16,7 +16,7 @@ export class CreateBasicDetail extends Component {
     const { onFinishBasic, show, handleChange } = this.props;
     return (
 
-      <QueueAnim className="create-basic" delay={500} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
+      <QueueAnim className="create-basic" delay={300} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
         {show ? [
           <QueueAnim key="page-container" type="bottom">
             <Layout className="create-basic-layout">

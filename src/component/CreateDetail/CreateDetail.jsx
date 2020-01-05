@@ -23,7 +23,7 @@ export class CreateDetail extends Component {
     const { show, onInput, handleChange, imageUrl, onFinish, projectStory } = this.props;
     return (
       <div className="create-detail-container">
-        <QueueAnim className="create-basic" delay={1000} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
+        <QueueAnim className="create-basic" delay={650} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
           {!show ? [
             <QueueAnim key="page" type="bottom">
               <TabsBar onFinish={onFinish}>
