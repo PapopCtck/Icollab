@@ -11,13 +11,13 @@ export class ProjectDetailStory extends Component {
     const { projectDetail, mockupData } = this.props;
     return (
       <div className="projectdetail-story-container">
-        <div className="projectdetail-story-main">
+        <div className="projectdetail-main">
           <h3>
             Quisque viverra interdum velit?
           </h3>
           {projectDetail.projectdescription}
         </div>
-        <div className="projectdetail-story-sider">
+        <div className="projectdetail-sider">
           <div className="projectdetail-story-roleneeded">
             <h3 className="bold">Who are we looking for ?</h3>
             {
