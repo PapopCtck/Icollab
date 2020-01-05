@@ -1,0 +1,22 @@
+.projectdetail-main {
+  width: 70%;
+  padding: 20px;
+}
+
+.projectdetail-sider {
+  width: 30%;
+  padding: 20px;
+  border-left: 1px solid var(--main-border-color);
+}
+
+@media (max-width: 1150px) {
+  .projectdetail-main {
+    width: 100%;
+    padding: 20px;
+  }
+  .projectdetail-sider {
+    width: 100%;
+    padding: 20px;
+    border-left: none;
+  }
+}

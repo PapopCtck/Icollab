@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import PropTypes from 'prop-types'
 
-import { ProjectDetailStory } from '../ProjectDetailStory/ProjectDetailStory';
+import ProjectDetailStory from '../ProjectDetailStory/ProjectDetailStory';
+
+import ProjectDetailFAQ from '../ProjectDetailFAQ/ProjectDetailFAQ';
+
+import ProjectDetailUpdates from '../ProjectDetailUpdates/ProjectDetailUpdates';
+
+import ProjectDetailComments from '../ProjectDetailComments/ProjectDetailComments';
 
 import './StyleProjectDetailContent.css';
 
@@ -16,14 +22,14 @@ export class ProjectDetailContent extends Component {
         <TabPane tab="Story" key="1">
           <ProjectDetailStory projectDetail={projectDetail} mockupData={mockupData} />
         </TabPane>
-        <TabPane tab="FAQ" key="2" disabled>
-          Content of Tab Pane 2
+        <TabPane tab="FAQ" key="2">
+          <ProjectDetailFAQ />
         </TabPane>
-        <TabPane tab="Updates" key="3" disabled>
-          Content of Tab Pane 3
+        <TabPane tab="Updates" key="3">
+          <ProjectDetailUpdates />
         </TabPane>
-        <TabPane tab="Comments" key="4" disabled>
-          Content of Tab Pane 4
+        <TabPane tab="Comments" key="4">
+          <ProjectDetailComments />
         </TabPane>
       </Tabs>
     )
