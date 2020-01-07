@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 export class ProjectDetailStory extends Component {
   render() {
-    const { projectDetail, mockupData } = this.props;
+    const { projectDetail, data } = this.props;
     return (
       <div className="projectdetail-story-container">
         <div className="projectdetail-main">
@@ -21,7 +21,7 @@ export class ProjectDetailStory extends Component {
           <div className="projectdetail-story-roleneeded">
             <h3 className="bold">Who are we looking for ?</h3>
             {
-              mockupData.roleNeeded.map((role) =>
+              data.roleNeeded.map((role) =>
                 <Card className="projectdetail-story-rolecard-container">
                   <Meta className="bold" title={role.title} />
                   <div className="projectdetail-story-rolecard-skill">
@@ -39,7 +39,7 @@ export class ProjectDetailStory extends Component {
           </div>
           <div className="projectdetail-story-staters">
             <h3 className="bold">About us</h3>
-            {mockupData.projectStarters.map((starter) =>
+            {data.projectStarters.map((starter) =>
               <Card className="projectdetail-story-statercard-container">
                 <div className="projectdetail-story-statercard">
                   <Avatar size="large" className="projectdetail-story-statercard-avatar" src={starter.userImg} />

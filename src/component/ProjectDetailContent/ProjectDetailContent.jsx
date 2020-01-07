@@ -16,20 +16,20 @@ const { TabPane } = Tabs;
 
 export class ProjectDetailContent extends Component {
   render() {
-    const { projectDetail,mockupData } = this.props;
+    const { projectDetail, mockupData } = this.props;
     return (
       <Tabs tabBarStyle={{ 'borderBottom': 'none', 'marginLeft': '60px' }} defaultActiveKey="1" animated={false}>
         <TabPane tab="Story" key="1">
-          <ProjectDetailStory projectDetail={projectDetail} mockupData={mockupData} />
+          <ProjectDetailStory projectDetail={projectDetail} data={mockupData} />
         </TabPane>
         <TabPane tab="FAQ" key="2">
-          <ProjectDetailFAQ />
+          <ProjectDetailFAQ data={mockupData} />
         </TabPane>
         <TabPane tab="Updates" key="3">
-          <ProjectDetailUpdates />
+          <ProjectDetailUpdates data={mockupData} />
         </TabPane>
         <TabPane tab="Comments" key="4">
-          <ProjectDetailComments />
+          <ProjectDetailComments data={mockupData} />
         </TabPane>
       </Tabs>
     )
