@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Comment, Tooltip, Avatar, Input, Form, Button } from 'antd';
+import { Comment, Tooltip, Avatar, Input, Form, Button, List } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { formatDate, timeSince } from '../../helpers';
@@ -9,14 +9,33 @@ import './StyleProjectDetailComments.css'
 const { TextArea } = Input;
 
 //todo use this to render comment list
-// const CommentList = ({ comments }) => (
-//   <List
-//     dataSource={comments}
-//     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-//     itemLayout="horizontal"
-//     renderItem={props => <Comment {...props} />}
-//   />
-// );
+const CommentList = ({ comments }) => (
+  <List
+    dataSource={comments}
+    header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+    itemLayout="horizontal"
+    renderItem={item =>
+      <Comment
+        author={item.author.fullName}
+        avatar={
+          <Avatar
+            src={item.author.userImg ? item.author.userImg : null}
+            alt={item.author.fullName}
+          >{item.author.fullName.substring(0, 2)}</Avatar>
+        }
+        content={
+          <p>
+            {item.description}
+          </p>
+        }
+        datetime={
+          <Tooltip title={item.updatedAt ? formatDate(item.updatedAt) : formatDate(item.createdAt)}>
+            <span>{item.updatedAt ? timeSince(item.updatedAt) : timeSince(item.createdAt)}</span>
+          </Tooltip>
+        }
+      />}
+  />
+);
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <div>
@@ -56,6 +75,7 @@ export class ProjectDetailComments extends Component {
 
   render() {
     const { submitting, value } = this.state;
+    const { data } = this.props;
     return (
       <div className="projectdetail-comments-container">
         <div className="projectdetail-main">
@@ -65,27 +85,7 @@ export class ProjectDetailComments extends Component {
             submitting={submitting}
             value={value}
           />
-          <Comment
-            author="Han Solo"
-            avatar={
-              <Avatar
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                alt="Han Solo"
-              />
-            }
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure), to help people create their product prototypes beautifully
-                and efficiently.
-              </p>
-            }
-            datetime={
-              <Tooltip title={formatDate(new Date())}>
-                <span>{timeSince(new Date())}</span>
-              </Tooltip>
-            }
-          />
+          <CommentList comments={data.projectComments} />
         </div>
         <div className="projectdetail-sider">
           <div className="bold">
