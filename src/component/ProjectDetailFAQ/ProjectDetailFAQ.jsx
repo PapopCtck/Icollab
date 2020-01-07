@@ -5,12 +5,6 @@ import './StyleProjectDetailFAQ.css';
 
 const { Panel } = Collapse;
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 const customPanelStyle = {
   borderRadius: 4,
   marginBottom: 24,
@@ -22,6 +16,7 @@ const customPanelStyle = {
 
 export class ProjectDetailFAQ extends Component {
   render() {
+    const { data } = this.props;
     return (
       <div className="projectdetail-faq-container">
         <div className="projectdetail-main">
@@ -29,15 +24,13 @@ export class ProjectDetailFAQ extends Component {
             bordered={false}
             expandIconPosition="right"
           >
-            <Panel header={<span className="bold">This is panel header 1</span>} key="1" style={customPanelStyle}>
-              <p>{text}</p>
-            </Panel>
-            <Panel header={<span className="bold">This is panel header 2</span>} key="2" style={customPanelStyle}>
-              <p>{text}</p>
-            </Panel>
-            <Panel header={<span className="bold">This is panel header 3</span>} key="3" style={customPanelStyle}>
-              <p>{text}</p>
-            </Panel>
+            {
+              data.projectFAQ.map((faq, index) => (
+                <Panel header={<span className="bold">{faq.question}</span>} key={index} style={customPanelStyle}>
+                  <p>{faq.answer}</p>
+                </Panel>
+              ))
+            }
           </Collapse>
         </div>
         <div className="projectdetail-sider">
