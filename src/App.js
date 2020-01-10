@@ -12,6 +12,7 @@ import {
   Explore,
   Profile,
   CreateProject,
+  TrackProject,
 } from './pages';
 
 import './App.css';
@@ -38,9 +39,10 @@ function App() {
               <Route sensitive strict path="/project/:id" component={ProjectDetail} />
               <Route sensitive strict path="/explore" component={Explore} />
               <Route sensitive strict path="/profile" component={Profile} />
+              <Route sensitive strict path="/createproject" component={CreateProject} />
+              <Route sensitive strict path="/trackproject" component={TrackProject} />
               <Route sensitive strict path="/403" component={Error403} />
               <Route sensitive strict path="/500" component={Error500} />
-              <Route sensitive strict path="/createproject" component={CreateProject} />
               <Route sensitive strict component={Error404} />
             </Switch>
           </Content>
