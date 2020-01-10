@@ -28,6 +28,8 @@ import CreateBasicDetail from './CreateBasicDetail/CreateBasicDetail';
 
 import CreateDetail from './CreateDetail/CreateDetail';
 
+import ProjectPanel from './ProjectPanel/ProjectPanel';
+
 export {
   MainNav,
   MainFooter,
@@ -44,4 +46,5 @@ export {
   ExploreResult,
   CreateBasicDetail,
   CreateDetail,
+  ProjectPanel,
 }
