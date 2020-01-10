@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Avatar, Form, Input, Button } from 'antd';
+import { Avatar, Form, Input, Button, Rate } from 'antd';
 
 import { fetchGetProfile } from '../../actions';
 
@@ -12,6 +12,7 @@ export class Profile extends Component {
     super(props);
     this.state = {
       user: null,
+      editing: false,
     };
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
@@ -39,10 +40,16 @@ export class Profile extends Component {
     })
   }
 
+  toggleEdit = () => {
+    this.setState({
+      editing: !this.state.editing,
+    })
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { user } = this.state;
+    const { user, editing } = this.state;
     if (!user) {
       return <Loading />
     }
@@ -51,6 +58,7 @@ export class Profile extends Component {
         <div className="profile-container">
           <div className="profile-left">
             <Avatar size={128} icon="user" />
+            <Rate className="profile-rate" style={{ marginTop: '20px' }} disabled defaultValue={2} />
           </div>
           <div className="profile-right">
             <h3>Personal Info</h3>
@@ -69,7 +77,7 @@ export class Profile extends Component {
                       message: 'Please input your E-mail!',
                     },
                   ],
-                })(<Input placeholder="Email" disabled/>)}
+                })(<Input placeholder="Email" disabled={!editing} />)}
               </Form.Item>
               <h4>First Name</h4>
               <Form.Item>
@@ -79,7 +87,7 @@ export class Profile extends Component {
                 })(
                   <Input
                     placeholder="First Name"
-                    disabled
+                    disabled={!editing}
                   />,
                 )}
               </Form.Item>
@@ -91,7 +99,7 @@ export class Profile extends Component {
                 })(
                   <Input
                     placeholder="Last Name"
-                    disabled
+                    disabled={!editing}
                   />,
                 )}
               </Form.Item>
@@ -100,7 +108,7 @@ export class Profile extends Component {
                 {getFieldDecorator('city', {
                   rules: [{ required: true, message: 'Please select!' }],
                 })(
-                  <ThailandStateSelect additionalClass="profile-city" disabled />,
+                  <ThailandStateSelect additionalClass="profile-city" disabled={!editing} />,
                 )}
               </Form.Item>
               <h3>Job info</h3>
@@ -112,14 +120,14 @@ export class Profile extends Component {
                       required: false,
                     },
                   ],
-                })(<Input placeholder="Current Position" disabled />)}
+                })(<Input placeholder="Current Position" disabled={!editing} />)}
               </Form.Item>
               <h4>Company</h4>
               <Form.Item>
                 {getFieldDecorator('company', {
                   rules: [{ required: false }],
                 })(
-                  <Input placeholder="Company" disabled />,
+                  <Input placeholder="Company" disabled={!editing} />,
                 )}
               </Form.Item>
               <h4>Skills</h4>
@@ -130,7 +138,7 @@ export class Profile extends Component {
                   <Input.TextArea
                     placeholder="Skills"
                     rows={4}
-                    disabled
+                    disabled={!editing}
                   />,
                 )}
               </Form.Item>
@@ -140,7 +148,7 @@ export class Profile extends Component {
                 {getFieldDecorator('phoneNumber', {
                   rules: [{ required: false }],
                 })(
-                  <Input placeholder="Phone" disabled />,
+                  <Input placeholder="Phone" disabled={!editing} />,
                 )}
               </Form.Item>
               <h4>Website</h4>
@@ -148,13 +156,25 @@ export class Profile extends Component {
                 {getFieldDecorator('website', {
                   rules: [{ required: false }],
                 })(
-                  <Input placeholder="Website" disabled />,
+                  <Input placeholder="Website" disabled={!editing} />,
                 )}
               </Form.Item>
               <Form.Item>
-                <Button className="profile-edit-button" type="primary">
-                  Edit
-                </Button>
+                {editing ?
+                  <div>
+                    <Button className="profile-edit-button" type="primary" htmlType="submit">
+                      Submit
+                    </Button>
+                    <Button className="profile-edit-button" type="danger" ghost onClick={this.toggleEdit}>
+                      Cancel
+                    </Button>
+                  </div>
+                  :
+                  <Button className="profile-edit-button" type="primary" onClick={this.toggleEdit}>
+                    Edit
+                  </Button>
+                }
+
               </Form.Item>
             </Form>
           </div>
