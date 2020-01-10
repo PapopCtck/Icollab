@@ -18,6 +18,8 @@ import Profile from './Profile/Profile';
 
 import CreateProject from './Create/CreateProject';
 
+import TrackProject from './TrackProject/TrackProject';
+
 export { 
   //Landing Page
   Main,
@@ -35,4 +37,6 @@ export {
   Profile,
   //CreateProject page
   CreateProject,
+  //TrackProject
+  TrackProject,
 };
