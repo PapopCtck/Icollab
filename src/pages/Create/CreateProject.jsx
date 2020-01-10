@@ -11,7 +11,10 @@ export class CreateProject extends Component {
       show: true,
       imageUrl: '',
       projectStory: null,
-      qaforms: null,
+      qaforms: {
+        question: null,
+        answer: null,
+      },
     }
   }
 
