@@ -8,7 +8,7 @@ export class Error500 extends Component {
       <Result
         status="500"
         title="500"
-        subTitle="Sorry, the server is wrong."
+        subTitle="Sorry, something's wrong with the server. Please try again later."
         extra={<Button onClick={() => this.props.history.push('/')} type="primary">Back Home</Button>}
       />
     )
