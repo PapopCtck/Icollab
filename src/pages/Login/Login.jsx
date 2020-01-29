@@ -4,16 +4,21 @@ import { Typography, Form, Input, Icon, Button, Modal } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import AppLang from '../../AppContext';
+
 import { getCookie } from '../../helpers';
 import { fetchLogin } from '../../actions';
 
+import content from './LangLogin';
 import './StyleLogin.css';
 
 const { Title } = Typography;
 
 export class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
+    console.log(props);
+    console.log(context)
     this.state = {
       loading: false,
     }
@@ -44,6 +49,7 @@ export class Login extends Component {
 
   render() {
     const { loading } = this.state;
+    const lang = this.context;
     const { getFieldDecorator } = this.props.form;
     if (getCookie('icollab_token')) {
       return (<Redirect to="/" />)
@@ -51,9 +57,9 @@ export class Login extends Component {
     return (
       <div className="login-content">
         <div className="login-box-container">
-          <Title level={2} className="login-title">Login</Title>
+          <Title level={2} className="login-title">{content[lang].title}</Title>
           <Form className="login-form" onSubmit={this.handleSubmit}>
-            <h4>Email</h4>
+            <h4>{content[lang].email}</h4>
             <Form.Item>
               {getFieldDecorator('email', {
                 rules: [
@@ -73,7 +79,7 @@ export class Login extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>Password</h4>
+            <h4>{content[lang].password}</h4>
             <Form.Item className="login-password">
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
@@ -87,27 +93,28 @@ export class Login extends Component {
             </Form.Item>
             <div className="login-forgot">
               <Link to="#">
-                Forgot password?
+                {content[lang].forgotPassword}
               </Link>
             </div>
             <Form.Item className="login-button-container">
               <Button type="primary" htmlType="submit" className="login-button" block loading={loading}>
-                Log in
+                {content[lang].loginBtn}
               </Button>
             </Form.Item>
           </Form>
           <div className="login-signup">
-            Not account?&nbsp;
+            {content[lang].noAccount}&nbsp;
             <Link to="/register">
-              Create one!
+              {content[lang].create}
             </Link>
           </div>
         </div>
       </div>
-
     )
   }
 }
+
+Login.contextType = AppLang;
 
 const WrappedNormalLoginForm = Form.create({ name: 'login' })(Login);
 
