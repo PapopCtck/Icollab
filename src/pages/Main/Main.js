@@ -24,7 +24,7 @@ export class Main extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjects !== this.props.fetchGetProjects) {
       const fetchGetProjects = this.props.fetchGetProjects;
-      this.setState({ resultProjects: fetchGetProjects.Project }, () => console.log(this.state));
+      this.setState({ resultProjects: fetchGetProjects }, () => console.log(this.state));
     }
   }
 
@@ -46,8 +46,8 @@ export class Main extends Component {
         <div className="landing-title">
           <span className="bold">FEATURED</span>
         </div>
-        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects)} />
-        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects)} />
+        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} />
+        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} />
         <LandingStartProject />
       </div>
     )
