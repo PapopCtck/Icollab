@@ -39,6 +39,7 @@ export function fetchGetProjects() {
         status: res.status ? res.status : res,
       })
     } catch (err) {
+      FNRedirect('/500');
       return dispatch({
         type: FETCH_PROJECTS_FAILURE,
         data: null,
