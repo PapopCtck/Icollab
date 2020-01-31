@@ -39,6 +39,7 @@
 
 .bold {
   font-family: 'Ubuntu-bold';
+  font-weight: bold;
   color: black;
 }
 
