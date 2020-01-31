@@ -19,11 +19,11 @@ class Navbar extends Component {
     });
   };
   render() {
-    const { children, drawer, toggleDrawer, visible } = this.props;
+    const { children, drawer, toggleDrawer, visible, title } = this.props;
     return (
       <nav className="menu">
         <div className="logo">
-          <Link to="/">Icollab</Link>
+          <Link to="/">{title}</Link>
         </div>
         <div className="menuContainer">
           {children}

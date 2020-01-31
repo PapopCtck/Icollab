@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Menu, Input, Select } from 'antd';
+import { Menu, Select } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-// const { Search } = Input;
+import content from './LangNav';
 
 const { Option } = Select;
 
@@ -14,24 +14,19 @@ export class LeftNav extends Component {
   }
   render() {
     const { pathname } = this.props.location;
+    const { appLang } = this.props;
     return (
       <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
-        {/* <Search
-          placeholder="input search text"
-          onSearch={value => console.log(value)}
-          //todo do something about this
-          style={{ width: 200 }}
-        /> */}
-        <Select defaultValue="en" value={this.props.appLang} style={{ width: 120, margin: '14px' }} onChange={this.props.setLang}>
+        <Select defaultValue="en" value={appLang} style={{ width: 120, margin: '14px' }} onChange={this.props.setLang}>
           <Option value="en">English (US)</Option>
           <Option value="th">ไทย (TH)</Option>
         </Select>
         <Menu.Item key="explore">
-          <Link to="/explore">explore</Link>
+          <Link to="/explore">{content[appLang].explore}</Link>
         </Menu.Item>
         <Menu.Item key="start">
           {
-            pathname === '/createproject' ? <Link to="/createproject" onClick={() => window.location.reload()}>start a project</Link> : <Link to="/createproject">start a project</Link>
+            pathname === '/createproject' ? <Link to="/createproject" onClick={() => window.location.reload()}>{content[appLang].startProject}</Link> : <Link to="/createproject">{content[appLang].startProject}</Link>
           }
 
         </Menu.Item>

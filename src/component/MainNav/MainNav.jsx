@@ -5,6 +5,8 @@ import { NavBar } from '../../helpers';
 import RightNav from './RightNav';
 import LeftNav from './LeftNav';
 
+import content from './LangNav';
+
 export class MainNav extends Component {
   state = {
     drawerVisible: false,
@@ -17,10 +19,11 @@ export class MainNav extends Component {
   }
   renderRightDrawer = () => <div><LeftNav onClick={this.toggleDrawer} mode="inline" {...this.props} /> <RightNav onClick={this.toggleDrawer} mode="inline" /></div>
   render() {
+    const { appLang } = this.props;
     return (
-      <NavBar visible={this.state.drawerVisible} toggleDrawer={this.toggleDrawer} drawer={this.renderRightDrawer()}>
+      <NavBar title={content[appLang].title} visible={this.state.drawerVisible} toggleDrawer={this.toggleDrawer} drawer={this.renderRightDrawer()}>
         <div className="menuRigth">
-          <RightNav mode="horizontal" />
+          <RightNav mode="horizontal" appLang={appLang} />
         </div>
         <div className="vertical-line"></div>
         <div className="menuLeft">

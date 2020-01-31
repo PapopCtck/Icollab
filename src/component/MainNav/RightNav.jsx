@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import { getCookie, deleteCookie } from '../../helpers';
 
+import content from './LangNav';
+
 const { SubMenu } = Menu;
 
 class RightNav extends Component {
@@ -31,6 +33,7 @@ class RightNav extends Component {
   }
 
   render() {
+    const { appLang } = this.props;
     if (getCookie('icollab_token')) {
       const userInfo = JSON.parse(getCookie('icollab_userinfo'));
       console.log('cookie==>', userInfo[0].name)
@@ -38,13 +41,13 @@ class RightNav extends Component {
         return (
           <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
             <Menu.Item key="profile">
-              <Link to="/profile" className="rightnav-profile">Profile</Link>
+              <Link to="/profile" className="rightnav-profile">{content[appLang].profile}</Link>
             </Menu.Item>
             <Menu.Item key="trackProject">
-              <Link to="/trackproject" className="rightnav-trackproject">Track your project</Link>
+              <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
             <Menu.Item key="logout">
-              <span className="rightnav-logout" onClick={this.logout}>Logout</span>
+              <span className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
             </Menu.Item>
           </Menu>
         );
@@ -62,13 +65,13 @@ class RightNav extends Component {
             }
           >
             <Menu.Item key="profile">
-              <Link to="/profile" className="rightnav-profile">Profile</Link>
+              <Link to="/profile" className="rightnav-profile">{content[appLang].profile}</Link>
             </Menu.Item>
             <Menu.Item key="trackProject">
-              <Link to="/trackproject" className="rightnav-trackproject">Track your project</Link>
+              <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
             <Menu.Item key="logout">
-              <Link to="/" className="rightnav-logout" onClick={this.logout}>Logout</Link>
+              <Link to="/" className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</Link>
             </Menu.Item>
           </SubMenu>
         </Menu>
@@ -77,10 +80,10 @@ class RightNav extends Component {
     return (
       <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
-          <Link to="/register">Signup</Link>
+          <Link to="/register">{content[appLang].signup}</Link>
         </Menu.Item>
         <Menu.Item key="login">
-          <Link to="/login">Login</Link>
+          <Link to="/login">{content[appLang].login}</Link>
         </Menu.Item>
       </Menu>
     );
