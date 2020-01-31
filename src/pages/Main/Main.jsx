@@ -9,8 +9,12 @@ import {
   LandingStartProject,
 } from '../../component';
 
-import './StyleMain.css';
 import { Loading } from '../../helpers';
+
+import AppLang from '../../AppContext';
+import content from './LangMain';
+
+import './StyleMain.css';
 
 export class Main extends Component {
   constructor(props) {
@@ -38,21 +42,24 @@ export class Main extends Component {
 
   render() {
     const { resultProjects } = this.state;
+    const lang = this.context;
     if (!resultProjects) {
       return <Loading />
     }
     return (
       <div className="page-wrapper">
         <div className="landing-title">
-          <span className="bold">FEATURED</span>
+          <span className="bold">{content[lang].featured}</span>
         </div>
         <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} />
-        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} />
-        <LandingStartProject />
+        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} lang={lang} />
+        <LandingStartProject lang={lang} />
       </div>
     )
   }
 }
+
+Main.contextType = AppLang;
 
 const mapStateToProps = state => {
   const fetchGetProjects = state.fetchGetProjects.data;
