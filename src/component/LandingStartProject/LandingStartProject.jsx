@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
+import content from './LangLandingStartProject';
+
 import './StyleLandingStartProject.css'
 
 export class LandingStartProject extends Component {
   render() {
+    const { lang } = this.props;
     return (
       <div className="start-project-container">
-        <h2 className="bold">Got an idea?</h2>
-        <p>Start your own project now.Its completely free!</p>
-        <Button className="start-project-button bold" type="primary" size="large"><Link to="#">LEARN MORE</Link></Button> 
+        <h2 className="bold">{content[lang].ideaQuote}</h2>
+        <p>{content[lang].startQuote}</p>
+        <Button className="start-project-button" type="primary" size="large"><Link to="/learnmore">{content[lang].learnMore}</Link></Button>
       </div>
     )
   }
