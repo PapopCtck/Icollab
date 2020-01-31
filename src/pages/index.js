@@ -20,6 +20,8 @@ import CreateProject from './Create/CreateProject';
 
 import TrackProject from './TrackProject/TrackProject';
 
+import LearnMore from './LearnMore/LearnMore';
+
 export { 
   //Landing Page
   Main,
@@ -39,4 +41,6 @@ export {
   CreateProject,
   //TrackProject
   TrackProject,
+  //LearnMore
+  LearnMore,
 };

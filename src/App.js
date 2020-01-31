@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
@@ -16,6 +16,7 @@ import {
   Profile,
   CreateProject,
   TrackProject,
+  LearnMore,
 } from './pages';
 
 import './App.css';
@@ -26,10 +27,10 @@ const { Header, Content, Footer } = Layout;
 function App() {
 
   const useStateWithLocalStorage = localStorageKey => {
-    const [appLang, setLang] = React.useState(
+    const [appLang, setLang] = useState(
       localStorage.getItem(localStorageKey) || 'en'
     );
-    React.useEffect(() => {
+    useEffect(() => {
       localStorage.setItem(localStorageKey, appLang);
     }, [appLang]);
     return [appLang, setLang];
@@ -61,6 +62,7 @@ function App() {
                 <Route sensitive strict path="/profile" component={Profile} />
                 <Route sensitive strict path="/createproject" component={CreateProject} />
                 <Route sensitive strict path="/trackproject" component={TrackProject} />
+                <Route sensitive strict path="/learnmore" component={LearnMore} />
                 <Route sensitive strict path="/403" component={Error403} />
                 <Route sensitive strict path="/500" component={Error500} />
                 <Route sensitive strict component={Error404} />
