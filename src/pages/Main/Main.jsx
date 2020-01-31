@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
+import { BackTop } from 'antd';
 import { fetchGetProjects } from '../../actions';
 
 import {
@@ -48,6 +48,7 @@ export class Main extends Component {
     }
     return (
       <div className="page-wrapper">
+        <BackTop />
         <div className="landing-title">
           <span className="bold">{content[lang].featured}</span>
         </div>

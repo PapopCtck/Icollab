@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BackTop } from 'antd';
 
 import { ExploreCondition, ExploreResult } from '../../component';
 
@@ -64,6 +65,7 @@ export class Explore extends Component {
     const { resultProjects } = this.state;
     return (
       <div>
+        <BackTop />
         <ExploreCondition handleChange={this.handleChange} handleSearch={this.handleSearch} />
         <ExploreResult resultProjects={resultProjects} handleChange={this.handleChange} handleCheck={this.handleCheck} handleSortSelect={this.handleSortSelect} />
       </div>
