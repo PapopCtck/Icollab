@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import { timeSince } from '../../helpers';
 
+import content from './LangLandingTrendingCard';
+
 import './StyleLandingTrendingCard.css';
 
 const { Meta } = Card;
@@ -41,11 +43,11 @@ export class LandingTrendingCard extends Component {
   }
 
   render() {
-    const { trendingProject } = this.props;
+    const { trendingProject, lang } = this.props;
     return (
       <div className="landing-trending-container">
         <div className="landing-trending-header">
-          <span className="bold">TRENDING</span>
+          <span className="bold">{content[lang].trending}</span>
           <div className="landing-trending-header-right">
             <Icon className="landing-trending-icon" type="left" onClick={this.previous} />
             <Icon className="landing-trending-icon" type="right" onClick={this.next} />
