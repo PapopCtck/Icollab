@@ -17,8 +17,6 @@ const { Title } = Typography;
 export class Login extends Component {
   constructor(props, context) {
     super(props, context);
-    console.log(props);
-    console.log(context)
     this.state = {
       loading: false,
     }
