@@ -11,6 +11,10 @@ import {
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import AppLang from '../../AppContext';
+
+import content from './LangRegister';
+
 import { fetchRegister } from '../../actions';
 
 // import { Loading } from '../../helpers';
@@ -81,7 +85,7 @@ export class Register extends Component {
     const { errorContent } = this.state;
     Modal.error({
       title: 'Unexpected Error',
-      content: errorContent ? Object.keys(errorContent)[0] :'We\'re unable to register for you right now. Please try again later',
+      content: errorContent ? Object.keys(errorContent)[0] : 'We\'re unable to register for you right now. Please try again later',
     });
   }
 
@@ -90,15 +94,16 @@ export class Register extends Component {
   render() {
     const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
+    const lang = this.context;
     if (redirect || getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
       <div className="register-content">
         <div className="register-box-container">
-          <Title level={2} className="register-title">Register</Title>
+          <Title level={2} className="register-title">{content[lang].title}</Title>
           <Form className="register-form" onSubmit={this.handleSubmit}>
-            <h4>First Name</h4>
+            <h4>{content[lang].firstName}</h4>
             <Form.Item>
               {getFieldDecorator('firstName', {
                 rules: [{ required: true, message: 'Please input your first name!' }],
@@ -108,7 +113,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>Last Name</h4>
+            <h4>{content[lang].lastName}</h4>
             <Form.Item>
               {getFieldDecorator('lastName', {
                 rules: [{ required: true, message: 'Please input your last name!' }],
@@ -118,7 +123,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>Email</h4>
+            <h4>{content[lang].email}</h4>
             <Form.Item>
               {getFieldDecorator('email', {
                 rules: [
@@ -138,7 +143,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>Password</h4>
+            <h4>{content[lang].password}</h4>
             <Form.Item className="register-password">
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
@@ -150,7 +155,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>Confirm Password</h4>
+            <h4>{content[lang].confirmPassword}</h4>
             <Form.Item className="register-confirmpassword">
               {getFieldDecorator('confirmPassword', {
                 rules: [
@@ -180,7 +185,7 @@ export class Register extends Component {
               })(
                 <Checkbox>
                   <span className="register-checkbox-text">
-                    I agree to the <Link to="#">Terms of Use</Link> and have read and understand the <Link to="#">Privacy Policy</Link>
+                    {content[lang].agree1} <Link to="#">{content[lang].tou}</Link> {content[lang].agree2} <Link to="#">{content[lang].privacy}</Link>
                   </span>
                 </Checkbox>,
               )}
@@ -191,21 +196,21 @@ export class Register extends Component {
               })(
                 <Checkbox>
                   <span className="register-checkbox-text">
-                    Sign me up for the newsletter
+                    {content[lang].newsletter}
                   </span>
                 </Checkbox>,
               )}
             </Form.Item>
             <Form.Item className="register-button-container">
               <Button type="primary" htmlType="submit" className="register-button" block loading={loading}>
-                Register
+                {content[lang].registerBtn}
               </Button>
             </Form.Item>
           </Form>
           <div className="register-login">
-            Have an account?&nbsp;
+            {content[lang].gotAccount}&nbsp;
             <Link to="/login">
-              Login now!
+              {content[lang].login}
             </Link>
           </div>
         </div>
@@ -213,6 +218,8 @@ export class Register extends Component {
     )
   }
 }
+
+Register.contextType = AppLang;
 
 const WrappedRegisterForm = Form.create({ name: 'register' })(Register);
 
