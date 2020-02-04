@@ -60,7 +60,7 @@ function App() {
                 <Route sensitive strict path="/project/:id" component={ProjectDetail} />
                 <Route sensitive strict path="/explore" component={Explore} />
                 <Route sensitive strict path="/profile" component={Profile} />
-                <Route sensitive strict path="/createproject" component={CreateProject} />
+                <Route sensitive strict path="/createproject" render={() => <CreateProject setLang={setLang}/> } />
                 <Route sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
                 <Route sensitive strict path="/403" component={Error403} />

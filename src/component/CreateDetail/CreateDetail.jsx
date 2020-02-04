@@ -20,13 +20,13 @@ const { Title } = Typography;
 
 export class CreateDetail extends Component {
   render() {
-    const { show, onInput, handleChange, imageUrl, onFinish, projectStory } = this.props;
+    const { show, onInput, handleChange, imageUrl, onFinish, projectStory, setLang } = this.props;
     return (
       <div className="create-detail-container">
         <QueueAnim className="create-basic" delay={650} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
           {!show ? [
             <QueueAnim key="page" type="bottom">
-              <TabsBar onFinish={onFinish}>
+              <TabsBar onFinish={onFinish} setLang={setLang} >
                 <Tab label="Basic" header="Basic information" >
                   <Title level={4} className="create-title">Basics</Title>
                   <p className="create-description">

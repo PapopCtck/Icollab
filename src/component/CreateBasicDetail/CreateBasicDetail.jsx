@@ -15,7 +15,7 @@ const { Header, Content } = Layout;
 
 export class CreateBasicDetail extends Component {
   render() {
-    const { onFinishBasic, show, handleChange } = this.props;
+    const { onFinishBasic, show, handleChange, setLang } = this.props;
     const appLang = this.context;
     return (
       <QueueAnim className="create-basic" delay={300} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
@@ -23,7 +23,7 @@ export class CreateBasicDetail extends Component {
           <QueueAnim key="page-container" type="bottom">
             <Layout className="create-basic-layout">
               <Header className="header-container">
-                <MainNav appLang={appLang}/>
+                <MainNav appLang={appLang} setLang={setLang} />
               </Header>
               <Content>
                 <div className="create-basic-container">
@@ -106,7 +106,7 @@ CreateBasicDetail.contextType = AppLang;
 export default CreateBasicDetail
 
 CreateBasicDetail.propTypes = {
-  onFinishBasic: PropTypes.func, 
-  show: PropTypes.bool, 
+  onFinishBasic: PropTypes.func,
+  show: PropTypes.bool,
   onSelect: PropTypes.func,
 }

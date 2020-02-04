@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Layout, Button, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { MainNav, MainFooter } from '../../component';
+
+import AppLang from '../../AppContext';
 
 import './StyleTabsBar.css';
 
@@ -13,6 +15,7 @@ const { Header, Content, Footer } = Layout;
 export function TabsBar(props) {
   const [activeTab, setActive] = useState(0);
   const tabLength = props.children.length;
+  const appLang = useContext(AppLang);
   return (
     <div className="tab-container">
       <ul className="tab-ul">
@@ -24,7 +27,7 @@ export function TabsBar(props) {
       </ul>
       <Layout className="tab-content-container">
         <Header className="header-container">
-          <MainNav />
+          <MainNav appLang={appLang} setLang={props.setLang} />
         </Header>
         <Content className="tab-content-content">
           {props.children.map((child, index) => {
@@ -55,8 +58,8 @@ export const Tab = ({ isActiveTab, onTabClick, label }) => (
 );
 
 Tab.propTypes = {
-  isActiveTab: PropTypes.bool, 
-  onTabClick: PropTypes.func, 
+  isActiveTab: PropTypes.bool,
+  onTabClick: PropTypes.func,
   label: PropTypes.string,
 }
 
@@ -88,12 +91,12 @@ export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, t
 )
 
 TabContent.propTypes = {
-  children:PropTypes.any, 
-  isActiveTab: PropTypes.bool, 
-  onNext: PropTypes.func, 
-  onPrev: PropTypes.func, 
-  activeTab: PropTypes.number, 
-  tabLength: PropTypes.number, 
-  onFinish: PropTypes.func, 
+  children: PropTypes.any,
+  isActiveTab: PropTypes.bool,
+  onNext: PropTypes.func,
+  onPrev: PropTypes.func,
+  activeTab: PropTypes.number,
+  tabLength: PropTypes.number,
+  onFinish: PropTypes.func,
   header: PropTypes.string,
 }

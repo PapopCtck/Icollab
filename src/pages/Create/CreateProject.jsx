@@ -68,7 +68,7 @@ export class CreateProject extends Component {
     const { show, imageUrl, projectStory } = this.state;
     return (
       <div className="create-project-container">
-        <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} />
+        <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} {...this.props} />
         <CreateDetail
           handleChange={this.handleChange}
           show={show}
@@ -76,6 +76,7 @@ export class CreateProject extends Component {
           imageUrl={imageUrl}
           onFinish={this.onFinish}
           projectStory={projectStory}
+          {...this.props}
         />
       </div>
     )
