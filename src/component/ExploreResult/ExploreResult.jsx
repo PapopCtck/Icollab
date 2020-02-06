@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Checkbox, Select, Row, Col, Card, Icon, Button } from 'antd';
+import { Checkbox, Select, Row, Col, Card, Icon, Button, Empty } from 'antd';
 import PropTypes from 'prop-types';
 
 import { Loading, timeSince } from '../../helpers';
@@ -32,12 +32,15 @@ export class ExploreResult extends Component {
   }
 
   renderCard = (resultProjects, count) => {
+    if (resultProjects.length === 0) {
+      return <Empty image="/assets/doge.jpg" imageStyle={{ opacity: 0.4, marginTop: '20px' }} description={<span>Much space, Such empty, WOW!</span>} />
+    }
     let returnArray = [];
     for (let index = 0; index < count && index < resultProjects.length; index++) {
       const project = resultProjects[index];
       returnArray.push(
         <Col xs={24} sm={12} md={12} lg={8} >
-          
+
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
             style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
@@ -54,7 +57,7 @@ export class ExploreResult extends Component {
               description={
                 <div className="explore-card-container">
                   {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
-                  {index === 1 ? <span className="card-status-banner bold status-sponsered">Sponsered</span> : null}
+                  {index === 1 ? <span className="card-status-banner bold status-sponsored">Sponsored</span> : null}
                   <div className="explore-card-description-text">
                     {project.projectdescription}
                   </div>
@@ -82,7 +85,7 @@ export class ExploreResult extends Component {
 
   render() {
     const { cardCount } = this.state;
-    const { resultProjects, handleSortSelect } = this.props;
+    const { resultProjects, handleSortSelect, appLang, content } = this.props;
     if (!resultProjects) {
       return <Loading />
     }
@@ -92,30 +95,30 @@ export class ExploreResult extends Component {
           <div className="explore-result-head-container">
             <span className="explore-result-head-left">
               <span className="explore-result-title bold explore-result-head-text">
-                Explore
+                {content[appLang].title}
               </span>
               <span className="bold explore-result-head-text primary-text">
-                {resultProjects.length} Project
+                {resultProjects.length} {content[appLang].projects}
               </span>
               <span className="explore-result-head-text">
-                in
+                {content[appLang].in}
               </span>
               <span className="bold explore-result-head-text primary-text">
-                ALL CATAGORIES
+                ALL {content[appLang].categories}
               </span>
             </span>
             <span className="explore-result-head-right">
               <span className="bold">
-                <Checkbox onChange={this.props.handleCheck}>Student</Checkbox>
-                <Checkbox onChange={this.props.handleCheck}>SME / Startup</Checkbox>
-                <Checkbox onChange={this.props.handleCheck}>Company / Industrial</Checkbox>
+                <Checkbox onChange={this.props.handleCheck}>{content[appLang].student}</Checkbox>
+                <Checkbox onChange={this.props.handleCheck}>{content[appLang].startUp}</Checkbox>
+                <Checkbox onChange={this.props.handleCheck}>{content[appLang].industrial}</Checkbox>
               </span>
               <span className="bold explore-result-sortby">
-                <span className="explore-result-sortby-text">Sort by</span>
+                <span className="explore-result-sortby-text">{content[appLang].sortBy}</span>
                 <Select defaultValue="DateAdded" style={{ width: 120 }} onChange={handleSortSelect}>
-                  <Option value="DateAdded">Date Added</Option>
-                  <Option value="Trending">Trending</Option>
-                  <Option value="Update">Latest update</Option>
+                  <Option value="DateAdded">{content[appLang].dateAdded}</Option>
+                  <Option value="Trending">{content[appLang].trending}</Option>
+                  <Option value="Update">{content[appLang].lastUpdate}</Option>
                 </Select>
               </span>
             </span>
@@ -127,7 +130,7 @@ export class ExploreResult extends Component {
           </div>
           <div className="explore-result-foot-container">
             <Button size="large" type="primary" disabled={cardCount >= resultProjects.length} onClick={this.loadMore}>
-              {cardCount >= resultProjects.length ? 'No more' : 'Show more!'}
+              {cardCount >= resultProjects.length ? content[appLang].noMore : content[appLang].showMore}
             </Button>
           </div>
         </div>
@@ -142,7 +145,7 @@ ExploreResult.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
-  resultProjects: PropTypes.array, 
+  resultProjects: PropTypes.array,
   handleSortSelect: PropTypes.func,
   handleCheck: PropTypes.func,
 }
