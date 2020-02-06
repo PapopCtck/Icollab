@@ -11,7 +11,7 @@ export class ThailandStateSelect extends Component {
       <Select
         showSearch
         className={`explore-condition-select ${additionalClass}`}
-        placeholder={placeholder ? placeholder : 'Select state'}
+        placeholder={placeholder ? placeholder : 'Select State'}
         onChange={onChange}
         mode={multiple ? 'multiple' : 'default'}
         suffixIcon={suffixIcon ? suffixIcon : <Icon type="compass" style={{ color: 'rgba(0,0,0,.5)' }} />}
