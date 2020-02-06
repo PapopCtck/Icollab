@@ -18,6 +18,10 @@ import {
   FETCH_PROJECT_ID_SUCCESS,
   FETCH_PROJECT_ID_FAILURE,
   fetchProjectsById,
+  //searchProject
+  fetchSearchProjects,
+  FETCH_SEARCH_SUCCESS,
+  FETCH_SEARCH_FAILURE,
 } from './Projects';
 
 import {
@@ -48,4 +52,8 @@ export {
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILURE,
   fetchGetProfile,
+  //searchProject
+  fetchSearchProjects,
+  FETCH_SEARCH_SUCCESS,
+  FETCH_SEARCH_FAILURE,
 };
