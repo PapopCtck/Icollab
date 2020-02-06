@@ -15,6 +15,10 @@ import './StyleLearnMore.css';
 const { Title } = Typography;
 
 export class LearnMore extends Component {
+  constructor(props){
+    super(props);
+    window.scrollTo(0, 0);
+  }
   render() {
     const lang = this.context;
     return (
