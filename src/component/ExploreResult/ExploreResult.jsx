@@ -148,4 +148,6 @@ ExploreResult.propTypes = {
   resultProjects: PropTypes.array,
   handleSortSelect: PropTypes.func,
   handleCheck: PropTypes.func,
+  appLang: PropTypes.string, 
+  content: PropTypes.object,
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse, Button } from 'antd';
+import PropTypes from 'prop-types';
 
 import './StyleProjectDetailFAQ.css';
 
@@ -45,4 +46,8 @@ export class ProjectDetailFAQ extends Component {
   }
 }
 
-export default ProjectDetailFAQ
+export default ProjectDetailFAQ;
+
+ProjectDetailFAQ.propTypes = {
+  data: PropTypes.object,
+}

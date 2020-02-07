@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Comment, Tooltip, Avatar, Input, Form, Button, List } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { formatDate, timeSince } from '../../helpers';
 
@@ -37,6 +38,10 @@ const CommentList = ({ comments }) => (
   />
 );
 
+CommentList.propTypes = {
+  comments: PropTypes.array,
+}
+
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <div>
     <Form.Item>
@@ -49,6 +54,13 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     </Form.Item>
   </div>
 );
+
+Editor.propTypes = {
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
+  value: PropTypes.string,
+}
 
 export class ProjectDetailComments extends Component {
   constructor(props) {
@@ -105,4 +117,8 @@ export class ProjectDetailComments extends Component {
   }
 }
 
-export default ProjectDetailComments
+export default ProjectDetailComments;
+
+ProjectDetailComments.propTypes = {
+  data: PropTypes.object,
+}

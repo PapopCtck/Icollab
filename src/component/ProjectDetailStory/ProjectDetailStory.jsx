@@ -62,4 +62,5 @@ export default ProjectDetailStory;
 
 ProjectDetailStory.propTypes = {
   projectDetail: PropTypes.object,
+  data: PropTypes.object,
 }

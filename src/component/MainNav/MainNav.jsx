@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { NavBar } from '../../helpers';
 
@@ -36,3 +37,7 @@ export class MainNav extends Component {
 }
 
 export default MainNav;
+
+MainNav.propTypes = {
+  appLang: PropTypes.string,
+}

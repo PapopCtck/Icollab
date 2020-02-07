@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import PropTypes from 'prop-types';
 
 import content from './LangLandingStartProject';
 
@@ -19,4 +20,8 @@ export class LandingStartProject extends Component {
   }
 }
 
-export default LandingStartProject
+export default LandingStartProject;
+
+LandingStartProject.propTypes = {
+  lang: PropTypes.string,
+}

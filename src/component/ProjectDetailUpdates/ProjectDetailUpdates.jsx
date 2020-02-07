@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Timeline } from 'antd';
 import { Parallax } from 'rc-scroll-anim';
+import PropTypes from 'prop-types';
 
 import { UpdateBox } from '../../helpers';
 
@@ -75,9 +76,9 @@ export class ProjectDetailUpdates extends Component {
                   {
                     y: 0,
                     opacity: 1,
-                    playScale: [0.1, 0.5],
+                    playScale: [0, 0.4],
                     onComplete: () => update.updatedAt ? this.setActiveMonth(update.updatedAt) : this.setActiveMonth(update.createdAt),
-                    onCompleteBack: () => update.updatedAt ? this.setActiveMonth(sortedUpdates[index - 1].updatedAt) : this.setActiveMonth(sortedUpdates[index - 1].createdAt),
+                    onCompleteBack: () => { if (index !== 0) { update.updatedAt ? this.setActiveMonth(sortedUpdates[index - 1].updatedAt) : this.setActiveMonth(sortedUpdates[index - 1].createdAt) } },
                   }
                 }
                 style={{ transform: 'translateY(100px)', opacity: 0 }}
@@ -101,9 +102,13 @@ export class ProjectDetailUpdates extends Component {
           </Timeline>
 
         </div>
-      </div>
+      </div >
     )
   }
 }
 
 export default ProjectDetailUpdates;
+
+ProjectDetailUpdates.propTypes = {
+  data: PropTypes.object,
+}

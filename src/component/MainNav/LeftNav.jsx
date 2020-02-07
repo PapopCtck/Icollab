@@ -43,4 +43,6 @@ LeftNav.propTypes = {
     pathname: PropTypes.string,
   }),
   onClick: PropTypes.func,
+  setLang: PropTypes.func,
+  appLang: PropTypes.string,
 };

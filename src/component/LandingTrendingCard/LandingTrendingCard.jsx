@@ -103,4 +103,5 @@ LandingTrendingCard.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  lang: PropTypes.string,
 }
