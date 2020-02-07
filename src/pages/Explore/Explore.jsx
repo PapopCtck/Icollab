@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BackTop } from 'antd';
+import PropTypes from 'prop-types';
 
 import { ExploreCondition, ExploreResult } from '../../component';
 
@@ -114,4 +115,10 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(Explore)
+export default connect(mapStateToProps)(Explore);
+
+Explore.propTypes = {
+  fetchGetProjects: PropTypes.object,
+  fetchSearchProjects: PropTypes.object,
+  dispatch: PropTypes.func,
+}

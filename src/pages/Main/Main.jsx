@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { BackTop } from 'antd';
+import PropTypes from 'prop-types';
+
+
 import { fetchGetProjects } from '../../actions';
 
 import {
@@ -68,3 +71,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Main);
+
+Main.propTypes = {
+  dispatch: PropTypes.func,
+  fetchGetProjects: PropTypes.object,
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
@@ -160,4 +161,10 @@ const mapStateToProps = state => {
   return { fetchProjectsById };
 }
 
-export default connect(mapStateToProps)(ProjectDetail)
+export default connect(mapStateToProps)(ProjectDetail);
+
+ProjectDetail.propTypes = {
+  dispatch: PropTypes.func,
+  fetchProjectsById: PropTypes.object,
+  match: PropTypes.object,
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Avatar, Form, Input, Button, Rate } from 'antd';
+import PropTypes from 'prop-types';
 
 import { fetchGetProfile } from '../../actions';
 
@@ -192,3 +193,12 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(WrappedProfileForm);
+
+Profile.propTypes = {
+  fetchGetProfile: PropTypes.object,
+  dispatch: PropTypes.func,
+  form: PropTypes.object,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+}

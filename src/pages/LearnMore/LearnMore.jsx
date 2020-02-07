@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Button, Icon } from 'antd';
 import { Parallax } from 'rc-scroll-anim';
+import PropTypes from 'prop-types';
 
 import AppLang from '../../AppContext';
 
@@ -103,6 +104,10 @@ export const Advertisement = ({ lang }) => (
   </div >
 );
 
+Advertisement.propTypes = {
+  lang: PropTypes.string,
+}
+
 export const StartProject = ({ lang }) => (
   <div className="learnmore-startProject">
     <Title className="bold" level={2}>{content[lang].idea}</Title>
@@ -110,4 +115,6 @@ export const StartProject = ({ lang }) => (
   </div>
 );
 
-
+StartProject.propTypes = {
+  lang: PropTypes.string,
+}
