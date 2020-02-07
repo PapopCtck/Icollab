@@ -13,7 +13,6 @@ class RightNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
     };
   }
 
@@ -26,9 +25,7 @@ class RightNav extends Component {
   modalSuccess = () => {
     Modal.success({
       content: 'Success!',
-      onOk: () => {
-        this.props.history.push('/');
-      },
+      onOk: () => this.props.history.push('/'),
     });
   }
 
@@ -36,7 +33,6 @@ class RightNav extends Component {
     const { appLang } = this.props;
     if (getCookie('icollab_token')) {
       const userInfo = JSON.parse(getCookie('icollab_userinfo'));
-      console.log('cookie==>', userInfo[0].name)
       if (this.props.mode === 'inline') {
         return (
           <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
@@ -71,7 +67,7 @@ class RightNav extends Component {
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
             <Menu.Item key="logout">
-              <Link to="/" className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</Link>
+              <span to="/" className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
             </Menu.Item>
           </SubMenu>
         </Menu>
@@ -93,4 +89,9 @@ export default withRouter(RightNav);
 
 RightNav.propTypes = {
   mode: PropTypes.string,
+  appLang: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+  onClick: PropTypes.func,
 };
