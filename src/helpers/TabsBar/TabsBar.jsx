@@ -49,6 +49,7 @@ export function TabsBar(props) {
 
 TabsBar.propTypes = {
   children: PropTypes.array,
+  setLang: PropTypes.func,
 }
 
 export const Tab = ({ isActiveTab, onTabClick, label }) => (

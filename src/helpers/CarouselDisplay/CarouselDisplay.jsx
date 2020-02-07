@@ -12,12 +12,10 @@ export class CarouselDisplay extends Component {
       activeChoice: 0,
     }
   }
-  next = () => {
-    this.carousel.next();
-  }
 
-  previous = () => {
-    this.carousel.prev();
+  
+  onSlideClick = (target) => {
+    this.props.history.push('/project/' + target)
   }
 
   changeSlide = (from, to) => {
@@ -41,8 +39,12 @@ export class CarouselDisplay extends Component {
     return elementArr
   }
 
-  onSlideClick = (target) => {
-    this.props.history.push('/project/' + target)
+  next = () => {
+    this.carousel.next();
+  }
+
+  previous = () => {
+    this.carousel.prev();
   }
 
   render() {
@@ -71,4 +73,8 @@ export default withRouter(CarouselDisplay);
 CarouselDisplay.propTypes = {
   children: PropTypes.any,
   getCarouselPosition: PropTypes.func,
+  featuredProject: PropTypes.array,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
 }

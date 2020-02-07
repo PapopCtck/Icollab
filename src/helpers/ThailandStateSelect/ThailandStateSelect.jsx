@@ -107,4 +107,6 @@ ThailandStateSelect.propTypes = {
   suffixIcon: PropTypes.any,
   placeholder: PropTypes.string,
   multiple: PropTypes.bool,
+  disabled: PropTypes.bool, 
+  additionalClass: PropTypes.string,
 }

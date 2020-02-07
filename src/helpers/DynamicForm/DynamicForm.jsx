@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Icon, Button } from 'antd';
+import PropTypes from 'prop-types';
 
 import './StyleDynamicForm.css';
 
@@ -86,6 +87,10 @@ class DynamicFieldSet extends React.Component {
       </Form>
     );
   }
+}
+
+DynamicFieldSet.propTypes = {
+  form: PropTypes.object,
 }
 
 export const DynamicForm = Form.create({

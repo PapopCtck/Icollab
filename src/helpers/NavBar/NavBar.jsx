@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, Button, Icon } from 'antd';
+import PropTypes from 'prop-types';
 
 import './StyleNavBar.css'
 
@@ -50,3 +51,11 @@ class Navbar extends Component {
   }
 }
 export default Navbar;
+
+Navbar.propTypes = {
+  children : PropTypes.any, 
+  drawer: PropTypes.any, 
+  toggleDrawer: PropTypes.func, 
+  visible: PropTypes.bool, 
+  title: PropTypes.string,
+}

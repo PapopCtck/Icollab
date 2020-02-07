@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Icon, Avatar } from 'antd';
+import PropTypes from 'prop-types';
 
 import { formatDate } from '../../helpers';
 
@@ -36,4 +37,8 @@ export function UpdateBox({ update }) {
       </div>
     </div>
   )
+}
+
+UpdateBox.propTypes = {
+  update: PropTypes.object,
 }
