@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Icon, Button } from 'antd';
 import PropTypes from 'prop-types';
 
-import './StyleDynamicForm.css';
+import './StyleQAForm.css';
 
 let id = 0;
 
@@ -95,7 +95,7 @@ DynamicFieldSet.propTypes = {
   content: PropTypes.object,
 }
 
-export const DynamicForm = Form.create({
+export const QAForm = Form.create({
   name: 'dynamic_form_item',
   onFieldsChange(props, changedFields, allFields) {
     props.onChange(allFields,'qaforms');

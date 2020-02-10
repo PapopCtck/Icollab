@@ -23,7 +23,6 @@ import {
 
 import { ImageUploader } from './ImageUploader/ImageUploader';
 
-import { DynamicForm } from './DynamicForm/DynamicForm';
 
 import UserSearch from './UserSearch/UserSearch';
 
@@ -51,8 +50,6 @@ export {
   Tab,
   //ImageUploader
   ImageUploader,
-  //DynamicForm
-  DynamicForm,
   //UserSearch
   UserSearch,
   //UpdateBox
