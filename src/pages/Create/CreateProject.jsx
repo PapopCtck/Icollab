@@ -28,7 +28,8 @@ export class CreateProject extends Component {
 
   onFinish = () => {
     //todo add logic here 
-    console.log(this.formatQuestion())
+    console.log(this.formatQuestion());
+    console.log(this.formatPeople());
     console.log('finish');
   }
 
@@ -46,7 +47,9 @@ export class CreateProject extends Component {
       return;
     } else {
       for (let i = 0; i < question.length; i++) {
-        if (!question[i].value && !answer[i].value) {
+        if (!question[i] && !answer[i]) {
+          continue;
+        } else if (!question[i].value && !answer[i].value) {
           continue;
         } else if (!question[i].value || !answer[i].value) {
           console.log('missing');
@@ -56,6 +59,38 @@ export class CreateProject extends Component {
           merged.push({
             'question': question[i].value,
             'answer': answer[i].value,
+          })
+        }
+
+      }
+    }
+    return merged;
+  }
+
+  formatPeople = () => {
+    const { peopleforms } = this.state;
+    const { jobTitle, jobSkills, jobDescription, jobAmount } = peopleforms;
+    let merged = [];
+    console.log('Received values of form: ', peopleforms);
+    if (!peopleforms) {
+      console.log('no question');
+      return;
+    } else {
+      for (let i = 0; i < jobTitle.length; i++) {
+        if (!jobTitle[i] && !jobSkills[i] && !jobDescription[i] && !jobAmount[i]) {
+          continue;
+        } else if (!jobTitle[i].value && !jobSkills[i].value && !jobDescription[i].value && !jobAmount[i].value) {
+          continue;
+        } else if (!jobTitle[i].value || !jobSkills[i].value || !jobDescription[i].value || !jobAmount[i].value) {
+          console.log('missing');
+          merged = false;
+          break;
+        } else {
+          merged.push({
+            'jobTitle': jobTitle[i].value,
+            'jobSkills': jobSkills[i].value,
+            'jobDescription': jobDescription[i].value,
+            'jobAmount': jobAmount[i].value,
           })
         }
 
