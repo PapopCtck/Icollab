@@ -30,6 +30,10 @@ import CreateDetail from './CreateDetail/CreateDetail';
 
 import ProjectPanel from './ProjectPanel/ProjectPanel';
 
+import { QAForm } from './QAForm/QAForm';
+
+import { PeopleForm } from './PeopleForm/PeopleForm';
+
 export {
   MainNav,
   MainFooter,
@@ -47,4 +51,6 @@ export {
   CreateBasicDetail,
   CreateDetail,
   ProjectPanel,
+  QAForm,
+  PeopleForm,
 }
