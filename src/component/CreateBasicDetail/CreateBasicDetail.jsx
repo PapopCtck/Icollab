@@ -7,6 +7,8 @@ import { MainNav } from '../../component';
 
 import AppLang from '../../AppContext';
 
+import content from './LangCreateDetail';
+
 import './StyleCreateBasicDetail.css';
 
 const { Title } = Typography;
@@ -29,18 +31,18 @@ export class CreateBasicDetail extends Component {
                 <div className="create-basic-container">
                   <QueueAnim key="page" type="bottom">
                     <div className="create-basic-header-container">
-                      <Title level={2} className="create-title">First, let&apos;s fill in the basic detail</Title>
+                      <Title level={2} className="create-title">{content[appLang].title}</Title>
                       <p className="create-basic-subheader" key="p" >
-                        we need these detail to match you up with appropriate community.You can always update this later.
+                        {content[appLang].description}
                       </p>
                     </div>
                     <div className="create-basic-select-container">
                       <QueueAnim type="bottom" >
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">project category</h4>
+                          <h4 className="create-basic-select-label">{content[appLang].category}</h4>
                           <Select
                             style={{ width: 300 }}
-                            placeholder="Select a person"
+                            placeholder={content[appLang].selectCategory}
                             optionFilterProp="children"
                             onChange={(value) => handleChange(value, 'category')}
                             filterOption={(input, option) =>
@@ -53,10 +55,10 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">location</h4>
+                          <h4 className="create-basic-select-label">{content[appLang].location}</h4>
                           <Select
                             style={{ width: 300 }}
-                            placeholder="Select a person"
+                            placeholder={content[appLang].selectLocation}
                             optionFilterProp="children"
                             onChange={(value) => handleChange(value, 'location')}
                             filterOption={(input, option) =>
@@ -69,10 +71,10 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">skill level</h4>
+                          <h4 className="create-basic-select-label">{content[appLang].level}</h4>
                           <Select
                             style={{ width: 300 }}
-                            placeholder="Select a person"
+                            placeholder={content[appLang].selectLevel}
                             optionFilterProp="children"
                             onChange={(value) => handleChange(value, 'skill')}
                             filterOption={(input, option) =>
@@ -85,7 +87,7 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select-button">
-                          <Button type="primary" onClick={onFinishBasic}>Finish</Button>
+                          <Button type="primary" onClick={onFinishBasic}>{content[appLang].finishBtn}</Button>
                         </div>
                       </QueueAnim>
                     </div>
