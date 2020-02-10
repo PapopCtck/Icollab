@@ -31,6 +31,7 @@ class DynamicFieldSet extends React.Component {
   };
 
   render() {
+    const { content } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
@@ -81,7 +82,7 @@ class DynamicFieldSet extends React.Component {
         {formItems}
         <Form.Item >
           <Button type="dashed" onClick={this.add} style={{ width: '100%', maxWidth: '700px' }}>
-            <Icon type="plus" /> Add field
+            <Icon type="plus" /> {content.addField}
           </Button>
         </Form.Item>
       </Form>
@@ -91,6 +92,7 @@ class DynamicFieldSet extends React.Component {
 
 DynamicFieldSet.propTypes = {
   form: PropTypes.object,
+  content: PropTypes.object,
 }
 
 export const DynamicForm = Form.create({
