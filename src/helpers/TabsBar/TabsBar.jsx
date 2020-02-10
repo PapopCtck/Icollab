@@ -35,8 +35,8 @@ export function TabsBar(props) {
             const { children, header } = child.props;
             const onNext = () => activeTab + 1 >= tabLength ? null : setActive(activeTab + 1)
             const onPrev = () => activeTab - 1 < 0 ? null : setActive(activeTab - 1)
-            const { onFinish } = props;
-            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header }, children)
+            const { onFinish, content } = props;
+            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content }, children)
           })}
         </Content>
         <Footer>
@@ -64,13 +64,13 @@ Tab.propTypes = {
   label: PropTypes.string,
 }
 
-export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header }) => (
+export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content }) => (
   <div className={`tab-content ${isActiveTab ? 'is-active' : ''}`}>
     <div className="tab-content-header">
       <Title level={3} className="create-title tab-content-header-title">{header}</Title>
       <div className="tab-content-header-button-container">
-        <Button className="tab-content-button" type="link"><Link to="/">Save your project</Link></Button>
-        <Button className="tab-content-button" type="primary" ><Link to="/">Publish</Link></Button>
+        <Button className="tab-content-button" type="link"><Link to="/">{content.saveProject}</Link></Button>
+        <Button className="tab-content-button" type="primary" ><Link to="/">{content.publish}</Link></Button>
       </div>
     </div>
     <div className="tab-content-child-container">
@@ -78,13 +78,13 @@ export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, t
       <div className="tab-content-button-container">
         {
           activeTab + 1 === tabLength ?
-            <Button className="tab-content-button" type="primary" onClick={onFinish}>Publish</Button>
-            : <Button className="tab-content-button" type="primary" onClick={onNext}>Next</Button>
+            <Button className="tab-content-button" type="primary" onClick={onFinish}>{content.publish}</Button>
+            : <Button className="tab-content-button" type="primary" onClick={onNext}>{content.next}</Button>
         }
         {
           activeTab === 0 ?
-            <Button className="tab-content-button" ><Link to="/">Cancel</Link></Button>
-            : <Button className="tab-content-button" onClick={onPrev}>Prev</Button>
+            <Button className="tab-content-button" ><Link to="/">{content.cancel}</Link></Button>
+            : <Button className="tab-content-button" onClick={onPrev}>{content.prev}</Button>
         }
       </div>
     </div>
@@ -100,4 +100,5 @@ TabContent.propTypes = {
   tabLength: PropTypes.number,
   onFinish: PropTypes.func,
   header: PropTypes.string,
+  content: PropTypes.object,
 }
