@@ -41,6 +41,7 @@ export default {
       title: 'People',
       header: 'เพิ่มตำแหน่งงาน',
       description: 'ระบุตำแหน่งหรือรูปแบบการทำงานของบุคคลที่ต้องการมาร่วมโปรเจคนี้',
+      addField: 'เพิ่ม',
     },
   },
   en: {
@@ -85,6 +86,7 @@ export default {
       title: 'People',
       header: 'Add Jobs',
       description: 'Add description for people you want to work with.',
+      addField: 'Add Field',
     },
   },
 };

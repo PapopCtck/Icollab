@@ -8,16 +8,16 @@ import {
   TabsBar,
   Tab,
   ImageUploader,
-  DynamicForm,
   UserSearch,
 } from '../../helpers';
 
-import AppLang from '../../AppContext';
+import { QAForm } from '../QAForm/QAForm';
+import { PeopleForm } from '../PeopleForm/PeopleForm';
 
+import AppLang from '../../AppContext';
 import content from './LangCreateDetail';
 
 import 'react-quill/dist/quill.snow.css';
-
 import './StyleCreateDetail.css';
 
 const { Title } = Typography;
@@ -50,7 +50,7 @@ export class CreateDetail extends Component {
                 <Tab label={content[appLang].faq.title} header={content[appLang].faq.header}>
                   <Title level={4} className="create-title">{content[appLang].faq.title}</Title>
                   <p className="create-description">{content[appLang].faq.description}</p>
-                  <DynamicForm onChange={handleChange} content={content[appLang].faq} />
+                  <QAForm onChange={handleChange} content={content[appLang].faq} />
                 </Tab>
                 <Tab label={content[appLang].contributor.title} header={content[appLang].contributor.header}>
                   <Title level={4} className="create-title">{content[appLang].contributor.title}</Title>
@@ -60,6 +60,7 @@ export class CreateDetail extends Component {
                 <Tab label={content[appLang].people.title} header={content[appLang].people.header}>
                   <Title level={4} className="create-title">{content[appLang].people.title}</Title>
                   <p className="create-description">{content[appLang].people.description}</p>
+                  <PeopleForm onChange={handleChange} content={content[appLang].people}/>
                 </Tab>
               </TabsBar>
             </QueueAnim>,
