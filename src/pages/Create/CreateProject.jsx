@@ -15,7 +15,19 @@ export class CreateProject extends Component {
         question: null,
         answer: null,
       },
+      peopleforms: null,
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { qaforms, peopleforms } = this.state;
+    if (nextState.qaforms !== qaforms ){
+      return false;
+    }
+    if (nextState.peopleforms !== peopleforms ){
+      return false;
+    }
+    return true;
   }
 
   onInput = (e) => {
@@ -48,7 +60,7 @@ export class CreateProject extends Component {
     } else {
       for (let i = 0; i < question.length; i++) {
         if (!question[i] && !answer[i]) {
-          continue;
+          break;
         } else if (!question[i].value && !answer[i].value) {
           continue;
         } else if (!question[i].value || !answer[i].value) {
@@ -78,7 +90,7 @@ export class CreateProject extends Component {
     } else {
       for (let i = 0; i < jobTitle.length; i++) {
         if (!jobTitle[i] && !jobSkills[i] && !jobDescription[i] && !jobAmount[i]) {
-          continue;
+          break;
         } else if (!jobTitle[i].value && !jobSkills[i].value && !jobDescription[i].value && !jobAmount[i].value) {
           continue;
         } else if (!jobTitle[i].value || !jobSkills[i].value || !jobDescription[i].value || !jobAmount[i].value) {
