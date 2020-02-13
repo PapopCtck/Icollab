@@ -76,7 +76,7 @@ export class CreateBasicDetail extends Component {
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLevel}
                             optionFilterProp="children"
-                            onChange={(value) => handleChange(value, 'skill')}
+                            onChange={(value) => handleChange(value, 'projectLevel')}
                             filterOption={(input, option) =>
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
