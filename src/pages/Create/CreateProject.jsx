@@ -15,7 +15,12 @@ export class CreateProject extends Component {
         question: null,
         answer: null,
       },
-      peopleforms: null,
+      peopleforms: {
+        jobTitle: null, 
+        jobSkills: null, 
+        jobDescription: null, 
+        jobAmount: null,
+      },
     }
   }
 
@@ -87,8 +92,8 @@ export class CreateProject extends Component {
     const { jobTitle, jobSkills, jobDescription, jobAmount } = peopleforms;
     let merged = [];
     console.log('Received values of form: ', peopleforms);
-    if (!peopleforms) {
-      console.log('no question');
+    if (!jobTitle) {
+      console.log('no job');
       return;
     } else {
       for (let i = 0; i < jobTitle.length; i++) {
