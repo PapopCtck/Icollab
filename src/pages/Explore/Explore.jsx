@@ -45,7 +45,7 @@ export class Explore extends Component {
 
   handleSearchChange = (e) => {
     const searchQuery = e.target.value;
-    if (searchQuery == '') {
+    if (searchQuery === '') {
       const fetchGetProjects = this.props.fetchGetProjects.data;
       const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.createat, b.createat))
       this.setState({ resultProjects }, () => console.log(this.state))
