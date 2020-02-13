@@ -27,7 +27,7 @@ export class LearnMore extends Component {
         <div className="learnmore-header">
           <Title className="bold" level={1}>{content[lang].title}</Title>
           <p className="learnmore-header-description bold">{content[lang].description}</p>
-          <Button className="start-project-button" type="primary"><Link to="/learnmore">{content[lang].startProjectBtn}</Link></Button>
+          <Button className="start-project-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
         </div>
         <ImageGallerySection lang={lang} />
         <Advertisement lang={lang} />
@@ -111,7 +111,7 @@ Advertisement.propTypes = {
 export const StartProject = ({ lang }) => (
   <div className="learnmore-startProject">
     <Title className="bold" level={2}>{content[lang].idea}</Title>
-    <Button className="gradient-button" type="primary"><Link to="/learnmore">{content[lang].startProjectBtn}</Link></Button>
+    <Button className="gradient-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
   </div>
 );
 
