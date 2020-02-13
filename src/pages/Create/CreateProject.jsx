@@ -20,11 +20,14 @@ export class CreateProject extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { qaforms, peopleforms } = this.state;
-    if (nextState.qaforms !== qaforms ){
+    const { qaforms, peopleforms, projectStory } = this.state;
+    if (nextState.qaforms !== qaforms) {
       return false;
     }
-    if (nextState.peopleforms !== peopleforms ){
+    if (nextState.peopleforms !== peopleforms) {
+      return false;
+    }
+    if (nextState.projectStory !== projectStory) {
       return false;
     }
     return true;
