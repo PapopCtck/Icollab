@@ -16,6 +16,18 @@ import {
   createCookie,
 } from './Cookie/Cookie';
 
+import {
+  TabsBar,
+  Tab,
+} from './TabsBar/TabsBar';
+
+import { ImageUploader } from './ImageUploader/ImageUploader';
+
+
+import UserSearch from './UserSearch/UserSearch';
+
+import { UpdateBox } from './UpdateBox/UpdateBox';
+
 export {
   //NavBar
   NavBar,
@@ -33,4 +45,13 @@ export {
   createCookie,
   //StateSelect
   ThailandStateSelect,
+  //TabsBar
+  TabsBar,
+  Tab,
+  //ImageUploader
+  ImageUploader,
+  //UserSearch
+  UserSearch,
+  //UpdateBox
+  UpdateBox,
 }

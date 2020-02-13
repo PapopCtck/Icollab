@@ -23,6 +23,7 @@
 
 .profile-edit-button {
  float: right;
+ margin-left: 20px;
 }
 
 @media(max-width:600px){
@@ -35,5 +36,8 @@
     margin: 0 15px;
     border-right: none;
     border-bottom: 0.5px solid var(--main-border-color);
-  }  
+  } 
+  .profile-rate {
+    display: block !important;
+  }
 }

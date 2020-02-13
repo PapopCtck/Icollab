@@ -1,0 +1,34 @@
+.projectdetail-main {
+  width: 70%;
+  padding: 20px;
+}
+
+.projectdetail-sider {
+  width: 30%;
+  padding: 20px;
+  border-left: 1px solid var(--main-border-color);
+}
+
+@media (max-width: 1150px) {
+  .projectdetail-main {
+    width: 100%;
+    padding: 20px;
+  }
+  .projectdetail-sider {
+    width: 100%;
+    padding: 20px;
+    border-left: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .ant-tabs-bar {
+    margin-left: 30px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .ant-tabs-bar {
+    margin-left: 0px !important;
+  }
+}

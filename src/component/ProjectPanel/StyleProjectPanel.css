@@ -1,0 +1,33 @@
+.projectpanel-container{
+  margin-top: 20px;
+}
+
+.projectpanel-right {
+  float: right;
+}
+
+.projectpanel-right-sortby {
+  margin-right: 10px;
+}
+
+.projectpanel-content {
+  margin-top: 20px;
+}
+
+.projectcollapse-header-image {
+  height: 100px;
+  width: auto;
+  margin: 0 10px;
+}
+
+@media(max-width: 586px){
+  .projectpanel-header{
+    text-align: center;
+  }
+  .projectpanel-left{
+    display: block;
+  }
+  .projectpanel-right{
+    float: none;
+  }
+}

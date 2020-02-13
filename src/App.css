@@ -21,6 +21,7 @@
   --bg-loading: rgba(0,0,0,0.5);
   --bg-box-loading: #ffffff;
   --background-color-gray: #F1F1F1;
+  --create-header-color: #FAFAFF;
 }
 
 .header-container {
@@ -38,6 +39,7 @@
 
 .bold {
   font-family: 'Ubuntu-bold';
+  font-weight: bold;
   color: black;
 }
 

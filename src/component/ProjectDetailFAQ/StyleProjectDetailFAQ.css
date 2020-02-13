@@ -1,0 +1,10 @@
+.projectdetail-faq-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1150px) {
+  .projectdetail-faq-container {
+    display: block;
+  }
+}

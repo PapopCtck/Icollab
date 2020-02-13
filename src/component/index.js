@@ -14,9 +14,25 @@ import ProjectDetailContent from './ProjectDetailContent/ProjectDetailContent';
 
 import ProjectDetailStory from './ProjectDetailStory/ProjectDetailStory';
 
+import ProjectDetailFAQ from './ProjectDetailFAQ/ProjectDetailFAQ';
+
+import ProjectDetailUpdates from './ProjectDetailUpdates/ProjectDetailUpdates';
+
+import ProjectDetailComments from './ProjectDetailComments/ProjectDetailComments';
+
 import ExploreCondition from './ExploreCondition/ExploreCondition';
 
 import ExploreResult from './ExploreResult/ExploreResult';
+
+import CreateBasicDetail from './CreateBasicDetail/CreateBasicDetail';
+
+import CreateDetail from './CreateDetail/CreateDetail';
+
+import ProjectPanel from './ProjectPanel/ProjectPanel';
+
+import { QAForm } from './QAForm/QAForm';
+
+import { PeopleForm } from './PeopleForm/PeopleForm';
 
 export {
   MainNav,
@@ -27,6 +43,14 @@ export {
   ProjectDetailHeader,
   ProjectDetailContent,
   ProjectDetailStory,
+  ProjectDetailFAQ,
+  ProjectDetailUpdates,
+  ProjectDetailComments,
   ExploreCondition,
   ExploreResult,
+  CreateBasicDetail,
+  CreateDetail,
+  ProjectPanel,
+  QAForm,
+  PeopleForm,
 }

@@ -2,7 +2,7 @@ export function formatDate(date) {
   if (date) {
     const newDate = new Date(date);
     return (
-      `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear() + 543}`
+      `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear() + 543}`
     )
   }
   return '-';
@@ -11,7 +11,6 @@ export function formatDate(date) {
 export function timeSince(time) {
   if (time) {
     const total = Date.parse(new Date()) - Date.parse(time);
-    console.log(total)
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / (1000 * 60)) % 60);
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
