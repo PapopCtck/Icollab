@@ -9,7 +9,7 @@ export function getCookie(name) {
 export function deleteCookie(name) {
   const dt = new Date();
   dt.setDate(dt.getDate() - 1);
-  document.cookie = `${name}= ; expires=${dt.toUTCString()}; domain=${process.env.REACT_APP_DOMAIN_COOKIE}; path=/`;
+  document.cookie = `${name}= ; expires=${dt.toUTCString()}; path=/`;
 }
 
 export function createCookie(name , value , hr) {
@@ -19,5 +19,5 @@ export function createCookie(name , value , hr) {
   } else {
     dt.setTime(dt.getTime() + 3600000);
   }
-  document.cookie = `${name}=${value}; expires=${dt.toUTCString()}; domain=${process.env.REACT_APP_DOMAIN_COOKIE}; path=/`;
+  document.cookie = `${name}=${value}; expires=${dt.toUTCString()}; path=/`;
 }
