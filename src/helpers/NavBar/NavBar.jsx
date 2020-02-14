@@ -23,7 +23,7 @@ class Navbar extends Component {
     const { children, drawer, toggleDrawer, visible, title } = this.props;
     return (
       <nav className="menu">
-        <div className="logo">
+        <div className="logo bold">
           <Link to="/">{title}</Link>
         </div>
         <div className="menuContainer">
