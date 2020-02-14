@@ -4,8 +4,7 @@
 }
 .start-project-button {
   font-size: 14px !important;
-  font-family: 'Ubuntu' !important;
-  font-weight: bold !important;
+  font-family: 'Ubuntu-Bold';
   background: var(--main-accent-color) !important;
   border-color: var(--main-accent-color) !important;
   margin: 20px 0px;

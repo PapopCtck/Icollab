@@ -5,7 +5,7 @@ export class LeftFooter extends Component {
   render() {
     return (
       <div className="left-footer-container">
-        <div className="left-footer-icon bold">
+        <div className="left-footer-icon">
           <Link to="/">Icollab</Link>
         </div>
         <div className="left-footer-menu">
