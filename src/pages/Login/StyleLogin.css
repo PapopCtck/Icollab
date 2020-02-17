@@ -5,15 +5,33 @@
   background-color: white;
   border-style: solid;
   border-radius: 5px;
-  border-color: #cacaca;
   border-width: 0.5px; 
+  transition: 0.3s all;
+}
+
+.login-box-container.light {
+  background-color: var(--card-background-color);
+  border-color: #cacaca;
+}
+
+.login-box-container.dark {
+  background-color: var(--card-background-dark);
+  border-color: var(--card-background-dark);
 }
 
 .login-content {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s all;
+}
+
+.login-content.light {
   background-color: var(--background-color-gray);
+}
+
+.login-content.dark {
+  background-color: var(--main-background-dark);
 }
 
 .login-title {
