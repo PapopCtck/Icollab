@@ -1,9 +1,10 @@
 .explore-condition-container {
   min-height: 20vh;
-  background: url('/assets/explore-banner.jpg') lightblue;
-  background-position: 0 60%;
-  background-size: cover;
+  background: lightblue;
+  background-position: 0 60% !important;
+  background-size: cover !important;
   padding: 30px 40px;
+  transition: 0.3s all;
 }
 
 .explore-condition-select-container {
