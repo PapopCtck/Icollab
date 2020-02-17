@@ -18,7 +18,7 @@ const CommentList = ({ comments, theme }) => (
     renderItem={item =>
       <Comment
         className={theme + '-text'}
-        author={<div className={theme + '-text'}>{item.author.fullName}</div>}
+        author={<div className={theme + '-subtext'}>{item.author.fullName}</div>}
         avatar={
           <Avatar
             src={item.author.userImg ? item.author.userImg : null}

@@ -32,7 +32,9 @@
   --main-text-dark: rgba(255,255,255,0.85);
   --main-text-color: rgba(0,0,0,0.85);
   --main-body-text-color: rgba(0,0,0,0.65);
-  --main-body-text-dark: rgba(255,255,255,0.85);
+  --main-body-text-dark: rgba(255,255,255,0.65);
+  --main-desc-text-color: rgba(0,0,0,0.45);
+  --main-desc-text-dark: rgba(255,255,255,0.45);
 }
 
 .header-container {
@@ -78,7 +80,7 @@
 }
 
 .light-subtext {
-  color: var(--main-body-text-color) !important;
+  color: var(--main-desc-text-color) !important;
 }
 
 .dark-text {
@@ -86,7 +88,7 @@
 }
 
 .dark-subtext {
-  color: var(--main-body-text-dark) !important;
+  color: var(--main-desc-text-dark) !important;
 }
 
 .ant-layout-content {
