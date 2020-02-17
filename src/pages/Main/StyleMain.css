@@ -2,3 +2,15 @@
 .landing-title {
   padding: 10px;
 }
+
+.main-loading {
+  height: 100vh;
+}
+
+.main-loading.light {
+  background: var(--main-background-color);
+}
+
+.main-loading.dark {
+  background: var(--main-background-dark);
+}
