@@ -24,7 +24,7 @@ export class LandingCarousel extends Component {
     })
   }
   render() {
-    const { featuredProject } = this.props;
+    const { featuredProject, appTheme } = this.props;
     const { activeChoice } = this.state;
 
     if (!featuredProject) {
@@ -37,7 +37,7 @@ export class LandingCarousel extends Component {
         <CarouselDisplay getCarouselPosition={this.getCarouselPosition} {...this.props} />
         <div className="carousel-content-container">
           <div className="carousel-content-title">
-            <Title level={2}>
+            <Title level={2} className={appTheme + '-text'}>
               {featuredProject[activeChoice].projecttitle}
             </Title>
           </div>
