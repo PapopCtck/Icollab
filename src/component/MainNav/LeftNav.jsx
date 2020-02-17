@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Select } from 'antd';
+import { Menu, Select, Switch } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -16,7 +16,24 @@ export class LeftNav extends Component {
     const { pathname } = this.props.location;
     const { appLang } = this.props;
     return (
-      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+      <Menu theme={this.props.appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+        {this.props.mode === 'inline' ?
+          <Menu.Item key="explore">
+            <Switch
+              checked={this.props.appTheme === 'dark'}
+              onChange={() => this.props.setTheme(this.props.appTheme === 'dark' ? 'light' : 'dark')}
+              checkedChildren="Dark"
+              unCheckedChildren="Light"
+            />
+          </Menu.Item>
+          :
+          <Switch
+            checked={this.props.appTheme === 'dark'}
+            onChange={() => this.props.setTheme(this.props.appTheme === 'dark' ? 'light' : 'dark')}
+            checkedChildren="Dark"
+            unCheckedChildren="Light"
+          />
+        }
         <Select defaultValue="en" value={appLang} style={{ width: 120, margin: '14px' }} onChange={this.props.setLang}>
           <Option value="en">English (US)</Option>
           <Option value="th">ไทย (TH)</Option>
