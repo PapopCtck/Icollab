@@ -8,22 +8,22 @@ const { Meta } = Card;
 
 export class ProjectDetailStory extends Component {
   render() {
-    const { projectDetail, data } = this.props;
+    const { projectDetail, data, theme } = this.props;
     return (
-      <div className="projectdetail-story-container">
+      <div className={'projectdetail-story-container ' + theme + '-text'}>
         <div className="projectdetail-main">
-          <h3>
+          <h3 className={theme + '-text'}>
             Quisque viverra interdum velit?
           </h3>
           {projectDetail.projectdescription}
         </div>
         <div className="projectdetail-sider">
           <div className="projectdetail-story-roleneeded">
-            <h3 className="bold">Who are we looking for ?</h3>
+            <h3 className={'bold ' + theme + '-text'}>Who are we looking for ?</h3>
             {
               data.roleNeeded.map((role) =>
-                <Card className="projectdetail-story-rolecard-container">
-                  <Meta className="bold" title={role.title} />
+                <Card className={'projectdetail-story-rolecard-container ' + theme}>
+                  <Meta title={<div className={'bold ' + theme + '-text'}>{role.title}</div>} />
                   <div className="projectdetail-story-rolecard-skill">
                     Skills : {role.jobSkill.map((skill) => skill)}
                   </div>
@@ -38,13 +38,13 @@ export class ProjectDetailStory extends Component {
             }
           </div>
           <div className="projectdetail-story-staters">
-            <h3 className="bold">About us</h3>
+            <h3 className={'bold ' + theme + '-text' }>About us</h3>
             {data.projectStarters.map((starter) =>
-              <Card className="projectdetail-story-statercard-container">
+              <Card className={'projectdetail-story-statercard-container ' + theme}>
                 <div className="projectdetail-story-statercard">
                   <Avatar size="large" className="projectdetail-story-statercard-avatar" src={starter.userImg} />
                   <div className="projectdetail-story-statercard-detail">
-                    <h3 className="bold">{starter.fullName}</h3>
+                    <h3 className={'bold ' + theme + '-text'}>{starter.fullName}</h3>
                     {starter.userAssociation.map((assoc) => assoc)}
                     {starter.projectRole}
                   </div>
