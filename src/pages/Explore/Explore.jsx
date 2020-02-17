@@ -82,12 +82,13 @@ export class Explore extends Component {
 
   render() {
     const { resultProjects } = this.state;
-    const appLang = this.context;
+    const { appLang, appTheme } = this.context;
     return (
       <div>
         <BackTop />
         <ExploreCondition
           appLang={appLang}
+          appTheme={appTheme}
           content={content}
           handleChange={this.handleChange}
           handleSearch={this.handleSearch}
@@ -95,6 +96,7 @@ export class Explore extends Component {
         />
         <ExploreResult
           appLang={appLang}
+          appTheme={appTheme}
           content={content}
           resultProjects={resultProjects}
           handleChange={this.handleChange}
