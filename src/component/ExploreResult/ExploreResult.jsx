@@ -31,11 +31,21 @@ export class ExploreResult extends Component {
     })
   }
 
-  renderCard = (resultProjects, count) => {
+  renderCard = (resultProjects, count, appTheme) => {
     if (resultProjects.length === 0) {
       return <Empty image="/assets/doge.jpg" imageStyle={{ opacity: 0.4, marginTop: '20px' }} description={<span>Much space, Such empty, WOW!</span>} />
     }
     let returnArray = [];
+    const cardTheme = {
+      dark: {
+        backgroundColor: '#29292e',
+        color: '#fff',
+      },
+      light: {
+        backgroundColor: '#fff',
+        color: 'rgba(0,0,0,0.85)',
+      },
+    }
     for (let index = 0; index < count && index < resultProjects.length; index++) {
       const project = resultProjects[index];
       returnArray.push(
@@ -44,6 +54,8 @@ export class ExploreResult extends Component {
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
             style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
+            bordered={appTheme === 'light'}
+            bodyStyle={cardTheme[appTheme]}
             cover={
               <img
                 style={{ maxHeight: '240px', minHeight: '240px' }}
@@ -53,9 +65,9 @@ export class ExploreResult extends Component {
             }
           >
             <Meta
-              title={project.projecttitle}
+              title={<div className={appTheme + '-text'}>{project.projecttitle}</div>}
               description={
-                <div className="explore-card-container">
+                <div className={'explore-card-container ' + appTheme + '-subtext'}>
                   {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
                   {index === 1 ? <span className="card-status-banner bold status-sponsored">Sponsored</span> : null}
                   <div className="explore-card-description-text">
@@ -85,9 +97,9 @@ export class ExploreResult extends Component {
 
   render() {
     const { cardCount } = this.state;
-    const { resultProjects, handleSortSelect, appLang, content } = this.props;
+    const { resultProjects, handleSortSelect, appLang, content, appTheme } = this.props;
     if (!resultProjects) {
-      return <Loading />
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
       <div className="page-wrapper">
@@ -109,11 +121,11 @@ export class ExploreResult extends Component {
             </span>
             <span className="explore-result-head-right">
               <span className="bold">
-                <Checkbox onChange={this.props.handleCheck}>{content[appLang].student}</Checkbox>
-                <Checkbox onChange={this.props.handleCheck}>{content[appLang].startUp}</Checkbox>
-                <Checkbox onChange={this.props.handleCheck}>{content[appLang].industrial}</Checkbox>
+                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].student}</Checkbox>
+                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].startUp}</Checkbox>
+                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].industrial}</Checkbox>
               </span>
-              <span className="bold explore-result-sortby">
+              <span className={'bold explore-result-sortby ' + appTheme}>
                 <span className="explore-result-sortby-text">{content[appLang].sortBy}</span>
                 <Select defaultValue="DateAdded" style={{ width: 120 }} onChange={handleSortSelect}>
                   <Option value="DateAdded">{content[appLang].dateAdded}</Option>
@@ -125,7 +137,7 @@ export class ExploreResult extends Component {
           </div>
           <div className="explore-result-body-container">
             <Row gutter={[16, 16]}>
-              {this.renderCard(resultProjects, cardCount)}
+              {this.renderCard(resultProjects, cardCount, appTheme)}
             </Row>
           </div>
           <div className="explore-result-foot-container">
@@ -134,7 +146,7 @@ export class ExploreResult extends Component {
             </Button>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }
@@ -148,6 +160,6 @@ ExploreResult.propTypes = {
   resultProjects: PropTypes.array,
   handleSortSelect: PropTypes.func,
   handleCheck: PropTypes.func,
-  appLang: PropTypes.string, 
+  appLang: PropTypes.string,
   content: PropTypes.object,
 }
