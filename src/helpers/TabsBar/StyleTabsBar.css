@@ -3,19 +3,27 @@
 }
 
 .tab-ul{
-  background-color: white;
+  transition: 0.3s all;
   list-style-type: none;
   margin: 0;
   padding: 300px 0;
   width: 20vw;
   max-width: 200px;
-  border-right: solid var(--main-border-color) 0.5px;
   height: 100vh;
   position: sticky;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+}
+
+.tab-ul.light {
+  background-color: var(--main-background-color);
+  border-right: solid var(--main-border-color) 0.5px;
+}
+
+.tab-ul.dark {
+  background-color: var(--main-background-dark);
 }
 
 .tab{
@@ -33,7 +41,14 @@
 .tab.is-active {
   font-size: 1.5rem;
   color: #1890ff;
+}
+
+.tab.is-active.light {
   background-color: #e6f7ff;
+}
+
+.tab.is-active.dark {
+  background-color: #303435;
 }
 
 .tab::after{
@@ -80,6 +95,15 @@
 .tab-content-content {
   overflow: hidden;
   max-width: 100vw;
+  transition: 0.3s all;
+}
+
+.tab-content-content.light {
+  background-color: var(--main-background-color);
+}
+
+.tab-content-content.dark {
+  background-color: var(--main-background-dark);
 }
 
 .tab-content-button {
@@ -95,8 +119,16 @@
   display: flex;
   align-items: center;
   padding: 15px 40px;
+}
+
+
+.tab-content-header.light {
   background-color: var(--create-header-color);
   border-bottom: solid var(--main-border-color) 0.5px;
+}
+
+.tab-content-header.dark {
+  background-color: var(--card-background-dark);
 }
 
 .tab-content-header-button-container{

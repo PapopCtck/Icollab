@@ -6,8 +6,16 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    background-color: white;
     z-index: 10;
+    transition: 0.3s all;
+}
+
+.create-basic-container.light {
+    background-color: var(--main-background-color);
+}
+
+.create-basic-container.dark {
+    background-color: var(--main-background-dark);
 }
 
 .create-basic-header-container {
