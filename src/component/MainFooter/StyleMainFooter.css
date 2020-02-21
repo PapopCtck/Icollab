@@ -21,7 +21,6 @@
 }
 
 .left-footer-icon a {
-  font-family: 'Ubuntu-bold';
   font-size: 25px;
 }
 
@@ -82,4 +81,10 @@
     text-align: center;
   }
 
+}
+
+@media (max-width: 370px){
+  .ant-layout-footer {
+    padding: 24px 0px !important;
+  }
 }

@@ -3,17 +3,6 @@
   margin-bottom: 20px;
 }
 
-.projectdetail-story-main {
-  width: 70%;
-  padding: 20px;
-}
-
-.projectdetail-story-sider {
-  width: 30%;
-  padding: 20px;
-  border-left: 1px solid var(--main-border-color);
-}
-
 .projectdetail-story-rolecard-container {
   margin: 20px 0 !important;
 }
@@ -40,14 +29,5 @@
 @media (max-width: 1150px) {
   .projectdetail-story-container {
     display: block;
-  }
-  .projectdetail-story-main {
-    width: 100%;
-    padding: 20px;
-  }
-  .projectdetail-story-sider {
-    width: 100%;
-    padding: 20px;
-    border-left: none;
   }
 }

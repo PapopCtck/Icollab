@@ -1,0 +1,26 @@
+.updatebox-container {
+  border:0.5px solid var(--main-border-color);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.updatebox-header {
+  border-bottom: 0.5px solid var(--main-border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.updatebox-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.updatebox-author{
+  display: flex;
+  align-items: center;
+}
+
+.updatebox-date {
+  margin-left: auto;
+}

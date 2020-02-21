@@ -1,0 +1,10 @@
+.projectdetail-comments-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1150px) {
+  .projectdetail-comments-container {
+    display: block;
+  }
+}

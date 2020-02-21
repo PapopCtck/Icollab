@@ -1,0 +1,9 @@
+.create-title{
+  font-family: 'Ubuntu';
+  font-weight: bold;
+  color: black;
+}
+
+.create-description{
+  max-width: 600px;
+}

@@ -7,11 +7,10 @@
 }
 
 .detailheader-image-container {
-  border-radius: 15px;
-  height: 35vh;
+  /* height: 35vh; */
   line-height: 35vh;
-  max-height: 450px;
-  min-width: 400px;
+  /* max-height: 320px; */
+  min-width: 320px;
   width: 100%;
   overflow: hidden;
 }
@@ -22,7 +21,9 @@
 
 .detailheader-image {
   width: inherit;
-  min-width: 400px;
+  min-width: 320px;
+  height: 340px;
+  border-radius: 15px;
 }
 
 .detailheader-content-container {
@@ -65,8 +66,10 @@
 }
 
 @media (max-width:792px) {
-  .detailheader-image-container {
+  .detailheader-image {
     border-radius: 0;
+  }
+  .detailheader-image-container {
     width: 100vw;
   }
   .detailheader-content-container {
