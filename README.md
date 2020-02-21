@@ -1,6 +1,6 @@
-## Idea & Collaboration
+# Idea & Collaboration
 
-Icollab is a website where job finder and project owner to come together.
+**Icollab** is a website where job finder and project owner to come together.
 
 ## Official website
 
@@ -51,9 +51,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
+This project use create-react-app with Antd.
+
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+You can also learn more about Ant Design in [Ant Design Github](https://github.com/ant-design/ant-design) and [Ant Desgin website](https://ant.design/)
 
 ## Contributor
 
