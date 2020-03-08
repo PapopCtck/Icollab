@@ -43,7 +43,17 @@ export class LandingTrendingCard extends Component {
   }
 
   render() {
-    const { trendingProject, lang } = this.props;
+    const { trendingProject, lang, appTheme } = this.props;
+    const cardTheme = {
+      dark: {
+        backgroundColor: '#29292e',
+        color: '#fff',
+      },
+      light: {
+        backgroundColor: '#fff',
+        color: 'rgba(0,0,0,0.85)',
+      },
+    }
     return (
       <div className="landing-trending-container">
         <div className="landing-trending-header">
@@ -58,6 +68,8 @@ export class LandingTrendingCard extends Component {
             {trendingProject.map((project) =>
               <Card
                 onClick={() => this.onCardClick(project.project_uid)}
+                bordered={appTheme === 'light'}
+                bodyStyle={cardTheme[appTheme]}
                 cover={
                   <img
                     style={{ maxHeight: '240px', minHeight: '240px' }}
@@ -67,9 +79,9 @@ export class LandingTrendingCard extends Component {
                 }
               >
                 <Meta
-                  title={project.projecttitle}
+                  title={<div className={'explore-title ' + appTheme + '-text'}>{project.projecttitle}</div>}
                   description={
-                    <div className="explore-card-container">
+                    <div className={'explore-card-container ' + appTheme + '-subtext'}>
                       <div className="explore-card-description-text">
                         {project.projectdescription}
                       </div>

@@ -2,16 +2,34 @@
   max-width: 400px;
   height: auto;
   margin: 0 auto;
-  background-color: white;
   border-style: solid;
   border-radius: 5px;
-  border-color: var(--main-border-color);
   border-width: 0.5px;
+  transition: 0.3s all;
+}
+
+.register-box-container.light {
+  background-color: var(--card-background-color);
+  border-color: var(--main-border-color);
+}
+
+
+.register-box-container.dark {
+  background-color: var(--card-background-dark);
+  border-color: var(--card-background-dark);
 }
 
 .register-content {
   padding: 50px 0px;
+  transition: 0.3s all;
+}
+
+.register-content.light {
   background-color: var(--background-color-gray);
+}
+
+.register-content.dark {
+  background-color: var(--main-background-dark);
 }
 
 .register-title {

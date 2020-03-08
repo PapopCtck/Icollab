@@ -17,21 +17,21 @@ const { Header, Content } = Layout;
 
 export class CreateBasicDetail extends Component {
   render() {
-    const { onFinishBasic, show, handleChange, setLang } = this.props;
-    const appLang = this.context;
+    const { onFinishBasic, show, handleChange, setLang, setTheme } = this.props;
+    const { appLang, appTheme } = this.context;
     return (
       <QueueAnim className="create-basic" delay={300} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
         {show ? [
           <QueueAnim key="page-container" type="bottom">
             <Layout className="create-basic-layout">
-              <Header className="header-container">
-                <MainNav appLang={appLang} setLang={setLang} />
+              <Header className={'header-container ' + appTheme}>
+                <MainNav appTheme={appTheme} appLang={appLang} setLang={setLang} setTheme={setTheme} />
               </Header>
               <Content>
-                <div className="create-basic-container">
+                <div className={'create-basic-container ' + appTheme}>
                   <QueueAnim key="page" type="bottom">
                     <div className="create-basic-header-container">
-                      <Title level={2} className="create-title">{content[appLang].title}</Title>
+                      <Title level={2} className={'create-title ' + appTheme + '-text'}>{content[appLang].title}</Title>
                       <p className="create-basic-subheader" key="p" >
                         {content[appLang].description}
                       </p>
@@ -39,7 +39,7 @@ export class CreateBasicDetail extends Component {
                     <div className="create-basic-select-container">
                       <QueueAnim type="bottom" >
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].category}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].category}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectCategory}
@@ -55,7 +55,7 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].location}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text' }>{content[appLang].location}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLocation}
@@ -71,7 +71,7 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].level}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text' }>{content[appLang].level}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLevel}

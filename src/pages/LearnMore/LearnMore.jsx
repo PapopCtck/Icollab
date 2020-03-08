@@ -16,22 +16,22 @@ import './StyleLearnMore.css';
 const { Title } = Typography;
 
 export class LearnMore extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     window.scrollTo(0, 0);
   }
   render() {
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     return (
       <div className="learnmore-container">
         <div className="learnmore-header">
-          <Title className="bold" level={1}>{content[lang].title}</Title>
-          <p className="learnmore-header-description bold">{content[lang].description}</p>
-          <Button className="start-project-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
+          <Title className={'bold ' + appTheme + '-text'} level={1}>{content[appLang].title}</Title>
+          <p className="learnmore-header-description bold">{content[appLang].description}</p>
+          <Button className="start-project-button" type="primary"><Link to="/createproject">{content[appLang].startProjectBtn}</Link></Button>
         </div>
-        <ImageGallerySection lang={lang} />
-        <Advertisement lang={lang} />
-        <StartProject lang={lang} />
+        <ImageGallerySection lang={appLang} />
+        <Advertisement lang={appLang} theme={appTheme}/>
+        <StartProject lang={appLang} theme={appTheme} />
       </div>
     )
   }
@@ -84,7 +84,7 @@ export const ImageGallerySection = () => (
   </div >
 );
 
-export const Advertisement = ({ lang }) => (
+export const Advertisement = ({ lang, theme }) => (
   <div className="learnmore-ad">
     <Parallax
       animation={{ scale: 1, playScale: [0.1, 0.5] }}
@@ -92,13 +92,13 @@ export const Advertisement = ({ lang }) => (
     >
       <div className="learnmore-ad-title">
         <span className="bold" style={{ color: 'white' }}>{content[lang].title + ' '}</span>
-        <span className="bold">{content[lang].adTitle}</span>
+        <span className={'bold ' + theme + '-text'}>{content[lang].adTitle}</span>
       </div>
       <p className="bold">{content[lang].adDescription}</p>
       <div>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad1}</span></span>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad2}</span></span>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad3}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad1}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad2}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad3}</span></span>
       </div>
     </Parallax>
   </div >
@@ -108,9 +108,9 @@ Advertisement.propTypes = {
   lang: PropTypes.string,
 }
 
-export const StartProject = ({ lang }) => (
+export const StartProject = ({ lang, theme }) => (
   <div className="learnmore-startProject">
-    <Title className="bold" level={2}>{content[lang].idea}</Title>
+    <Title className={'bold ' + theme + '-text'} level={2}>{content[lang].idea}</Title>
     <Button className="gradient-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
   </div>
 );

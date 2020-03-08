@@ -6,8 +6,12 @@ import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
 import { fetchProjectsById } from '../../actions';
 
-import './StyleProjectDetail.css';
 import { Loading } from '../../helpers';
+
+import AppLang from '../../AppContext';
+
+import './StyleProjectDetail.css';
+
 
 export class ProjectDetail extends Component {
   constructor(props) {
@@ -144,17 +148,20 @@ export class ProjectDetail extends Component {
 
   render() {
     const { projectDetail, mockupData } = this.state;
+    const { appTheme } = this.context;
     if (!projectDetail) {
-      return <Loading />
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
       <div className="page-wrapper project-detail-container">
-        <ProjectDetailHeader projectDetail={projectDetail} />
-        <ProjectDetailContent projectDetail={projectDetail} mockupData={mockupData} />
+        <ProjectDetailHeader projectDetail={projectDetail} theme={appTheme}/>
+        <ProjectDetailContent projectDetail={projectDetail} mockupData={mockupData} theme={appTheme}/>
       </div>
     )
   }
 }
+
+ProjectDetail.contextType = AppLang;
 
 const mapStateToProps = state => {
   const fetchProjectsById = state.fetchProjectsById.data;

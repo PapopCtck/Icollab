@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
@@ -26,33 +26,37 @@ const { Header, Content, Footer } = Layout;
 
 function App() {
 
-  const useStateWithLocalStorage = localStorageKey => {
-    const [appLang, setLang] = useState(
-      localStorage.getItem(localStorageKey) || 'en'
+  const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
+    const [value, setValue] = useState(
+      localStorage.getItem(localStorageKey) || defaultValue
     );
     useEffect(() => {
-      localStorage.setItem(localStorageKey, appLang);
-    }, [appLang]);
-    return [appLang, setLang];
+      localStorage.setItem(localStorageKey, value);
+    }, [value]);
+    return [value, setValue];
   };
 
+
   const [appLang, setLang] = useStateWithLocalStorage(
-    'appLang'
+    'appLang', 'en'
   );
 
+  const [appTheme, setTheme] = useStateWithLocalStorage(
+    'appTheme', 'dark'
+  );
 
   return (
     <BrowserRouter>
       <Layout className="layout">
         <Switch>
           <Route sensitive strict exact path="/createproject" component={null} />
-          <Header className="header-container">
-            <Route sensitive strict exact render={() => <MainNav appLang={appLang} setLang={setLang} />} />
+          <Header className={'header-container ' + appTheme}>
+            <Route sensitive strict exact render={() => <MainNav appLang={appLang} setLang={setLang} appTheme={appTheme} setTheme={setTheme} />} />
           </Header>
         </Switch>
         <Layout>
-          <AppContext.Provider value={appLang}>
-            <Content >
+          <AppContext.Provider value={{ appLang, appTheme }}>
+            <Content className={appTheme}>
               <Switch>
                 <Route sensitive strict exact path="/" component={Main} />
                 <Route sensitive strict path="/login" component={Login} />
@@ -60,7 +64,7 @@ function App() {
                 <Route sensitive strict path="/project/:id" component={ProjectDetail} />
                 <Route sensitive strict path="/explore" component={Explore} />
                 <Route sensitive strict path="/profile" component={Profile} />
-                <Route sensitive strict path="/createproject" render={() => <CreateProject setLang={setLang}/> } />
+                <Route sensitive strict path="/createproject" render={() => <CreateProject setLang={setLang} setTheme={setTheme}/>} />
                 <Route sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
                 <Route sensitive strict path="/403" component={Error403} />
@@ -72,7 +76,7 @@ function App() {
         </Layout>
         <Switch>
           <Route sensitive strict exact path="/createproject" component={null} />
-          <Footer>
+          <Footer className={appTheme}>
             <Route sensitive strict exact component={MainFooter} />
           </Footer>
         </Switch>

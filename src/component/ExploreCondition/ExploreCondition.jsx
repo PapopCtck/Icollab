@@ -13,10 +13,10 @@ export class ExploreCondition extends Component {
 
 
   render() {
-    const { appLang, content, handleSearch, handleSearchChange, handleChange } = this.props;
+    const { appLang, content, handleSearch, handleSearchChange, handleChange, appTheme } = this.props;
     const text = <span>{content[appLang].textPopupSearch}</span>;
     return (
-      <div className="explore-condition-container">
+      <div className="explore-condition-container" style={appTheme === 'dark' ? { background: 'url("/assets/explore-banner-dark.jpg")' } : { background: 'url("/assets/explore-banner.jpg")' }}>
         <div className="page-wrapper">
           <div className="explore-condition-select-container">
             <Select

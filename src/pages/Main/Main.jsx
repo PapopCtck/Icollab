@@ -45,19 +45,19 @@ export class Main extends Component {
 
   render() {
     const { resultProjects } = this.state;
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     if (!resultProjects) {
-      return <Loading />
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
       <div className="page-wrapper">
         <BackTop />
         <div className="landing-title">
-          <span className="bold">{content[lang].featured}</span>
+          <span className="bold">{content[appLang].featured}</span>
         </div>
-        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} />
-        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} lang={lang} />
-        <LandingStartProject lang={lang} />
+        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} appTheme={appTheme} />
+        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} lang={appLang} appTheme={appTheme} />
+        <LandingStartProject lang={appLang} appTheme={appTheme}/>
       </div>
     )
   }

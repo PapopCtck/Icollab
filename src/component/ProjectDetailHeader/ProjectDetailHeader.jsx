@@ -9,7 +9,7 @@ const { Title } = Typography;
 
 export class DetailHeader extends Component {
   render() {
-    const { projectDetail } = this.props;
+    const { projectDetail, theme } = this.props;
     return (
       <div className="detailheader-container">
         <div className="detailheader-image-container">
@@ -17,8 +17,8 @@ export class DetailHeader extends Component {
         </div>
         <div className="detailheader-content-container">
           <div className="detailheader-content-title">
-            <Title level={2}>
-              {projectDetail.projecttitle }
+            <Title className={theme + '-text'} level={2}>
+              {projectDetail.projecttitle}
             </Title>
           </div>
           <div className="detailheader-content-sub-title" >
@@ -64,6 +64,6 @@ export class DetailHeader extends Component {
 export default DetailHeader
 
 DetailHeader.propTypes = {
-  projectDetail: PropTypes.object, 
+  projectDetail: PropTypes.object,
   projectId: PropTypes.string,
 };

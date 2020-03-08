@@ -1,12 +1,8 @@
-.header-container {
-  border-bottom: solid 1px var(--main-border-color);
-  box-shadow: 0 0 30px #f3f1f1;
-}
 
 .menu {
-  background-color: white;
   padding: 0 20px;
   font-family: 'Ubuntu';
+  transition: '0.3s all';
 }
 
 .logo {
@@ -55,6 +51,7 @@
 
 .menuDrawer .ant-drawer-body {
   padding: 0 !important;
+  transition: 0.3s all;
 }
 
 /* align header of Drawer with header of page */

@@ -74,7 +74,7 @@ class RightNav extends Component {
       )
     }
     return (
-      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+      <Menu theme={this.props.appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
           <Link to="/register">{content[appLang].signup}</Link>
         </Menu.Item>
