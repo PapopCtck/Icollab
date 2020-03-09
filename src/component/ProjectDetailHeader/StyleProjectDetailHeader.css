@@ -47,6 +47,10 @@
   text-align: center;
 }
 
+.detailheader-report-button {
+  text-decoration: underline;
+}
+
 @media (max-width:1150px) {
   .detailheader-container {
     display: block;
