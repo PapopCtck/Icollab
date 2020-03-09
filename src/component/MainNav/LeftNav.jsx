@@ -14,13 +14,13 @@ export class LeftNav extends Component {
   }
   render() {
     const { pathname } = this.props.location;
-    const { appLang } = this.props;
+    const { appLang,appTheme } = this.props;
     return (
-      <Menu theme={this.props.appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+      <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         {this.props.mode === 'inline' ?
           <Menu.Item key="explore">
             <Switch
-              checked={this.props.appTheme === 'dark'}
+              checked={appTheme === 'dark'}
               onChange={() => this.props.setTheme(this.props.appTheme === 'dark' ? 'light' : 'dark')}
               checkedChildren="Dark"
               unCheckedChildren="Light"
@@ -28,7 +28,7 @@ export class LeftNav extends Component {
           </Menu.Item>
           :
           <Switch
-            checked={this.props.appTheme === 'dark'}
+            checked={appTheme === 'dark'}
             onChange={() => this.props.setTheme(this.props.appTheme === 'dark' ? 'light' : 'dark')}
             checkedChildren="Dark"
             unCheckedChildren="Light"

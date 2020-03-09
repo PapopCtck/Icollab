@@ -30,12 +30,14 @@ class RightNav extends Component {
   }
 
   render() {
-    const { appLang } = this.props;
+    const { appLang, appTheme } = this.props;
+    //if user
     if (getCookie('icollab_token')) {
       const userInfo = JSON.parse(getCookie('icollab_userinfo'));
+      //if inline
       if (this.props.mode === 'inline') {
         return (
-          <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+          <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
             <Menu.Item key="profile">
               <Link to="/profile" className="rightnav-profile">{content[appLang].profile}</Link>
             </Menu.Item>
@@ -49,7 +51,7 @@ class RightNav extends Component {
         );
       }
       return (
-        <Menu mode={this.props.mode} selectable={false}>
+        <Menu theme={appTheme} mode={this.props.mode} selectable={false}>
           <SubMenu
             title={
               <div className="rightnav-title">
@@ -73,8 +75,9 @@ class RightNav extends Component {
         </Menu>
       )
     }
+    //if no user
     return (
-      <Menu theme={this.props.appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+      <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
           <Link to="/register">{content[appLang].signup}</Link>
         </Menu.Item>

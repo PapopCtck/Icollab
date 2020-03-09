@@ -24,11 +24,11 @@ class Navbar extends Component {
     const drawerStyle = {
       dark: {
         backgroundColor: '#001529',
-        height: 'calc(100vh - 50px)',
+        height: '100vh',
       },
       light: {
         backgroundColor: 'white',
-        height: 'calc(100vh - 50px)',
+        height: '100vh',
       },
     }
     return (
@@ -46,7 +46,6 @@ class Navbar extends Component {
             <Icon type="align-right" />
           </Button>
           <Drawer
-            title="Menu"
             placement="right"
             className="menuDrawer"
             closable={false}
