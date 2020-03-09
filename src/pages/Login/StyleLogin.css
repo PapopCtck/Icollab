@@ -1,6 +1,6 @@
 .login-box-container {
   width: 400px;
-  height: 500px;
+  height: 520px;
   margin: 130px 0px;
   background-color: white;
   border-style: solid;
@@ -24,6 +24,7 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s all;
+  height: 90vh;
 }
 
 .login-content.light {
@@ -63,7 +64,7 @@
 
 @media (max-width: 767px) {
   .login-box-container {
-    margin: 0px;
+    margin: 0px auto;
     border-style: none;
     border-radius: 0px;
     border-width: 0.5px; 
