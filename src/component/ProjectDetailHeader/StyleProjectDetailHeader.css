@@ -51,6 +51,20 @@
   text-decoration: underline;
 }
 
+.applyModal-avatar{
+  display: block;
+  margin: 0 auto;
+}
+
+.applyModal-rate{
+  text-align: center;
+  display: block;
+}
+
+.applyModal-username {
+  text-align: center;
+}
+
 @media (max-width:1150px) {
   .detailheader-container {
     display: block;
