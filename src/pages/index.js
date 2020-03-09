@@ -22,7 +22,9 @@ import TrackProject from './TrackProject/TrackProject';
 
 import LearnMore from './LearnMore/LearnMore';
 
-export { 
+import { Success } from './Success/Success';
+
+export {
   //Landing Page
   Main,
   //User Pages
@@ -43,4 +45,6 @@ export {
   TrackProject,
   //LearnMore
   LearnMore,
+  //Success page
+  Success,
 };
