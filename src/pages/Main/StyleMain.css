@@ -1,3 +1,7 @@
+.main-container {
+  height: auto;
+  min-height: 90vh;
+}
 
 .landing-title {
   padding: 10px;

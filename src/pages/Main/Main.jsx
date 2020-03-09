@@ -50,7 +50,7 @@ export class Main extends Component {
       return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
-      <div className="page-wrapper">
+      <div className="main-container page-wrapper">
         <BackTop />
         <div className="landing-title">
           <span className="bold">{content[appLang].featured}</span>
