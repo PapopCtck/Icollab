@@ -7,6 +7,8 @@ import { fetchGetProfile } from '../../actions';
 
 import { ThailandStateSelect, getCookie, Loading } from '../../helpers';
 
+import AppContext from '../../AppContext';
+
 import './StyleProfile.css';
 export class Profile extends Component {
   constructor(props) {
@@ -51,8 +53,9 @@ export class Profile extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { user, editing } = this.state;
+    const { appTheme } = this.context;
     if (!user) {
-      return <Loading />
+      return <div className = { 'main-loading ' + appTheme } > <Loading /></div>
     }
     return (
       <div className="page-wrapper">
@@ -62,9 +65,9 @@ export class Profile extends Component {
             <Rate className="profile-rate" style={{ marginTop: '20px' }} disabled defaultValue={2} />
           </div>
           <div className="profile-right">
-            <h3>Personal Info</h3>
+            <h3 className={appTheme+'-text'}>Personal Info</h3>
             <Form onSubmit={this.handleSubmit}>
-              <h4>Email</h4>
+              <h4 className={appTheme+'-text'}>Email</h4>
               <Form.Item>
                 {getFieldDecorator('email', {
                   initialValue: user.email,
@@ -80,7 +83,7 @@ export class Profile extends Component {
                   ],
                 })(<Input placeholder="Email" disabled={!editing} />)}
               </Form.Item>
-              <h4>First Name</h4>
+              <h4 className={appTheme+'-text'}>First Name</h4>
               <Form.Item>
                 {getFieldDecorator('firstName', {
                   initialValue: user.name,
@@ -92,7 +95,7 @@ export class Profile extends Component {
                   />,
                 )}
               </Form.Item>
-              <h4>Last Name</h4>
+              <h4 className={appTheme+'-text'}>Last Name</h4>
               <Form.Item>
                 {getFieldDecorator('lastName', {
                   initialValue: user.lastname,
@@ -104,7 +107,7 @@ export class Profile extends Component {
                   />,
                 )}
               </Form.Item>
-              <h4>City</h4>
+              <h4 className={appTheme+'-text'}>City</h4>
               <Form.Item>
                 {getFieldDecorator('city', {
                   rules: [{ required: true, message: 'Please select!' }],
@@ -112,8 +115,8 @@ export class Profile extends Component {
                   <ThailandStateSelect additionalClass="profile-city" disabled={!editing} />,
                 )}
               </Form.Item>
-              <h3>Job info</h3>
-              <h4>Current Position</h4>
+              <h3 className={appTheme+'-text'}>Job info</h3>
+              <h4 className={appTheme+'-text'}>Current Position</h4>
               <Form.Item>
                 {getFieldDecorator('position', {
                   rules: [
@@ -123,7 +126,7 @@ export class Profile extends Component {
                   ],
                 })(<Input placeholder="Current Position" disabled={!editing} />)}
               </Form.Item>
-              <h4>Company</h4>
+              <h4 className={appTheme+'-text'}>Company</h4>
               <Form.Item>
                 {getFieldDecorator('company', {
                   rules: [{ required: false }],
@@ -131,7 +134,7 @@ export class Profile extends Component {
                   <Input placeholder="Company" disabled={!editing} />,
                 )}
               </Form.Item>
-              <h4>Skills</h4>
+              <h4 className={appTheme+'-text'}>Skills</h4>
               <Form.Item>
                 {getFieldDecorator('skills', {
                   rules: [{ required: false }],
@@ -143,8 +146,8 @@ export class Profile extends Component {
                   />,
                 )}
               </Form.Item>
-              <h3>Contact info</h3>
-              <h4>Phone</h4>
+              <h3 className={appTheme+'-text'}>Contact info</h3>
+              <h4 className={appTheme+'-text'}>Phone</h4>
               <Form.Item>
                 {getFieldDecorator('phoneNumber', {
                   rules: [{ required: false }],
@@ -152,7 +155,7 @@ export class Profile extends Component {
                   <Input placeholder="Phone" disabled={!editing} />,
                 )}
               </Form.Item>
-              <h4>Website</h4>
+              <h4 className={appTheme+'-text'}>Website</h4>
               <Form.Item>
                 {getFieldDecorator('website', {
                   rules: [{ required: false }],
@@ -184,6 +187,8 @@ export class Profile extends Component {
     )
   }
 }
+
+Profile.contextType = AppContext;
 
 const WrappedProfileForm = Form.create({ name: 'profile' })(Profile);
 
