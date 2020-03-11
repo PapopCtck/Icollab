@@ -70,7 +70,7 @@ const UserBar = ({ theme }) => (
       <span className={theme + '-text'}>
         Computer engineering
       </span>
-      <Icon type="more" rotate={90} style={{ fontSize: 25, verticalAlign: 'middle' }} />
+      <Icon className={theme + '-text'} type="more" rotate={90} style={{ fontSize: 25, verticalAlign: 'middle' }} />
     </div>
     
   </div>
