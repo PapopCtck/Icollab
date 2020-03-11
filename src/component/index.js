@@ -20,6 +20,8 @@ import ProjectDetailUpdates from './ProjectDetailUpdates/ProjectDetailUpdates';
 
 import ProjectDetailComments from './ProjectDetailComments/ProjectDetailComments';
 
+import ProejctDetailApplicants from './ProjectDetailApplicants/ProjectDetailApplicants';
+
 import ExploreCondition from './ExploreCondition/ExploreCondition';
 
 import ExploreResult from './ExploreResult/ExploreResult';
@@ -46,6 +48,7 @@ export {
   ProjectDetailFAQ,
   ProjectDetailUpdates,
   ProjectDetailComments,
+  ProejctDetailApplicants,
   ExploreCondition,
   ExploreResult,
   CreateBasicDetail,
