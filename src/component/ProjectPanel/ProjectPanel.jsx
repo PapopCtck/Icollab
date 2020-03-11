@@ -23,8 +23,7 @@ export default function ProjectPanel() {
           // indeterminate={this.state.indeterminate}
           // onChange={this.onCheckAllChange}
           // checked={this.state.checkAll}
-          >
-          </Checkbox>
+          />
           <Divider type="vertical" />
           <Select
             style={{ width: 120 }}
