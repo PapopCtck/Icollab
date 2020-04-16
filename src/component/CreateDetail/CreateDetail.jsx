@@ -146,9 +146,9 @@ const formats = [
   'link', 'image',
 ]
 
-export const CreateStory = ({ handleChange, value, content }) => (
+export const CreateStory = ({ handleChange, value, content, appTheme }) => (
   <div className="create-detail-story-container">
-    <h4 className="bold">{content.projectDesc}</h4>
+    <h4 className={'bold ' + appTheme + '-text'}>{content.projectDesc}</h4>
     <p className="regular">{content.projectDescDescription}</p>
     <ReactQuill
       className="create-detail-story-editor"
