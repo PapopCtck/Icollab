@@ -9,6 +9,10 @@ export const FETCH_PROJECT_ID_FAILURE = 'FETCH_PROJECT_ID_FAILURE';
 export const FETCH_SEARCH_SUCCESS = 'FETCH_SEARCH_SUCCESS';
 export const FETCH_SEARCH_FAILURE = 'FETCH_SEARCH_FAILURE';
 
+export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
+export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
+
+
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
 export function fetchGetProjects() {
@@ -135,3 +139,45 @@ export function fetchSearchProjects(searchQuery) {
     }
   };
 }
+
+export function fetchGetProjectCategory() {
+  return async dispatch => {
+    try {
+      const res = await fetch(`${host}/v3/users/basicdetail/projectcategory`, {
+        method: 'GET',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+      });
+      const data = await res.json();
+
+      if (res.status === 200) {
+        return dispatch({
+          type: FETCH_CATEGORY_SUCCESS,
+          data,
+          status: res.status,
+        });
+      } else if (res.status === 400) {
+        return dispatch({
+          type: FETCH_CATEGORY_FAILURE,
+          data,
+          status: res.status,
+        });
+      }
+      else if (res.status === 500 || res.status === 502) {
+        return FNRedirect('/500');
+      }
+      return dispatch({
+        type: FETCH_CATEGORY_FAILURE,
+        data: null,
+        status: res.status ? res.status : res,
+      })
+    } catch (err) {
+      FNRedirect('/500');
+      return dispatch({
+        type: FETCH_CATEGORY_FAILURE,
+        data: null,
+        status: err.status ? err.status : err,
+      });
+    }
+  };
+}
+

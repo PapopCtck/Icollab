@@ -5,6 +5,8 @@ import {
   FETCH_PROJECT_ID_FAILURE,
   FETCH_SEARCH_SUCCESS,
   FETCH_SEARCH_FAILURE,
+  FETCH_CATEGORY_SUCCESS,
+  FETCH_CATEGORY_FAILURE,
 } from '../../actions';
 
 export function fetchGetProjects(state = {}, action) {
@@ -34,6 +36,17 @@ export function fetchSearchProjects(state = {}, action) {
     case FETCH_SEARCH_SUCCESS:
       return Object.assign({}, state, { ...action });
     case FETCH_SEARCH_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state;
+  }
+}
+
+export function fetchGetProjectCategory(state = {}, action) {
+  switch (action.type) {
+    case FETCH_CATEGORY_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case FETCH_CATEGORY_FAILURE:
       return Object.assign({}, state, { ...action });
     default:
       return state;
