@@ -14,7 +14,7 @@ const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 export function fetchGetProjects() {
   return async dispatch => {
     try {
-      const res = await fetch(`${host}/v2/users/getDataProject`, {
+      const res = await fetch(`${host}/v2/users/getData`, {
         method: 'GET',
         headers: new Headers({ 'Content-Type': 'application/json' }),
       });
