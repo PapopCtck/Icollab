@@ -15,3 +15,11 @@
     margin-left: 10px;
     align-items: center;
 }
+
+.acceptModal-text {
+  text-align: center;
+}
+
+.accpetModal-button-container{
+  display: flex;
+}
