@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { message } from 'antd';
+
+import AppLang from '../../AppContext';
 
 import { CreateBasicDetail, CreateDetail } from '../../component';
+
+import content from './LangCreateProject';
 
 import './StyleCreateProject.css';
 
@@ -21,6 +26,9 @@ export class CreateProject extends Component {
         jobDescription: null, 
         jobAmount: null,
       },
+      category: null,
+      location: null,
+      projectLevel: null,
     }
   }
 
@@ -43,7 +51,13 @@ export class CreateProject extends Component {
   }
 
   onFinishBasic = () => {
-    this.setState({ show: false })
+    const { category, location, projectLevel } = this.state;
+    if(!category || !location || !projectLevel){
+      this.error();
+    } else {
+      this.setState({ show: false })
+    }
+    
   }
 
   onFinish = () => {
@@ -119,6 +133,11 @@ export class CreateProject extends Component {
     return merged;
   }
 
+  error = () => {
+    const { appLang } = this.context;
+    message.error(content[appLang].createBasicError);
+  };
+
   render() {
     const { show, imageUrl, projectStory } = this.state;
     return (
@@ -137,5 +156,7 @@ export class CreateProject extends Component {
     )
   }
 }
+
+CreateProject.contextType = AppLang;
 
 export default CreateProject;
