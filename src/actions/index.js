@@ -26,6 +26,10 @@ import {
   fetchGetProjectCategory,
   FETCH_CATEGORY_SUCCESS,
   FETCH_CATEGORY_FAILURE,
+  //fetchCreateProject
+  fetchCreateProject,
+  FETCH_CREATE_PROJ_SUCCESS,
+  FETCH_CREATE_PROJ_FAILURE,
 } from './Projects';
 
 import {
@@ -64,4 +68,8 @@ export {
   fetchGetProjectCategory,
   FETCH_CATEGORY_SUCCESS,
   FETCH_CATEGORY_FAILURE,
+  //fetchCreateProject
+  fetchCreateProject,
+  FETCH_CREATE_PROJ_SUCCESS,
+  FETCH_CREATE_PROJ_FAILURE,
 };
