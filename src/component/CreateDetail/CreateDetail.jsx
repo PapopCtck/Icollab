@@ -51,7 +51,7 @@ export class CreateDetail extends Component {
                 <Tab label={content[appLang].faq.title} header={content[appLang].faq.header}>
                   <Title level={4} className={'create-title ' + appTheme + '-text'}>{content[appLang].faq.title}</Title>
                   <p className="create-description">{content[appLang].faq.description}</p>
-                  <QAForm onChange={handleChange} content={content[appLang].faq} />
+                  <QAForm onChange={handleChange} content={content[appLang].faq} appTheme={appTheme} />
                 </Tab>
                 <Tab label={content[appLang].contributor.title} header={content[appLang].contributor.header}>
                   <Title level={4} className={'create-title ' + appTheme + '-text'}>{content[appLang].contributor.title}</Title>
@@ -61,7 +61,7 @@ export class CreateDetail extends Component {
                 <Tab label={content[appLang].people.title} header={content[appLang].people.header}>
                   <Title level={4} className={'create-title ' + appTheme + '-text'}>{content[appLang].people.title}</Title>
                   <p className="create-description">{content[appLang].people.description}</p>
-                  <PeopleForm onChange={handleChange} content={content[appLang].people} />
+                  <PeopleForm onChange={handleChange} content={content[appLang].people} appTheme={appTheme} />
                 </Tab>
               </TabsBar>
             </QueueAnim>,
