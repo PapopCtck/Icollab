@@ -28,6 +28,8 @@ import UserSearch from './UserSearch/UserSearch';
 
 import { UpdateBox } from './UpdateBox/UpdateBox';
 
+import { ProtectedRoute } from './ProtectedRoute/ProtectedRoute';
+
 export {
   //NavBar
   NavBar,
@@ -54,4 +56,6 @@ export {
   UserSearch,
   //UpdateBox
   UpdateBox,
+  //Protected route
+  ProtectedRoute,
 }

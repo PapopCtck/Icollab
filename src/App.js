@@ -21,7 +21,10 @@ import {
 } from './pages';
 
 import './App.css';
+
 import { MainNav, MainFooter } from './component';
+
+import { ProtectedRoute } from './helpers';
 
 const { Header, Content, Footer } = Layout;
 
@@ -68,7 +71,7 @@ function App() {
                 <Route sensitive strict path="/createproject" render={() => <CreateProject setLang={setLang} setTheme={setTheme}/>} />
                 <Route sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
-                <Route sensitive strict path="/success" component={Success} />
+                <ProtectedRoute sensitive strict path="/success" component={Success} />
                 <Route sensitive strict path="/403" component={Error403} />
                 <Route sensitive strict path="/500" component={Error500} />
                 <Route sensitive strict component={Error404} />
