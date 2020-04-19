@@ -8,30 +8,29 @@ const { Meta } = Card;
 
 export class ProjectDetailStory extends Component {
   render() {
-    const { projectDetail, data, theme } = this.props;
+    const { projectDetailAll, data, theme } = this.props;
+    const projectDetail = projectDetailAll.Project[0];
     return (
       <div className={'projectdetail-story-container ' + theme + '-text'}>
         <div className="projectdetail-main">
-          <h3 className={theme + '-text'}>
-            Quisque viverra interdum velit?
-          </h3>
           {projectDetail.projectdescription}
         </div>
         <div className="projectdetail-sider">
           <div className="projectdetail-story-roleneeded">
             <h3 className={'bold ' + theme + '-text'}>Who are we looking for ?</h3>
             {
-              data.roleNeeded.map((role) =>
+              projectDetailAll.RoleNeeded.map((role) =>
                 <Card className={'projectdetail-story-rolecard-container ' + theme}>
-                  <Meta title={<div className={'bold ' + theme + '-text'}>{role.title}</div>} />
+                  <Meta title={<div className={'bold ' + theme + '-text'}>{role.jobtitle}</div>} />
                   <div className="projectdetail-story-rolecard-skill">
-                    Skills : {role.jobSkill.map((skill) => skill)}
+                    Skills : {role.jobskills}
+                    {/* {role.jobSkill.map((skill) => skill)} */}
                   </div>
                   <div className="projectdetail-story-rolecard-description">
-                    Description : {role.jobDescription}
+                    Description : {role.jobdescription}
                   </div>
                   <div className="projectdetail-story-rolecard-amount bold">
-                    {role.gotAmount + ' of ' + role.neededAmount}
+                    {0 + ' of ' + role.jobamount}
                   </div>
                 </Card>
               )

@@ -21,15 +21,15 @@ const { TabPane } = Tabs;
 export class ProjectDetailContent extends Component {
 
   render() {
-    const { projectDetail, mockupData, theme } = this.props;
+    const { projectDetailAll, mockupData, theme } = this.props;
     const userInfo = getCookie('icollab_userinfo');
     return (
       <Tabs tabBarStyle={theme === 'dark' ? { 'borderBottom': 'none', 'marginLeft': '60px', color: 'white' } : { 'borderBottom': 'none', 'marginLeft': '60px' }} defaultActiveKey="1" animated={false}>
         <TabPane tab="Story" key="1">
-          <ProjectDetailStory projectDetail={projectDetail} data={mockupData} theme={theme} />
+          <ProjectDetailStory projectDetailAll={projectDetailAll} data={mockupData} theme={theme} />
         </TabPane>
         <TabPane tab="FAQ" key="2">
-          <ProjectDetailFAQ data={mockupData} theme={theme} />
+          <ProjectDetailFAQ projectDetailAll={projectDetailAll} data={mockupData} theme={theme} />
         </TabPane>
         <TabPane tab="Updates" key="3">
           <ProjectDetailUpdates data={mockupData} theme={theme} />

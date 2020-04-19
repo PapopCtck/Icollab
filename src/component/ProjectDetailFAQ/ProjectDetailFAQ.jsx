@@ -8,7 +8,7 @@ const { Panel } = Collapse;
 
 export class ProjectDetailFAQ extends Component {
   render() {
-    const { data, theme } = this.props;
+    const { projectDetailAll, data, theme } = this.props;
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -24,10 +24,10 @@ export class ProjectDetailFAQ extends Component {
           <Collapse
             bordered={false}
             expandIconPosition="right"
-            style={{ transition: '0.3s all' , backgroundColor:  theme === 'dark' ? 'var(--main-background-dark)' : 'var(--card-background-color)' }}
+            style={{ transition: '0.3s all', backgroundColor: theme === 'dark' ? 'var(--main-background-dark)' : 'var(--card-background-color)' }}
           >
             {
-              data.projectFAQ.map((faq, index) => (
+              projectDetailAll.QuestionList.map((faq, index) => (
                 <Panel header={<span className={'bold ' + theme + '-text'}>{faq.question}</span>} key={index} style={customPanelStyle}>
                   <p className={theme + '-text'}>{faq.answer}</p>
                 </Panel>

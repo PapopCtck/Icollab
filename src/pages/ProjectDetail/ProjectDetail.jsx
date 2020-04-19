@@ -17,7 +17,7 @@ export class ProjectDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projectDetail: null,
+      projectDetailAll: null,
       mockupData: {
         projectId: '1',
         projectTitle: 'Beach trash collector robot',
@@ -142,20 +142,20 @@ export class ProjectDetail extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchProjectsById !== this.props.fetchProjectsById) {
       const fetchProjectsById = this.props.fetchProjectsById;
-      this.setState({ projectDetail: fetchProjectsById }, () => console.log(this.state));
+      this.setState({ projectDetailAll: fetchProjectsById }, () => console.log(this.state));
     }
   }
 
   render() {
-    const { projectDetail, mockupData } = this.state;
+    const { projectDetailAll, mockupData } = this.state;
     const { appTheme } = this.context;
-    if (!projectDetail) {
+    if (!projectDetailAll) {
       return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
       <div className="page-wrapper project-detail-container">
-        <ProjectDetailHeader projectDetail={projectDetail} theme={appTheme}/>
-        <ProjectDetailContent projectDetail={projectDetail} mockupData={mockupData} theme={appTheme}/>
+        <ProjectDetailHeader projectDetailAll={projectDetailAll} theme={appTheme}/>
+        <ProjectDetailContent projectDetailAll={projectDetailAll} mockupData={mockupData} theme={appTheme}/>
       </div>
     )
   }

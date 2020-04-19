@@ -123,7 +123,8 @@ export class DetailHeader extends Component {
 
   render() {
     const { showReport, reportLoading, showApply, user, applyLoading } = this.state;
-    const { projectDetail, theme } = this.props;
+    const { projectDetailAll, theme } = this.props;
+    const projectDetail = projectDetailAll.Project[0];
     return (
       <div className="detailheader-container">
         <div className="detailheader-image-container">
@@ -145,8 +146,7 @@ export class DetailHeader extends Component {
             </div>
             <div className="detailheader-content-role detailheader-carousel-content">
               <span className="bold">role needed : </span>
-              {projectDetail.roleneeded}
-              {/* {projectDetail.roleNeeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
+              {projectDetailAll.RoleNeeded.map((role, idx) => idx === 0 ? role.jobtitle : ', ' + role.jobtitle)}
             </div>
             <div className="detailheader-content-industry detailheader-carousel-content">
               <span className="bold">Industry : </span>
