@@ -111,7 +111,7 @@ export class LandingTrendingCard extends Component {
 export default withRouter(LandingTrendingCard);
 
 LandingTrendingCard.propTypes = {
-  trendingProject: PropTypes.object,
+  trendingProject: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
