@@ -18,6 +18,7 @@ class RightNav extends Component {
 
   logout = () => {
     deleteCookie('icollab_token');
+    deleteCookie('icollab_refreshtoken');
     deleteCookie('icollab_userinfo');
     this.modalSuccess();
   }
@@ -44,8 +45,8 @@ class RightNav extends Component {
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
-            <Menu.Item key="logout">
-              <span className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
+            <Menu.Item key="logout" onClick={this.logout}>
+              <span className="rightnav-logout">{content[appLang].logout}</span>
             </Menu.Item>
           </Menu>
         );
@@ -68,8 +69,8 @@ class RightNav extends Component {
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
-            <Menu.Item key="logout">
-              <span to="/" className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
+            <Menu.Item key="logout" onClick={this.logout}>
+              <span to="/" className="rightnav-logout">{content[appLang].logout}</span>
             </Menu.Item>
           </SubMenu>
         </Menu>

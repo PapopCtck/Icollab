@@ -1,6 +1,6 @@
 export default {
   th: {
-    title: 'ไอคอลแลป',
+    title: 'Icollab',
     explore: 'ค้นหาโปรเจค',
     startProject: 'เริ่มโปรเจค',
     profile: 'โปรไฟล์',
