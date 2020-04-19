@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
+import { connect } from 'react-redux';
 
-import AppLang from '../../AppContext';
+import { fetchGetProjectCategory, fetchCreateProject } from '../../actions';
 
 import { CreateBasicDetail, CreateDetail } from '../../component';
+
+import { getCookie } from '../../helpers';
+
+import AppLang from '../../AppContext';
 
 import content from './LangCreateProject';
 
@@ -21,15 +26,17 @@ export class CreateProject extends Component {
         answer: null,
       },
       peopleforms: {
-        jobTitle: null, 
-        jobSkills: null, 
-        jobDescription: null, 
+        jobTitle: null,
+        jobSkills: null,
+        jobDescription: null,
         jobAmount: null,
       },
       category: null,
       location: null,
       projectLevel: null,
+      projectCategory: [],
     }
+    props.dispatch(fetchGetProjectCategory());
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,24 +53,50 @@ export class CreateProject extends Component {
     return true;
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
+      const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
+      this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+    }
+  }
+
   onInput = (e) => {
     this.setState({ [e.target.id]: e.target.value }, () => console.log(this.state))
   }
 
   onFinishBasic = () => {
     const { category, location, projectLevel } = this.state;
-    if(!category || !location || !projectLevel){
+    if (!category || !location || !projectLevel) {
       this.error();
     } else {
       this.setState({ show: false })
     }
-    
+
   }
 
   onFinish = () => {
     //todo add logic here 
+    const userInfo = JSON.parse(getCookie('icollab_userinfo'));
+    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags } = this.state;
+    console.log(userInfo)
     console.log(this.formatQuestion());
     console.log(this.formatPeople());
+    console.log(getCookie('icollab_token'))
+    const obj = {
+      projecttitle: projectTitle, 
+      projectstory: projectStory, 
+      jobfields: category, 
+      location, 
+      projectlevel: projectLevel, 
+      projectdescription: projectDescription, 
+      tags,
+      questionlist: this.formatQuestion(),
+      roleneeded: this.formatPeople(),
+      userownerid: userInfo[0].user_uid,
+      projectstarters: [userInfo[0].user_uid],
+    }
+    console.log(obj);
+    this.props.dispatch(fetchCreateProject(obj,getCookie('icollab_token')));
     console.log('finish');
   }
 
@@ -121,10 +154,10 @@ export class CreateProject extends Component {
           break;
         } else {
           merged.push({
-            'jobTitle': jobTitle[i].value,
-            'jobSkills': jobSkills[i].value,
-            'jobDescription': jobDescription[i].value,
-            'jobAmount': jobAmount[i].value,
+            'jobtitle': jobTitle[i].value,
+            'jobskills': jobSkills[i].value,
+            'jobdescription': jobDescription[i].value,
+            'jobamount': jobAmount[i].value,
           })
         }
 
@@ -139,10 +172,10 @@ export class CreateProject extends Component {
   };
 
   render() {
-    const { show, imageUrl, projectStory } = this.state;
+    const { show, imageUrl, projectStory, projectCategory } = this.state;
     return (
       <div className="create-project-container">
-        <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} {...this.props} />
+        <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} {...this.props} projectCategory={projectCategory} />
         <CreateDetail
           handleChange={this.handleChange}
           show={show}
@@ -159,4 +192,10 @@ export class CreateProject extends Component {
 
 CreateProject.contextType = AppLang;
 
-export default CreateProject;
+const mapStateToProps = state => {
+  const fetchGetProjectCategory = state.fetchGetProjectCategory.data;
+  const fetchCreateProject = state.fetchCreateProject.data;
+  return { fetchGetProjectCategory, fetchCreateProject };
+}
+
+export default connect(mapStateToProps)(CreateProject);
