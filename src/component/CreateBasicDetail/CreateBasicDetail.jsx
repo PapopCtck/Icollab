@@ -16,8 +16,12 @@ const { Option } = Select;
 const { Header, Content } = Layout;
 
 export class CreateBasicDetail extends Component {
+  renderCategory = (Category) => (
+    Category.map(e => <Option value={e}>{e}</Option>)
+  );
+
   render() {
-    const { onFinishBasic, show, handleChange, setLang, setTheme } = this.props;
+    const { onFinishBasic, show, handleChange, setLang, setTheme, projectCategory } = this.props;
     const { appLang, appTheme } = this.context;
     return (
       <QueueAnim className="create-basic" delay={300} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
@@ -49,13 +53,11 @@ export class CreateBasicDetail extends Component {
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
                           >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            {this.renderCategory(projectCategory)}
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className={'create-basic-select-label ' + appTheme + '-text' }>{content[appLang].location}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].location}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLocation}
@@ -71,7 +73,7 @@ export class CreateBasicDetail extends Component {
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className={'create-basic-select-label ' + appTheme + '-text' }>{content[appLang].level}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].level}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLevel}
