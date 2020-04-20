@@ -30,6 +30,10 @@ import {
   fetchCreateProject,
   FETCH_CREATE_PROJ_SUCCESS,
   FETCH_CREATE_PROJ_FAILURE,
+  //fetchSearchUser
+  fetchSearchUser,
+  FETCH_SEARCH_USER_SUCCESS,
+  FETCH_SEARCH_USER_FAILURE,
 } from './Projects';
 
 import {
@@ -72,4 +76,8 @@ export {
   fetchCreateProject,
   FETCH_CREATE_PROJ_SUCCESS,
   FETCH_CREATE_PROJ_FAILURE,
+  //fetchSearchUser
+  fetchSearchUser,
+  FETCH_SEARCH_USER_SUCCESS,
+  FETCH_SEARCH_USER_FAILURE,
 };

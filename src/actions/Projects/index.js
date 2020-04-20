@@ -15,6 +15,8 @@ export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
 export const FETCH_CREATE_PROJ_SUCCESS = 'FETCH_CREATE_PROJ_SUCCESS';
 export const FETCH_CREATE_PROJ_FAILURE = 'FETCH_CREATE_PROJ_FAILURE';
 
+export const FETCH_SEARCH_USER_SUCCESS = 'FETCH_SEARCH_USER_SUCCESS';
+export const FETCH_SEARCH_USER_FAILURE = 'FETCH_SEARCH_USER_FAILURE';
 
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
@@ -221,6 +223,51 @@ export function fetchCreateProject(projectData,token) {
     } catch (err) {
       return dispatch({
         type: FETCH_CREATE_PROJ_FAILURE,
+        data: null,
+        status: err.status ? err.status : err,
+      });
+    }
+  };
+}
+
+export function fetchSearchUser(id,token) {
+  return async dispatch => {
+    try {
+      const res = await fetch(`${host}/v3/users/searchuser`, {
+        method: 'POST',
+        body: JSON.stringify(id),
+        headers: new Headers({ 
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }),
+      });
+      const data = await res.json();
+
+      if (res.status === 200) {
+        return dispatch({
+          type: FETCH_SEARCH_USER_SUCCESS,
+          data,
+          status: res.status,
+        });
+      } else if (res.status === 400) {
+        return dispatch({
+          type: FETCH_SEARCH_USER_FAILURE,
+          data,
+          status: res.status,
+        });
+      }
+      else if (res.status === 500 || res.status === 502) {
+        return FNRedirect('/500');
+      }
+      return dispatch({
+        type: FETCH_SEARCH_USER_FAILURE,
+        data: null,
+        status: res.status ? res.status : res,
+      })
+    } catch (err) {
+      FNRedirect('/500');
+      return dispatch({
+        type: FETCH_SEARCH_USER_FAILURE,
         data: null,
         status: err.status ? err.status : err,
       });

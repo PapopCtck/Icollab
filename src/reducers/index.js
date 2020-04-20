@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { fetchRegister, fetchLogin } from './Authentication';
 
-import { fetchGetProjects, fetchProjectsById, fetchSearchProjects, fetchGetProjectCategory, fetchCreateProject } from './Projects';
+import { fetchGetProjects, fetchProjectsById, fetchSearchProjects, fetchGetProjectCategory, fetchCreateProject, fetchSearchUser } from './Projects';
 
 import { fetchGetProfile } from './Profile';
 
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   fetchSearchProjects,
   fetchGetProjectCategory,
   fetchCreateProject,
+  fetchSearchUser,
 });
 
 export default rootReducer;
