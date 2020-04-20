@@ -67,11 +67,11 @@ function App() {
                 <Route sensitive strict path="/register" component={Register} />
                 <Route sensitive strict path="/project/:id" component={ProjectDetail} />
                 <Route sensitive strict path="/explore" component={Explore} />
-                <Route sensitive strict path="/profile" component={Profile} />
-                <Route sensitive strict path="/createproject" render={() => <CreateProject setLang={setLang} setTheme={setTheme}/>} />
-                <Route sensitive strict path="/trackproject" component={TrackProject} />
+                <ProtectedRoute sensitive strict path="/profile" component={Profile} />
+                <ProtectedRoute sensitive strict path="/createproject" component={CreateProject} setLang={setLang} setTheme={setTheme} />
+                <ProtectedRoute sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
-                <ProtectedRoute sensitive strict path="/success" component={Success} />
+                <Route sensitive strict path="/success" component={Success} />
                 <Route sensitive strict path="/403" component={Error403} />
                 <Route sensitive strict path="/500" component={Error500} />
                 <Route sensitive strict component={Error404} />
