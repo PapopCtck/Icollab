@@ -35,8 +35,8 @@ export function TabsBar(props) {
             const { children, header } = child.props;
             const onNext = () => activeTab + 1 >= tabLength ? null : setActive(activeTab + 1)
             const onPrev = () => activeTab - 1 < 0 ? null : setActive(activeTab - 1)
-            const { onFinish, content } = props;
-            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme }, children)
+            const { onFinish, content, onSave } = props;
+            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave }, children)
           })}
         </Content>
         <Footer className={appTheme}>
@@ -64,13 +64,13 @@ Tab.propTypes = {
   label: PropTypes.string,
 }
 
-export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme }) => (
+export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave }) => (
   <div className={`tab-content ${isActiveTab ? 'is-active' : ''} ${appTheme}`}>
     <div className={'tab-content-header ' + appTheme}>
       <Title level={3} className={'create-title tab-content-header-title ' + appTheme + '-text'}>{header}</Title>
       <div className="tab-content-header-button-container">
-        <Button className="tab-content-button" type="link"><Link to="/">{content.saveProject}</Link></Button>
-        <Button className="tab-content-button" type="primary" ><Link to="/">{content.publish}</Link></Button>
+        <Button className="tab-content-button" type="link" onClick={onSave}>{content.saveProject}</Button>
+        <Button className="tab-content-button" type="primary" onClick={onFinish}>{content.publish}</Button>
       </div>
     </div>
     <div className="tab-content-child-container">
