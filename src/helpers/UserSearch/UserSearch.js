@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
 import debounce from 'lodash/debounce';
+import { connect } from 'react-redux';
+
+import { fetchSearchUser } from '../../actions';
+import { getCookie } from '../../helpers';
 
 const { Option } = Select;
 
-export default class UserRemoteSelect extends Component {
+class UserRemoteSelect extends Component {
   constructor(props) {
     super(props);
     this.lastFetchId = 0;
@@ -17,33 +21,30 @@ export default class UserRemoteSelect extends Component {
     fetching: false,
   };
 
-  //todo move this to redux action
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchSearchUser !== this.props.fetchSearchUser) {
+      const fetchSearchUser = this.props.fetchSearchUser;
+      const data = fetchSearchUser.namelist.map(user => ({
+        text: `${user.name} ${user.lastname}`,
+        value: user.user_uid,
+      }));
+      this.setState({ data, fetching: false }, () => console.log(this.state));
+    }
+  }
+
   fetchUser = value => {
     console.log('fetching user', value);
-    this.lastFetchId += 1;
-    const fetchId = this.lastFetchId;
     this.setState({ data: [], fetching: true });
-    fetch('https://randomuser.me/api/?results=5')
-      .then(response => response.json())
-      .then(body => {
-        if (fetchId !== this.lastFetchId) {
-          // for fetch callback order
-          return;
-        }
-        const data = body.results.map(user => ({
-          text: `${user.name.first} ${user.name.last}`,
-          value: user.login.username,
-        }));
-        this.setState({ data, fetching: false });
-      });
+    this.props.dispatch(fetchSearchUser({ id: value }, getCookie('icollab_token')))
   };
 
   handleChange = value => {
+    const { onChange } = this.props;
     this.setState({
       value,
       data: [],
       fetching: false,
-    });
+    }, () => onChange(value.map(e => e.key), 'projectstarters'));
   };
 
   render() {
@@ -59,7 +60,7 @@ export default class UserRemoteSelect extends Component {
         filterOption={false}
         onSearch={this.fetchUser}
         onChange={this.handleChange}
-        style={{ width: '100%',...style }}
+        style={{ width: '100%', ...style }}
       >
         {data.map(d => (
           <Option key={d.value}>{d.text}</Option>
@@ -68,3 +69,10 @@ export default class UserRemoteSelect extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const fetchSearchUser = state.fetchSearchUser.data;
+  return { fetchSearchUser };
+}
+
+export default connect(mapStateToProps)(UserRemoteSelect);
