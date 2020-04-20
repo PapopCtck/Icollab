@@ -20,7 +20,7 @@ export class Profile extends Component {
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
       console.log(id)
-      props.dispatch(fetchGetProfile({ id }));
+      props.dispatch(fetchGetProfile({ id },getCookie('icollab_token')));
     } else {
       props.history.push('/');
     }
