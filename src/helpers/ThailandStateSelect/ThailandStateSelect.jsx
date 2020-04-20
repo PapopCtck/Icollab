@@ -6,9 +6,10 @@ const { Option } = Select;
 
 export class ThailandStateSelect extends Component {
   render() {
-    const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass } = this.props;
+    const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass, style } = this.props;
     return (
       <Select
+        style={{ ...style }}
         showSearch
         className={`explore-condition-select ${additionalClass}`}
         placeholder={placeholder ? placeholder : 'Select State'}
@@ -107,6 +108,6 @@ ThailandStateSelect.propTypes = {
   suffixIcon: PropTypes.any,
   placeholder: PropTypes.string,
   multiple: PropTypes.bool,
-  disabled: PropTypes.bool, 
+  disabled: PropTypes.bool,
   additionalClass: PropTypes.string,
 }
