@@ -4,6 +4,7 @@ import QueueAnim from 'rc-queue-anim';
 import PropTypes from 'prop-types';
 
 import { MainNav } from '../../component';
+import { ThailandStateSelect } from '../../helpers';
 
 import AppLang from '../../AppContext';
 
@@ -58,19 +59,7 @@ export class CreateBasicDetail extends Component {
                         </div>
                         <div className="create-basic-select">
                           <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].location}</h4>
-                          <Select
-                            style={{ width: 300 }}
-                            placeholder={content[appLang].selectLocation}
-                            optionFilterProp="children"
-                            onChange={(value) => handleChange(value, 'location')}
-                            filterOption={(input, option) =>
-                              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                          >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
-                          </Select>
+                          <ThailandStateSelect style={{ width: 300 }} placeholder={content[appLang].selectLocation} onChange={(value) => handleChange(value, 'location')} />
                         </div>
                         <div className="create-basic-select">
                           <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].level}</h4>
@@ -83,9 +72,9 @@ export class CreateBasicDetail extends Component {
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
                           >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            <Option value="Student">Student</Option>
+                            <Option value="Startup">SME/Startup</Option>
+                            <Option value="Industrial">Company/Industrial</Option>
                           </Select>
                         </div>
                         <div className="create-basic-select-button">
