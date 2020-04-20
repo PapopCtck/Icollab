@@ -5,13 +5,16 @@ export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
 
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
-export function fetchGetProfile(uid) {
+export function fetchGetProfile(uid,token) {
   return async dispatch => {
     try {
       const res = await fetch(`${host}/v2/users/IdDataUser`, {
         method: 'POST',
         body: JSON.stringify(uid),
-        headers: new Headers({ 'Content-Type': 'application/json' }),
+        headers: new Headers({ 
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }),
       });
       const data = await res.json();
 
