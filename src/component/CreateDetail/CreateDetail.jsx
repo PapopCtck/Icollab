@@ -56,7 +56,7 @@ export class CreateDetail extends Component {
                 <Tab label={content[appLang].contributor.title} header={content[appLang].contributor.header}>
                   <Title level={4} className={'create-title ' + appTheme + '-text'}>{content[appLang].contributor.title}</Title>
                   <p className="create-description">{content[appLang].contributor.description}</p>
-                  <UserSearch style={{ maxWidth: '700px' }} />
+                  <UserSearch style={{ maxWidth: '700px' }} onChange={handleChange} />
                 </Tab>
                 <Tab label={content[appLang].people.title} header={content[appLang].people.header}>
                   <Title level={4} className={'create-title ' + appTheme + '-text'}>{content[appLang].people.title}</Title>

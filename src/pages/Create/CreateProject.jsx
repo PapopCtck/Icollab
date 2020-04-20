@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { fetchGetProjectCategory, fetchCreateProject } from '../../actions';
 
@@ -13,6 +14,7 @@ import AppLang from '../../AppContext';
 import content from './LangCreateProject';
 
 import './StyleCreateProject.css';
+
 
 export class CreateProject extends Component {
   constructor(props) {
@@ -35,12 +37,16 @@ export class CreateProject extends Component {
       location: null,
       projectLevel: null,
       projectCategory: [],
+      redirect: '',
+      projectTitle: '',
+      projectDescription: '',
+      projectstarters: null,
     }
     props.dispatch(fetchGetProjectCategory());
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { qaforms, peopleforms, projectStory } = this.state;
+    const { qaforms, peopleforms, projectStory, projectTitle, projectDescription } = this.state;
     if (nextState.qaforms !== qaforms) {
       return false;
     }
@@ -50,6 +56,12 @@ export class CreateProject extends Component {
     if (nextState.projectStory !== projectStory) {
       return false;
     }
+    if (nextState.projectTitle !== projectTitle) {
+      return false;
+    }
+    if (nextState.projectDescription !== projectDescription) {
+      return false;
+    }
     return true;
   }
 
@@ -57,6 +69,17 @@ export class CreateProject extends Component {
     if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
       const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
       this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+    }
+    if (prevProps.fetchCreateProject !== this.props.fetchCreateProject) {
+      const fetchCreateProject = this.props.fetchCreateProject;
+      if (fetchCreateProject.status === 200) {
+        this.setState({ redirect: '/success' }, () => console.log(this.state));
+      } else if (fetchCreateProject.status === 403) {
+        this.setState({ redirect: '/403' }, () => console.log(this.state));
+      } else {
+        this.setState({ redirect: '/500' }, () => console.log(this.state));
+      }
+
     }
   }
 
@@ -77,27 +100,25 @@ export class CreateProject extends Component {
   onFinish = () => {
     //todo add logic here 
     const userInfo = JSON.parse(getCookie('icollab_userinfo'));
-    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags } = this.state;
-    console.log(userInfo)
-    console.log(this.formatQuestion());
-    console.log(this.formatPeople());
-    console.log(getCookie('icollab_token'))
-    const obj = {
-      projecttitle: projectTitle, 
-      projectstory: projectStory, 
-      jobfields: category, 
-      location, 
-      projectlevel: projectLevel, 
-      projectdescription: projectDescription, 
-      tags,
-      questionlist: this.formatQuestion(),
-      roleneeded: this.formatPeople(),
-      userownerid: userInfo[0].user_uid,
-      projectstarters: [userInfo[0].user_uid],
+    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, projectstarters } = this.state;
+    if (!projectTitle || !projectDescription || tags.length === 0) {
+      this.error();
+    } else {
+      const obj = {
+        projecttitle: projectTitle,
+        projectstory: projectStory,
+        jobfields: category,
+        location,
+        projectlevel: projectLevel,
+        projectdescription: projectDescription,
+        tags,
+        questionlist: this.formatQuestion(),
+        roleneeded: this.formatPeople(),
+        userownerid: userInfo[0].user_uid,
+        projectstarters,
+      }
+      this.props.dispatch(fetchCreateProject(obj, getCookie('icollab_token')));
     }
-    console.log(obj);
-    this.props.dispatch(fetchCreateProject(obj,getCookie('icollab_token')));
-    console.log('finish');
   }
 
   handleChange = (value, name) => {
@@ -172,7 +193,10 @@ export class CreateProject extends Component {
   };
 
   render() {
-    const { show, imageUrl, projectStory, projectCategory } = this.state;
+    const { show, imageUrl, projectStory, projectCategory, redirect } = this.state;
+    if (redirect) {
+      return <Redirect to={redirect} />
+    }
     return (
       <div className="create-project-container">
         <CreateBasicDetail handleChange={this.handleChange} onFinishBasic={this.onFinishBasic} show={show} {...this.props} projectCategory={projectCategory} />
@@ -194,7 +218,7 @@ CreateProject.contextType = AppLang;
 
 const mapStateToProps = state => {
   const fetchGetProjectCategory = state.fetchGetProjectCategory.data;
-  const fetchCreateProject = state.fetchCreateProject.data;
+  const fetchCreateProject = state.fetchCreateProject;
   return { fetchGetProjectCategory, fetchCreateProject };
 }
 
