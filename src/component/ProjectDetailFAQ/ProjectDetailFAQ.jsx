@@ -8,7 +8,7 @@ const { Panel } = Collapse;
 
 export class ProjectDetailFAQ extends Component {
   render() {
-    const { projectDetailAll, data, theme } = this.props;
+    const { projectDetailAll, theme } = this.props;
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
