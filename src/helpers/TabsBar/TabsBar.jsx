@@ -35,8 +35,8 @@ export function TabsBar(props) {
             const { children, header } = child.props;
             const onNext = () => activeTab + 1 >= tabLength ? null : setActive(activeTab + 1)
             const onPrev = () => activeTab - 1 < 0 ? null : setActive(activeTab - 1)
-            const { onFinish, content, onSave } = props;
-            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave }, children)
+            const { onFinish, content, onSave, loading } = props;
+            return React.createElement(TabContent, { isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave, loading }, children)
           })}
         </Content>
         <Footer className={appTheme}>
@@ -64,13 +64,13 @@ Tab.propTypes = {
   label: PropTypes.string,
 }
 
-export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave }) => (
+export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave, loading }) => (
   <div className={`tab-content ${isActiveTab ? 'is-active' : ''} ${appTheme}`}>
     <div className={'tab-content-header ' + appTheme}>
       <Title level={3} className={'create-title tab-content-header-title ' + appTheme + '-text'}>{header}</Title>
       <div className="tab-content-header-button-container">
         <Button className="tab-content-button" type="link" onClick={onSave}>{content.saveProject}</Button>
-        <Button className="tab-content-button" type="primary" onClick={onFinish}>{content.publish}</Button>
+        <Button className="tab-content-button" type="primary" onClick={onFinish} loading={loading}>{content.publish}</Button>
       </div>
     </div>
     <div className="tab-content-child-container">
@@ -78,7 +78,7 @@ export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, t
       <div className="tab-content-button-container">
         {
           activeTab + 1 === tabLength ?
-            <Button className="tab-content-button" type="primary" onClick={onFinish}>{content.publish}</Button>
+            <Button className="tab-content-button" type="primary" onClick={onFinish} loading={loading}>{content.publish}</Button>
             : <Button className="tab-content-button" type="primary" onClick={onNext}>{content.next}</Button>
         }
         {
