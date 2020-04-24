@@ -39,10 +39,11 @@ export class ProjectDetailContent extends Component {
         </TabPane>
         {
           userInfo ?
-          //todo change this logic to render it properly
-            <TabPane tab="Applicants list" key="5">
-              <ProjectDetailApplicants theme={theme} />
-            </TabPane>
+            userInfo[0].user_id === projectDetailAll.Project[0].projectstarter_id ?
+              <TabPane tab="Applicants list" key="5">
+                <ProjectDetailApplicants theme={theme} />
+              </TabPane>
+              : null
             : null
         }
       </Tabs>

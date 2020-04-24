@@ -13,12 +13,13 @@ import {
   message,
   Avatar,
   Rate,
+  Empty,
 } from 'antd';
 import PropTypes from 'prop-types';
 
 import { getCookie } from '../../helpers';
 
-import { fetchGetProfile } from '../../actions';
+import { fetchGetProfile, fetchReportProject, fetchApplyProject } from '../../actions';
 
 import './StyleProjectDetailHeader.css';
 
@@ -44,6 +45,14 @@ const error = () => {
   message.error('Please login before continue!');
 };
 
+const applyError = () => {
+  message.error('Unable to apply.Please try again later!');
+};
+
+const reportError = () => {
+  message.error('Unable to report.Please try again later!');
+};
+
 export class DetailHeader extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +66,7 @@ export class DetailHeader extends Component {
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
       console.log(id)
-      props.dispatch(fetchGetProfile({ id },getCookie('icollab_token')));
+      props.dispatch(fetchGetProfile({ id }, getCookie('icollab_token')));
     }
   }
 
@@ -66,13 +75,39 @@ export class DetailHeader extends Component {
       const fetchGetProfile = this.props.fetchGetProfile;
       this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
     }
+    if (prevProps.fetchApplyProject !== this.props.fetchApplyProject) {
+      const fetchApplyProject = this.props.fetchApplyProject;
+      if (fetchApplyProject.status === 200) {
+        this.setState({ applyLoading: false }, () => console.log(this.state));
+        this.toggleApply();
+        this.props.history.push('/success')
+      } else {
+        this.toggleApply();
+        applyError();
+      }
+    }
+    if (prevProps.fetchReportProject !== this.props.fetchReportProject) {
+      const fetchReportProject = this.props.fetchReportProject;
+      if (fetchReportProject.status === 200) {
+        this.setState({ reportLoading: false }, () => console.log(this.state));
+        this.toggleReport();
+        openNotification(this.props.theme);
+      } else {
+        this.toggleReport();
+        reportError();
+      }
+    }
   }
 
   toggleReport = () => {
     const { showReport } = this.state;
-    this.setState({
-      showReport: !showReport,
-    });
+    if (getCookie('icollab_token')) {
+      this.setState({
+        showReport: !showReport,
+      });
+    } else {
+      error();
+    }
   };
 
   toggleApply = () => {
@@ -86,39 +121,41 @@ export class DetailHeader extends Component {
     }
   };
 
-  handleReportSubmit = (e, validateFieldsAndScroll, resetFields, theme) => {
+  handleReportSubmit = (e, validateFieldsAndScroll, resetFields) => {
     this.setState({ reportLoading: true })
     e.preventDefault();
-    validateFieldsAndScroll((err, reportForm) => {
-      if (!err) {
-        console.log('Received values of form: ', reportForm);
-        this.toggleReport();
-        this.setState({ reportLoading: false });
-        openNotification(theme);
-        resetFields();
-      } else {
-        this.setState({ reportLoading: false })
-      }
-    });
+    const token = getCookie('icollab_token');
+    if (token) {
+      validateFieldsAndScroll((err, reportForm) => {
+        if (!err) {
+          console.log('Received values of form: ', reportForm);
+          this.props.dispatch(fetchReportProject({ projectid: this.props.projectId, ...reportForm }, token));
+          resetFields();
+        } else {
+          this.setState({ reportLoading: false })
+        }
+      });
+    } else {
+      error();
+    }
   };
 
   handleApplySubmit = (e, validateFieldsAndScroll, resetFields) => {
     this.setState({ applyLoading: true })
     e.preventDefault();
-    validateFieldsAndScroll((err, applyForm) => {
-      if (!err) {
-        console.log('Received values of form: ', applyForm);
-        setTimeout(() => {
-          this.setState({ applyLoading: false });
-          this.toggleApply();
+    const token = getCookie('icollab_token');
+    if (token) {
+      validateFieldsAndScroll((err, applyForm) => {
+        if (!err) {
+          console.log('Received values of form: ', applyForm);
+          const userInfo = JSON.parse(getCookie('icollab_userinfo'));
+          this.props.dispatch(fetchApplyProject({ projectid: this.props.projectId, userid: userInfo[0].user_uid }, token));
           resetFields();
-          this.props.history.push('/success')
-        }, 1000)
-
-      } else {
-        this.setState({ applyLoading: false })
-      }
-    });
+        } else {
+          this.setState({ applyLoading: false })
+        }
+      });
+    }
   };
 
   render() {
@@ -128,7 +165,11 @@ export class DetailHeader extends Component {
     return (
       <div className="detailheader-container">
         <div className="detailheader-image-container">
-          <img className="detailheader-image" src={projectDetail.image} alt={projectDetail.image} />
+          {
+            projectDetail.image ?
+              <img className="detailheader-image" src={projectDetail.image} alt={projectDetail.image} /> :
+              <Empty image="/assets/doge.jpg" imageStyle={{ opacity: 0.4, marginTop: '20px', borderRadius: '15px', width: 'inherit', minWidth: '320px', height: '340px' }} description={<span>Much space, Such empty, WOW!</span>} />
+          }
         </div>
         <div className="detailheader-content-container">
           <WrappedReportForm showReport={showReport} loading={reportLoading} theme={theme} toggleReport={this.toggleReport} handleSubmit={this.handleReportSubmit} />
@@ -146,7 +187,7 @@ export class DetailHeader extends Component {
             </div>
             <div className="detailheader-content-role detailheader-carousel-content">
               <span className="bold">role needed : </span>
-              {projectDetailAll.RoleNeeded.map((role, idx) => idx === 0 ? role.jobtitle : ', ' + role.jobtitle)}
+              {projectDetailAll.RoleNeeded && projectDetailAll.RoleNeeded.length !== 0 ? projectDetailAll.RoleNeeded.map((role, idx) => idx === 0 ? role.jobtitle : ', ' + role.jobtitle) : '-'}
             </div>
             <div className="detailheader-content-industry detailheader-carousel-content">
               <span className="bold">Industry : </span>
@@ -156,6 +197,10 @@ export class DetailHeader extends Component {
             <div className="detailheader-content-location detailheader-carousel-content">
               <span className="bold">location : </span>
               {projectDetail.location}
+            </div>
+            <div className="detailheader-content-tags detailheader-carousel-content">
+              <span className="bold">tags : </span>
+              {projectDetail.tags ? projectDetail.tags.map((tag, idx) => idx === 0 ? tag : ', ' + tag) : '-'}
             </div>
             <Button className="detailheader-applybtn" type="primary" block onClick={this.toggleApply}>
               Apply now
@@ -179,7 +224,9 @@ export class DetailHeader extends Component {
 
 const mapStateToProps = state => {
   const fetchGetProfile = state.fetchGetProfile.data;
-  return { fetchGetProfile };
+  const fetchApplyProject = state.fetchApplyProject;
+  const fetchReportProject = state.fetchReportProject;
+  return { fetchGetProfile, fetchApplyProject, fetchReportProject };
 }
 
 export default withRouter(connect(mapStateToProps)(DetailHeader));
@@ -205,9 +252,9 @@ const ReportModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, reset
       onSubmit={e => handleSubmit(e, validateFieldsAndScroll, resetFields, theme)}
     >
       <Title className={theme + '-text'} level={2}>Report</Title>
-      <h3 className={theme + '-text'}>Choose a reason</h3>
+      <h3 className={theme + '-text'}>Pick a level this project should be</h3>
       <Form.Item>
-        {getFieldDecorator('reason', {
+        {getFieldDecorator('level', {
           rules: [
             {
               required: true,
@@ -219,18 +266,15 @@ const ReportModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, reset
             style={{ width: '100%', marginBottom: '10px' }}
             placeholder="Select a reason"
           >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="disabled" disabled>
-              Disabled
-            </Option>
-            <Option value="Yiminghe">yiminghe</Option>
+            <Option value="Student">Student</Option>
+            <Option value="Startup">SME/Startup</Option>
+            <Option value="Industrial">Company/Industrial</Option>
           </Select>,
         )}
       </Form.Item>
       <h3 className={theme + '-text'}>A brief explanation</h3>
       <Form.Item>
-        {getFieldDecorator('explanation', {
+        {getFieldDecorator('description', {
           rules: [
             {
               required: false,
