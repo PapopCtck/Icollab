@@ -16,6 +16,7 @@ export class Explore extends Component {
     super(props);
     this.state = {
       resultProjects: null,
+      roleNeeded: null,
     }
     props.dispatch(fetchGetProjects());
   }
@@ -23,12 +24,13 @@ export class Explore extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjects !== this.props.fetchGetProjects) {
       const fetchGetProjects = this.props.fetchGetProjects.data;
-      const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.createat, b.createat))
-      this.setState({ resultProjects }, () => console.log(this.state));
+      const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
+      const roleNeeded = fetchGetProjects.RoleNeeded;
+      this.setState({ resultProjects, roleNeeded }, () => console.log(this.state));
     }
     if (prevProps.fetchSearchProjects !== this.props.fetchSearchProjects) {
       const fetchSearchProjects = this.props.fetchSearchProjects.data;
-      const resultProjects = fetchSearchProjects.Project.sort((a, b) => this.dateSort(a.createat, b.createat))
+      const resultProjects = fetchSearchProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
       this.setState({ resultProjects }, () => console.log(this.state));
     }
   }
@@ -47,7 +49,7 @@ export class Explore extends Component {
     const searchQuery = e.target.value;
     if (searchQuery === '') {
       const fetchGetProjects = this.props.fetchGetProjects.data;
-      const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.createat, b.createat))
+      const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
       this.setState({ resultProjects }, () => console.log(this.state))
     }
   }
@@ -67,7 +69,7 @@ export class Explore extends Component {
         break;
       case 'DateAdded':
         console.log('sort by DateAdded')
-        sortedProject = resultProjects.sort((a, b) => this.dateSort(a.createat, b.createat))
+        sortedProject = resultProjects.sort((a, b) => this.dateSort(a.created, b.created))
         this.setState({ resultProjects: sortedProject })
         break;
       case 'Update':
@@ -81,7 +83,7 @@ export class Explore extends Component {
   }
 
   render() {
-    const { resultProjects } = this.state;
+    const { resultProjects, roleNeeded } = this.state;
     const { appLang, appTheme } = this.context;
     return (
       <div>
@@ -99,6 +101,7 @@ export class Explore extends Component {
           appTheme={appTheme}
           content={content}
           resultProjects={resultProjects}
+          roleNeeded={roleNeeded}
           handleChange={this.handleChange}
           handleCheck={this.handleCheck}
           handleSortSelect={this.handleSortSelect}

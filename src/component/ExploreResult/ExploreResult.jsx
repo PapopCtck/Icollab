@@ -31,7 +31,7 @@ export class ExploreResult extends Component {
     })
   }
 
-  renderCard = (resultProjects, count, appTheme) => {
+  renderCard = (resultProjects, count, appTheme, roleNeeded) => {
     if (resultProjects.length === 0) {
       return <Empty image="/assets/doge.jpg" imageStyle={{ opacity: 0.4, marginTop: '20px' }} description={<span>Much space, Such empty, WOW!</span>} />
     }
@@ -48,12 +48,13 @@ export class ExploreResult extends Component {
     }
     for (let index = 0; index < count && index < resultProjects.length; index++) {
       const project = resultProjects[index];
+      const roleObj = roleNeeded.find(obj => obj.project_uid === project.project_uid)
       returnArray.push(
         <Col xs={24} sm={12} md={12} lg={8} >
 
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
-            style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
+            style={{ width: 325, margin: '20px auto', maxHeight: '460px', minHeight: '460px' }}
             bordered={appTheme === 'light'}
             bodyStyle={cardTheme[appTheme]}
             cover={
@@ -75,15 +76,15 @@ export class ExploreResult extends Component {
                   </div>
                   <div className="explore-card-role">
                     {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
-                    role needed : {project.roleneeded}
+                    role needed : {roleObj ? roleObj.jobtitle : null}
                   </div>
                   <div className="explore-card-bottom">
                     <span className="explore-card-bottom-left">
                       <Icon type="clock-circle" />
-                      <span className="explore-card-time-text">{timeSince(project.createat)}</span>
+                      <span className="explore-card-time-text">{timeSince(project.created)}</span>
                     </span>
                     {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
-                    <span className="explore-card-bottom-right">by {project.projectstarters ? project.projectstarters : 'John doe'}</span>
+                    <span className="explore-card-bottom-right">by {project.projectstarter_name ? project.projectstarter_name : 'John doe'}</span>
                   </div>
                 </div>
               }
@@ -97,7 +98,7 @@ export class ExploreResult extends Component {
 
   render() {
     const { cardCount } = this.state;
-    const { resultProjects, handleSortSelect, appLang, content, appTheme } = this.props;
+    const { resultProjects, handleSortSelect, appLang, content, appTheme, roleNeeded } = this.props;
     if (!resultProjects) {
       return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
@@ -137,7 +138,7 @@ export class ExploreResult extends Component {
           </div>
           <div className="explore-result-body-container">
             <Row gutter={[16, 16]}>
-              {this.renderCard(resultProjects, cardCount, appTheme)}
+              {this.renderCard(resultProjects, cardCount, appTheme, roleNeeded)}
             </Row>
           </div>
           <div className="explore-result-foot-container">
