@@ -34,6 +34,18 @@ import {
   fetchSearchUser,
   FETCH_SEARCH_USER_SUCCESS,
   FETCH_SEARCH_USER_FAILURE,
+  //fetchReportProject
+  fetchReportProject,
+  FETCH_REPORT_SUCCESS,
+  FETCH_REPORT_FAILURE,
+  //fetchApplyProject
+  fetchApplyProject,
+  FETCH_APPLY_FAILURE,
+  FETCH_APPLY_SUCCESS,
+  //fetchGetParticipants
+  fetchGetParticipants,
+  FETCH_PARTICIPANTS_FAILURE,
+  FETCH_PARTICIPANTS_SUCCESS,
 } from './Projects';
 
 import {
@@ -80,4 +92,16 @@ export {
   fetchSearchUser,
   FETCH_SEARCH_USER_SUCCESS,
   FETCH_SEARCH_USER_FAILURE,
+  //fetchReportProject
+  fetchReportProject,
+  FETCH_REPORT_SUCCESS,
+  FETCH_REPORT_FAILURE,
+  //fetchApplyProject
+  fetchApplyProject,
+  FETCH_APPLY_FAILURE,
+  FETCH_APPLY_SUCCESS,
+  //fetchGetParticipants
+  fetchGetParticipants,
+  FETCH_PARTICIPANTS_SUCCESS,
+  FETCH_PARTICIPANTS_FAILURE,
 };

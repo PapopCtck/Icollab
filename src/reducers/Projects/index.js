@@ -11,6 +11,12 @@ import {
   FETCH_CREATE_PROJ_FAILURE,
   FETCH_SEARCH_USER_SUCCESS,
   FETCH_SEARCH_USER_FAILURE,
+  FETCH_APPLY_SUCCESS,
+  FETCH_APPLY_FAILURE,
+  FETCH_REPORT_SUCCESS,
+  FETCH_REPORT_FAILURE,
+  FETCH_PARTICIPANTS_SUCCESS,
+  FETCH_PARTICIPANTS_FAILURE,
 } from '../../actions';
 
 export function fetchGetProjects(state = {}, action) {
@@ -73,6 +79,39 @@ export function fetchSearchUser(state = {}, action) {
     case FETCH_SEARCH_USER_SUCCESS:
       return Object.assign({}, state, { ...action });
     case FETCH_SEARCH_USER_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state;
+  }
+}
+
+export function fetchReportProject(state = {}, action) {
+  switch (action.type) {
+    case FETCH_REPORT_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case FETCH_REPORT_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state;
+  }
+}
+
+export function fetchApplyProject(state = {}, action) {
+  switch (action.type) {
+    case FETCH_APPLY_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case FETCH_APPLY_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state;
+  }
+}
+
+export function fetchGetParticipants(state = {}, action) {
+  switch (action.type) {
+    case FETCH_PARTICIPANTS_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case FETCH_PARTICIPANTS_FAILURE:
       return Object.assign({}, state, { ...action });
     default:
       return state;
