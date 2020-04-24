@@ -40,7 +40,8 @@ export class CreateProject extends Component {
       redirect: '',
       projectTitle: '',
       projectDescription: '',
-      projectstarters: null,
+      contributors: null,
+      loading: false,
     }
     props.dispatch(fetchGetProjectCategory());
   }
@@ -100,8 +101,8 @@ export class CreateProject extends Component {
   onFinish = () => {
     //todo add logic here 
     const userInfo = JSON.parse(getCookie('icollab_userinfo'));
-    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, projectstarters } = this.state;
-    if (!projectTitle || !projectDescription || tags.length === 0) {
+    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, contributors } = this.state;
+    if (!projectTitle || !projectDescription || !projectStory || tags.length === 0) {
       this.error();
     } else {
       const obj = {
@@ -114,10 +115,12 @@ export class CreateProject extends Component {
         tags,
         questionlist: this.formatQuestion(),
         roleneeded: this.formatPeople(),
-        userownerid: userInfo[0].user_uid,
-        projectstarters,
+        projectstarter_id: userInfo[0].user_uid,
+        projectstarter_name: userInfo[0].name + ' ' + userInfo[0].lastname,
+        contributors,
       }
       this.props.dispatch(fetchCreateProject(obj, getCookie('icollab_token')));
+      this.setState({ loading: true });
     }
   }
 
@@ -127,26 +130,26 @@ export class CreateProject extends Component {
 
   formatQuestion = () => {
     const { qaforms } = this.state;
-    const { question, answer } = qaforms;
+    const { question, answer, keys } = qaforms;
     let merged = [];
     console.log('Received values of form: ', qaforms);
-    if (!question) {
+    if (!keys) {
       console.log('no question');
-      return;
+      return merged;
     } else {
-      for (let i = 0; i < question.length; i++) {
-        if (!question[i] && !answer[i]) {
+      for (let i = 0; i < keys.value.length; i++) {
+        if (!question[keys.value[i]] && !answer.value[keys[i]]) {
           break;
-        } else if (!question[i].value && !answer[i].value) {
+        } else if (!question[keys.value[i]].value && !answer[keys.value[i]].value) {
           continue;
-        } else if (!question[i].value || !answer[i].value) {
-          console.log('missing');
-          merged = false;
+        } else if (!question[keys.value[i]].value || !answer[keys.value[i]].value) {
+          this.qaerror();
+          merged = [];
           break;
         } else {
           merged.push({
-            'question': question[i].value,
-            'answer': answer[i].value,
+            'question': question[keys.value[i]].value,
+            'answer': answer[keys.value[i]].value,
           })
         }
 
@@ -157,28 +160,28 @@ export class CreateProject extends Component {
 
   formatPeople = () => {
     const { peopleforms } = this.state;
-    const { jobTitle, jobSkills, jobDescription, jobAmount } = peopleforms;
+    const { jobTitle, jobSkills, jobDescription, jobAmount, keys } = peopleforms;
     let merged = [];
     console.log('Received values of form: ', peopleforms);
-    if (!jobTitle) {
+    if (!keys) {
       console.log('no job');
-      return;
+      return merged;
     } else {
-      for (let i = 0; i < jobTitle.length; i++) {
-        if (!jobTitle[i] && !jobSkills[i] && !jobDescription[i] && !jobAmount[i]) {
+      for (let i = 0; i < keys.value.length; i++) {
+        if (!jobTitle[keys.value[i]] && !jobSkills[keys.value[i]] && !jobDescription[keys.value[i]] && !jobAmount[keys.value[i]]) {
           break;
-        } else if (!jobTitle[i].value && !jobSkills[i].value && !jobDescription[i].value && !jobAmount[i].value) {
+        } else if (!jobTitle[keys.value[i]].value && !jobSkills[keys.value[i]].value && !jobDescription[keys.value[i]].value && !jobAmount[keys.value[i]].value) {
           continue;
-        } else if (!jobTitle[i].value || !jobSkills[i].value || !jobDescription[i].value || !jobAmount[i].value) {
-          console.log('missing');
-          merged = false;
+        } else if (!jobTitle[keys.value[i]].value || !jobSkills[keys.value[i]].value || !jobDescription[keys.value[i]].value || !jobAmount[keys.value[i]].value) {
+          this.joberror();
+          merged = [];
           break;
         } else {
           merged.push({
-            'jobtitle': jobTitle[i].value,
-            'jobskills': jobSkills[i].value,
-            'jobdescription': jobDescription[i].value,
-            'jobamount': jobAmount[i].value,
+            'jobtitle': jobTitle[keys.value[i]].value,
+            'jobskills': jobSkills[keys.value[i]].value,
+            'jobdescription': jobDescription[keys.value[i]].value,
+            'jobamount': jobAmount[keys.value[i]].value,
           })
         }
 
@@ -192,8 +195,18 @@ export class CreateProject extends Component {
     message.error(content[appLang].createBasicError);
   };
 
+  qaerror = () => {
+    // const { appLang } = this.context;
+    message.error('please provide all question an answer');
+  };
+
+  joberror = () => {
+    // const { appLang } = this.context;
+    message.error('please provide all information on job');
+  };
+
   render() {
-    const { show, imageUrl, projectStory, projectCategory, redirect } = this.state;
+    const { show, imageUrl, projectStory, projectCategory, redirect, loading } = this.state;
     if (redirect) {
       return <Redirect to={redirect} />
     }
@@ -207,6 +220,7 @@ export class CreateProject extends Component {
           imageUrl={imageUrl}
           onFinish={this.onFinish}
           projectStory={projectStory}
+          loading={loading}
           {...this.props}
         />
       </div>
