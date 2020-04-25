@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Icon, Button, Empty } from 'antd';
+import { Carousel, Icon, Button } from 'antd';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
