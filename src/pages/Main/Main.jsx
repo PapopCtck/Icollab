@@ -55,8 +55,8 @@ export class Main extends Component {
         <div className="landing-title">
           <span className="bold">{content[appLang].featured}</span>
         </div>
-        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} appTheme={appTheme} />
-        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} lang={appLang} appTheme={appTheme} />
+        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} appTheme={appTheme} roleNeeded={resultProjects.RoleNeeded} />
+        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} roleNeeded={resultProjects.RoleNeeded} lang={appLang} appTheme={appTheme} />
         <LandingStartProject lang={appLang} appTheme={appTheme}/>
       </div>
     )

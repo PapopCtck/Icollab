@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Icon, Button } from 'antd';
+import { Carousel, Icon, Button, Empty } from 'antd';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ export class CarouselDisplay extends Component {
     }
   }
 
-  
+
   onSlideClick = (target) => {
     this.props.history.push('/project/' + target)
   }
@@ -53,7 +53,9 @@ export class CarouselDisplay extends Component {
         <div className="carousel-display-container">
           <Icon className="left-circle" type="left-circle" onClick={this.previous} />
           <Carousel className={'carousel-display ' + this.props.appTheme} ref={ref => this.carousel = ref} autoplay beforeChange={(from, to) => this.changeSlide(from, to)} pauseOnHover dots={false}>
-            {this.props.featuredProject.map((data) => <img className="carousel-image" key={data.project_uid} alt={data.projecttitle} src={data.image} onClick={() => this.onSlideClick(data.project_uid)}></img>)}
+            {this.props.featuredProject.map((data) =>
+              <img className="carousel-image" key={data.project_uid} alt={data.projecttitle} src={data.image ? data.image : '/assets/doge.jpg'} onClick={() => this.onSlideClick(data.project_uid)}></img>
+            )}
           </Carousel>
           <Icon className="right-circle" type="right-circle" onClick={this.next} />
         </div>

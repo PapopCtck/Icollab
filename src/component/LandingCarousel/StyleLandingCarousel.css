@@ -8,7 +8,7 @@
 .carousel-content-container {
   margin-left:40px;
   border-left: 1px solid var(--main-border-color);
-  padding: 40px;
+  padding: 10px 40px 40px 40px;
 }
 
 .carousel-content-title .ant-typography {
@@ -44,6 +44,14 @@
 .carousel-content-learnmore {
   margin-top: 10px;
   margin-left: 10px;
+}
+
+.carousel-content-static {
+  margin-right: 5px;
+}
+
+.carousel-content-level {
+  margin-right: 10px;
 }
 
 @media (max-width: 1150px) {
