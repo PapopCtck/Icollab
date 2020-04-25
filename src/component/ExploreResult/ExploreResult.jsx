@@ -54,14 +54,14 @@ export class ExploreResult extends Component {
 
           <Card
             onClick={() => this.onCardClick(project.project_uid)}
-            style={{ width: 325, margin: '20px auto', maxHeight: '460px', minHeight: '460px' }}
+            style={{ width: 325, margin: '20px auto', maxHeight: '450px', minHeight: '450px' }}
             bordered={appTheme === 'light'}
             bodyStyle={cardTheme[appTheme]}
             cover={
               <img
                 style={{ maxHeight: '240px', minHeight: '240px' }}
                 alt="example"
-                src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
+                src={project.image ? project.image : '/assets/doge.jpg'}
               />
             }
           >
@@ -75,7 +75,6 @@ export class ExploreResult extends Component {
                     {project.projectdescription}
                   </div>
                   <div className="explore-card-role">
-                    {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
                     role needed : {roleObj ? roleObj.jobtitle : null}
                   </div>
                   <div className="explore-card-bottom">
