@@ -13,7 +13,7 @@ export class ProjectDetailStory extends Component {
     return (
       <div className={'projectdetail-story-container ' + theme + '-text'}>
         <div className="projectdetail-main">
-          {projectDetail.projectdescription}
+          {projectDetail.projectstory}
         </div>
         <div className="projectdetail-sider">
           <div className="projectdetail-story-roleneeded">
