@@ -17,7 +17,6 @@ const responsive = [
     settings: {
       slidesToShow: 2,
       slidesToScroll: 2,
-      infinite: true,
     },
   },
   {
@@ -89,7 +88,7 @@ export class LandingTrendingCard extends Component {
                             {project.projectdescription}
                           </div>
                           <div className="explore-card-role">
-                            role needed : {roleObj.jobtitle}
+                            role needed : {roleObj ? roleObj.jobtitle : null}
                           </div>
                           <div className="explore-card-bottom">
                             <span className="explore-card-bottom-left">
