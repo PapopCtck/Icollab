@@ -37,6 +37,10 @@
 
 .explore-card-bottom-right {
   float: right;
+  max-width: 165px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .explore-card-bottom {

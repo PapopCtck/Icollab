@@ -67,7 +67,7 @@ export class LandingTrendingCard extends Component {
             trendingProject.length !== 0 ?
               <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive} infinite={false}>
                 {trendingProject.map((project) => {
-                  const roleObj = roleNeeded.find(obj => obj.project_uid === project.project_uid)
+                  const roleArr = roleNeeded.filter(obj => obj.project_uid === project.project_uid)
                   return (<Card
                     onClick={() => this.onCardClick(project.project_uid)}
                     bordered={appTheme === 'light'}
@@ -88,7 +88,7 @@ export class LandingTrendingCard extends Component {
                             {project.projectdescription}
                           </div>
                           <div className="explore-card-role">
-                            role needed : {roleObj ? roleObj.jobtitle : null}
+                            role needed : {roleArr ? roleArr.map((roleObj, idx) => idx === 0 ? roleObj.jobtitle : ' , ' + roleObj.jobtitle) : null}
                           </div>
                           <div className="explore-card-bottom">
                             <span className="explore-card-bottom-left">

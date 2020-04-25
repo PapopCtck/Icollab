@@ -31,7 +31,7 @@ export class LandingCarousel extends Component {
       //todo add loading and error
       return alert('error');
     }
-    const roleObj = roleNeeded.find(obj => obj.project_uid === featuredProject[activeChoice].project_uid)
+    const roleArr = roleNeeded.filter(obj => obj.project_uid === featuredProject[activeChoice].project_uid)
     return (
       featuredProject.length !== 0 ?
         <div className="landing-carousel-container">
@@ -53,7 +53,7 @@ export class LandingCarousel extends Component {
                 role needed :
               </span>
               <span className="carousel-content-role">
-                {roleObj ? roleObj.jobtitle : null}
+                {roleArr ? roleArr.map((roleObj, idx) => idx === 0 ? roleObj.jobtitle : ' , ' + roleObj.jobtitle) : null}
               </span>
             </div>
             <div className="carousel-content-description">

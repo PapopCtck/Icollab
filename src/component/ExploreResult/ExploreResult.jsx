@@ -48,7 +48,7 @@ export class ExploreResult extends Component {
     }
     for (let index = 0; index < count && index < resultProjects.length; index++) {
       const project = resultProjects[index];
-      const roleObj = roleNeeded.find(obj => obj.project_uid === project.project_uid)
+      const roleArr = roleNeeded.filter(obj => obj.project_uid === project.project_uid)
       returnArray.push(
         <Col xs={24} sm={12} md={12} lg={8} >
 
@@ -75,7 +75,7 @@ export class ExploreResult extends Component {
                     {project.projectdescription}
                   </div>
                   <div className="explore-card-role">
-                    role needed : {roleObj ? roleObj.jobtitle : null}
+                    role needed : {roleArr ? roleArr.map((roleObj, idx) => idx === 0 ? roleObj.jobtitle : ' , ' + roleObj.jobtitle) : null}
                   </div>
                   <div className="explore-card-bottom">
                     <span className="explore-card-bottom-left">

@@ -39,7 +39,7 @@ export class ProjectDetailContent extends Component {
         </TabPane>
         {
           userInfo ?
-            userInfo[0].user_id === projectDetailAll.Project[0].projectstarter_id ?
+            JSON.parse(userInfo)[0].user_uid === projectDetailAll.Project[0].projectstarter_id ?
               <TabPane tab="Applicants list" key="5">
                 <ProjectDetailApplicants theme={theme} />
               </TabPane>
