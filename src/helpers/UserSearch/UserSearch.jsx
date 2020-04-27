@@ -44,7 +44,7 @@ class UserRemoteSelect extends Component {
       value,
       data: [],
       fetching: false,
-    }, () => onChange(value.map(e => e.key), 'contributors'));
+    }, () => onChange(value.map(e => ({ user_uid: e.key, name: e.label })), 'contributors'));
   };
 
   render() {
