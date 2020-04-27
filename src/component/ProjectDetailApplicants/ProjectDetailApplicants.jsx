@@ -74,9 +74,6 @@ class ProjectDetailApplicants extends Component {
           </span>
         </div>
         <div className="projectdetail-applicants-userbar-container">
-          {/* todo render this as a list */}
-          {/* <UserBar theme={theme} toggleModal={toggleModal} />
-          <UserBar theme={theme} toggleModal={toggleModal} /> */}
           {loading ?
             <Loading />
             : this.renderCategory(participants)
