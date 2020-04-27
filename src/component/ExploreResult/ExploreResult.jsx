@@ -121,9 +121,9 @@ export class ExploreResult extends Component {
             </span>
             <span className="explore-result-head-right">
               <span className="bold">
-                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].student}</Checkbox>
-                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].startUp}</Checkbox>
-                <Checkbox className={appTheme + '-text'} onChange={this.props.handleCheck}>{content[appLang].industrial}</Checkbox>
+                <Checkbox className={appTheme + '-text'} id="Student" onChange={this.props.handleCheck}>{content[appLang].student}</Checkbox>
+                <Checkbox className={appTheme + '-text'} id="Startup" onChange={this.props.handleCheck}>{content[appLang].startUp}</Checkbox>
+                <Checkbox className={appTheme + '-text'} id="Industrial" onChange={this.props.handleCheck}>{content[appLang].industrial}</Checkbox>
               </span>
               <span className={'bold explore-result-sortby ' + appTheme}>
                 <span className="explore-result-sortby-text">{content[appLang].sortBy}</span>

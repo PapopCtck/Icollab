@@ -17,6 +17,7 @@ export class Explore extends Component {
     this.state = {
       resultProjects: null,
       roleNeeded: null,
+      checkedFilter: [],
     }
     props.dispatch(fetchGetProjects());
   }
@@ -35,7 +36,7 @@ export class Explore extends Component {
     }
   }
 
-  dateSort = (firstDate, secondDate) => new Date(secondDate) - new Date(firstDate);
+  dateSort = (firstDate, secondDate) => secondDate - firstDate;
 
   handleChange = (text) => {
     console.log(text);
@@ -55,7 +56,23 @@ export class Explore extends Component {
   }
 
   handleCheck = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    let { resultProjects, checkedFilter } = this.state;
+    console.log(e.target);
+    if (e.target.checked === true) {
+      checkedFilter.push(e.target.id);
+      console.log(checkedFilter)
+    } else {
+      checkedFilter = checkedFilter.filter(id => id !== e.target.id);
+      console.log(checkedFilter);
+    }
+    let sortedProject = null;
+    if (checkedFilter.length === 0) {
+      const fetchGetProjects = this.props.fetchGetProjects.data;
+      sortedProject = fetchGetProjects.Project;
+    } else {
+      sortedProject = resultProjects.filter((project) => checkedFilter.includes(project.projectlevel));
+    }
+    this.setState({ resultProjects: sortedProject, checkedFilter }, () => console.log(this.state))
   }
 
   handleSortSelect = (name) => {
