@@ -21,7 +21,7 @@ const { TabPane } = Tabs;
 export class ProjectDetailContent extends Component {
 
   render() {
-    const { projectDetailAll, mockupData, theme } = this.props;
+    const { projectDetailAll, mockupData, theme, projectId } = this.props;
     const userInfo = getCookie('icollab_userinfo');
     return (
       <Tabs tabBarStyle={theme === 'dark' ? { 'borderBottom': 'none', 'marginLeft': '60px', color: 'white' } : { 'borderBottom': 'none', 'marginLeft': '60px' }} defaultActiveKey="1" animated={false}>
@@ -41,7 +41,7 @@ export class ProjectDetailContent extends Component {
           userInfo ?
             JSON.parse(userInfo)[0].user_uid === projectDetailAll.Project[0].projectstarter_id ?
               <TabPane tab="Applicants list" key="5">
-                <ProjectDetailApplicants theme={theme} />
+                <ProjectDetailApplicants theme={theme} projectId={projectId}/>
               </TabPane>
               : null
             : null

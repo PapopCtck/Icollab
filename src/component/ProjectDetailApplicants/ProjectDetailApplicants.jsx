@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Checkbox, Divider, Select, Avatar, Icon, Modal, Rate, Button } from 'antd';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { fetchGetParticipants } from '../../actions';
+
+import { getCookie, Loading } from '../../helpers';
+
 import './StyleProjectDetailApplicants.css';
+
 
 const { Option } = Select;
 
@@ -11,13 +17,34 @@ class ProjectDetailApplicants extends Component {
     super(props);
     this.state = {
       showModal: false,
+      participants: [],
+      loading: true,
+    }
+    props.dispatch(fetchGetParticipants({ projectid: props.projectId }, getCookie('icollab_token')));
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchGetParticipants !== this.props.fetchGetParticipants) {
+      const fetchGetParticipants = this.props.fetchGetParticipants;
+      if (fetchGetParticipants) {
+        this.setState({ participants: fetchGetParticipants.participant, loading: false }, () => console.log(this.state));
+      } else {
+        this.setState({ loading: false });
+      }
     }
   }
+
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
   }
+
+  renderCategory = (participants) => (
+    participants.map(participant => <UserBar participant={participant} theme={this.props.theme} toggleModal={this.toggleModal} />)
+  );
+
   render() {
-    const { showModal,toggleModal,theme } = this.props;
+    const { participants, loading } = this.state;
+    const { showModal, toggleModal, theme } = this.props;
     return (
       <div>
         <AcceptModal visible={showModal} toggleModal={toggleModal} theme={theme} />
@@ -48,28 +75,37 @@ class ProjectDetailApplicants extends Component {
         </div>
         <div className="projectdetail-applicants-userbar-container">
           {/* todo render this as a list */}
-          <UserBar theme={theme} toggleModal={toggleModal} />
-          <UserBar theme={theme} toggleModal={toggleModal} />
+          {/* <UserBar theme={theme} toggleModal={toggleModal} />
+          <UserBar theme={theme} toggleModal={toggleModal} /> */}
+          {loading ?
+            <Loading />
+            : this.renderCategory(participants)
+          }
         </div>
       </div>
     )
   }
 }
 
-export default ProjectDetailApplicants;
+const mapStateToProps = state => {
+  const fetchGetParticipants = state.fetchGetParticipants.data;
+  return { fetchGetParticipants };
+}
+
+export default connect(mapStateToProps)(ProjectDetailApplicants);
 
 ProjectDetailApplicants.propTypes = {
   theme: PropTypes.string,
 }
 
-const UserBar = ({ theme, toggleModal }) => (
+const UserBar = ({ theme, toggleModal, participant }) => (
   <div className="userbar-container">
     <Checkbox />
     <Divider type="vertical" />
     <Avatar icon="user" />
     <div className="userbar-userinfo-container">
       <span className={'bold ' + theme + '-text'}>
-        Daniel Tucker
+        {participant.name + ' ' + participant.lastname}
       </span>
       <span className={theme + '-text'}>
         Programmer

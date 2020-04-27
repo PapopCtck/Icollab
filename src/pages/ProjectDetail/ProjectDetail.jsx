@@ -155,7 +155,7 @@ export class ProjectDetail extends Component {
     return (
       <div className="page-wrapper project-detail-container">
         <ProjectDetailHeader projectDetailAll={projectDetailAll} theme={appTheme} projectId={this.props.match.params.id}/>
-        <ProjectDetailContent projectDetailAll={projectDetailAll} mockupData={mockupData} theme={appTheme}/>
+        <ProjectDetailContent projectDetailAll={projectDetailAll} mockupData={mockupData} theme={appTheme} projectId={this.props.match.params.id}/>
       </div>
     )
   }
