@@ -54,6 +54,12 @@ import {
   fetchGetProfile,
 } from './Profile';
 
+import {
+  fetchTrackProject,
+  GET_TRACK_SUCCESS,
+  GET_TRACK_FAILURE,
+} from './TrackProject';
+
 
 export {
   //register
@@ -104,4 +110,8 @@ export {
   fetchGetParticipants,
   FETCH_PARTICIPANTS_SUCCESS,
   FETCH_PARTICIPANTS_FAILURE,
+  //fetchTrackProject
+  fetchTrackProject,
+  GET_TRACK_SUCCESS,
+  GET_TRACK_FAILURE,
 };
