@@ -43,7 +43,7 @@
 
 .projectdetail-story-statercard-avatar {
   align-self: center;
-  margin: 10px !important;
+  margin: 10px 10px 10px 0px !important;
 }
 
 @media (max-width: 1150px) {
