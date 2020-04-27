@@ -11,9 +11,12 @@ const { Search } = Input;
 
 export class ExploreCondition extends Component {
 
+  renderOption = (array) => (
+    array.map(e => <Option value={e}>{e}</Option>)
+  );
 
   render() {
-    const { appLang, content, handleSearch, handleSearchChange, handleChange, appTheme } = this.props;
+    const { appLang, content, handleSearch, handleSearchChange, handleChange, appTheme, projectCategory, jobTitles } = this.props;
     const text = <span>{content[appLang].textPopupSearch}</span>;
     return (
       <div className="explore-condition-container" style={appTheme === 'dark' ? { background: 'url("/assets/explore-banner-dark.jpg")' } : { background: 'url("/assets/explore-banner.jpg")' }}>
@@ -23,17 +26,24 @@ export class ExploreCondition extends Component {
               className="explore-condition-select"
               mode="multiple"
               placeholder={content[appLang].selectCatagory}
-              onChange={handleChange}
+              onChange={e => handleChange(e, 'jobfields')}
             >
-              <Option value="computer">Computer</Option>
-              <Option value="mechanic">Mechanic</Option>
-              <Option value="robotic">Robotic</Option>
+              {this.renderOption(projectCategory)}
             </Select>
-            <Select className="explore-condition-select" placeholder={content[appLang].selectRole} onChange={handleChange}>
-              <Option value="developer">Developer</Option>
-              <Option value="engineer">Engineer</Option>
+            <Select
+              showSearch
+              className="explore-condition-select"
+              placeholder={content[appLang].selectRole}
+              onChange={e => handleChange(e, 'jobtitle')}
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value="">None</Option>
+              {this.renderOption(jobTitles)}
             </Select>
-            <ThailandStateSelect placeholder={content[appLang].selectState} onChange={handleChange} />
+            <ThailandStateSelect placeholder={content[appLang].selectState} onChange={e => handleChange(e, 'location')} />
           </div>
           <div className="bold explore-condition-or">
             - {content[appLang].or} -

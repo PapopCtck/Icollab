@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 import { ExploreCondition, ExploreResult } from '../../component';
 
-import { fetchGetProjects, fetchSearchProjects } from '../../actions';
+import { fetchGetProjects, fetchSearchProjects, fetchGetProjectCategory } from '../../actions';
+
+import { Loading } from '../../helpers';
 
 import AppLang from '../../AppContext';
 
@@ -18,8 +20,14 @@ export class Explore extends Component {
       resultProjects: null,
       roleNeeded: null,
       checkedFilter: [],
+      projectCategory: null,
+      location: null,
+      jobfields: [],
+      jobTitles: [],
+      jobtitle: null,
     }
     props.dispatch(fetchGetProjects());
+    props.dispatch(fetchGetProjectCategory());
   }
 
   componentDidUpdate(prevProps) {
@@ -27,19 +35,24 @@ export class Explore extends Component {
       const fetchGetProjects = this.props.fetchGetProjects.data;
       const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
       const roleNeeded = fetchGetProjects.RoleNeeded;
-      this.setState({ resultProjects, roleNeeded }, () => console.log(this.state));
+      const jobTitles = this.handleJobList(roleNeeded);
+      this.setState({ resultProjects, roleNeeded, jobTitles }, () => console.log(this.state));
     }
     if (prevProps.fetchSearchProjects !== this.props.fetchSearchProjects) {
       const fetchSearchProjects = this.props.fetchSearchProjects.data;
       const resultProjects = fetchSearchProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
       this.setState({ resultProjects }, () => console.log(this.state));
     }
+    if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
+      const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
+      this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+    }
   }
 
   dateSort = (firstDate, secondDate) => secondDate - firstDate;
 
-  handleChange = (text) => {
-    console.log(text);
+  handleChange = (value, name) => {
+    this.setState({ [name]: value }, () => this.handleFilter())
   }
 
   handleSearch = (searchQuery) => {
@@ -49,8 +62,12 @@ export class Explore extends Component {
   handleSearchChange = (e) => {
     const searchQuery = e.target.value;
     if (searchQuery === '') {
+      const { checkedFilter } = this.state;
       const fetchGetProjects = this.props.fetchGetProjects.data;
-      const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
+      let resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
+      if (checkedFilter.length !== 0) {
+        resultProjects = resultProjects.filter((project) => checkedFilter.includes(project.projectlevel));
+      }
       this.setState({ resultProjects }, () => console.log(this.state))
     }
   }
@@ -69,10 +86,11 @@ export class Explore extends Component {
     if (checkedFilter.length === 0) {
       const fetchGetProjects = this.props.fetchGetProjects.data;
       sortedProject = fetchGetProjects.Project;
+      this.setState({ resultProjects: sortedProject, checkedFilter }, () => this.handleFilter())
     } else {
       sortedProject = resultProjects.filter((project) => checkedFilter.includes(project.projectlevel));
+      this.setState({ resultProjects: sortedProject, checkedFilter }, () => console.log(this.state))
     }
-    this.setState({ resultProjects: sortedProject, checkedFilter }, () => console.log(this.state))
   }
 
   handleSortSelect = (name) => {
@@ -80,17 +98,14 @@ export class Explore extends Component {
     let sortedProject = null;
     switch (name) {
       case 'Trending':
-        console.log('sort by trending')
         sortedProject = resultProjects.sort((a, b) => b.view - a.view)
         this.setState({ resultProjects: sortedProject })
         break;
       case 'DateAdded':
-        console.log('sort by DateAdded')
         sortedProject = resultProjects.sort((a, b) => this.dateSort(a.created, b.created))
         this.setState({ resultProjects: sortedProject })
         break;
       case 'Update':
-        console.log('sort by Update')
         sortedProject = resultProjects.sort((a, b) => this.dateSort(a.lastupdate, b.lastupdate))
         this.setState({ resultProjects: sortedProject })
         break;
@@ -99,9 +114,41 @@ export class Explore extends Component {
     }
   }
 
+  handleFilter = () => {
+    const { location, jobfields, jobtitle, checkedFilter,roleNeeded } = this.state;
+    console.log(this.state);
+    let newResultProject = this.props.fetchGetProjects.data.Project;
+    console.log(newResultProject)
+    if (location) {
+      newResultProject = newResultProject.filter((project) => project.location === location);
+    }
+    if (jobfields.length !== 0) {
+      newResultProject = newResultProject.filter((project) => jobfields.includes(project.jobfields));
+    }
+    if (jobtitle) { 
+      let filteredRole = roleNeeded.filter(role => role.jobtitle === jobtitle );
+      filteredRole = filteredRole.map(role => role.project_uid)
+      newResultProject = newResultProject.filter((project) => filteredRole.includes(project.project_uid));
+    }
+    if (checkedFilter.length !== 0) {
+      newResultProject = newResultProject.filter((project) => checkedFilter.includes(project.projectlevel));
+    }
+    this.setState({ resultProjects: newResultProject }, () => console.log(this.state));
+  }
+
+  handleJobList = (roleNeeded) => {
+    if (!roleNeeded || roleNeeded.length === 0) {
+      return;
+    }
+    return [...new Set(roleNeeded.map(job => job.jobtitle))];
+  }
+
   render() {
-    const { resultProjects, roleNeeded } = this.state;
+    const { resultProjects, roleNeeded, projectCategory, jobTitles } = this.state;
     const { appLang, appTheme } = this.context;
+    if (!projectCategory) {
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
+    }
     return (
       <div>
         <BackTop />
@@ -112,6 +159,8 @@ export class Explore extends Component {
           handleChange={this.handleChange}
           handleSearch={this.handleSearch}
           handleSearchChange={this.handleSearchChange}
+          projectCategory={projectCategory}
+          jobTitles={jobTitles}
         />
         <ExploreResult
           appLang={appLang}
@@ -119,7 +168,6 @@ export class Explore extends Component {
           content={content}
           resultProjects={resultProjects}
           roleNeeded={roleNeeded}
-          handleChange={this.handleChange}
           handleCheck={this.handleCheck}
           handleSortSelect={this.handleSortSelect}
         />
@@ -133,7 +181,8 @@ Explore.contextType = AppLang;
 const mapStateToProps = state => {
   const fetchGetProjects = state.fetchGetProjects;
   const fetchSearchProjects = state.fetchSearchProjects;
-  return { fetchGetProjects, fetchSearchProjects };
+  const fetchGetProjectCategory = state.fetchGetProjectCategory.data;
+  return { fetchGetProjects, fetchSearchProjects, fetchGetProjectCategory };
 }
 
 
