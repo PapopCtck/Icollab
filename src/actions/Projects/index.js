@@ -381,7 +381,7 @@ export function fetchGetParticipants(id,token) {
   return async dispatch => {
     try {
       const res = await fetch(`${host}/v2/users/participants`, {
-        method: 'GET',
+        method: 'POST',
         body: JSON.stringify(id),
         headers: new Headers({ 
           'Content-Type': 'application/json',
