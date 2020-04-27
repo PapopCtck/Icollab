@@ -69,7 +69,7 @@ const ProjectCollapsePanel = () => (
         >
         </Checkbox>
         <img className="projectcollapse-header-image" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"></img>
-        <span className="bold">something</span>
+        <span className="bold">Project 1</span>
       </div>
 
     }

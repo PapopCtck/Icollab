@@ -1,5 +1,6 @@
 .projectpanel-container{
   margin-top: 20px;
+  min-height: 90vh;
 }
 
 .projectpanel-right {
