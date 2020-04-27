@@ -73,7 +73,9 @@ export class DetailHeader extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProfile !== this.props.fetchGetProfile) {
       const fetchGetProfile = this.props.fetchGetProfile;
-      this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
+      if (fetchGetProfile) {
+        this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
+      }
     }
     if (prevProps.fetchApplyProject !== this.props.fetchApplyProject) {
       const fetchApplyProject = this.props.fetchApplyProject;
@@ -107,6 +109,9 @@ export class DetailHeader extends Component {
       });
     } else {
       error();
+      this.setState({
+        showReport: false,
+      });
     }
   };
 
@@ -118,6 +123,9 @@ export class DetailHeader extends Component {
       });
     } else {
       error();
+      this.setState({
+        showApply: false,
+      });
     }
   };
 
