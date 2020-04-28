@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Checkbox, Divider, Select, Collapse } from 'antd';
 
 import './StyleProjectPanel.css';
@@ -14,20 +15,25 @@ const customPanelStyle = {
   overflow: 'hidden',
 };
 
-export default function ProjectPanel() {
+function ProjectPanel(props) {
+  function handleTitleClick(project_uid) {
+    props.history.push('/project/' + project_uid)
+  }
   return (
     <div className="projectpanel-container">
       <div className="projectpanel-header">
         <span className="projectpanel-left">
           <Checkbox
-          // indeterminate={this.state.indeterminate}
-          // onChange={this.onCheckAllChange}
-          // checked={this.state.checkAll}
+            // indeterminate={this.state.indeterminate}
+            // onChange={this.onCheckAllChange}
+            // checked={this.state.checkAll}
+            disabled
           />
           <Divider type="vertical" />
           <Select
             style={{ width: 120 }}
             placeholder="options"
+            disabled
           >
             <Option value="hide">Hide</Option>
             <Option value="mark">Mark as read</Option>
@@ -39,6 +45,7 @@ export default function ProjectPanel() {
           <Select
             style={{ width: 120 }}
             defaultValue="trending"
+            disabled
           >
             <Option value="trending">Trending</Option>
             <Option value="dateAdded">Date Added</Option>
@@ -47,35 +54,53 @@ export default function ProjectPanel() {
         </span>
       </div>
       <div className="projectpanel-content">
-        <ProjectCollapsePanel />
+        {
+          props.resultProjects.map(project => <ProjectCollapsePanel handleTitleClick={handleTitleClick} project={project} applied={props.applied} />)
+        }
       </div>
     </div>
   )
 }
 
-const ProjectCollapsePanel = () => (
+export default withRouter(ProjectPanel);
+
+const ProjectCollapsePanel = ({ project, handleTitleClick, applied }) => (
   <Collapse
     bordered={false}
     expandIconPosition="right"
   >
-    <Panel header={
-      <div className="projectcollapse-header">
-        <Checkbox
-          onClick={event => {
-            event.stopPropagation();
-          }}
-        // onChange={this.onCheckChange}
-        // checked={this.state.check}
-        >
-        </Checkbox>
-        <img className="projectcollapse-header-image" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"></img>
-        <span className="bold">Project 1</span>
-      </div>
-
-    }
-    key="1"
-    style={customPanelStyle}>
-      <p>test</p>
+    <Panel
+      key="1"
+      style={customPanelStyle}
+      showArrow={!applied}
+      header={
+        <div className="projectcollapse-header">
+          <Checkbox
+            disabled
+            onClick={event => {
+              event.stopPropagation();
+            }}
+          // onChange={this.onCheckChange}
+          // checked={this.state.check}
+          >
+          </Checkbox>
+          <span onClick={() => handleTitleClick(project.project_uid)}>
+            <img className="projectcollapse-header-image" src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}></img>
+            <span className="bold">{project.projecttitle}</span>
+          </span>
+        </div>
+      }>{
+        !applied ?
+          <div className="projectcollapse-content">
+            <span className="bold">Created on : </span>
+            <span>{new Date(parseInt(project.created)).toLocaleDateString('en-GB')}</span>
+            <span className="bold">Status : </span>
+            <span>{project.adminapprove ? 'Approved' : 'Waiting for approval'}</span>
+            <span className="bold">View : </span>
+            <span>{project.view}</span>
+          </div>
+          : null
+      }
     </Panel>
   </Collapse>
 

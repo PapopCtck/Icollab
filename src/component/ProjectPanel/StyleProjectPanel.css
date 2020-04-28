@@ -20,6 +20,10 @@
   width: auto;
   margin: 0 10px;
 }
+.projectcollapse-content{
+  display: flex;
+  justify-content: space-evenly;
+}
 
 @media(max-width: 586px){
   .projectpanel-header{
