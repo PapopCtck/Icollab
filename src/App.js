@@ -15,6 +15,7 @@ import {
   Explore,
   Profile,
   CreateProject,
+  TrackAppliedProject,
   TrackProject,
   LearnMore,
   Success,
@@ -69,6 +70,7 @@ function App() {
                 <Route sensitive strict path="/explore" component={Explore} />
                 <ProtectedRoute sensitive strict path="/profile" component={Profile} />
                 <ProtectedRoute sensitive strict path="/createproject" component={CreateProject} setLang={setLang} setTheme={setTheme} />
+                <ProtectedRoute sensitive strict path="/appliedproject" component={TrackAppliedProject} />
                 <ProtectedRoute sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
                 <Route sensitive strict path="/success" component={Success} />

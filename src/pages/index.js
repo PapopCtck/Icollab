@@ -18,6 +18,8 @@ import Profile from './Profile/Profile';
 
 import CreateProject from './Create/CreateProject';
 
+import TrackAppliedProject from './TrackAppliedProject/TrackAppliedProject';
+
 import TrackProject from './TrackProject/TrackProject';
 
 import LearnMore from './LearnMore/LearnMore';
@@ -47,4 +49,6 @@ export {
   LearnMore,
   //Success page
   Success,
+  //TrackAppliedProject
+  TrackAppliedProject,
 };
