@@ -55,9 +55,13 @@ import {
 } from './Profile';
 
 import {
-  fetchTrackProject,
+  fetchTrackOwnedProject,
   GET_TRACK_SUCCESS,
   GET_TRACK_FAILURE,
+  //fetchAppliedProject
+  fetchAppliedProject,
+  GET_APPLY_SUCCESS,
+  GET_APPLY_FAILURE,
 } from './TrackProject';
 
 
@@ -111,7 +115,11 @@ export {
   FETCH_PARTICIPANTS_SUCCESS,
   FETCH_PARTICIPANTS_FAILURE,
   //fetchTrackProject
-  fetchTrackProject,
+  fetchTrackOwnedProject,
   GET_TRACK_SUCCESS,
   GET_TRACK_FAILURE,
+  //fetchTrackAppliedProject
+  fetchAppliedProject,
+  GET_APPLY_SUCCESS,
+  GET_APPLY_FAILURE,
 };
