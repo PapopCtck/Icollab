@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Avatar } from 'antd';
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
 import './StyleProjectDetailStory.css';
@@ -17,7 +18,7 @@ export class ProjectDetailStory extends Component {
     return (
       <div className={'projectdetail-story-container ' + theme + '-text'}>
         <div className="projectdetail-main">
-          {projectDetail.projectstory}
+          {ReactHtmlParser(projectDetail.projectstory)}
         </div>
         <div className="projectdetail-sider">
           <div className="projectdetail-story-roleneeded">

@@ -170,6 +170,7 @@ export class DetailHeader extends Component {
     const { showReport, reportLoading, showApply, user, applyLoading } = this.state;
     const { projectDetailAll, theme } = this.props;
     const projectDetail = projectDetailAll.Project[0];
+    const userInfo = getCookie('icollab_userinfo');
     return (
       <div className="detailheader-container">
         <div className="detailheader-image-container">
@@ -191,7 +192,6 @@ export class DetailHeader extends Component {
             <div className="detailheader-content-level detailheader-carousel-content">
               <span className="bold">level : </span>
               {projectDetail.projectlevel}
-              {/* {projectDetail.projectLevel.map((level, idx) => idx === 0 ? level : ', ' + level)} */}
             </div>
             <div className="detailheader-content-role detailheader-carousel-content">
               <span className="bold">role needed : </span>
@@ -200,7 +200,6 @@ export class DetailHeader extends Component {
             <div className="detailheader-content-industry detailheader-carousel-content">
               <span className="bold">Industry : </span>
               {projectDetail.jobfields}
-              {/* {projectDetail.projectIndustry.map((ind, idx) => idx === 0 ? ind : ', ' + ind)} */}
             </div>
             <div className="detailheader-content-location detailheader-carousel-content">
               <span className="bold">location : </span>
@@ -210,7 +209,7 @@ export class DetailHeader extends Component {
               <span className="bold">tags : </span>
               {projectDetail.tags ? projectDetail.tags.map((tag, idx) => idx === 0 ? tag : ', ' + tag) : '-'}
             </div>
-            <Button className="detailheader-applybtn" type="primary" block onClick={this.toggleApply}>
+            <Button className="detailheader-applybtn" type="primary" block onClick={this.toggleApply} disabled={projectDetail.participants && userInfo ? projectDetail.participants.includes(JSON.parse(userInfo)[0].user_uid) : false}>
               Apply now
             </Button>
             <div className="detailheader-carousel-contact-container">
