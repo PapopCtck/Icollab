@@ -45,6 +45,9 @@ class RightNav extends Component {
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
+            <Menu.Item key="appliedProject">
+              <Link to="/appliedproject" className="rightnav-trackproject">{content[appLang].appliedProject}</Link>
+            </Menu.Item>
             <Menu.Item key="logout" onClick={this.logout}>
               <span className="rightnav-logout">{content[appLang].logout}</span>
             </Menu.Item>
@@ -68,6 +71,9 @@ class RightNav extends Component {
             </Menu.Item>
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
+            </Menu.Item>
+            <Menu.Item key="appliedProject">
+              <Link to="/appliedproject" className="rightnav-trackproject">{content[appLang].appliedProject}</Link>
             </Menu.Item>
             <Menu.Item key="logout" onClick={this.logout}>
               <span to="/" className="rightnav-logout">{content[appLang].logout}</span>

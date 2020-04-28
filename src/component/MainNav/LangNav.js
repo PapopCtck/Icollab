@@ -8,6 +8,7 @@ export default {
     logout: 'ล็อคเอ้าท์',
     signup: 'สมัครสมาชิก',
     login: 'ล็อคอิน',
+    appliedProject: 'ติดตามโปรเจคที่เข้าร่วม',
   },
   en: {
     title: 'Icollab',
@@ -18,5 +19,6 @@ export default {
     logout: 'Logout',
     signup: 'Signup',
     login: 'Login',
+    appliedProject: 'Applied project',
   },
 };
