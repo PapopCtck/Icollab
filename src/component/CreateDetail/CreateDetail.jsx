@@ -93,12 +93,12 @@ CreateDetail.propTypes = {
 export const CreateDetailBasic = ({ onInput, handleChange, imageUrl, content, appTheme }) => (
   <div className="create-detail-basic-container">
     <div className="create-detail-basic-option">
-      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTitle}</h4>
+      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTitle}<span className="red-star">*</span></h4>
       <p className="regular">{content.projectTitleDescription}</p>
       <Input style={{ maxWidth: '700px' }} placeholder={content.projectTitle} id="projectTitle" onChange={onInput} />
     </div>
     <div className="create-detail-basic-option">
-      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTagline}</h4>
+      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTagline}<span className="red-star">*</span></h4>
       <p className="regular">{content.projectTaglineDescription}</p>
       <Input style={{ maxWidth: '700px' }} placeholder={content.projectTagline} id="projectDescription" onChange={onInput} />
     </div>
@@ -108,7 +108,7 @@ export const CreateDetailBasic = ({ onInput, handleChange, imageUrl, content, ap
       <ImageUploader imageUrl={imageUrl} handleChange={handleChange} />
     </div>
     <div className="create-detail-basic-option">
-      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTags}</h4>
+      <h4 className={'bold ' + appTheme + '-text'}>{content.projectTags}<span className="red-star">*</span></h4>
       <p className="regular">{content.projectTagsDescription}</p>
       <Select mode="tags" style={{ width: '100%', maxWidth: '700px' }} placeholder={content.projectTags} onChange={(change) => handleChange(change, 'tags')} />
     </div>
@@ -148,7 +148,7 @@ const formats = [
 
 export const CreateStory = ({ handleChange, value, content, appTheme }) => (
   <div className="create-detail-story-container">
-    <h4 className={'bold ' + appTheme + '-text'}>{content.projectDesc}</h4>
+    <h4 className={'bold ' + appTheme + '-text'}>{content.projectDesc}<span className="red-star">*</span></h4>
     <p className="regular">{content.projectDescDescription}</p>
     <ReactQuill
       className="create-detail-story-editor"
