@@ -21,7 +21,7 @@ import {
   Tab,
 } from './TabsBar/TabsBar';
 
-import { ImageUploader } from './ImageUploader/ImageUploader';
+import { ImageUploader, AvatarUploader } from './ImageUploader/ImageUploader';
 
 
 import UserSearch from './UserSearch/UserSearch';
@@ -52,6 +52,7 @@ export {
   Tab,
   //ImageUploader
   ImageUploader,
+  AvatarUploader,
   //UserSearch
   UserSearch,
   //UpdateBox

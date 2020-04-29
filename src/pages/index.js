@@ -24,7 +24,7 @@ import TrackProject from './TrackProject/TrackProject';
 
 import LearnMore from './LearnMore/LearnMore';
 
-import { Success } from './Success/Success';
+import { Success, ApplySuccess } from './Success/Success';
 
 export {
   //Landing Page
@@ -49,6 +49,7 @@ export {
   LearnMore,
   //Success page
   Success,
+  ApplySuccess,
   //TrackAppliedProject
   TrackAppliedProject,
 };
