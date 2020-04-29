@@ -52,6 +52,10 @@ import {
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILURE,
   fetchGetProfile,
+  //fetchEditProfile
+  fetchEditProfile,
+  GET_EDIT_PROFILE_SUCCESS,
+  GET_EDIT_PROFILE_FAILURE,
 } from './Profile';
 
 import {
@@ -122,4 +126,8 @@ export {
   fetchAppliedProject,
   GET_APPLY_SUCCESS,
   GET_APPLY_FAILURE,
+  //fetchEditProfile
+  fetchEditProfile,
+  GET_EDIT_PROFILE_SUCCESS,
+  GET_EDIT_PROFILE_FAILURE,
 };
