@@ -37,7 +37,7 @@ export class TrackAppliedProject extends Component {
     }
     return (
       <div className="page-wrapper">
-        <Title level={3} className="trackproject-title bold">Applied project</Title>
+        <Title level={3} className={'trackproject-title bold ' + appTheme + '-text'}>Applied project</Title>
         <Tabs tabBarStyle={{ 'borderBottom': 'none', marginLeft: '20px' }} defaultActiveKey="1" animated={false}>
           <TabPane tab="All" key="1">
             <ProjectPanel resultProjects={resultProjects.participants} applied/>

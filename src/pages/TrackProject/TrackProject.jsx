@@ -41,7 +41,7 @@ export class TrackProject extends Component {
     }
     return (
       <div className="page-wrapper">
-        <Title level={3} className="trackproject-title bold">Track your project</Title>
+        <Title level={3} className={'trackproject-title bold ' + appTheme + '-text'}> Track your project</Title>
         <Tabs tabBarStyle={{ 'borderBottom': 'none', marginLeft: '20px' }} defaultActiveKey="1" animated={false}>
           <TabPane tab="All" key="1">
             <ProjectPanel resultProjects={resultProjects.owner} />
