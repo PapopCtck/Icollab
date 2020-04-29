@@ -45,6 +45,9 @@ class ProjectDetailApplicants extends Component {
   render() {
     const { participants, loading } = this.state;
     const { showModal, toggleModal, theme } = this.props;
+    if (loading) {
+      return <Loading />
+    }
     return (
       <div>
         <AcceptModal visible={showModal} toggleModal={toggleModal} theme={theme} />
@@ -74,9 +77,8 @@ class ProjectDetailApplicants extends Component {
           </span>
         </div>
         <div className="projectdetail-applicants-userbar-container">
-          {loading ?
-            <Loading />
-            : this.renderCategory(participants)
+          {
+            this.renderCategory(participants)
           }
         </div>
       </div>
