@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { fetchGetProfile, fetchEditProfile } from '../../actions';
 
-import { ThailandStateSelect, getCookie, Loading } from '../../helpers';
+import { ThailandStateSelect, getCookie, Loading, AvatarUploader } from '../../helpers';
 
 import AppContext from '../../AppContext';
 
@@ -18,6 +18,7 @@ export class Profile extends Component {
       editing: false,
       loading: false,
       newProfile: null,
+      imageUrl: null,
     };
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
@@ -32,16 +33,20 @@ export class Profile extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProfile !== this.props.fetchGetProfile) {
       const fetchGetProfile = this.props.fetchGetProfile;
-      this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
+      this.setState({ user: fetchGetProfile.User[0], imageUrl: fetchGetProfile.User[0].image }, () => console.log(this.state));
     }
     if (prevProps.fetchEditProfile !== this.props.fetchEditProfile) {
       const fetchEditProfile = this.props.fetchEditProfile;
       if (fetchEditProfile.status === 200) {
-        const { user, newProfile } = this.state;
-        this.setState({ user: { ...user, ...newProfile } }, () => console.log(this.state));
+        const { user, newProfile, imageUrl } = this.state;
+        this.setState({ user: { ...user, ...newProfile, image: imageUrl } }, () => console.log(this.state));
       }
       this.setState({ editing: false, loading: false }, () => console.log(this.state));
     }
+  }
+
+  handleChange = (value, name) => {
+    this.setState({ [name]: value }, () => console.log(this.state));
   }
 
   handleSubmit = e => {
@@ -50,7 +55,8 @@ export class Profile extends Component {
       if (!err) {
         console.log('Received values of form: ', profile);
         const userid = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
-        this.props.dispatch(fetchEditProfile({ ...profile, userid }, getCookie('icollab_token')));
+        const { imageUrl } = this.state;
+        this.props.dispatch(fetchEditProfile({ ...profile, image: imageUrl, userid }, getCookie('icollab_token')));
         this.setState({ loading: true, newProfile: profile });
       }
     })
@@ -65,7 +71,7 @@ export class Profile extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { user, editing, loading } = this.state;
+    const { user, editing, loading, imageUrl } = this.state;
     const { appTheme } = this.context;
     if (!user) {
       return <div className={'main-loading ' + appTheme} > <Loading /></div>
@@ -75,13 +81,13 @@ export class Profile extends Component {
         <div className="page-wrapper">
           <div className="profile-container">
             <div className="profile-left">
-              <Avatar size={128} icon="user" />
+              <AvatarUploader imageUrl={imageUrl ? imageUrl : user.image} handleChange={this.handleChange} />
               <Rate className="profile-rate" style={{ marginTop: '20px' }} disabled defaultValue={2} />
             </div>
             <div className="profile-right">
               <h3 className={appTheme + '-text'}>Personal Info</h3>
               <Form onSubmit={this.handleSubmit}>
-                <h4 className={appTheme + '-text'}>Email</h4>
+                <h4 className={appTheme + '-text'}>Email<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('email', {
                     initialValue: user.email,
@@ -97,7 +103,7 @@ export class Profile extends Component {
                     ],
                   })(<Input placeholder="Email" disabled={!editing} />)}
                 </Form.Item>
-                <h4 className={appTheme + '-text'}>First Name</h4>
+                <h4 className={appTheme + '-text'}>First Name<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('name', {
                     initialValue: user.name,
@@ -109,7 +115,7 @@ export class Profile extends Component {
                     />,
                   )}
                 </Form.Item>
-                <h4 className={appTheme + '-text'}>Last Name</h4>
+                <h4 className={appTheme + '-text'}>Last Name<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('lastname', {
                     initialValue: user.lastname,
@@ -121,7 +127,7 @@ export class Profile extends Component {
                     />,
                   )}
                 </Form.Item>
-                <h4 className={appTheme + '-text'}>City</h4>
+                <h4 className={appTheme + '-text'}>City<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('location', {
                     initialValue: user.location,
@@ -131,13 +137,13 @@ export class Profile extends Component {
                   )}
                 </Form.Item>
                 <h3 className={appTheme + '-text'}>Job info</h3>
-                <h4 className={appTheme + '-text'}>Current Position</h4>
+                <h4 className={appTheme + '-text'}>Current Position<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('jobposition', {
                     initialValue: user.jobposition,
                     rules: [
                       {
-                        required: false,
+                        required: true,
                       },
                     ],
                   })(<Input placeholder="Current Position" disabled={!editing} />)}
@@ -151,11 +157,11 @@ export class Profile extends Component {
                     <Input placeholder="Company" disabled={!editing} />,
                   )}
                 </Form.Item>
-                <h4 className={appTheme + '-text'}>Skills</h4>
+                <h4 className={appTheme + '-text'}>Skills<span className="red-star">*</span></h4>
                 <Form.Item>
                   {getFieldDecorator('skills', {
                     initialValue: user.skills,
-                    rules: [{ required: false }],
+                    rules: [{ required: true }],
                   })(
                     <Input.TextArea
                       placeholder="Skills"
@@ -210,48 +216,48 @@ export class Profile extends Component {
       <div className="page-wrapper">
         <div className="profile-container">
           <div className="profile-left">
-            <Avatar size={128} icon="user" />
+            <Avatar size={128} src={user.image ? user.image : null} >{user.name.substring(0, 2)}</Avatar>
             <Rate className="profile-rate" style={{ marginTop: '20px' }} disabled defaultValue={2} />
           </div>
           <div className="profile-right">
             <h3 className={appTheme + '-text'}>Personal Info</h3>
             <Form>
               <h4 className={appTheme + '-text'}>Email</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.email}
               </Form.Item>
               <h4 className={appTheme + '-text'}>First Name</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.name}
               </Form.Item>
               <h4 className={appTheme + '-text'}>Last Name</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.lastname}
               </Form.Item>
               <h4 className={appTheme + '-text'}>City</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.location ? user.location : '-'}
               </Form.Item>
               <h3 className={appTheme + '-text'}>Job info</h3>
               <h4 className={appTheme + '-text'}>Current Position</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.jobposition ? user.jobposition : '-'}
               </Form.Item>
               <h4 className={appTheme + '-text'}>Company</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.companyname ? user.companyname : '-'}
               </Form.Item>
               <h4 className={appTheme + '-text'}>Skills</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.skills ? user.skills : '-'}
               </Form.Item>
               <h3 className={appTheme + '-text'}>Contact info</h3>
               <h4 className={appTheme + '-text'}>Phone</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.phonenum ? user.phonenum : '-'}
               </Form.Item>
               <h4 className={appTheme + '-text'}>Website</h4>
-              <Form.Item>
+              <Form.Item className={appTheme + '-text'}>
                 {user.website ? user.website : '-'}
               </Form.Item>
               <Form.Item>
