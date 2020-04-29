@@ -6,7 +6,7 @@ const { Option } = Select;
 
 export class ThailandStateSelect extends Component {
   render() {
-    const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass, style } = this.props;
+    const { placeholder, onChange, suffixIcon, multiple, disabled, additionalClass, style, defaultValue } = this.props;
     return (
       <Select
         style={{ ...style }}
@@ -17,6 +17,7 @@ export class ThailandStateSelect extends Component {
         mode={multiple ? 'multiple' : 'default'}
         suffixIcon={suffixIcon ? suffixIcon : <Icon type="compass" style={{ color: 'rgba(0,0,0,.5)' }} />}
         disabled={disabled ? true : false}
+        defaultValue={defaultValue}
       >
         <Option value="กรุงเทพมหานคร">กรุงเทพมหานคร</Option>
         <Option value="กระบี่">กระบี่ </Option>
