@@ -45,6 +45,10 @@ const error = () => {
   message.error('Please login before continue!');
 };
 
+const requirementError = () => {
+  message.error('Please fill in the detail about yourself first!');
+};
+
 const applyError = () => {
   message.error('Unable to apply.Please try again later!');
 };
@@ -82,7 +86,7 @@ export class DetailHeader extends Component {
       if (fetchApplyProject.status === 200) {
         this.setState({ applyLoading: false }, () => console.log(this.state));
         this.toggleApply();
-        this.props.history.push('/success')
+        this.props.history.push('/applysuccess')
       } else {
         this.toggleApply();
         applyError();
@@ -116,11 +120,19 @@ export class DetailHeader extends Component {
   };
 
   toggleApply = () => {
-    const { showApply } = this.state;
-    if (getCookie('icollab_token')) {
-      this.setState({
-        showApply: !showApply,
-      });
+    const { showApply, user } = this.state;
+    if (getCookie('icollab_token') && user) {
+      if (!user.location || !user.jobposition || !user.skills) {
+        requirementError();
+        this.setState({
+          showApply: false,
+        });
+        this.props.history.push('/profile')
+      } else {
+        this.setState({
+          showApply: !showApply,
+        });
+      }
     } else {
       error();
       this.setState({
@@ -152,12 +164,12 @@ export class DetailHeader extends Component {
     this.setState({ applyLoading: true })
     e.preventDefault();
     const token = getCookie('icollab_token');
+    const { user } = this.state;
     if (token) {
       validateFieldsAndScroll((err, applyForm) => {
         if (!err) {
           console.log('Received values of form: ', applyForm);
-          const userInfo = JSON.parse(getCookie('icollab_userinfo'));
-          this.props.dispatch(fetchApplyProject({ projectid: this.props.projectId, userid: userInfo[0].user_uid }, token));
+          this.props.dispatch(fetchApplyProject({ projectid: this.props.projectId, userid: user.user_uid }, token));
           resetFields();
         } else {
           this.setState({ applyLoading: false })
