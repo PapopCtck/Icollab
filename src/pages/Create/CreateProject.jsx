@@ -101,7 +101,7 @@ export class CreateProject extends Component {
   onFinish = () => {
     //todo add logic here 
     const userInfo = JSON.parse(getCookie('icollab_userinfo'));
-    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, contributors } = this.state;
+    const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, contributors, imageUrl } = this.state;
     if (!projectTitle || !projectDescription || !projectStory || tags.length === 0) {
       this.error();
     } else {
@@ -118,6 +118,7 @@ export class CreateProject extends Component {
         projectstarter_id: userInfo[0].user_uid,
         projectstarter_name: userInfo[0].name + ' ' + userInfo[0].lastname,
         contributors,
+        image: imageUrl,
       }
       this.props.dispatch(fetchCreateProject(obj, getCookie('icollab_token')));
       this.setState({ loading: true });
