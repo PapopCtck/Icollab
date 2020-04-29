@@ -19,6 +19,7 @@ import {
   TrackProject,
   LearnMore,
   Success,
+  ApplySuccess,
 } from './pages';
 
 import './App.css';
@@ -74,6 +75,7 @@ function App() {
                 <ProtectedRoute sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
                 <Route sensitive strict path="/success" component={Success} />
+                <Route sensitive strict path="/applysuccess" component={ApplySuccess} />
                 <Route sensitive strict path="/403" component={Error403} />
                 <Route sensitive strict path="/500" component={Error500} />
                 <Route sensitive strict component={Error404} />
