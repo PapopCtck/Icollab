@@ -11,7 +11,7 @@ export class ThailandStateSelect extends Component {
       <Select
         style={{ ...style }}
         showSearch
-        className={`explore-condition-select ${additionalClass}`}
+        className={additionalClass}
         placeholder={placeholder ? placeholder : 'Select State'}
         onChange={onChange}
         mode={multiple ? 'multiple' : 'default'}

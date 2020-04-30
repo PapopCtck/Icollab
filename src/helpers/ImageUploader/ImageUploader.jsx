@@ -89,7 +89,7 @@ export const ImageUploader = ({ handleChange, imageUrl }) => {
       ).then(res => res.status === 200 ? onSuccess() : onError())
     }} method="put" onChange={(info) => onChange(info, setLoading, handleChange, imgUrl)} beforeUpload={(file) => beforeUpload(file, handleChange, setUpload, setUrl, 6)}>
       {
-        imageUrl ? <img alt="preview" src={imageUrl ? imageUrl : ''} /> : loading ? <Spin indicator={antIcon} /> :
+        imageUrl ? <img style={{ width: '100%' }} alt="preview" src={imageUrl ? imageUrl : ''} /> : loading ? <Spin indicator={antIcon} /> :
           <div>
             <p className="ant-upload-drag-icon">
               <Icon type="picture" />
@@ -123,7 +123,7 @@ export const AvatarUploader = ({ handleChange, imageUrl }) => {
       {...props}
       className="avatar-uploader"
       listType="picture-card"
-      onChange={(info) => onChange(info, setLoading, handleChange, imgUrl)} 
+      onChange={(info) => onChange(info, setLoading, handleChange, imgUrl)}
       beforeUpload={(file) => beforeUpload(file, handleChange, setUpload, setUrl, 2)}
       customRequest={({ onProgress, onSuccess, onError, file, headers }) => {
         onProgress();

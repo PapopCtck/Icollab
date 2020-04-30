@@ -69,7 +69,7 @@ export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, t
     <div className={'tab-content-header ' + appTheme}>
       <Title level={3} className={'create-title tab-content-header-title ' + appTheme + '-text'}>{header}</Title>
       <div className="tab-content-header-button-container">
-        <Button className="tab-content-button" type="link" onClick={onSave}>{content.saveProject}</Button>
+        <Button className="tab-content-button" type="link" onClick={onSave} disabled>{content.saveProject}</Button>
         <Button className="tab-content-button" type="primary" onClick={onFinish} loading={loading}>{content.publish}</Button>
       </div>
     </div>
