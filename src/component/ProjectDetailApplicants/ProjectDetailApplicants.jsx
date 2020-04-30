@@ -19,6 +19,7 @@ class ProjectDetailApplicants extends Component {
       showModal: false,
       participants: [],
       loading: true,
+      participant: null,
     }
     props.dispatch(fetchGetParticipants({ projectid: props.projectId }, getCookie('icollab_token')));
   }
@@ -34,8 +35,13 @@ class ProjectDetailApplicants extends Component {
     }
   }
 
-  toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+  toggleModal = (participant) => {
+    if(participant){
+      this.setState({ showModal: !this.state.showModal,participant },() => console.log(this.state));
+    } else {
+      this.setState({ showModal: !this.state.showModal },() => console.log(this.state));
+    }
+   
   }
 
   renderCategory = (participants) => (
@@ -43,21 +49,24 @@ class ProjectDetailApplicants extends Component {
   );
 
   render() {
-    const { participants, loading } = this.state;
-    const { showModal, toggleModal, theme } = this.props;
+    const { participants, loading, showModal, participant } = this.state;
+    const { theme } = this.props;
     if (loading) {
       return <Loading />
     }
     return (
       <div>
-        <AcceptModal visible={showModal} toggleModal={toggleModal} theme={theme} />
+        {
+          participant ? <AcceptModal visible={showModal} toggleModal={this.toggleModal} theme={theme} participant={participant} /> : null
+        }
         <div className="projectpanel-header">
           <span className="projectpanel-left">
-            <Checkbox />
+            <Checkbox disabled />
             <Divider type="vertical" />
             <Select
               style={{ width: 120 }}
               placeholder="options"
+              disabled
             >
               <Option value="hide">Hide</Option>
               <Option value="mark">Mark as read</Option>
@@ -69,6 +78,7 @@ class ProjectDetailApplicants extends Component {
             <Select
               style={{ width: 120 }}
               defaultValue="trending"
+              disabled
             >
               <Option value="trending">Trending</Option>
               <Option value="dateAdded">Date Added</Option>
@@ -99,44 +109,44 @@ ProjectDetailApplicants.propTypes = {
 
 const UserBar = ({ theme, toggleModal, participant }) => (
   <div className="userbar-container">
-    <Checkbox />
+    <Checkbox disabled/>
     <Divider type="vertical" />
-    <Avatar icon="user" />
+    <Avatar src={participant.image ? participant.image : null}>{participant.name.substring(0, 2)}</Avatar>
     <div className="userbar-userinfo-container">
       <span className={'bold ' + theme + '-text'}>
         {participant.name + ' ' + participant.lastname}
       </span>
       <span className={theme + '-text'}>
-        Programmer
+        {participant.jobposition}
+      </span>
+      <span className={'userbar-skills ' + theme + '-text'}>
+        {participant.skills}
       </span>
       <span className={theme + '-text'}>
-        3/11/20
+        {participant.location}
       </span>
-      <span className={theme + '-text'}>
-        Computer engineering
-      </span>
-      <Icon className={theme + '-text'} type="more" rotate={90} style={{ fontSize: 25, verticalAlign: 'middle', cursor: 'pointer' }} onClick={toggleModal} />
+      <Icon className={theme + '-text'} type="more" rotate={90} style={{ fontSize: 25, verticalAlign: 'middle', cursor: 'pointer' }} onClick={() => toggleModal(participant)} />
     </div>
 
   </div>
 );
 
-const AcceptModal = ({ visible, toggleModal, theme }) => (
+const AcceptModal = ({ visible, toggleModal, theme, participant }) => (
   <Modal
     visible={visible}
-    onCancel={toggleModal}
+    onCancel={() => toggleModal()}
     footer={false}
     width={400}
     bodyStyle={theme == 'dark' ? { background: '#29292e' } : { background: 'white' }}
   >
-    <Avatar className="applyModal-avatar" size={128} icon="user" />
+    <Avatar className="applyModal-avatar" size={128} src={participant.image ? participant.image : null}>{participant.name.substr(0,2)}</Avatar>
     <Rate className="applyModal-rate" style={{ marginTop: '20px' }} disabled defaultValue={0} />
-    <h2 className={'applyModal-username ' + theme + '-text'}>Alexandra Wong (26)</h2>
-    <p className={'acceptModal-text ' + theme + '-text'}>Computer engineer, UCL</p>
-    <p className={'acceptModal-text ' + theme + '-text'}>Skills : Robotic , Circuit , Electronic</p>
-    <p className={'acceptModal-text ' + theme + '-text'}>Applied for : Programmer</p>
+    <h2 className={'applyModal-username ' + theme + '-text'}>{participant.name + ' ' + participant.lastname}</h2>
+    <p className={'acceptModal-text ' + theme + '-text'}>{participant.jobposition}</p>
+    <p className={'acceptModal-text ' + theme + '-text'}>Skills : {participant.skills}</p>
+    <p className={'acceptModal-text ' + theme + '-text'}>Location : {participant.location}</p>
     <span className="accpetModal-button-container">
-      <Button size="large" type="primary" ghost>Hide</Button>
+      <Button size="large" type="primary" onClick={() => toggleModal()} ghost>Hide</Button>
       <Button size="large" type="primary" block>Contact</Button>
     </span>
   </Modal>

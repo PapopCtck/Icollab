@@ -16,6 +16,12 @@
     align-items: center;
 }
 
+.userbar-skills {
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .acceptModal-text {
   text-align: center;
 }
