@@ -43,7 +43,7 @@ export class ExploreCondition extends Component {
               <Option value="">None</Option>
               {this.renderOption(jobTitles)}
             </Select>
-            <ThailandStateSelect placeholder={content[appLang].selectState} onChange={e => handleChange(e, 'location')} />
+            <ThailandStateSelect placeholder={content[appLang].selectState} onChange={e => handleChange(e, 'location')} additionalClass="explore-condition-select" />
           </div>
           <div className="bold explore-condition-or">
             - {content[appLang].or} -
