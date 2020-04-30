@@ -23,7 +23,6 @@ import {
 
 import { ImageUploader, AvatarUploader } from './ImageUploader/ImageUploader';
 
-
 import UserSearch from './UserSearch/UserSearch';
 
 import { UpdateBox } from './UpdateBox/UpdateBox';

@@ -15,6 +15,7 @@ import {
   Explore,
   Profile,
   CreateProject,
+  EditProject,
   TrackAppliedProject,
   TrackProject,
   LearnMore,
@@ -56,6 +57,7 @@ function App() {
       <Layout className="layout">
         <Switch>
           <Route sensitive strict exact path="/createproject" component={null} />
+          <Route sensitive strict exact path="/editproject/:id" component={null} />
           <Header className={'header-container ' + appTheme}>
             <Route sensitive strict exact render={() => <MainNav appLang={appLang} setLang={setLang} appTheme={appTheme} setTheme={setTheme} />} />
           </Header>
@@ -71,6 +73,7 @@ function App() {
                 <Route sensitive strict path="/explore" component={Explore} />
                 <ProtectedRoute sensitive strict path="/profile" component={Profile} />
                 <ProtectedRoute sensitive strict path="/createproject" component={CreateProject} setLang={setLang} setTheme={setTheme} />
+                <ProtectedRoute sensitive strict path="/editproject/:id" component={EditProject} setLang={setLang} setTheme={setTheme} />
                 <ProtectedRoute sensitive strict path="/appliedproject" component={TrackAppliedProject} />
                 <ProtectedRoute sensitive strict path="/trackproject" component={TrackProject} />
                 <Route sensitive strict path="/learnmore" component={LearnMore} />
@@ -85,6 +88,7 @@ function App() {
         </Layout>
         <Switch>
           <Route sensitive strict exact path="/createproject" component={null} />
+          <Route sensitive strict exact path="/editproject/:id" component={null} />
           <Footer className={appTheme}>
             <Route sensitive strict exact component={MainFooter} />
           </Footer>

@@ -18,6 +18,8 @@ import Profile from './Profile/Profile';
 
 import CreateProject from './Create/CreateProject';
 
+import EditProject from './EditProject/EditProject';
+
 import TrackAppliedProject from './TrackAppliedProject/TrackAppliedProject';
 
 import TrackProject from './TrackProject/TrackProject';
@@ -43,6 +45,8 @@ export {
   Profile,
   //CreateProject page
   CreateProject,
+  //EditProject page
+  EditProject,
   //TrackProject
   TrackProject,
   //LearnMore

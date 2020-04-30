@@ -36,6 +36,10 @@ import { QAForm } from './QAForm/QAForm';
 
 import { PeopleForm } from './PeopleForm/PeopleForm';
 
+import EditBasicDetail from './EditProject/EditBasicDetail';
+
+import EditDetail from './EditProject/EditDetail';
+
 export {
   MainNav,
   MainFooter,
@@ -56,4 +60,6 @@ export {
   ProjectPanel,
   QAForm,
   PeopleForm,
+  EditBasicDetail,
+  EditDetail,
 }
