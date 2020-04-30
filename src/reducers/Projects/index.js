@@ -17,6 +17,8 @@ import {
   FETCH_REPORT_FAILURE,
   FETCH_PARTICIPANTS_SUCCESS,
   FETCH_PARTICIPANTS_FAILURE,
+  FETCH_EDIT_PROJ_SUCCESS,
+  FETCH_EDIT_PROJ_FAILURE,
 } from '../../actions';
 
 export function fetchGetProjects(state = {}, action) {
@@ -112,6 +114,17 @@ export function fetchGetParticipants(state = {}, action) {
     case FETCH_PARTICIPANTS_SUCCESS:
       return Object.assign({}, state, { ...action });
     case FETCH_PARTICIPANTS_FAILURE:
+      return Object.assign({}, state, { ...action });
+    default:
+      return state;
+  }
+}
+
+export function fetchEditProject(state = {}, action) {
+  switch (action.type) {
+    case FETCH_EDIT_PROJ_SUCCESS:
+      return Object.assign({}, state, { ...action });
+    case FETCH_EDIT_PROJ_FAILURE:
       return Object.assign({}, state, { ...action });
     default:
       return state;

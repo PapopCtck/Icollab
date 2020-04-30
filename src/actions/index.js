@@ -46,6 +46,10 @@ import {
   fetchGetParticipants,
   FETCH_PARTICIPANTS_FAILURE,
   FETCH_PARTICIPANTS_SUCCESS,
+  //fetchEditProject
+  fetchEditProject,
+  FETCH_EDIT_PROJ_SUCCESS,
+  FETCH_EDIT_PROJ_FAILURE,
 } from './Projects';
 
 import {
@@ -130,4 +134,8 @@ export {
   fetchEditProfile,
   GET_EDIT_PROFILE_SUCCESS,
   GET_EDIT_PROFILE_FAILURE,
+  //fetchEditProject
+  fetchEditProject,
+  FETCH_EDIT_PROJ_SUCCESS,
+  FETCH_EDIT_PROJ_FAILURE,
 };

@@ -15,6 +15,9 @@ export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
 export const FETCH_CREATE_PROJ_SUCCESS = 'FETCH_CREATE_PROJ_SUCCESS';
 export const FETCH_CREATE_PROJ_FAILURE = 'FETCH_CREATE_PROJ_FAILURE';
 
+export const FETCH_EDIT_PROJ_SUCCESS = 'FETCH_EDIT_PROJ_SUCCESS';
+export const FETCH_EDIT_PROJ_FAILURE = 'FETCH_EDIT_PROJ_FAILURE';
+
 export const FETCH_SEARCH_USER_SUCCESS = 'FETCH_SEARCH_USER_SUCCESS';
 export const FETCH_SEARCH_USER_FAILURE = 'FETCH_SEARCH_USER_FAILURE';
 
@@ -415,6 +418,50 @@ export function fetchGetParticipants(id,token) {
       FNRedirect('/500');
       return dispatch({
         type: FETCH_PARTICIPANTS_FAILURE,
+        data: null,
+        status: err.status ? err.status : err,
+      });
+    }
+  };
+}
+
+export function fetchEditProject (projectData,token) {
+  return async dispatch => {
+    try {
+      const res = await fetch(`${host}/v2/users/editproject`, {
+        method: 'POST',
+        body: JSON.stringify(projectData),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        }),
+      });
+      const data = await res.json();
+
+      if (res.status === 200) {
+        return dispatch({
+          type: FETCH_EDIT_PROJ_SUCCESS,
+          data,
+          status: res.status,
+        });
+      } else if (res.status === 400) {
+        return dispatch({
+          type: FETCH_EDIT_PROJ_FAILURE,
+          data,
+          status: res.status,
+        });
+      }
+      else if (res.status === 500 || res.status === 502) {
+        return FNRedirect('/500');
+      }
+      return dispatch({
+        type: FETCH_EDIT_PROJ_FAILURE,
+        data: null,
+        status: res.status ? res.status : res,
+      })
+    } catch (err) {
+      return dispatch({
+        type: FETCH_EDIT_PROJ_FAILURE,
         data: null,
         status: err.status ? err.status : err,
       });
