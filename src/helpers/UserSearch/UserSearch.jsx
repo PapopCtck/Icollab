@@ -13,14 +13,15 @@ class UserRemoteSelect extends Component {
     super(props);
     this.lastFetchId = 0;
     this.fetchUser = debounce(this.fetchUser, 800);
+    this.state = {
+      data: [],
+      value: props.initContributors ? props.initContributors : [],
+      fetching: false,
+    };
+  
   }
 
-  state = {
-    data: [],
-    value: [],
-    fetching: false,
-  };
-
+ 
   componentDidUpdate(prevProps) {
     if (prevProps.fetchSearchUser !== this.props.fetchSearchUser) {
       const fetchSearchUser = this.props.fetchSearchUser;
