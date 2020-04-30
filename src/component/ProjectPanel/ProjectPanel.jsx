@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Checkbox, Divider, Select, Collapse } from 'antd';
+import { Checkbox, Divider, Select, Collapse, Icon, Menu, Dropdown } from 'antd';
 
 import './StyleProjectPanel.css';
 
@@ -18,6 +18,9 @@ const customPanelStyle = {
 function ProjectPanel(props) {
   function handleTitleClick(project_uid) {
     props.history.push('/project/' + project_uid)
+  }
+  function onEditClick(target){
+    props.history.push('/editproject/' + target)
   }
   return (
     <div className="projectpanel-container">
@@ -55,7 +58,7 @@ function ProjectPanel(props) {
       </div>
       <div className="projectpanel-content">
         {
-          props.resultProjects.map(project => <ProjectCollapsePanel handleTitleClick={handleTitleClick} project={project} applied={props.applied} />)
+          props.resultProjects.map(project => <ProjectCollapsePanel handleTitleClick={handleTitleClick} project={project} applied={props.applied} onEditClick={onEditClick} />)
         }
       </div>
     </div>
@@ -64,44 +67,54 @@ function ProjectPanel(props) {
 
 export default withRouter(ProjectPanel);
 
-const ProjectCollapsePanel = ({ project, handleTitleClick, applied }) => (
-  <Collapse
-    bordered={false}
-    expandIconPosition="right"
-  >
-    <Panel
-      key="1"
-      style={customPanelStyle}
-      showArrow={!applied}
-      header={
-        <div className="projectcollapse-header">
-          <Checkbox
-            disabled
-            onClick={event => {
-              event.stopPropagation();
-            }}
-          // onChange={this.onCheckChange}
-          // checked={this.state.check}
-          >
-          </Checkbox>
-          <span onClick={() => handleTitleClick(project.project_uid)}>
-            <img className="projectcollapse-header-image" src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}></img>
-            <span className="bold">{project.projecttitle}</span>
-          </span>
-        </div>
-      }>{
-        !applied ?
-          <div className="projectcollapse-content">
-            <span className="bold">Created on : </span>
-            <span>{new Date(parseInt(project.created)).toLocaleDateString('en-GB')}</span>
-            <span className="bold">Status : </span>
-            <span>{project.adminapprove ? 'Approved' : 'Waiting for approval'}</span>
-            <span className="bold">View : </span>
-            <span>{project.view}</span>
+const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick }) => {
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" onClick={() => onEditClick(project.project_uid)}>Edit project</Menu.Item>
+      <Menu.Item key="2" disabled>Delete project</Menu.Item>
+    </Menu>
+  );
+  return (
+    <Collapse
+      bordered={false}
+      expandIconPosition="right"
+    >
+      <Panel
+        key="1"
+        style={customPanelStyle}
+        showArrow={!applied}
+        header={
+          <div className="projectcollapse-header">
+            <Checkbox
+              disabled
+              onClick={event => {
+                event.stopPropagation();
+              }}
+            // onChange={this.onCheckChange}
+            // checked={this.state.check}
+            >
+            </Checkbox>
+            <span onClick={() => handleTitleClick(project.project_uid)}>
+              <img className="projectcollapse-header-image" src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}></img>
+              <span className="bold">{project.projecttitle}</span>
+            </span>
           </div>
-          : null
-      }
-    </Panel>
-  </Collapse>
-
-);
+        }>{
+          !applied ?
+            <div className="projectcollapse-content">
+              <span className="bold">Created on : </span>
+              <span>{new Date(parseInt(project.created)).toLocaleDateString('en-GB')}</span>
+              <span className="bold">Status : </span>
+              <span>{project.adminapprove ? 'Approved' : 'Waiting for approval'}</span>
+              <span className="bold">View : </span>
+              <span>{project.view}</span>
+              <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
+                <Icon type="setting" theme="filled" style={{ fontSize: '18px' }} />
+              </Dropdown>,
+            </div>
+            : null
+        }
+      </Panel>
+    </Collapse>
+  )
+};
