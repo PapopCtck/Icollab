@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { fetchGetProfile, fetchEditProfile } from '../../actions';
 
-import { ThailandStateSelect, getCookie, Loading, AvatarUploader } from '../../helpers';
+import { ThailandStateSelect, getCookie, Loading, AvatarUploader, RefreshToken } from '../../helpers';
 
 import AppContext from '../../AppContext';
 
@@ -79,6 +79,7 @@ export class Profile extends Component {
     if (editing) {
       return (
         <div className="page-wrapper">
+          <RefreshToken />
           <div className="profile-container">
             <div className="profile-left">
               <AvatarUploader imageUrl={imageUrl ? imageUrl : user.image} handleChange={this.handleChange} />

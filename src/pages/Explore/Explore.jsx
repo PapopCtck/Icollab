@@ -7,7 +7,7 @@ import { ExploreCondition, ExploreResult } from '../../component';
 
 import { fetchGetProjects, fetchSearchProjects, fetchGetProjectCategory } from '../../actions';
 
-import { Loading } from '../../helpers';
+import { Loading, RefreshToken } from '../../helpers';
 
 import AppLang from '../../AppContext';
 
@@ -115,7 +115,7 @@ export class Explore extends Component {
   }
 
   handleFilter = () => {
-    const { location, jobfields, jobtitle, checkedFilter,roleNeeded } = this.state;
+    const { location, jobfields, jobtitle, checkedFilter, roleNeeded } = this.state;
     console.log(this.state);
     let newResultProject = this.props.fetchGetProjects.data.Project;
     console.log(newResultProject)
@@ -125,8 +125,8 @@ export class Explore extends Component {
     if (jobfields.length !== 0) {
       newResultProject = newResultProject.filter((project) => jobfields.includes(project.jobfields));
     }
-    if (jobtitle) { 
-      let filteredRole = roleNeeded.filter(role => role.jobtitle === jobtitle );
+    if (jobtitle) {
+      let filteredRole = roleNeeded.filter(role => role.jobtitle === jobtitle);
       filteredRole = filteredRole.map(role => role.project_uid)
       newResultProject = newResultProject.filter((project) => filteredRole.includes(project.project_uid));
     }
@@ -151,6 +151,7 @@ export class Explore extends Component {
     }
     return (
       <div>
+        <RefreshToken />
         <BackTop />
         <ExploreCondition
           appLang={appLang}

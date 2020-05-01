@@ -12,7 +12,7 @@ import {
   LandingStartProject,
 } from '../../component';
 
-import { Loading } from '../../helpers';
+import { Loading, RefreshToken } from '../../helpers';
 
 import AppLang from '../../AppContext';
 import content from './LangMain';
@@ -51,6 +51,7 @@ export class Main extends Component {
     }
     return (
       <div className="main-container page-wrapper">
+        <RefreshToken />
         <BackTop />
         <div className="landing-title">
           <span className="bold">{content[appLang].featured}</span>

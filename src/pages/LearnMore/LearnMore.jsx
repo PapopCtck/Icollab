@@ -4,6 +4,8 @@ import { Typography, Button, Icon } from 'antd';
 import { Parallax } from 'rc-scroll-anim';
 import PropTypes from 'prop-types';
 
+import { RefreshToken } from '../../helpers';
+
 import AppLang from '../../AppContext';
 
 import content from './LangLearnMore';
@@ -24,6 +26,7 @@ export class LearnMore extends Component {
     const { appLang, appTheme } = this.context;
     return (
       <div className="learnmore-container">
+        <RefreshToken />
         <div className="learnmore-header">
           <Title className={'bold ' + appTheme + '-text'} level={1}>{content[appLang].title}</Title>
           <p className="learnmore-header-description bold">{content[appLang].description}</p>

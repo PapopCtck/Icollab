@@ -6,7 +6,7 @@ import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
 import { fetchProjectsById } from '../../actions';
 
-import { Loading } from '../../helpers';
+import { Loading, RefreshToken } from '../../helpers';
 
 import AppLang from '../../AppContext';
 
@@ -131,8 +131,6 @@ export class ProjectDetail extends Component {
             updatedAt: '',
             description: 'Eiei',
           },
-
-
         ],
       },
     }
@@ -154,6 +152,7 @@ export class ProjectDetail extends Component {
     }
     return (
       <div className="page-wrapper project-detail-container">
+        <RefreshToken />
         <ProjectDetailHeader projectDetailAll={projectDetailAll} theme={appTheme} projectId={this.props.match.params.id}/>
         <ProjectDetailContent projectDetailAll={projectDetailAll} mockupData={mockupData} theme={appTheme} projectId={this.props.match.params.id}/>
       </div>
