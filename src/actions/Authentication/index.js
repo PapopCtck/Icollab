@@ -106,6 +106,8 @@ export function fetchRefreshToken() {
         const data = await res.json();
         if (res.status === 200) {
           await createCookie('icollab_token', data.accessToken, 1);
+          await createCookie('icollab_userinfo', getCookie('icollab_userinfo'), 1);
+          await createCookie('icollab_refreshtoken', getCookie('icollab_refreshtoken'), 1);
           return;
         } else if (res.status === 400 || res.status === 403) {
           return FNRedirect('/login');
