@@ -19,7 +19,7 @@ function ProjectPanel(props) {
   function handleTitleClick(project_uid) {
     props.history.push('/project/' + project_uid)
   }
-  function onEditClick(target){
+  function onEditClick(target) {
     props.history.push('/editproject/' + target)
   }
   return (
@@ -58,7 +58,7 @@ function ProjectPanel(props) {
       </div>
       <div className="projectpanel-content">
         {
-          props.resultProjects.map(project => <ProjectCollapsePanel handleTitleClick={handleTitleClick} project={project} applied={props.applied} onEditClick={onEditClick} />)
+          props.resultProjects.map(project => <ProjectCollapsePanel handleTitleClick={handleTitleClick} project={project} appTheme={props.appTheme} applied={props.applied} onEditClick={onEditClick} />)
         }
       </div>
     </div>
@@ -67,7 +67,7 @@ function ProjectPanel(props) {
 
 export default withRouter(ProjectPanel);
 
-const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick }) => {
+const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick, appTheme }) => {
   const menu = (
     <Menu>
       <Menu.Item key="1" onClick={() => onEditClick(project.project_uid)}>Edit project</Menu.Item>
@@ -78,6 +78,7 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick 
     <Collapse
       bordered={false}
       expandIconPosition="right"
+      className={'projectcollapse-container ' + appTheme}
     >
       <Panel
         key="1"
@@ -96,21 +97,21 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick 
             </Checkbox>
             <span onClick={() => handleTitleClick(project.project_uid)}>
               <img className="projectcollapse-header-image" src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}></img>
-              <span className="bold">{project.projecttitle}</span>
+              <span className={'bold ' + appTheme + '-text'}>{project.projecttitle}</span>
             </span>
           </div>
         }>{
           !applied ?
             <div className="projectcollapse-content">
-              <span className="bold">Created on : </span>
-              <span>{new Date(parseInt(project.created)).toLocaleDateString('en-GB')}</span>
-              <span className="bold">Status : </span>
-              <span>{project.adminapprove ? 'Approved' : 'Waiting for approval'}</span>
-              <span className="bold">View : </span>
-              <span>{project.view}</span>
+              <span className={'bold ' + appTheme + '-text'}>Created on : </span>
+              <span className={appTheme + '-text'}>{new Date(parseInt(project.created)).toLocaleDateString('en-GB')}</span>
+              <span className={'bold ' + appTheme + '-text'}>Status : </span>
+              <span className={appTheme + '-text'}>{project.adminapprove ? 'Approved' : 'Waiting for approval'}</span>
+              <span className={'bold ' + appTheme + '-text'}>View : </span>
+              <span className={appTheme + '-text'}>{project.view}</span>
               <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
                 <Icon type="setting" theme="filled" style={{ fontSize: '18px' }} />
-              </Dropdown>,
+              </Dropdown>
             </div>
             : null
         }

@@ -26,6 +26,16 @@
   align-items: center;
 }
 
+.projectcollapse-container.dark{
+  background-color: var(--main-background-dark);
+  color: var(--main-text-dark);
+}
+
+.projectcollapse-container.light{
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+}
+
 @media(max-width: 586px){
   .projectpanel-header{
     text-align: center;
