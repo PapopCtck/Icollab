@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Checkbox, Divider, Select, Avatar, Icon, Modal, Rate, Button } from 'antd';
+import { Checkbox, Divider, Select, Avatar, Icon, Modal, Rate, Button, notification } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchGetParticipants } from '../../actions';
+import { fetchGetParticipants, fetchDeleteParticipant } from '../../actions';
 
 import { getCookie, Loading } from '../../helpers';
 
@@ -11,6 +11,14 @@ import './StyleProjectDetailApplicants.css';
 
 
 const { Option } = Select;
+
+const openNotification = (theme, status) => {
+  notification[status]({
+    message: <span className={theme + '-text'}>{status === 'success' ? 'Success' : 'Error'}</span>,
+    description: status === 'success' ? 'Participant deleted.' : 'Something went wrong.Please try again later',
+    style: theme == 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
+  });
+};
 
 class ProjectDetailApplicants extends Component {
   constructor(props) {
@@ -33,15 +41,28 @@ class ProjectDetailApplicants extends Component {
         this.setState({ loading: false });
       }
     }
+    if (prevProps.fetchDeleteParticipant !== this.props.fetchDeleteParticipant) {
+      const fetchDeleteParticipant = this.props.fetchDeleteParticipant;
+      if (fetchDeleteParticipant.status === 200) {
+        openNotification(this.props.theme, 'success');
+      } else {
+        openNotification(this.props.theme, 'error');
+      }
+
+    }
   }
 
   toggleModal = (participant) => {
-    if(participant){
-      this.setState({ showModal: !this.state.showModal,participant },() => console.log(this.state));
+    if (participant) {
+      this.setState({ showModal: !this.state.showModal, participant }, () => console.log(this.state));
     } else {
-      this.setState({ showModal: !this.state.showModal },() => console.log(this.state));
+      this.setState({ showModal: !this.state.showModal }, () => console.log(this.state));
     }
-   
+  }
+
+  handleDelete = (participant) => {
+    this.props.dispatch(fetchDeleteParticipant({ participantid: participant.user_uid, projectid: this.props.projectId }, getCookie('icollab_token')));
+    this.setState({ showModal: false }, () => console.log(this.state));
   }
 
   renderCategory = (participants) => (
@@ -57,7 +78,7 @@ class ProjectDetailApplicants extends Component {
     return (
       <div>
         {
-          participant ? <AcceptModal visible={showModal} toggleModal={this.toggleModal} theme={theme} participant={participant} /> : null
+          participant ? <AcceptModal visible={showModal} toggleModal={this.toggleModal} theme={theme} participant={participant} handleDelete={this.handleDelete} /> : null
         }
         <div className="projectpanel-header">
           <span className="projectpanel-left">
@@ -98,7 +119,8 @@ class ProjectDetailApplicants extends Component {
 
 const mapStateToProps = state => {
   const fetchGetParticipants = state.fetchGetParticipants.data;
-  return { fetchGetParticipants };
+  const fetchDeleteParticipant = state.fetchDeleteParticipant;
+  return { fetchGetParticipants, fetchDeleteParticipant };
 }
 
 export default connect(mapStateToProps)(ProjectDetailApplicants);
@@ -109,7 +131,7 @@ ProjectDetailApplicants.propTypes = {
 
 const UserBar = ({ theme, toggleModal, participant }) => (
   <div className="userbar-container">
-    <Checkbox disabled/>
+    <Checkbox disabled />
     <Divider type="vertical" />
     <Avatar src={participant.image ? participant.image : null}>{participant.name.substring(0, 2)}</Avatar>
     <div className="userbar-userinfo-container">
@@ -131,23 +153,32 @@ const UserBar = ({ theme, toggleModal, participant }) => (
   </div>
 );
 
-const AcceptModal = ({ visible, toggleModal, theme, participant }) => (
+const AcceptModal = ({ visible, toggleModal, theme, participant, handleDelete }) => (
   <Modal
     visible={visible}
     onCancel={() => toggleModal()}
     footer={false}
     width={400}
+    closeIcon={<Icon type="close" style={theme == 'dark' ? { color: 'white' } : { color: 'black' }} />}
     bodyStyle={theme == 'dark' ? { background: '#29292e' } : { background: 'white' }}
   >
-    <Avatar className="applyModal-avatar" size={128} src={participant.image ? participant.image : null}>{participant.name.substr(0,2)}</Avatar>
+    <Avatar className="applyModal-avatar" size={128} src={participant.image ? participant.image : null}>{participant.name.substr(0, 2)}</Avatar>
     <Rate className="applyModal-rate" style={{ marginTop: '20px' }} disabled defaultValue={0} />
     <h2 className={'applyModal-username ' + theme + '-text'}>{participant.name + ' ' + participant.lastname}</h2>
     <p className={'acceptModal-text ' + theme + '-text'}>{participant.jobposition}</p>
     <p className={'acceptModal-text ' + theme + '-text'}>Skills : {participant.skills}</p>
     <p className={'acceptModal-text ' + theme + '-text'}>Location : {participant.location}</p>
     <span className="accpetModal-button-container">
-      <Button size="large" type="primary" onClick={() => toggleModal()} ghost>Hide</Button>
-      <Button size="large" type="primary" block>Contact</Button>
+      <Button size="large" type="danger" onClick={() => handleDelete(participant)} ghost>Delete</Button>
+      <Button size="large"
+        type="primary"
+        style={{ marginLeft: '10px' }}
+        block
+        href={`mailto:${participant.email}?&body=%0D%0A%0D%0A Sending from icollab.cc`}
+        target="_blank"
+      >
+        Contact with Email
+      </Button>
     </span>
   </Modal>
 )

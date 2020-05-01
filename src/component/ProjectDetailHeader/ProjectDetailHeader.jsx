@@ -46,7 +46,7 @@ const error = () => {
 };
 
 const requirementError = () => {
-  message.error('Please fill in the detail about yourself first!');
+  message.error('Please fill in all of the required detail about yourself in Profile page first!');
 };
 
 const applyError = () => {

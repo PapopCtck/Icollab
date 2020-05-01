@@ -31,10 +31,10 @@ export class ProjectDetailContent extends Component {
         <TabPane tab="FAQ" key="2">
           <ProjectDetailFAQ projectDetailAll={projectDetailAll} data={mockupData} theme={theme} />
         </TabPane>
-        <TabPane tab="Updates" key="3">
+        <TabPane tab="Updates" key="3" disabled>
           <ProjectDetailUpdates data={mockupData} theme={theme} />
         </TabPane>
-        <TabPane tab="Comments" key="4">
+        <TabPane tab="Comments" key="4" disabled>
           <ProjectDetailComments data={mockupData} theme={theme} />
         </TabPane>
         {
