@@ -17,7 +17,7 @@ import {
 
 import { fetchGetProfile, fetchEditProfile } from './Profile';
 
-import { fetchTrackProject,fetchAppliedProject } from './TrackProject';
+import { fetchTrackProject, fetchAppliedProject, fetchDeleteParticipant } from './TrackProject';
 
 
 const rootReducer = combineReducers({
@@ -37,6 +37,7 @@ const rootReducer = combineReducers({
   fetchTrackProject,
   fetchAppliedProject,
   fetchEditProject,
+  fetchDeleteParticipant,
 });
 
 export default rootReducer;
