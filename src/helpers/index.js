@@ -29,6 +29,8 @@ import { UpdateBox } from './UpdateBox/UpdateBox';
 
 import { ProtectedRoute } from './ProtectedRoute/ProtectedRoute';
 
+import RefreshToken from './RefreshToken/RefreshToken';
+
 export {
   //NavBar
   NavBar,
@@ -58,4 +60,6 @@ export {
   UpdateBox,
   //Protected route
   ProtectedRoute,
+  //RefreshToken
+  RefreshToken,
 }
