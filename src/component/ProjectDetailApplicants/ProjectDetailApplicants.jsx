@@ -16,7 +16,7 @@ const openNotification = (theme, status) => {
   notification[status]({
     message: <span className={theme + '-text'}>{status === 'success' ? 'Success' : 'Error'}</span>,
     description: status === 'success' ? 'Participant deleted.' : 'Something went wrong.Please try again later',
-    style: theme == 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
+    style: theme === 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
   });
 };
 
@@ -169,8 +169,8 @@ const AcceptModal = ({ visible, toggleModal, theme, participant, handleDelete })
     onCancel={() => toggleModal()}
     footer={false}
     width={400}
-    closeIcon={<Icon type="close" style={theme == 'dark' ? { color: 'white' } : { color: 'black' }} />}
-    bodyStyle={theme == 'dark' ? { background: '#29292e' } : { background: 'white' }}
+    closeIcon={<Icon type="close" style={theme === 'dark' ? { color: 'white' } : { color: 'black' }} />}
+    bodyStyle={theme === 'dark' ? { background: '#29292e' } : { background: 'white' }}
   >
     <Avatar className="applyModal-avatar" size={128} src={participant.image ? participant.image : null}>{participant.name.substr(0, 2)}</Avatar>
     <Rate className="applyModal-rate" style={{ marginTop: '20px' }} disabled defaultValue={0} />

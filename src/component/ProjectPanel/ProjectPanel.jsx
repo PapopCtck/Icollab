@@ -101,7 +101,7 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick,
             >
             </Checkbox>
             <span onClick={() => handleTitleClick(project.project_uid)}>
-              <img className="projectcollapse-header-image" src={project.image ? project.image : '/assets/doge.jpg'}></img>
+              <img className="projectcollapse-header-image" alt="project" src={project.image ? project.image : '/assets/doge.jpg'}></img>
               <span className={'bold ' + appTheme + '-text'}>{project.projecttitle}</span>
             </span>
           </div>

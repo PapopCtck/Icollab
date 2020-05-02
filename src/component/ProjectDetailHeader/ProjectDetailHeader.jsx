@@ -34,7 +34,7 @@ const openNotification = theme => {
     message: <span className={theme + '-text'}>Thank you for your report</span>,
     description:
       'We will take a look at your report and take fix the problem as soon as possible.',
-    style: theme == 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
+    style: theme === 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
   });
 };
 
@@ -267,7 +267,7 @@ const ReportModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, reset
     onCancel={toggleReport}
     width={400}
     footer={null}
-    bodyStyle={theme == 'dark' ? { background: '#29292e' } : { background: 'white' }}
+    bodyStyle={theme === 'dark' ? { background: '#29292e' } : { background: 'white' }}
     centered
   >
     <Form className="report-form"
@@ -336,14 +336,13 @@ const ApplyModal = ({ form: { validateFieldsAndScroll, resetFields }, showApply,
         width={350}
         footer={null}
         onCancel={toggleApply}
-        bodyStyle={theme == 'dark' ? { background: '#29292e' } : { background: 'white' }}
+        bodyStyle={theme === 'dark' ? { background: '#29292e' } : { background: 'white' }}
         centered
       >
         <div className="applyModal-container">
           <Avatar className="applyModal-avatar" size={128} icon="user" />
           <Rate className="applyModal-rate" style={{ marginTop: '20px' }} disabled defaultValue={0} />
           <h2 className={'applyModal-username ' + theme + '-text'}>{user.name + ' ' + user.lastname}</h2>
-          {/* <h3 className={theme + '-text'}>Applied for</h3> */}
           <Form className="apply-form"
             onSubmit={e => handleSubmit(e, validateFieldsAndScroll, resetFields)}
           >
