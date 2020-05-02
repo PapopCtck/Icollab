@@ -13,7 +13,7 @@ export class CarouselDisplay extends Component {
     }
   }
 
-  
+
   onSlideClick = (target) => {
     this.props.history.push('/project/' + target)
   }
@@ -52,8 +52,10 @@ export class CarouselDisplay extends Component {
       <div className="carousel-container">
         <div className="carousel-display-container">
           <Icon className="left-circle" type="left-circle" onClick={this.previous} />
-          <Carousel className="carousel-display" ref={ref => this.carousel = ref} autoplay beforeChange={(from, to) => this.changeSlide(from, to)} pauseOnHover dots={false}>
-            {this.props.featuredProject.map((data) => <img className="carousel-image" key={data.project_uid} alt={data.projecttitle} src={data.image} onClick={() => this.onSlideClick(data.project_uid)}></img>)}
+          <Carousel className={'carousel-display ' + this.props.appTheme} ref={ref => this.carousel = ref} autoplay beforeChange={(from, to) => this.changeSlide(from, to)} pauseOnHover dots={false}>
+            {this.props.featuredProject.map((data) =>
+              <img className="carousel-image" key={data.project_uid} alt={data.projecttitle} src={data.image ? data.image : '/assets/doge.jpg'} onClick={() => this.onSlideClick(data.project_uid)}></img>
+            )}
           </Carousel>
           <Icon className="right-circle" type="right-circle" onClick={this.next} />
         </div>
@@ -68,7 +70,6 @@ export class CarouselDisplay extends Component {
 }
 
 export default withRouter(CarouselDisplay);
-//export default withRouter(connect(mapStateToProps)(CarouselDisplay)) when using redux
 
 CarouselDisplay.propTypes = {
   children: PropTypes.any,
@@ -77,4 +78,5 @@ CarouselDisplay.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  appTheme: PropTypes.string,
 }

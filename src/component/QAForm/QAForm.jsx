@@ -20,25 +20,22 @@ class DynamicFieldSet extends React.Component {
 
   add = () => {
     const { form } = this.props;
-    // can use data-binding to get
     const keys = form.getFieldValue('keys');
     const nextKeys = keys.concat(id++);
-    // can use data-binding to set
-    // important! notify form to detect changes
     form.setFieldsValue({
       keys: nextKeys,
     });
   };
 
   render() {
-    const { content } = this.props;
+    const { content, appTheme } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
     const formItems = keys.map((k) => (
       <div>
         <Form.Item
-          label="Question"
+          label={<span className={appTheme + '-text'}>Question</span>}
           required={false}
           key={`question${k}`}
           style={{ marginBottom: '0px' }}
@@ -60,7 +57,7 @@ class DynamicFieldSet extends React.Component {
           />
         </Form.Item>
         <Form.Item
-          label="answer"
+          label={<span className={appTheme + '-text'}>Answer</span>}
           required={false}
           key={`answer${k}`}
         >
@@ -93,6 +90,7 @@ class DynamicFieldSet extends React.Component {
 DynamicFieldSet.propTypes = {
   form: PropTypes.object,
   content: PropTypes.object,
+  appTheme: PropTypes.string,
 }
 
 export const QAForm = Form.create({

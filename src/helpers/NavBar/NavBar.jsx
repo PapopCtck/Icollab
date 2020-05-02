@@ -20,7 +20,17 @@ class Navbar extends Component {
     });
   };
   render() {
-    const { children, drawer, toggleDrawer, visible, title } = this.props;
+    const { children, drawer, toggleDrawer, visible, title, theme } = this.props;
+    const drawerStyle = {
+      dark: {
+        backgroundColor: '#001529',
+        height: '100vh',
+      },
+      light: {
+        backgroundColor: 'white',
+        height: '100vh',
+      },
+    }
     return (
       <nav className="menu">
         <div className="logo bold">
@@ -36,12 +46,12 @@ class Navbar extends Component {
             <Icon type="align-right" />
           </Button>
           <Drawer
-            title="Menu"
             placement="right"
             className="menuDrawer"
             closable={false}
             onClose={toggleDrawer ? toggleDrawer : this.onClose}
             visible={visible ? visible : this.state.visible}
+            bodyStyle={drawerStyle[theme]}
           >
             {drawer}
           </Drawer>
@@ -53,9 +63,10 @@ class Navbar extends Component {
 export default Navbar;
 
 Navbar.propTypes = {
-  children : PropTypes.any, 
-  drawer: PropTypes.any, 
-  toggleDrawer: PropTypes.func, 
-  visible: PropTypes.bool, 
+  children: PropTypes.any,
+  drawer: PropTypes.any,
+  toggleDrawer: PropTypes.func,
+  visible: PropTypes.bool,
   title: PropTypes.string,
+  theme: PropTypes.string,
 }

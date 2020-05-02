@@ -8,11 +8,11 @@ import './StyleUpdateBox.css'
 
 const { Title } = Typography;
 
-export function UpdateBox({ update }) {
+export function UpdateBox({ update, theme }) {
   return (
     <div className="updatebox-container">
       <div className="updatebox-header">
-        <Title style={{ marginBottom: '10px' }} level={3} className="updatebox-title bold">{update.title}</Title>
+        <Title style={{ marginBottom: '10px' }} level={3} className={'updatebox-title bold ' + theme + '-text'}>{update.title}</Title>
         <div className="updatebox-author">
           <Avatar size={50} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
           <div className="updatebox-author-name">
@@ -41,4 +41,5 @@ export function UpdateBox({ update }) {
 
 UpdateBox.propTypes = {
   update: PropTypes.object,
+  theme: PropTypes.string,
 }

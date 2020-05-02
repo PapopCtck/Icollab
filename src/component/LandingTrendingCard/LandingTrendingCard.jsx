@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Carousel, Icon } from 'antd';
+import { Card, Carousel, Icon, Empty } from 'antd';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -17,7 +17,6 @@ const responsive = [
     settings: {
       slidesToShow: 2,
       slidesToScroll: 2,
-      infinite: true,
     },
   },
   {
@@ -43,7 +42,17 @@ export class LandingTrendingCard extends Component {
   }
 
   render() {
-    const { trendingProject, lang } = this.props;
+    const { trendingProject, lang, appTheme, roleNeeded } = this.props;
+    const cardTheme = {
+      dark: {
+        backgroundColor: '#29292e',
+        color: '#fff',
+      },
+      light: {
+        backgroundColor: '#fff',
+        color: 'rgba(0,0,0,0.85)',
+      },
+    }
     return (
       <div className="landing-trending-container">
         <div className="landing-trending-header">
@@ -54,42 +63,48 @@ export class LandingTrendingCard extends Component {
           </div>
         </div>
         <div className="carouselcard-container">
-          <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive}>
-            {trendingProject.map((project) =>
-              <Card
-                onClick={() => this.onCardClick(project.project_uid)}
-                cover={
-                  <img
-                    style={{ maxHeight: '240px', minHeight: '240px' }}
-                    alt="example"
-                    src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}
-                  />
-                }
-              >
-                <Meta
-                  title={project.projecttitle}
-                  description={
-                    <div className="explore-card-container">
-                      <div className="explore-card-description-text">
-                        {project.projectdescription}
-                      </div>
-                      <div className="explore-card-role">
-                        {/* role needed : {project.roleneeded.map((role, idx) => idx === 0 ? role.title : ', ' + role.title)} */}
-                        role needed : {project.roleneeded}
-                      </div>
-                      <div className="explore-card-bottom">
-                        <span className="explore-card-bottom-left">
-                          <Icon type="clock-circle" />
-                          <span className="explore-card-time-text">{timeSince(project.createat)}</span>
-                        </span>
-                        {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
-                        <span className="explore-card-bottom-right">by {project.projectstarter ? project.projectstarter : 'John doe'}</span>
-                      </div>
-                    </div>
-                  }
-                />
-              </Card>)}
-          </Carousel>
+          {
+            trendingProject.length !== 0 ?
+              <Carousel ref={ref => this.carousel = ref} dots={false} slidesToShow={3} slidesToScroll={3} responsive={responsive} infinite={false}>
+                {trendingProject.map((project) => {
+                  const roleArr = roleNeeded.filter(obj => obj.project_uid === project.project_uid)
+                  return (<Card
+                    onClick={() => this.onCardClick(project.project_uid)}
+                    bordered={appTheme === 'light'}
+                    bodyStyle={cardTheme[appTheme]}
+                    cover={
+                      <img
+                        style={{ maxHeight: '240px', minHeight: '240px' }}
+                        alt="example"
+                        src={project.image ? project.image : '/assets/doge.jpg'}
+                      />
+                    }
+                  >
+                    <Meta
+                      title={<div className={'explore-title ' + appTheme + '-text'}>{project.projecttitle}</div>}
+                      description={
+                        <div className={'explore-card-container ' + appTheme + '-subtext'}>
+                          <div className="explore-card-description-text">
+                            {project.projectdescription}
+                          </div>
+                          <div className="explore-card-role">
+                            role needed : {roleArr ? roleArr.map((roleObj, idx) => idx === 0 ? roleObj.jobtitle : ' , ' + roleObj.jobtitle) : null}
+                          </div>
+                          <div className="explore-card-bottom">
+                            <span className="explore-card-bottom-left">
+                              <Icon type="clock-circle" />
+                              <span className="explore-card-time-text">{timeSince(project.created)}</span>
+                            </span>
+                            <span className="explore-card-bottom-right">by {project.projectstarter_name ? project.projectstarter_name : '-'}</span>
+                          </div>
+                        </div>
+                      }
+                    />
+                  </Card>)
+                })}
+              </Carousel>
+              : <Empty image="/assets/doge.jpg" imageStyle={{ opacity: 0.4, marginTop: '20px', borderRadius: '15px', width: 'inherit', minWidth: '320px', height: '340px' }} description={<span>Much space, Such empty, WOW!</span>} />
+          }
         </div>
       </div >
     )
@@ -99,9 +114,11 @@ export class LandingTrendingCard extends Component {
 export default withRouter(LandingTrendingCard);
 
 LandingTrendingCard.propTypes = {
-  trendingProject: PropTypes.object,
+  trendingProject: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
   lang: PropTypes.string,
+  appTheme: PropTypes.string, 
+  roleNeeded: PropTypes.array,
 }

@@ -1,12 +1,8 @@
-.header-container {
-  border-bottom: solid 1px var(--main-border-color);
-  box-shadow: 0 0 30px #f3f1f1;
-}
 
 .menu {
-  background-color: white;
   padding: 0 20px;
   font-family: 'Ubuntu';
+  transition: '0.3s all';
 }
 
 .logo {
@@ -49,15 +45,13 @@
   padding: 6px;
   margin-top: 8px;
   display: none !important;
-  /* use of important to overwrite ant-btn */
   background: #3e91f7;
 }
 
 .menuDrawer .ant-drawer-body {
   padding: 0 !important;
+  transition: 0.3s all;
 }
-
-/* align header of Drawer with header of page */
 
 .menuDrawer .ant-drawer-header {
   padding: 14px 24px !important;
@@ -87,7 +81,7 @@ div.vertical-line {
   color: rgba(255, 0, 0, 0.65) !important;
 }
 
-@media (max-width: 783px) {
+@media (max-width: 850px) {
   .menuMobile-button {
     display: inline-block !important;
   }

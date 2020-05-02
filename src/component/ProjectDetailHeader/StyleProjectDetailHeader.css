@@ -7,9 +7,7 @@
 }
 
 .detailheader-image-container {
-  /* height: 35vh; */
   line-height: 35vh;
-  /* max-height: 320px; */
   min-width: 320px;
   width: 100%;
   overflow: hidden;
@@ -44,6 +42,24 @@
 }
 
 .detailheader-report-container {
+  text-align: center;
+}
+
+.detailheader-report-button {
+  text-decoration: underline;
+}
+
+.applyModal-avatar{
+  display: block;
+  margin: 0 auto;
+}
+
+.applyModal-rate{
+  text-align: center;
+  display: block;
+}
+
+.applyModal-username {
   text-align: center;
 }
 

@@ -1,19 +1,6 @@
 /* @import '~antd/dist/antd.css'; */
 
 @import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Ubuntu:400,700&display=swap');
-/* @font-face {
-  font-family: 'Ubuntu';
-  src: url("https://fonts.googleapis.com/css?family=Ubuntu");
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* @font-face {
-  font-family: 'Ubuntu-Bold';
-  src: url("https://fonts.googleapis.com/css?family=Ubuntu:700");
-  font-weight: normal;
-  font-style: normal;
-} */
 
 :root {
   --main-border-color: rgb(190, 190, 190);
@@ -24,15 +11,45 @@
   --bg-box-loading: #ffffff;
   --background-color-gray: #F1F1F1;
   --create-header-color: #FAFAFF;
+  --main-background-color: white;
+  --main-nav-dark: #001529;
+  --main-background-dark: #050d16;
+  --card-background-color: white;
+  --card-background-dark: #29292e;
+  --main-text-dark: rgba(255,255,255,0.85);
+  --main-text-color: rgba(0,0,0,0.85);
+  --main-body-text-color: rgba(0,0,0,0.65);
+  --main-body-text-dark: rgba(255,255,255,0.65);
+  --main-desc-text-color: rgba(0,0,0,0.45);
+  --main-desc-text-dark: rgba(255,255,255,0.45);
 }
 
 .header-container {
-  background-color: white;
   padding: 0px;
+  transition: 0.3s all;
+}
+
+.header-container.light {
+  background-color: var(--main-background-color);
+  border-bottom: solid 1px var(--main-border-color);
+  box-shadow: 0 0 30px #f3f1f1;
+}
+
+.header-container.dark {
+  background-color: var(--main-nav-dark);
 }
 
 .ant-layout-footer {
-  background-color: white;
+  transition: 0.3s all;
+}
+
+.ant-layout-footer.light {
+  background-color: var(--main-background-color);
+  border-top: 1px solid var(--main-border-color);
+}
+
+.ant-layout-footer.dark {
+  background-color: var(--main-background-dark);
 }
 
 .regular {
@@ -42,11 +59,37 @@
 .bold {
   font-family: 'Ubuntu','Kanit', sans-serif;
   font-weight: bold;
-  color: black;
+  /* color: black; */
+}
+
+.light-text {
+  color: var(--main-text-color) !important;
+}
+
+.light-subtext {
+  color: var(--main-desc-text-color) !important;
+}
+
+.dark-text {
+  color: var(--main-text-dark) !important;
+}
+
+.dark-subtext {
+  color: var(--main-desc-text-dark) !important;
 }
 
 .ant-layout-content {
-  background: white;
+  transition: 0.3s all;
+}
+
+.ant-layout-content.light {
+  background: var(--main-background-color);
+  color: var(--main-body-text-color);
+}
+
+.ant-layout-content.dark {
+  background: var(--main-background-dark);
+  color: var(--main-body-text-dark);
 }
 
 .page-wrapper {
@@ -59,6 +102,11 @@
 
 .primary-text {
   color: var(--main-accent-color);
+}
+
+.red-star {
+  margin: 0 5px;
+  color: red;
 }
 
 @media (max-width: 792px) {

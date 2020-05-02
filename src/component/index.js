@@ -20,6 +20,8 @@ import ProjectDetailUpdates from './ProjectDetailUpdates/ProjectDetailUpdates';
 
 import ProjectDetailComments from './ProjectDetailComments/ProjectDetailComments';
 
+import ProejctDetailApplicants from './ProjectDetailApplicants/ProjectDetailApplicants';
+
 import ExploreCondition from './ExploreCondition/ExploreCondition';
 
 import ExploreResult from './ExploreResult/ExploreResult';
@@ -34,6 +36,10 @@ import { QAForm } from './QAForm/QAForm';
 
 import { PeopleForm } from './PeopleForm/PeopleForm';
 
+import EditBasicDetail from './EditProject/EditBasicDetail';
+
+import EditDetail from './EditProject/EditDetail';
+
 export {
   MainNav,
   MainFooter,
@@ -46,6 +52,7 @@ export {
   ProjectDetailFAQ,
   ProjectDetailUpdates,
   ProjectDetailComments,
+  ProejctDetailApplicants,
   ExploreCondition,
   ExploreResult,
   CreateBasicDetail,
@@ -53,4 +60,6 @@ export {
   ProjectPanel,
   QAForm,
   PeopleForm,
+  EditBasicDetail,
+  EditDetail,
 }

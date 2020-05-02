@@ -4,34 +4,34 @@ import { Typography, Button, Icon } from 'antd';
 import { Parallax } from 'rc-scroll-anim';
 import PropTypes from 'prop-types';
 
+import { RefreshToken } from '../../helpers';
+
 import AppLang from '../../AppContext';
 
 import content from './LangLearnMore';
 
 import './StyleLearnMore.css';
 
-// import imgwall1 from '/assets/explore-banner.jpg';
-
-
 const { Title } = Typography;
 
 export class LearnMore extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     window.scrollTo(0, 0);
   }
   render() {
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     return (
       <div className="learnmore-container">
+        <RefreshToken />
         <div className="learnmore-header">
-          <Title className="bold" level={1}>{content[lang].title}</Title>
-          <p className="learnmore-header-description bold">{content[lang].description}</p>
-          <Button className="start-project-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
+          <Title className={'bold ' + appTheme + '-text'} level={1}>{content[appLang].title}</Title>
+          <p className="learnmore-header-description bold">{content[appLang].description}</p>
+          <Button className="start-project-button" type="primary"><Link to="/createproject">{content[appLang].startProjectBtn}</Link></Button>
         </div>
-        <ImageGallerySection lang={lang} />
-        <Advertisement lang={lang} />
-        <StartProject lang={lang} />
+        <ImageGallerySection lang={appLang} />
+        <Advertisement lang={appLang} theme={appTheme}/>
+        <StartProject lang={appLang} theme={appTheme} />
       </div>
     )
   }
@@ -48,43 +48,43 @@ export const ImageGallerySection = () => (
       animation={{ x: 0, opacity: 1, playScale: [1, 1.5] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall4" src="/assets/imgwall4.jpg" />
+      <img alt="wall4" className="learnmore-image imgwall4" src="/assets/imgwall4.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.6] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall7" src="/assets/imgwall7.jpg" />
+      <img alt="wall7" className="learnmore-image imgwall7" src="/assets/imgwall7.jpg" />
     </Parallax>
     <Parallax
       animation={{ opacity: 1, playScale: [0.9, 1.2] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall2" src="/assets/imgwall2.jpg" />
+      <img alt="wall2" className="learnmore-image imgwall2" src="/assets/imgwall2.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.4] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall3" src="/assets/imgwall3.jpg" />
+      <img alt="wall3" className="learnmore-image imgwall3" src="/assets/imgwall3.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.7] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall6" src="/assets/imgwall6.jpg" />
+      <img alt="wall6" className="learnmore-image imgwall6" src="/assets/imgwall6.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.8] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall5" src="/assets/imgwall5.jpg" />
+      <img alt="wall5" className="learnmore-image imgwall5" src="/assets/imgwall5.jpg" />
     </Parallax>
-    <img className="learnmore-image imgwall1" src="/assets/imgwall1.jpg" />
+    <img alt="wall1" className="learnmore-image imgwall1" src="/assets/imgwall1.jpg" />
   </div >
 );
 
-export const Advertisement = ({ lang }) => (
+export const Advertisement = ({ lang, theme }) => (
   <div className="learnmore-ad">
     <Parallax
       animation={{ scale: 1, playScale: [0.1, 0.5] }}
@@ -92,13 +92,13 @@ export const Advertisement = ({ lang }) => (
     >
       <div className="learnmore-ad-title">
         <span className="bold" style={{ color: 'white' }}>{content[lang].title + ' '}</span>
-        <span className="bold">{content[lang].adTitle}</span>
+        <span className={'bold ' + theme + '-text'}>{content[lang].adTitle}</span>
       </div>
       <p className="bold">{content[lang].adDescription}</p>
       <div>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad1}</span></span>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad2}</span></span>
-        <span className="learnmore-ad-text"><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /><span className="learnmore-ad-innertext">{content[lang].ad3}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad1}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad2}</span></span>
+        <span className="learnmore-ad-text"><Icon type="check-circle" /><span className="learnmore-ad-innertext">{content[lang].ad3}</span></span>
       </div>
     </Parallax>
   </div >
@@ -106,15 +106,17 @@ export const Advertisement = ({ lang }) => (
 
 Advertisement.propTypes = {
   lang: PropTypes.string,
+  theme: PropTypes.string,
 }
 
-export const StartProject = ({ lang }) => (
+export const StartProject = ({ lang, theme }) => (
   <div className="learnmore-startProject">
-    <Title className="bold" level={2}>{content[lang].idea}</Title>
+    <Title className={'bold ' + theme + '-text'} level={2}>{content[lang].idea}</Title>
     <Button className="gradient-button" type="primary"><Link to="/createproject">{content[lang].startProjectBtn}</Link></Button>
   </div>
 );
 
 StartProject.propTypes = {
   lang: PropTypes.string,
+  theme: PropTypes.string,
 }

@@ -6,16 +6,20 @@ import AppLang from '../../AppContext';
 
 import content from './LangError';
 
+import './StyleError.css';
+
 export class Error500 extends Component {
   render() {
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     return (
-      <Result
-        status="500"
-        title="500"
-        subTitle={content[lang].err500}
-        extra={<Button onClick={() => this.props.history.push('/')} type="primary">{content[lang].backHomeBtn}</Button>}
-      />
+      <div className="errorContainer">
+        <Result
+          status="500"
+          title={<span className={appTheme + '-text'}>500</span>}
+          subTitle={<span className={appTheme + '-text'}>{content[appLang].err500}</span>}
+          extra={<Button onClick={() => this.props.history.push('/')} type="primary">{content[appLang].backHomeBtn}</Button>}
+        />
+      </div>
     )
   }
 }

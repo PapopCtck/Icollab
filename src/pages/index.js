@@ -18,11 +18,17 @@ import Profile from './Profile/Profile';
 
 import CreateProject from './Create/CreateProject';
 
+import EditProject from './EditProject/EditProject';
+
+import TrackAppliedProject from './TrackAppliedProject/TrackAppliedProject';
+
 import TrackProject from './TrackProject/TrackProject';
 
 import LearnMore from './LearnMore/LearnMore';
 
-export { 
+import { Success, ApplySuccess } from './Success/Success';
+
+export {
   //Landing Page
   Main,
   //User Pages
@@ -39,8 +45,15 @@ export {
   Profile,
   //CreateProject page
   CreateProject,
+  //EditProject page
+  EditProject,
   //TrackProject
   TrackProject,
   //LearnMore
   LearnMore,
+  //Success page
+  Success,
+  ApplySuccess,
+  //TrackAppliedProject
+  TrackAppliedProject,
 };

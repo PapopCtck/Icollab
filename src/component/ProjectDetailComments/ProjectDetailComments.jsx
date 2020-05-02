@@ -10,14 +10,15 @@ import './StyleProjectDetailComments.css'
 const { TextArea } = Input;
 
 //todo use this to render comment list
-const CommentList = ({ comments }) => (
+const CommentList = ({ comments, theme }) => (
   <List
     dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+    header={<div className={theme + '-text'}>{comments.length + ' '}{comments.length > 1 ? 'replies' : 'reply'}</div>}
     itemLayout="horizontal"
     renderItem={item =>
       <Comment
-        author={item.author.fullName}
+        className={theme + '-text'}
+        author={<div className={theme + '-subtext'}>{item.author.fullName}</div>}
         avatar={
           <Avatar
             src={item.author.userImg ? item.author.userImg : null}
@@ -40,6 +41,7 @@ const CommentList = ({ comments }) => (
 
 CommentList.propTypes = {
   comments: PropTypes.array,
+  theme: PropTypes.string,
 }
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
@@ -72,13 +74,10 @@ export class ProjectDetailComments extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value)
     this.setState({ value: e.target.value })
   }
 
-  handleSubmit = (obj) => {
-    //todo add submit comment here
-    console.log(obj)
+  handleSubmit = () => {
     this.setState({ submitting: true })
     setTimeout(() => {
       this.setState({ submitting: false })
@@ -87,7 +86,7 @@ export class ProjectDetailComments extends Component {
 
   render() {
     const { submitting, value } = this.state;
-    const { data } = this.props;
+    const { data, theme } = this.props;
     return (
       <div className="projectdetail-comments-container">
         <div className="projectdetail-main">
@@ -97,9 +96,9 @@ export class ProjectDetailComments extends Component {
             submitting={submitting}
             value={value}
           />
-          <CommentList comments={data.projectComments} />
+          <CommentList theme={theme} comments={data.projectComments} />
         </div>
-        <div className="projectdetail-sider">
+        <div className={'projectdetail-sider ' + theme + '-text' }>
           <div className="bold">
             This is your space to offer support and feedback.
             Remember to be constructive
@@ -121,4 +120,5 @@ export default ProjectDetailComments;
 
 ProjectDetailComments.propTypes = {
   data: PropTypes.object,
+  theme: PropTypes.string,
 }

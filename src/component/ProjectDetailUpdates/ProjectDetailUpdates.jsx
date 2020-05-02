@@ -59,15 +59,15 @@ export class ProjectDetailUpdates extends Component {
     const newDate = new Date(date);
     this.setState({
       activeMonth: monthArray.indexOf(`${newDate.getMonth()} ${newDate.getFullYear()}`),
-    }, () => console.log(this.state))
+    })
   }
 
   render() {
     const { sticky, monthArray, activeMonth } = this.state;
-    const { data } = this.props;
+    const { data, theme } = this.props;
     const sortedUpdates = data.projectUpdates.sort((a, b) => new Date(b.updatedAt ? b.updatedAt : b.createdAt) - new Date(a.updatedAt ? a.updatedAt : a.createdAt))
     return (
-      <div className="projectdetail-updates-container" ref={(ref) => this.timeline = ref}>
+      <div className={'projectdetail-updates-container ' + theme + '-text'} ref={(ref) => this.timeline = ref}>
         <div className="projectdetail-main">
           {
             sortedUpdates.map((update, index) => (
@@ -84,14 +84,14 @@ export class ProjectDetailUpdates extends Component {
                 style={{ transform: 'translateY(100px)', opacity: 0 }}
                 className="code-box-shape"
               >
-                <UpdateBox update={update} />
+                <UpdateBox update={update} theme={theme} />
               </Parallax>
             ))
           }
 
         </div>
         <div className={'projectdetail-sider'} >
-          <Timeline className={`projectdetail-timeline ${sticky ? 'sticky' : ''}`}>
+          <Timeline className={`projectdetail-timeline ${sticky ? 'sticky' : ''} ${theme + '-text'}`}>
             {
               monthArray.map((month, index) => {
                 month = month.split(' ');
@@ -111,4 +111,5 @@ export default ProjectDetailUpdates;
 
 ProjectDetailUpdates.propTypes = {
   data: PropTypes.object,
+  theme: PropTypes.string,
 }

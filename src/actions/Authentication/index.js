@@ -1,4 +1,4 @@
-import { FNRedirect, createCookie } from '../../helpers';
+import { FNRedirect, createCookie, getCookie } from '../../helpers';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
@@ -60,8 +60,9 @@ export function fetchLogin(loginForm) {
       const data = await res.json();
 
       if (res.status === 200) {
-        createCookie('icollab_token',data.token, 1);
-        createCookie('icollab_userinfo',JSON.stringify(data.data), 1);
+        createCookie('icollab_token', data.token, 1);
+        createCookie('icollab_refreshtoken', data.refreshToken, 1);
+        createCookie('icollab_userinfo', JSON.stringify(data.data), 1);
         return dispatch({
           type: LOGIN_SUCCESS,
           data,
@@ -90,4 +91,33 @@ export function fetchLogin(loginForm) {
       });
     }
   };
+}
+
+export function fetchRefreshToken() {
+  return async () => {
+    if (getCookie('icollab_refreshtoken')) {
+      try {
+        const email = JSON.parse(getCookie('icollab_userinfo'))[0].email;
+        const res = await fetch(`${host}/v1/users/token`, {
+          method: 'POST',
+          body: JSON.stringify({ refreshtoken: getCookie('icollab_refreshtoken'), email }),
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+        });
+        const data = await res.json();
+        if (res.status === 200) {
+          await createCookie('icollab_token', data.accessToken, 1);
+          await createCookie('icollab_userinfo', getCookie('icollab_userinfo'), 1);
+          await createCookie('icollab_refreshtoken', getCookie('icollab_refreshtoken'), 1);
+          return;
+        } else if (res.status === 400 || res.status === 403) {
+          return FNRedirect('/login');
+        }
+        else if (res.status === 500 || res.status === 502) {
+          return FNRedirect('/500');
+        }
+      } catch (err) {
+        return;
+      }
+    }
+  }
 }

@@ -18,13 +18,13 @@ export class MainNav extends Component {
       drawerVisible: !drawerVisible,
     })
   }
-  renderRightDrawer = () => <div><LeftNav onClick={this.toggleDrawer} mode="inline" {...this.props} /> <RightNav onClick={this.toggleDrawer} mode="inline" /></div>
+  renderRightDrawer = () => <div><LeftNav onClick={this.toggleDrawer} mode="inline" {...this.props} /> <RightNav onClick={this.toggleDrawer} mode="inline" {...this.props}/></div>
   render() {
     const { appLang } = this.props;
     return (
-      <NavBar title={content[appLang].title} visible={this.state.drawerVisible} toggleDrawer={this.toggleDrawer} drawer={this.renderRightDrawer()}>
+      <NavBar theme={this.props.appTheme} title={content[appLang].title} visible={this.state.drawerVisible} toggleDrawer={this.toggleDrawer} drawer={this.renderRightDrawer()}>
         <div className="menuRigth">
-          <RightNav mode="horizontal" appLang={appLang} />
+          <RightNav mode="horizontal" {...this.props} />
         </div>
         <div className="vertical-line"></div>
         <div className="menuLeft">
@@ -40,4 +40,5 @@ export default MainNav;
 
 MainNav.propTypes = {
   appLang: PropTypes.string,
+  appTheme: PropTypes.string,
 }

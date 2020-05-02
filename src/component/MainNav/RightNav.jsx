@@ -18,6 +18,7 @@ class RightNav extends Component {
 
   logout = () => {
     deleteCookie('icollab_token');
+    deleteCookie('icollab_refreshtoken');
     deleteCookie('icollab_userinfo');
     this.modalSuccess();
   }
@@ -30,26 +31,31 @@ class RightNav extends Component {
   }
 
   render() {
-    const { appLang } = this.props;
+    const { appLang, appTheme } = this.props;
+    //if user
     if (getCookie('icollab_token')) {
       const userInfo = JSON.parse(getCookie('icollab_userinfo'));
+      //if inline
       if (this.props.mode === 'inline') {
         return (
-          <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+          <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
             <Menu.Item key="profile">
               <Link to="/profile" className="rightnav-profile">{content[appLang].profile}</Link>
             </Menu.Item>
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
-            <Menu.Item key="logout">
-              <span className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
+            <Menu.Item key="appliedProject">
+              <Link to="/appliedproject" className="rightnav-trackproject">{content[appLang].appliedProject}</Link>
+            </Menu.Item>
+            <Menu.Item key="logout" onClick={this.logout}>
+              <span className="rightnav-logout">{content[appLang].logout}</span>
             </Menu.Item>
           </Menu>
         );
       }
       return (
-        <Menu mode={this.props.mode} selectable={false}>
+        <Menu theme={appTheme} mode={this.props.mode} selectable={false}>
           <SubMenu
             title={
               <div className="rightnav-title">
@@ -66,15 +72,19 @@ class RightNav extends Component {
             <Menu.Item key="trackProject">
               <Link to="/trackproject" className="rightnav-trackproject">{content[appLang].trackProject}</Link>
             </Menu.Item>
-            <Menu.Item key="logout">
-              <span to="/" className="rightnav-logout" onClick={this.logout}>{content[appLang].logout}</span>
+            <Menu.Item key="appliedProject">
+              <Link to="/appliedproject" className="rightnav-trackproject">{content[appLang].appliedProject}</Link>
+            </Menu.Item>
+            <Menu.Item key="logout" onClick={this.logout}>
+              <span to="/" className="rightnav-logout">{content[appLang].logout}</span>
             </Menu.Item>
           </SubMenu>
         </Menu>
       )
     }
+    //if no user
     return (
-      <Menu mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
+      <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         <Menu.Item key="signup">
           <Link to="/register">{content[appLang].signup}</Link>
         </Menu.Item>
@@ -94,4 +104,5 @@ RightNav.propTypes = {
     push: PropTypes.func,
   }),
   onClick: PropTypes.func,
+  appTheme: PropTypes.string,
 };
