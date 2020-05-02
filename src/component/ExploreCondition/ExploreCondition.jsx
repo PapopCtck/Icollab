@@ -73,4 +73,7 @@ ExploreCondition.propTypes = {
   appLang: PropTypes.string,
   content: PropTypes.object,
   handleSearchChange: PropTypes.func,
+  appTheme: PropTypes.string, 
+  projectCategory: PropTypes.string, 
+  jobTitles: PropTypes.string,
 }

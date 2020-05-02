@@ -7,9 +7,7 @@
 }
 
 .detailheader-image-container {
-  /* height: 35vh; */
   line-height: 35vh;
-  /* max-height: 320px; */
   min-width: 320px;
   width: 100%;
   overflow: hidden;

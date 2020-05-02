@@ -41,6 +41,7 @@ const CommentList = ({ comments, theme }) => (
 
 CommentList.propTypes = {
   comments: PropTypes.array,
+  theme: PropTypes.string,
 }
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
@@ -73,13 +74,10 @@ export class ProjectDetailComments extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value)
     this.setState({ value: e.target.value })
   }
 
-  handleSubmit = (obj) => {
-    //todo add submit comment here
-    console.log(obj)
+  handleSubmit = () => {
     this.setState({ submitting: true })
     setTimeout(() => {
       this.setState({ submitting: false })
@@ -122,4 +120,5 @@ export default ProjectDetailComments;
 
 ProjectDetailComments.propTypes = {
   data: PropTypes.object,
+  theme: PropTypes.string,
 }

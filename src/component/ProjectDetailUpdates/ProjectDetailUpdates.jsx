@@ -59,7 +59,7 @@ export class ProjectDetailUpdates extends Component {
     const newDate = new Date(date);
     this.setState({
       activeMonth: monthArray.indexOf(`${newDate.getMonth()} ${newDate.getFullYear()}`),
-    }, () => console.log(this.state))
+    })
   }
 
   render() {
@@ -111,4 +111,5 @@ export default ProjectDetailUpdates;
 
 ProjectDetailUpdates.propTypes = {
   data: PropTypes.object,
+  theme: PropTypes.string,
 }

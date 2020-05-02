@@ -69,8 +69,9 @@ export class ExploreResult extends Component {
               title={<div className={appTheme + '-text'}>{project.projecttitle}</div>}
               description={
                 <div className={'explore-card-container ' + appTheme + '-subtext'}>
-                  {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
-                  {index === 1 ? <span className="card-status-banner bold status-sponsored">Sponsored</span> : null}
+                  {/* TBD function */}
+                  {/* {index === 0 ? <span className="card-status-banner bold status-featured">Featured</span> : null}
+                  {index === 1 ? <span className="card-status-banner bold status-sponsored">Sponsored</span> : null} */}
                   <div className="explore-card-description-text">
                     {project.projectdescription}
                   </div>
@@ -82,7 +83,6 @@ export class ExploreResult extends Component {
                       <Icon type="clock-circle" />
                       <span className="explore-card-time-text">{timeSince(project.created)}</span>
                     </span>
-                    {/* <span className="explore-card-bottom-right">by {project.projectStarters[0].fullName}</span> */}
                     <span className="explore-card-bottom-right">by {project.projectstarter_name ? project.projectstarter_name : 'John doe'}</span>
                   </div>
                 </div>
@@ -162,4 +162,6 @@ ExploreResult.propTypes = {
   handleCheck: PropTypes.func,
   appLang: PropTypes.string,
   content: PropTypes.object,
+  appTheme: PropTypes.string, 
+  roleNeeded: PropTypes.array,
 }

@@ -1,7 +1,7 @@
 export default {
   th: {
     saveProject: 'บันทึกโปรเจค',
-    publish: 'เผยแผร่โปรเจค',
+    publish: 'เผยแผร่โปรเจคแก้ไข',
     cancel: 'ยกเลิก',
     next: 'ถัดไป',
     prev: 'ก่อนหน้า',
@@ -46,7 +46,7 @@ export default {
   },
   en: {
     saveProject: 'Save your project',
-    publish: 'Publish',
+    publish: 'Publish edited project',
     cancel: 'Cancel',
     next: 'Next',
     prev: 'Prev',

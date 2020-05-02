@@ -40,4 +40,5 @@ export default MainNav;
 
 MainNav.propTypes = {
   appLang: PropTypes.string,
+  appTheme: PropTypes.string,
 }

@@ -83,4 +83,6 @@ export default LandingCarousel;
 LandingCarousel.propTypes = {
   children: PropTypes.any,
   featuredProject: PropTypes.array,
+  appTheme: PropTypes.string, 
+  roleNeeded: PropTypes.array,
 }

@@ -103,5 +103,7 @@ CreateBasicDetail.propTypes = {
   show: PropTypes.bool,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
-  setLang: PropTypes.func,
+  setLang: PropTypes.func.isRequired,
+  setTheme: PropTypes.func.isRequired,
+  projectCategory: PropTypes.array,
 }

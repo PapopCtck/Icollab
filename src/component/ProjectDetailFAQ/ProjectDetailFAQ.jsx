@@ -50,5 +50,6 @@ export class ProjectDetailFAQ extends Component {
 export default ProjectDetailFAQ;
 
 ProjectDetailFAQ.propTypes = {
-  data: PropTypes.object,
+  projectDetailAll: PropTypes.object, 
+  theme: PropTypes.string,
 }

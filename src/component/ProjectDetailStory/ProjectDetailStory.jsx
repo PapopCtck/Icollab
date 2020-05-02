@@ -8,10 +8,6 @@ import './StyleProjectDetailStory.css';
 const { Meta } = Card;
 
 export class ProjectDetailStory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     const { projectDetailAll, theme } = this.props;
     const projectDetail = projectDetailAll.Project[0];
@@ -29,7 +25,6 @@ export class ProjectDetailStory extends Component {
                   <Meta title={<div className={'bold ' + theme + '-text'}>{role.jobtitle}</div>} />
                   <div className="projectdetail-story-rolecard-skill">
                     Skills : {role.jobskills}
-                    {/* {role.jobSkill.map((skill) => skill)} */}
                   </div>
                   <div className="projectdetail-story-rolecard-description">
                     Description : {role.jobdescription}
@@ -72,6 +67,6 @@ export class ProjectDetailStory extends Component {
 export default ProjectDetailStory;
 
 ProjectDetailStory.propTypes = {
-  projectDetail: PropTypes.object,
-  data: PropTypes.object,
+  projectDetailAll: PropTypes.object, 
+  theme: PropTypes.string,
 }

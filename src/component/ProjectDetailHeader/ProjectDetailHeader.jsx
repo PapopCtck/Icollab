@@ -34,9 +34,6 @@ const openNotification = theme => {
     message: <span className={theme + '-text'}>Thank you for your report</span>,
     description:
       'We will take a look at your report and take fix the problem as soon as possible.',
-    onClick: () => {
-      console.log('Notification Clicked!');
-    },
     style: theme == 'dark' ? { background: '#29292e', color: '#ffffffd9' } : { background: 'white' },
   });
 };
@@ -69,7 +66,6 @@ export class DetailHeader extends Component {
     };
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
-      console.log(id)
       props.dispatch(fetchGetProfile({ id }, getCookie('icollab_token')));
     }
   }
@@ -78,13 +74,13 @@ export class DetailHeader extends Component {
     if (prevProps.fetchGetProfile !== this.props.fetchGetProfile) {
       const fetchGetProfile = this.props.fetchGetProfile;
       if (fetchGetProfile) {
-        this.setState({ user: fetchGetProfile.User[0] }, () => console.log(this.state));
+        this.setState({ user: fetchGetProfile.User[0] });
       }
     }
     if (prevProps.fetchApplyProject !== this.props.fetchApplyProject) {
       const fetchApplyProject = this.props.fetchApplyProject;
       if (fetchApplyProject.status === 200) {
-        this.setState({ applyLoading: false }, () => console.log(this.state));
+        this.setState({ applyLoading: false });
         this.toggleApply();
         this.props.history.push('/applysuccess')
       } else {
@@ -95,7 +91,7 @@ export class DetailHeader extends Component {
     if (prevProps.fetchReportProject !== this.props.fetchReportProject) {
       const fetchReportProject = this.props.fetchReportProject;
       if (fetchReportProject.status === 200) {
-        this.setState({ reportLoading: false }, () => console.log(this.state));
+        this.setState({ reportLoading: false });
         this.toggleReport();
         openNotification(this.props.theme);
       } else {
@@ -148,7 +144,6 @@ export class DetailHeader extends Component {
     if (token) {
       validateFieldsAndScroll((err, reportForm) => {
         if (!err) {
-          console.log('Received values of form: ', reportForm);
           this.props.dispatch(fetchReportProject({ projectid: this.props.projectId, ...reportForm }, token));
           resetFields();
         } else {
@@ -166,9 +161,8 @@ export class DetailHeader extends Component {
     const token = getCookie('icollab_token');
     const { user } = this.state;
     if (token) {
-      validateFieldsAndScroll((err, applyForm) => {
+      validateFieldsAndScroll((err) => {
         if (!err) {
-          console.log('Received values of form: ', applyForm);
           this.props.dispatch(fetchApplyProject({ projectid: this.props.projectId, userid: user.user_uid }, token));
           resetFields();
         } else {
@@ -254,6 +248,15 @@ export default withRouter(connect(mapStateToProps)(DetailHeader));
 DetailHeader.propTypes = {
   projectDetail: PropTypes.object,
   projectId: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+  projectDetailAll: PropTypes.object,
+  theme: PropTypes.string,
+  fetchGetProfile: PropTypes.object,
+  fetchApplyProject: PropTypes.object,
+  fetchReportProject: PropTypes.object,
 };
 
 
@@ -310,9 +313,22 @@ const ReportModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, reset
   </Modal>
 );
 
+ReportModal.propTypes = {
+  form: PropTypes.shape({
+    getFieldDecorator: PropTypes.func,
+    validateFieldsAndScroll: PropTypes.func,
+    resetFields: PropTypes.func,
+  }),
+  showReport: PropTypes.bool,
+  loading: PropTypes.bool,
+  theme: PropTypes.string,
+  toggleReport: PropTypes.func,
+  handleSubmit: PropTypes.func,
+}
+
 export const WrappedReportForm = Form.create({ name: 'report' })(ReportModal);
 
-const ApplyModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, resetFields }, showApply, toggleApply, theme, user, handleSubmit, loading }) => {
+const ApplyModal = ({ form: { validateFieldsAndScroll, resetFields }, showApply, toggleApply, theme, user, handleSubmit, loading }) => {
   if (user) {
     return (
       <Modal
@@ -327,32 +343,10 @@ const ApplyModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, resetF
           <Avatar className="applyModal-avatar" size={128} icon="user" />
           <Rate className="applyModal-rate" style={{ marginTop: '20px' }} disabled defaultValue={0} />
           <h2 className={'applyModal-username ' + theme + '-text'}>{user.name + ' ' + user.lastname}</h2>
-          <h3 className={theme + '-text'}>Applied for</h3>
+          {/* <h3 className={theme + '-text'}>Applied for</h3> */}
           <Form className="apply-form"
             onSubmit={e => handleSubmit(e, validateFieldsAndScroll, resetFields)}
           >
-            <Form.Item>
-              {getFieldDecorator('position', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please specified your position for this application!',
-                  },
-                ],
-              })(
-                <Select
-                  style={{ width: '100%', marginBottom: '10px' }}
-                  placeholder="Select a reason"
-                >
-                  <Option value="jack">Jack</Option>
-                  <Option value="lucy">Lucy</Option>
-                  <Option value="disabled" disabled>
-                    Disabled
-                  </Option>
-                  <Option value="Yiminghe">yiminghe</Option>
-                </Select>,
-              )}
-            </Form.Item>
             <p className={theme + '-text'}>by clicking apply you agree to our Term of Service and Privacy Policy</p>
             <Button htmlType="submit" type="primary" block loading={loading}>
               Apply
@@ -363,6 +357,20 @@ const ApplyModal = ({ form: { getFieldDecorator, validateFieldsAndScroll, resetF
     )
   }
   return null;
+}
+
+ApplyModal.propTypes ={
+  form: PropTypes.shape({
+    getFieldDecorator: PropTypes.func,
+    validateFieldsAndScroll: PropTypes.func,
+    resetFields: PropTypes.func,
+  }),
+  showApply: PropTypes.bool, 
+  toggleApply: PropTypes.func, 
+  theme: PropTypes.string, 
+  user: PropTypes.object, 
+  handleSubmit: PropTypes.func, 
+  loading: PropTypes.bool,
 }
 
 export const WrappedApplyForm = Form.create({ name: 'apply' })(ApplyModal);

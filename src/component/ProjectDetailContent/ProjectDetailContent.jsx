@@ -54,5 +54,8 @@ export class ProjectDetailContent extends Component {
 export default ProjectDetailContent
 
 ProjectDetailContent.propTypes = {
-  projectDetail: PropTypes.object,
+  projectDetailAll: PropTypes.object, 
+  mockupData: PropTypes.object, 
+  theme: PropTypes.string, 
+  projectId: PropTypes.string,
 };

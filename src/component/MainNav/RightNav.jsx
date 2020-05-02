@@ -104,4 +104,5 @@ RightNav.propTypes = {
     push: PropTypes.func,
   }),
   onClick: PropTypes.func,
+  appTheme: PropTypes.string,
 };

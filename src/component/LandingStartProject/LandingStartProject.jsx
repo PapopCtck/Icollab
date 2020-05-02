@@ -24,4 +24,5 @@ export default LandingStartProject;
 
 LandingStartProject.propTypes = {
   lang: PropTypes.string,
+  appTheme: PropTypes.string,
 }

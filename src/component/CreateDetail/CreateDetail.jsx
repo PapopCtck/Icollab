@@ -86,8 +86,10 @@ CreateDetail.propTypes = {
   setImage: PropTypes.func,
   onFinish: PropTypes.func,
   handleChange: PropTypes.func,
-  setLang: PropTypes.func,
+  setLang: PropTypes.func.isRequired,
   projectStory: PropTypes.string,
+  setTheme: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
 }
 
 export const CreateDetailBasic = ({ onInput, handleChange, imageUrl, content, appTheme }) => (
@@ -123,6 +125,7 @@ CreateDetailBasic.propTypes = {
   setImage: PropTypes.func,
   handleChange: PropTypes.func,
   content: PropTypes.object,
+  appTheme: PropTypes.string,
 }
 
 const modules = {
@@ -167,4 +170,5 @@ CreateStory.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func,
   content: PropTypes.object,
+  appTheme: PropTypes.string,
 }

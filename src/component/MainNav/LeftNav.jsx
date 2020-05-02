@@ -14,7 +14,7 @@ export class LeftNav extends Component {
   }
   render() {
     const { pathname } = this.props.location;
-    const { appLang,appTheme } = this.props;
+    const { appLang, appTheme } = this.props;
     return (
       <Menu theme={appTheme} mode={this.props.mode} selectable={false} onClick={this.props.onClick}>
         {this.props.mode === 'inline' ?
@@ -62,4 +62,6 @@ LeftNav.propTypes = {
   onClick: PropTypes.func,
   setLang: PropTypes.func,
   appLang: PropTypes.string,
+  appTheme: PropTypes.string,
+  setTheme: PropTypes.func,
 };

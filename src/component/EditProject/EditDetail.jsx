@@ -128,8 +128,18 @@ CreateDetail.propTypes = {
   setImage: PropTypes.func,
   onFinish: PropTypes.func,
   handleChange: PropTypes.func,
-  setLang: PropTypes.func,
+  setLang: PropTypes.func.isRequired,
   projectStory: PropTypes.string,
+  setTheme: PropTypes.func.isRequired, 
+  loading: PropTypes.bool, 
+  projectTitle: PropTypes.string, 
+  projectDescription: PropTypes.string,
+  tags: PropTypes.array, 
+  initContributors: PropTypes.array, 
+  questionList: PropTypes.array, 
+  handleDeleteQuestion: PropTypes.func, 
+  roleNeeded: PropTypes.array, 
+  handleDeletePeople: PropTypes.func,
 }
 
 export const CreateDetailBasic = ({ onInput, handleChange, imageUrl, content, appTheme, projectTitle, projectDescription, tags }) => (
@@ -165,6 +175,10 @@ CreateDetailBasic.propTypes = {
   setImage: PropTypes.func,
   handleChange: PropTypes.func,
   content: PropTypes.object,
+  appTheme: PropTypes.string, 
+  projectTitle: PropTypes.string, 
+  projectDescription: PropTypes.string, 
+  tags: PropTypes.array,
 }
 
 const modules = {
@@ -209,4 +223,5 @@ CreateStory.propTypes = {
   value: PropTypes.string,
   handleChange: PropTypes.func,
   content: PropTypes.object,
+  appTheme: PropTypes.string,
 }

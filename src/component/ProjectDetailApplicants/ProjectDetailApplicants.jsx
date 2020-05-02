@@ -36,7 +36,7 @@ class ProjectDetailApplicants extends Component {
     if (prevProps.fetchGetParticipants !== this.props.fetchGetParticipants) {
       const fetchGetParticipants = this.props.fetchGetParticipants;
       if (fetchGetParticipants) {
-        this.setState({ participants: fetchGetParticipants.participant, loading: false }, () => console.log(this.state));
+        this.setState({ participants: fetchGetParticipants.participant, loading: false });
       } else {
         this.setState({ loading: false });
       }
@@ -54,15 +54,15 @@ class ProjectDetailApplicants extends Component {
 
   toggleModal = (participant) => {
     if (participant) {
-      this.setState({ showModal: !this.state.showModal, participant }, () => console.log(this.state));
+      this.setState({ showModal: !this.state.showModal, participant });
     } else {
-      this.setState({ showModal: !this.state.showModal }, () => console.log(this.state));
+      this.setState({ showModal: !this.state.showModal });
     }
   }
 
   handleDelete = (participant) => {
     this.props.dispatch(fetchDeleteParticipant({ participantid: participant.user_uid, projectid: this.props.projectId }, getCookie('icollab_token')));
-    this.setState({ showModal: false }, () => console.log(this.state));
+    this.setState({ showModal: false });
   }
 
   renderCategory = (participants) => (
@@ -127,6 +127,10 @@ export default connect(mapStateToProps)(ProjectDetailApplicants);
 
 ProjectDetailApplicants.propTypes = {
   theme: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
+  fetchGetParticipants: PropTypes.object,
+  fetchDeleteParticipant: PropTypes.object,
+  projectId: PropTypes.string,
 }
 
 const UserBar = ({ theme, toggleModal, participant }) => (
@@ -152,6 +156,12 @@ const UserBar = ({ theme, toggleModal, participant }) => (
 
   </div>
 );
+
+UserBar.propTypes = {
+  theme: PropTypes.string, 
+  toggleModal:PropTypes.func, 
+  participant: PropTypes.object,
+}
 
 const AcceptModal = ({ visible, toggleModal, theme, participant, handleDelete }) => (
   <Modal
@@ -182,3 +192,11 @@ const AcceptModal = ({ visible, toggleModal, theme, participant, handleDelete })
     </span>
   </Modal>
 )
+
+AcceptModal.propTypes = {
+  visible: PropTypes.bool, 
+  toggleModal: PropTypes.func, 
+  theme: PropTypes.string, 
+  participant: PropTypes.object, 
+  handleDelete: PropTypes.func,
+}

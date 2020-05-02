@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Checkbox, Divider, Select, Collapse, Icon, Menu, Dropdown } from 'antd';
+import PropTypes from 'prop-types';
 
 import './StyleProjectPanel.css';
 
@@ -27,9 +28,6 @@ function ProjectPanel(props) {
       <div className="projectpanel-header">
         <span className="projectpanel-left">
           <Checkbox
-            // indeterminate={this.state.indeterminate}
-            // onChange={this.onCheckAllChange}
-            // checked={this.state.checkAll}
             disabled
           />
           <Divider type="vertical" />
@@ -65,6 +63,15 @@ function ProjectPanel(props) {
   )
 }
 
+ProjectPanel.propTypes ={
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+  resultProjects: PropTypes.array,
+  appTheme: PropTypes.string,
+  applied: PropTypes.bool,
+}
+
 export default withRouter(ProjectPanel);
 
 const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick, appTheme }) => {
@@ -91,12 +98,10 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick,
               onClick={event => {
                 event.stopPropagation();
               }}
-            // onChange={this.onCheckChange}
-            // checked={this.state.check}
             >
             </Checkbox>
             <span onClick={() => handleTitleClick(project.project_uid)}>
-              <img className="projectcollapse-header-image" src={project.image ? project.image : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'}></img>
+              <img className="projectcollapse-header-image" src={project.image ? project.image : '/assets/doge.jpg'}></img>
               <span className={'bold ' + appTheme + '-text'}>{project.projecttitle}</span>
             </span>
           </div>
@@ -119,3 +124,11 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick,
     </Collapse>
   )
 };
+
+ProjectCollapsePanel.propTypes ={
+  project: PropTypes.object, 
+  handleTitleClick: PropTypes.func, 
+  applied: PropTypes.bool, 
+  onEditClick: PropTypes.func, 
+  appTheme: PropTypes.string,
+}

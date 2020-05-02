@@ -119,4 +119,6 @@ LandingTrendingCard.propTypes = {
     push: PropTypes.func,
   }),
   lang: PropTypes.string,
+  appTheme: PropTypes.string, 
+  roleNeeded: PropTypes.array,
 }
