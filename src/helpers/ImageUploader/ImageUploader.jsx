@@ -10,24 +10,13 @@ const { Dragger } = Upload;
 
 const host = process.env.REACT_APP_ICOLLAB_BACKEND;
 
-// function getBase64(img, callback) {
-//   const reader = new FileReader();
-//   reader.addEventListener('load', () => callback(reader.result));
-//   reader.readAsDataURL(img);
-// }
-
 function onChange(info, setLoading, handleChange, imgUrl) {
-  console.log(info);
   if (info.file.status === 'uploading') {
-    console.log(info.file, info.fileList);
     setLoading(true)
     return;
   }
   if (info.file.status === 'done') {
     setLoading(false)
-    // getBase64(info.file.originFileObj, imageUrl =>
-    //   handleChange(imageUrl, 'imageUrl'),
-    // );
     handleChange(imgUrl, 'imageUrl');
   } else if (info.file.status === 'error') {
     setLoading(false)
@@ -105,6 +94,7 @@ ImageUploader.propTypes = {
   onImageUpload: PropTypes.func,
   imageUrl: PropTypes.string,
   setImage: PropTypes.func,
+  handleChange: PropTypes.func,
 }
 
 export const AvatarUploader = ({ handleChange, imageUrl }) => {
@@ -138,4 +128,9 @@ export const AvatarUploader = ({ handleChange, imageUrl }) => {
       {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : loading ? <Spin indicator={antIcon} /> : uploadButton}
     </Upload>
   );
+}
+
+AvatarUploader.propTypes = {
+  handleChange: PropTypes.func, 
+  imageUrl: PropTypes.string,
 }

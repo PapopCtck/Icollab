@@ -50,6 +50,7 @@ export function TabsBar(props) {
 TabsBar.propTypes = {
   children: PropTypes.array,
   setLang: PropTypes.func,
+  setTheme: PropTypes.func,
 }
 
 export const Tab = ({ isActiveTab, onTabClick, label, appTheme }) => (
@@ -62,6 +63,7 @@ Tab.propTypes = {
   isActiveTab: PropTypes.bool,
   onTabClick: PropTypes.func,
   label: PropTypes.string,
+  appTheme: PropTypes.string,
 }
 
 export const TabContent = ({ children, isActiveTab, onNext, onPrev, activeTab, tabLength, onFinish, header, content, appTheme, onSave, loading }) => (
@@ -101,4 +103,7 @@ TabContent.propTypes = {
   onFinish: PropTypes.func,
   header: PropTypes.string,
   content: PropTypes.object,
+  appTheme: PropTypes.string, 
+  onSave: PropTypes.func, 
+  loading: PropTypes.bool,
 }

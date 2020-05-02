@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
 import debounce from 'lodash/debounce';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { fetchSearchUser } from '../../actions';
 import { getCookie } from '../../helpers';
@@ -29,12 +30,11 @@ class UserRemoteSelect extends Component {
         text: `${user.name} ${user.lastname}`,
         value: user.user_uid,
       }));
-      this.setState({ data, fetching: false }, () => console.log(this.state));
+      this.setState({ data, fetching: false });
     }
   }
 
   fetchUser = value => {
-    console.log('fetching user', value);
     this.setState({ data: [], fetching: true });
     this.props.dispatch(fetchSearchUser({ id: value }, getCookie('icollab_token')))
   };
@@ -74,6 +74,14 @@ class UserRemoteSelect extends Component {
 const mapStateToProps = state => {
   const fetchSearchUser = state.fetchSearchUser.data;
   return { fetchSearchUser };
+}
+
+UserRemoteSelect.propTypes = {
+  initContributors: PropTypes.array,
+  fetchSearchUser: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  style: PropTypes.object,
 }
 
 export default connect(mapStateToProps)(UserRemoteSelect);

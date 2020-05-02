@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { getCookie } from '../Cookie/Cookie';
 
@@ -19,3 +20,9 @@ export const ProtectedRoute = ({ component: Component, setTheme, setLang, ...res
     }
   />
 );
+
+ProtectedRoute.propTypes = {
+  component: PropTypes.object, 
+  setTheme: PropTypes.func, 
+  setLang: PropTypes.func,
+}

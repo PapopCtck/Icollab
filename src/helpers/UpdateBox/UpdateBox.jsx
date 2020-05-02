@@ -41,4 +41,5 @@ export function UpdateBox({ update, theme }) {
 
 UpdateBox.propTypes = {
   update: PropTypes.object,
+  theme: PropTypes.string,
 }

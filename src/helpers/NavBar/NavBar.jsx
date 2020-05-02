@@ -68,4 +68,5 @@ Navbar.propTypes = {
   toggleDrawer: PropTypes.func,
   visible: PropTypes.bool,
   title: PropTypes.string,
+  theme: PropTypes.string,
 }

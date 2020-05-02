@@ -70,7 +70,6 @@ export class CarouselDisplay extends Component {
 }
 
 export default withRouter(CarouselDisplay);
-//export default withRouter(connect(mapStateToProps)(CarouselDisplay)) when using redux
 
 CarouselDisplay.propTypes = {
   children: PropTypes.any,
@@ -79,4 +78,5 @@ CarouselDisplay.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  appTheme: PropTypes.string,
 }

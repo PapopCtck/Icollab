@@ -111,4 +111,6 @@ ThailandStateSelect.propTypes = {
   multiple: PropTypes.bool,
   disabled: PropTypes.bool,
   additionalClass: PropTypes.string,
+  style: PropTypes.object, 
+  defaultValue: PropTypes.string,
 }
