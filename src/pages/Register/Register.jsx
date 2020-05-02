@@ -17,8 +17,6 @@ import content from './LangRegister';
 
 import { fetchRegister } from '../../actions';
 
-// import { Loading } from '../../helpers';
-
 import PropTypes from 'prop-types';
 
 import './StyleRegister.css';
@@ -58,7 +56,6 @@ export class Register extends Component {
     this.props.form.validateFieldsAndScroll((err, registerForm) => {
       if (!err) {
         this.setState({ loading: true });
-        console.log('Received values of form: ', registerForm);
         this.props.dispatch(fetchRegister(registerForm)).then((res) => {
           if (res.status === 200) {
             this.modalSuccess();
@@ -94,16 +91,16 @@ export class Register extends Component {
   render() {
     const { loading, redirect } = this.state;
     const { getFieldDecorator } = this.props.form;
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     if (redirect || getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
-      <div className="register-content">
-        <div className="register-box-container">
-          <Title level={2} className="register-title">{content[lang].title}</Title>
+      <div className={'register-content ' + appTheme}>
+        <div className={'register-box-container ' + appTheme}>
+          <Title level={2} className={'register-title ' + appTheme + '-text'}>{content[appLang].title}</Title>
           <Form className="register-form" onSubmit={this.handleSubmit}>
-            <h4>{content[lang].firstName}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].firstName}</h4>
             <Form.Item>
               {getFieldDecorator('firstName', {
                 rules: [{ required: true, message: 'Please input your first name!' }],
@@ -113,7 +110,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>{content[lang].lastName}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].lastName}</h4>
             <Form.Item>
               {getFieldDecorator('lastName', {
                 rules: [{ required: true, message: 'Please input your last name!' }],
@@ -123,7 +120,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>{content[lang].email}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].email}</h4>
             <Form.Item>
               {getFieldDecorator('email', {
                 rules: [
@@ -143,7 +140,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>{content[lang].password}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].password}</h4>
             <Form.Item className="register-password">
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
@@ -155,7 +152,7 @@ export class Register extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>{content[lang].confirmPassword}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].confirmPassword}</h4>
             <Form.Item className="register-confirmpassword">
               {getFieldDecorator('confirmPassword', {
                 rules: [
@@ -184,8 +181,8 @@ export class Register extends Component {
                 }],
               })(
                 <Checkbox>
-                  <span className="register-checkbox-text">
-                    {content[lang].agree1} <Link to="#">{content[lang].tou}</Link> {content[lang].agree2} <Link to="#">{content[lang].privacy}</Link>
+                  <span className={'register-checkbox-text ' + appTheme + '-text'}>
+                    {content[appLang].agree1} <Link to="#">{content[appLang].tou}</Link> {content[appLang].agree2} <Link to="#">{content[appLang].privacy}</Link>
                   </span>
                 </Checkbox>,
               )}
@@ -195,22 +192,22 @@ export class Register extends Component {
                 valuePropName: 'checked',
               })(
                 <Checkbox>
-                  <span className="register-checkbox-text">
-                    {content[lang].newsletter}
+                  <span className={'register-checkbox-text ' + appTheme + '-text'}>
+                    {content[appLang].newsletter}
                   </span>
                 </Checkbox>,
               )}
             </Form.Item>
             <Form.Item className="register-button-container">
               <Button type="primary" htmlType="submit" className="register-button" block loading={loading}>
-                {content[lang].registerBtn}
+                {content[appLang].registerBtn}
               </Button>
             </Form.Item>
           </Form>
           <div className="register-login">
-            {content[lang].gotAccount}&nbsp;
+            {content[appLang].gotAccount}&nbsp;
             <Link to="/login">
-              {content[lang].login}
+              {content[appLang].login}
             </Link>
           </div>
         </div>

@@ -15,8 +15,12 @@
   margin: 10px 5px;
 }
 
-.explore-result-sortby {
+.explore-result-sortby.light {
   color: rgba(0,0,0,.65) !important;
+}
+
+.explore-result-sortby.dark {
+  color: rgba(255,255,255,.75) !important;
 }
 
 .explore-result-sortby-text {
@@ -33,6 +37,10 @@
 
 .explore-card-bottom-right {
   float: right;
+  max-width: 165px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .explore-card-bottom {

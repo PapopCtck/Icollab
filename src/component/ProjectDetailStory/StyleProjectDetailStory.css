@@ -5,6 +5,16 @@
 
 .projectdetail-story-rolecard-container {
   margin: 20px 0 !important;
+  transition: 0.3s all;
+}
+
+.projectdetail-story-rolecard-container.light {
+  background: var(--card-background-color);
+}
+
+.projectdetail-story-rolecard-container.dark {
+  background: var(--card-background-dark);
+  color: var(--main-text-dark);
 }
 
 .projectdetail-story-rolecard-description {
@@ -15,6 +25,16 @@
 
 .projectdetail-story-statercard-container {
   margin: 20px 0 !important;
+  transition: 0.3s all;
+}
+
+.projectdetail-story-statercard-container.light {
+  background: var(--card-background-color);
+}
+
+.projectdetail-story-statercard-container.dark {
+  background: var(--card-background-dark);
+  color: var(--main-text-dark);
 }
 
 .projectdetail-story-statercard {
@@ -23,7 +43,7 @@
 
 .projectdetail-story-statercard-avatar {
   align-self: center;
-  margin: 10px !important;
+  margin: 10px 10px 10px 0px !important;
 }
 
 @media (max-width: 1150px) {

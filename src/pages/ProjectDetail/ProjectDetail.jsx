@@ -6,14 +6,18 @@ import { ProjectDetailHeader, ProjectDetailContent } from '../../component';
 
 import { fetchProjectsById } from '../../actions';
 
+import { Loading, RefreshToken } from '../../helpers';
+
+import AppLang from '../../AppContext';
+
 import './StyleProjectDetail.css';
-import { Loading } from '../../helpers';
+
 
 export class ProjectDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projectDetail: null,
+      projectDetailAll: null,
       mockupData: {
         projectId: '1',
         projectTitle: 'Beach trash collector robot',
@@ -127,8 +131,6 @@ export class ProjectDetail extends Component {
             updatedAt: '',
             description: 'Eiei',
           },
-
-
         ],
       },
     }
@@ -138,23 +140,27 @@ export class ProjectDetail extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchProjectsById !== this.props.fetchProjectsById) {
       const fetchProjectsById = this.props.fetchProjectsById;
-      this.setState({ projectDetail: fetchProjectsById }, () => console.log(this.state));
+      this.setState({ projectDetailAll: fetchProjectsById });
     }
   }
 
   render() {
-    const { projectDetail, mockupData } = this.state;
-    if (!projectDetail) {
-      return <Loading />
+    const { projectDetailAll, mockupData } = this.state;
+    const { appTheme } = this.context;
+    if (!projectDetailAll) {
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
       <div className="page-wrapper project-detail-container">
-        <ProjectDetailHeader projectDetail={projectDetail} />
-        <ProjectDetailContent projectDetail={projectDetail} mockupData={mockupData} />
+        <RefreshToken />
+        <ProjectDetailHeader projectDetailAll={projectDetailAll} theme={appTheme} projectId={this.props.match.params.id}/>
+        <ProjectDetailContent projectDetailAll={projectDetailAll} mockupData={mockupData} theme={appTheme} projectId={this.props.match.params.id}/>
       </div>
     )
   }
 }
+
+ProjectDetail.contextType = AppLang;
 
 const mapStateToProps = state => {
   const fetchProjectsById = state.fetchProjectsById.data;

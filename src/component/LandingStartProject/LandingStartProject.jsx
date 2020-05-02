@@ -9,10 +9,10 @@ import './StyleLandingStartProject.css'
 
 export class LandingStartProject extends Component {
   render() {
-    const { lang } = this.props;
+    const { lang, appTheme } = this.props;
     return (
       <div className="start-project-container">
-        <h2 className="bold">{content[lang].ideaQuote}</h2>
+        <h2 className={'bold '+ appTheme + '-text'}>{content[lang].ideaQuote}</h2>
         <p>{content[lang].startQuote}</p>
         <Button className="start-project-button" type="primary" size="large"><Link to="/learnmore">{content[lang].learnMore}</Link></Button>
       </div>
@@ -24,4 +24,5 @@ export default LandingStartProject;
 
 LandingStartProject.propTypes = {
   lang: PropTypes.string,
+  appTheme: PropTypes.string,
 }

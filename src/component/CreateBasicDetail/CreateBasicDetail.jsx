@@ -4,6 +4,7 @@ import QueueAnim from 'rc-queue-anim';
 import PropTypes from 'prop-types';
 
 import { MainNav } from '../../component';
+import { ThailandStateSelect } from '../../helpers';
 
 import AppLang from '../../AppContext';
 
@@ -16,22 +17,26 @@ const { Option } = Select;
 const { Header, Content } = Layout;
 
 export class CreateBasicDetail extends Component {
+  renderCategory = (Category) => (
+    Category.map(e => <Option value={e}>{e}</Option>)
+  );
+
   render() {
-    const { onFinishBasic, show, handleChange, setLang } = this.props;
-    const appLang = this.context;
+    const { onFinishBasic, show, handleChange, setLang, setTheme, projectCategory } = this.props;
+    const { appLang, appTheme } = this.context;
     return (
       <QueueAnim className="create-basic" delay={300} type={['bottom', 'top']} ease={['easeOutQuart', 'easeInOutQuart']}>
         {show ? [
           <QueueAnim key="page-container" type="bottom">
             <Layout className="create-basic-layout">
-              <Header className="header-container">
-                <MainNav appLang={appLang} setLang={setLang} />
+              <Header className={'header-container ' + appTheme}>
+                <MainNav appTheme={appTheme} appLang={appLang} setLang={setLang} setTheme={setTheme} />
               </Header>
               <Content>
-                <div className="create-basic-container">
+                <div className={'create-basic-container ' + appTheme}>
                   <QueueAnim key="page" type="bottom">
                     <div className="create-basic-header-container">
-                      <Title level={2} className="create-title">{content[appLang].title}</Title>
+                      <Title level={2} className={'create-title ' + appTheme + '-text'}>{content[appLang].title}</Title>
                       <p className="create-basic-subheader" key="p" >
                         {content[appLang].description}
                       </p>
@@ -39,7 +44,7 @@ export class CreateBasicDetail extends Component {
                     <div className="create-basic-select-container">
                       <QueueAnim type="bottom" >
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].category}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].category}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectCategory}
@@ -49,29 +54,15 @@ export class CreateBasicDetail extends Component {
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
                           >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            {this.renderCategory(projectCategory)}
                           </Select>
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].location}</h4>
-                          <Select
-                            style={{ width: 300 }}
-                            placeholder={content[appLang].selectLocation}
-                            optionFilterProp="children"
-                            onChange={(value) => handleChange(value, 'location')}
-                            filterOption={(input, option) =>
-                              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                          >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
-                          </Select>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].location}</h4>
+                          <ThailandStateSelect style={{ width: 300 }} placeholder={content[appLang].selectLocation} onChange={(value) => handleChange(value, 'location')} />
                         </div>
                         <div className="create-basic-select">
-                          <h4 className="create-basic-select-label">{content[appLang].level}</h4>
+                          <h4 className={'create-basic-select-label ' + appTheme + '-text'}>{content[appLang].level}</h4>
                           <Select
                             style={{ width: 300 }}
                             placeholder={content[appLang].selectLevel}
@@ -81,9 +72,9 @@ export class CreateBasicDetail extends Component {
                               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                             }
                           >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            <Option value="Student">Student</Option>
+                            <Option value="Startup">SME/Startup</Option>
+                            <Option value="Industrial">Company/Industrial</Option>
                           </Select>
                         </div>
                         <div className="create-basic-select-button">
@@ -112,5 +103,7 @@ CreateBasicDetail.propTypes = {
   show: PropTypes.bool,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
-  setLang: PropTypes.func,
+  setLang: PropTypes.func.isRequired,
+  setTheme: PropTypes.func.isRequired,
+  projectCategory: PropTypes.array,
 }

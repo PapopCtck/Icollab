@@ -1,0 +1,31 @@
+.projectdetail-applicants-userbar-container {
+  margin-top: 20px;
+}
+
+.userbar-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+}
+
+.userbar-userinfo-container {
+  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.userbar-skills {
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acceptModal-text {
+  text-align: center;
+}
+
+.accpetModal-button-container{
+  display: flex;
+}

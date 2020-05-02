@@ -8,14 +8,16 @@ import content from './LangError';
 
 export class Error404 extends Component {
   render() {
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     return (
-      <Result
-        status="404"
-        title="404"
-        subTitle={content[lang].err404}
-        extra={<Button onClick={() => this.props.history.push('/')} type="primary">{content[lang].backHomeBtn}</Button>}
-      />
+      <div className="errorContainer">
+        <Result
+          status="404"
+          title={<span className={appTheme + '-text'}>404</span>}
+          subTitle={<span className={appTheme + '-text'}>{content[appLang].err404}</span>}
+          extra={<Button onClick={() => this.props.history.push('/')} type="primary">{content[appLang].backHomeBtn}</Button>}
+        />
+      </div>
     )
   }
 }

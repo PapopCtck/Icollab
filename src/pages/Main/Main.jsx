@@ -12,7 +12,7 @@ import {
   LandingStartProject,
 } from '../../component';
 
-import { Loading } from '../../helpers';
+import { Loading, RefreshToken } from '../../helpers';
 
 import AppLang from '../../AppContext';
 import content from './LangMain';
@@ -31,13 +31,9 @@ export class Main extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjects !== this.props.fetchGetProjects) {
       const fetchGetProjects = this.props.fetchGetProjects;
-      this.setState({ resultProjects: fetchGetProjects }, () => console.log(this.state));
+      this.setState({ resultProjects: fetchGetProjects });
     }
   }
-
-  // getFeaturedProject = (resultProjects) => resultProjects.slice(0, 6)
-
-  // getTrendingProject = (resultProjects) => resultProjects.slice(6, 12)
 
   getTrendingProject = (resultProjects) => resultProjects.filter((project) => project.highlight === true)
 
@@ -45,19 +41,20 @@ export class Main extends Component {
 
   render() {
     const { resultProjects } = this.state;
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     if (!resultProjects) {
-      return <Loading />
+      return <div className={'main-loading ' + appTheme}><Loading /></div>
     }
     return (
-      <div className="page-wrapper">
+      <div className="main-container page-wrapper">
+        <RefreshToken />
         <BackTop />
         <div className="landing-title">
-          <span className="bold">{content[lang].featured}</span>
+          <span className="bold">{content[appLang].featured}</span>
         </div>
-        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} />
-        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} lang={lang} />
-        <LandingStartProject lang={lang} />
+        <LandingCarousel featuredProject={this.getFeaturedProject(resultProjects.Project)} appTheme={appTheme} roleNeeded={resultProjects.RoleNeeded} />
+        <LandingTrendingCard trendingProject={this.getTrendingProject(resultProjects.Project)} roleNeeded={resultProjects.RoleNeeded} lang={appLang} appTheme={appTheme} />
+        <LandingStartProject lang={appLang} appTheme={appTheme}/>
       </div>
     )
   }

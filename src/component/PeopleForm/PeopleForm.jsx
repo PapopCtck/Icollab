@@ -20,25 +20,22 @@ class DynamicFieldSet extends React.Component {
 
   add = () => {
     const { form } = this.props;
-    // can use data-binding to get
     const keys = form.getFieldValue('keys');
     const nextKeys = keys.concat(id++);
-    // can use data-binding to set
-    // important! notify form to detect changes
     form.setFieldsValue({
       keys: nextKeys,
     });
   };
 
   render() {
-    const { content } = this.props;
+    const { content, appTheme } = this.props;
     const { getFieldDecorator, getFieldValue } = this.props.form;
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
     const formItems = keys.map((k) => (
       <div>
         <Form.Item
-          label="Job Title"
+          label={<span className={appTheme + '-text'}>Job Title</span>}
           required={false}
           key={`jobTitle${k}`}
           style={{ marginBottom: '0px' }}
@@ -60,7 +57,7 @@ class DynamicFieldSet extends React.Component {
           />
         </Form.Item>
         <Form.Item
-          label="Skills"
+          label={<span className={appTheme + '-text'}>Skills</span>}
           required={false}
           key={`jobSkills${k}`}
         >
@@ -76,7 +73,7 @@ class DynamicFieldSet extends React.Component {
           })(<Input placeholder="Skills" style={{ width: '100%', maxWidth: '700px' }} />)}
         </Form.Item>
         <Form.Item
-          label="Description"
+          label={<span className={appTheme + '-text'}>Description</span>}
           required={false}
           key={`jobDescription${k}`}
         >
@@ -86,13 +83,13 @@ class DynamicFieldSet extends React.Component {
               {
                 required: true,
                 whitespace: true,
-                message: 'Please provide answer for your question',
+                message: 'Please provide description for this job',
               },
             ],
-          })(<TextArea placeholder="Answer" style={{ width: '100%', maxWidth: '700px' }} />)}
+          })(<TextArea placeholder="Description" style={{ width: '100%', maxWidth: '700px' }} />)}
         </Form.Item>
         <Form.Item
-          label="Required amount"
+          label={<span className={appTheme + '-text'}>Required amount</span>}
           required={false}
           key={`jobAmount${k}`}
         >
@@ -125,6 +122,7 @@ class DynamicFieldSet extends React.Component {
 DynamicFieldSet.propTypes = {
   form: PropTypes.object,
   content: PropTypes.object,
+  appTheme: PropTypes.string,
 }
 
 export const PeopleForm = Form.create({

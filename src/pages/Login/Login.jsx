@@ -27,7 +27,6 @@ export class Login extends Component {
     this.props.form.validateFieldsAndScroll((err, loginForm) => {
       if (!err) {
         this.setState({ loading: true });
-        console.log('Received values of form: ', loginForm);
         this.props.dispatch(fetchLogin(loginForm)).then((res) => {
           if (res.status !== 200) {
             this.modalError();
@@ -47,17 +46,17 @@ export class Login extends Component {
 
   render() {
     const { loading } = this.state;
-    const lang = this.context;
+    const { appLang, appTheme } = this.context;
     const { getFieldDecorator } = this.props.form;
     if (getCookie('icollab_token')) {
       return (<Redirect to="/" />)
     }
     return (
-      <div className="login-content">
-        <div className="login-box-container">
-          <Title level={2} className="login-title">{content[lang].title}</Title>
+      <div className={'login-content ' + appTheme }>
+        <div className={'login-box-container ' + appTheme}>
+          <Title level={2} className={'login-title ' + appTheme + '-text'}>{content[appLang].title}</Title>
           <Form className="login-form" onSubmit={this.handleSubmit}>
-            <h4>{content[lang].email}</h4>
+            <h4 className={appTheme + '-text'}>{content[appLang].email}</h4>
             <Form.Item>
               {getFieldDecorator('email', {
                 rules: [
@@ -77,7 +76,7 @@ export class Login extends Component {
                 />,
               )}
             </Form.Item>
-            <h4>{content[lang].password}</h4>
+            <h4 className={appTheme + '-text'} >{content[appLang].password}</h4>
             <Form.Item className="login-password">
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
@@ -91,19 +90,19 @@ export class Login extends Component {
             </Form.Item>
             <div className="login-forgot">
               <Link to="#">
-                {content[lang].forgotPassword}
+                {content[appLang].forgotPassword}
               </Link>
             </div>
             <Form.Item className="login-button-container">
               <Button type="primary" htmlType="submit" className="login-button" block loading={loading}>
-                {content[lang].loginBtn}
+                {content[appLang].loginBtn}
               </Button>
             </Form.Item>
           </Form>
           <div className="login-signup">
-            {content[lang].noAccount}&nbsp;
+            {content[appLang].noAccount}&nbsp;
             <Link to="/register">
-              {content[lang].create}
+              {content[appLang].create}
             </Link>
           </div>
         </div>
