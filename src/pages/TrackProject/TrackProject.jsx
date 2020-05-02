@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Typography } from 'antd';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { ProjectPanel } from '../../component';
 
@@ -29,7 +30,7 @@ export class TrackProject extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchTrackProject !== this.props.fetchTrackProject) {
       const fetchTrackProject = this.props.fetchTrackProject;
-      this.setState({ resultProjects: fetchTrackProject }, () => console.log(this.state));
+      this.setState({ resultProjects: fetchTrackProject });
     }
   }
 
@@ -71,5 +72,10 @@ const mapStateToProps = state => {
 }
 
 TrackProject.contextType = AppLang;
+
+TrackProject.propTypes = {
+  fetchTrackProject: PropTypes.object,
+  dispatch : PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps)(TrackProject);

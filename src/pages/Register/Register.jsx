@@ -17,8 +17,6 @@ import content from './LangRegister';
 
 import { fetchRegister } from '../../actions';
 
-// import { Loading } from '../../helpers';
-
 import PropTypes from 'prop-types';
 
 import './StyleRegister.css';
@@ -58,7 +56,6 @@ export class Register extends Component {
     this.props.form.validateFieldsAndScroll((err, registerForm) => {
       if (!err) {
         this.setState({ loading: true });
-        console.log('Received values of form: ', registerForm);
         this.props.dispatch(fetchRegister(registerForm)).then((res) => {
           if (res.status === 200) {
             this.modalSuccess();

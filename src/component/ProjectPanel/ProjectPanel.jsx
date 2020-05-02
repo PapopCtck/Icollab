@@ -63,7 +63,7 @@ function ProjectPanel(props) {
   )
 }
 
-ProjectPanel.propTypes ={
+ProjectPanel.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
@@ -115,7 +115,7 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick,
               <span className={'bold ' + appTheme + '-text'}>View : </span>
               <span className={appTheme + '-text'}>{project.view}</span>
               <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-                <Icon type="setting" theme="filled" style={{ fontSize: '18px' }} />
+                <Icon type="setting" theme="filled" style={appTheme === 'dark' ? { fontSize: '18px', color: '#fafafa' } : { fontSize: '18px', color: '#333' }} />
               </Dropdown>
             </div>
             : null
@@ -125,10 +125,10 @@ const ProjectCollapsePanel = ({ project, handleTitleClick, applied, onEditClick,
   )
 };
 
-ProjectCollapsePanel.propTypes ={
-  project: PropTypes.object, 
-  handleTitleClick: PropTypes.func, 
-  applied: PropTypes.bool, 
-  onEditClick: PropTypes.func, 
+ProjectCollapsePanel.propTypes = {
+  project: PropTypes.object,
+  handleTitleClick: PropTypes.func,
+  applied: PropTypes.bool,
+  onEditClick: PropTypes.func,
   appTheme: PropTypes.string,
 }

@@ -1,19 +1,6 @@
 /* @import '~antd/dist/antd.css'; */
 
 @import url('https://fonts.googleapis.com/css?family=Kanit:400,700|Ubuntu:400,700&display=swap');
-/* @font-face {
-  font-family: 'Ubuntu';
-  src: url("https://fonts.googleapis.com/css?family=Ubuntu");
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* @font-face {
-  font-family: 'Ubuntu-Bold';
-  src: url("https://fonts.googleapis.com/css?family=Ubuntu:700");
-  font-weight: normal;
-  font-style: normal;
-} */
 
 :root {
   --main-border-color: rgb(190, 190, 190);

@@ -27,7 +27,6 @@ export class Login extends Component {
     this.props.form.validateFieldsAndScroll((err, loginForm) => {
       if (!err) {
         this.setState({ loading: true });
-        console.log('Received values of form: ', loginForm);
         this.props.dispatch(fetchLogin(loginForm)).then((res) => {
           if (res.status !== 200) {
             this.modalError();

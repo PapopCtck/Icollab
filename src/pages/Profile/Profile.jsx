@@ -22,7 +22,6 @@ export class Profile extends Component {
     };
     if (getCookie('icollab_userinfo')) {
       const id = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
-      console.log(id)
       props.dispatch(fetchGetProfile({ id }, getCookie('icollab_token')));
     } else {
       props.history.push('/');
@@ -33,27 +32,26 @@ export class Profile extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProfile !== this.props.fetchGetProfile) {
       const fetchGetProfile = this.props.fetchGetProfile;
-      this.setState({ user: fetchGetProfile.User[0], imageUrl: fetchGetProfile.User[0].image }, () => console.log(this.state));
+      this.setState({ user: fetchGetProfile.User[0], imageUrl: fetchGetProfile.User[0].image });
     }
     if (prevProps.fetchEditProfile !== this.props.fetchEditProfile) {
       const fetchEditProfile = this.props.fetchEditProfile;
       if (fetchEditProfile.status === 200) {
         const { user, newProfile, imageUrl } = this.state;
-        this.setState({ user: { ...user, ...newProfile, image: imageUrl } }, () => console.log(this.state));
+        this.setState({ user: { ...user, ...newProfile, image: imageUrl } });
       }
-      this.setState({ editing: false, loading: false }, () => console.log(this.state));
+      this.setState({ editing: false, loading: false });
     }
   }
 
   handleChange = (value, name) => {
-    this.setState({ [name]: value }, () => console.log(this.state));
+    this.setState({ [name]: value });
   }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, profile) => {
       if (!err) {
-        console.log('Received values of form: ', profile);
         const userid = JSON.parse(getCookie('icollab_userinfo'))[0].user_uid;
         const { imageUrl } = this.state;
         this.props.dispatch(fetchEditProfile({ ...profile, image: imageUrl, userid }, getCookie('icollab_token')));
@@ -67,7 +65,6 @@ export class Profile extends Component {
       editing: !this.state.editing,
     })
   }
-
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -294,4 +291,5 @@ Profile.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  fetchEditProfile: PropTypes.object,
 }

@@ -31,13 +31,9 @@ export class Main extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjects !== this.props.fetchGetProjects) {
       const fetchGetProjects = this.props.fetchGetProjects;
-      this.setState({ resultProjects: fetchGetProjects }, () => console.log(this.state));
+      this.setState({ resultProjects: fetchGetProjects });
     }
   }
-
-  // getFeaturedProject = (resultProjects) => resultProjects.slice(0, 6)
-
-  // getTrendingProject = (resultProjects) => resultProjects.slice(6, 12)
 
   getTrendingProject = (resultProjects) => resultProjects.filter((project) => project.highlight === true)
 

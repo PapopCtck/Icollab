@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { message } from 'antd';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { fetchGetProjectCategory, fetchCreateProject } from '../../actions';
 
@@ -69,23 +70,23 @@ export class CreateProject extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
       const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
-      this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+      this.setState({ projectCategory: fetchGetProjectCategory });
     }
     if (prevProps.fetchCreateProject !== this.props.fetchCreateProject) {
       const fetchCreateProject = this.props.fetchCreateProject;
       if (fetchCreateProject.status === 200) {
-        this.setState({ redirect: '/success' }, () => console.log(this.state));
+        this.setState({ redirect: '/success' });
       } else if (fetchCreateProject.status === 403) {
-        this.setState({ redirect: '/403' }, () => console.log(this.state));
+        this.setState({ redirect: '/403' });
       } else {
-        this.setState({ redirect: '/500' }, () => console.log(this.state));
+        this.setState({ redirect: '/500' });
       }
 
     }
   }
 
   onInput = (e) => {
-    this.setState({ [e.target.id]: e.target.value }, () => console.log(this.state))
+    this.setState({ [e.target.id]: e.target.value })
   }
 
   onFinishBasic = () => {
@@ -99,7 +100,6 @@ export class CreateProject extends Component {
   }
 
   onFinish = () => {
-    //todo add logic here 
     const userInfo = JSON.parse(getCookie('icollab_userinfo'));
     const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, contributors, imageUrl } = this.state;
     if (!projectTitle || !projectDescription || !projectStory || tags.length === 0) {
@@ -126,16 +126,14 @@ export class CreateProject extends Component {
   }
 
   handleChange = (value, name) => {
-    this.setState({ [name]: value }, () => console.log(this.state))
+    this.setState({ [name]: value })
   }
 
   formatQuestion = () => {
     const { qaforms } = this.state;
     const { question, answer, keys } = qaforms;
     let merged = [];
-    console.log('Received values of form: ', qaforms);
     if (!keys) {
-      console.log('no question');
       return merged;
     } else {
       for (let i = 0; i < keys.value.length; i++) {
@@ -163,9 +161,7 @@ export class CreateProject extends Component {
     const { peopleforms } = this.state;
     const { jobTitle, jobSkills, jobDescription, jobAmount, keys } = peopleforms;
     let merged = [];
-    console.log('Received values of form: ', peopleforms);
     if (!keys) {
-      console.log('no job');
       return merged;
     } else {
       for (let i = 0; i < keys.value.length; i++) {
@@ -197,12 +193,10 @@ export class CreateProject extends Component {
   };
 
   qaerror = () => {
-    // const { appLang } = this.context;
     message.error('please provide all question an answer');
   };
 
   joberror = () => {
-    // const { appLang } = this.context;
     message.error('please provide all information on job');
   };
 
@@ -236,5 +230,12 @@ const mapStateToProps = state => {
   const fetchCreateProject = state.fetchCreateProject;
   return { fetchGetProjectCategory, fetchCreateProject };
 }
+
+CreateProject.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  fetchGetProjectCategory: PropTypes.object,
+  fetchCreateProject: PropTypes.object,
+}
+
 
 export default connect(mapStateToProps)(CreateProject);

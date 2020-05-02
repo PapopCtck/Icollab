@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { message } from 'antd';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { fetchGetProjectCategory, fetchEditProject, fetchProjectsById } from '../../actions';
 
@@ -13,7 +14,7 @@ import AppLang from '../../AppContext';
 
 import content from './LangEditProject';
 
-export class CreateProject extends Component {
+export class EditProject extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +52,6 @@ export class CreateProject extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const { qaforms, peopleforms, projectStory, projectTitle, projectDescription, category } = this.state;
-    console.log(nextProps.fetchProjectsById)
     if (nextState.category !== category) {
       return true;
     }
@@ -76,21 +76,20 @@ export class CreateProject extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
       const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
-      this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+      this.setState({ projectCategory: fetchGetProjectCategory });
     }
     if (prevProps.fetchEditProject !== this.props.fetchEditProject) {
       const fetchEditProject = this.props.fetchEditProject;
       if (fetchEditProject.status === 200) {
-        this.setState({ redirect: '/success' }, () => console.log(this.state));
+        this.setState({ redirect: '/success' });
       } else if (fetchEditProject.status === 403) {
-        this.setState({ redirect: '/403' }, () => console.log(this.state));
+        this.setState({ redirect: '/403' });
       } else {
-        this.setState({ redirect: '/500' }, () => console.log(this.state));
+        this.setState({ redirect: '/500' });
       }
     }
     if (prevProps.fetchProjectsById !== this.props.fetchProjectsById) {
       const fetchProjectsById = this.props.fetchProjectsById;
-      console.log(fetchProjectsById)
       const Project = fetchProjectsById.Project[0];
       const questionList = fetchProjectsById.QuestionList;
       const roleNeeded = fetchProjectsById.RoleNeeded;
@@ -110,12 +109,12 @@ export class CreateProject extends Component {
         contributors,
         questionList,
         roleNeeded,
-      }, () => console.log(this.state));
+      });
     }
   }
 
   onInput = (e) => {
-    this.setState({ [e.target.id]: e.target.value }, () => console.log(this.state))
+    this.setState({ [e.target.id]: e.target.value })
   }
 
   onFinishBasic = () => {
@@ -129,7 +128,6 @@ export class CreateProject extends Component {
   }
 
   onFinish = () => {
-    //todo add logic here 
     const userInfo = JSON.parse(getCookie('icollab_userinfo'));
     const { projectTitle, projectStory, category, location, projectLevel, projectDescription, tags, contributors, imageUrl, questionList, roleNeeded, projectid } = this.state;
     if (!projectTitle || !projectDescription || !projectStory || tags.length === 0) {
@@ -157,16 +155,14 @@ export class CreateProject extends Component {
   }
 
   handleChange = (value, name) => {
-    this.setState({ [name]: value }, () => console.log(this.state))
+    this.setState({ [name]: value })
   }
 
   formatQuestion = (questionList) => {
     const { qaforms } = this.state;
     const { question, answer, keys } = qaforms;
     let merged = [...questionList];
-    console.log('Received values of form: ', qaforms);
     if (!keys) {
-      console.log('no question');
       return merged;
     } else {
       for (let i = 0; i < keys.value.length; i++) {
@@ -194,9 +190,7 @@ export class CreateProject extends Component {
     const { peopleforms } = this.state;
     const { jobTitle, jobSkills, jobDescription, jobAmount, keys } = peopleforms;
     let merged = [...roleNeeded];
-    console.log('Received values of form: ', peopleforms);
     if (!keys) {
-      console.log('no job');
       return merged;
     } else {
       for (let i = 0; i < keys.value.length; i++) {
@@ -225,13 +219,13 @@ export class CreateProject extends Component {
   handleDeleteQuestion = (qa_uid) => {
     const { questionList } = this.state;
     const newQuestion = questionList.filter(question => question.qa_uid !== qa_uid);
-    this.setState({ questionList: newQuestion }, () => console.log(this.state));
+    this.setState({ questionList: newQuestion });
   }
 
   handleDeletePeople = (job_uid) => {
     const { roleNeeded } = this.state;
     const newRole = roleNeeded.filter(job => job.job_uid !== job_uid);
-    this.setState({ roleNeeded: newRole }, () => console.log(this.state));
+    this.setState({ roleNeeded: newRole });
   }
 
   error = () => {
@@ -240,12 +234,10 @@ export class CreateProject extends Component {
   };
 
   qaerror = () => {
-    // const { appLang } = this.context;
     message.error('please provide all question an answer');
   };
 
   joberror = () => {
-    // const { appLang } = this.context;
     message.error('please provide all information on job');
   };
 
@@ -255,7 +247,6 @@ export class CreateProject extends Component {
       category, location, projectLevel,
       projectTitle, projectDescription,
       tags, initContributors, questionList, roleNeeded } = this.state;
-    console.log(projectCategory, category)
     if (redirect) {
       return <Redirect to={redirect} />
     }
@@ -293,7 +284,7 @@ export class CreateProject extends Component {
   }
 }
 
-CreateProject.contextType = AppLang;
+EditProject.contextType = AppLang;
 
 const mapStateToProps = state => {
   const fetchGetProjectCategory = state.fetchGetProjectCategory.data;
@@ -302,4 +293,16 @@ const mapStateToProps = state => {
   return { fetchGetProjectCategory, fetchEditProject, fetchProjectsById };
 }
 
-export default connect(mapStateToProps)(CreateProject);
+EditProject.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+  fetchGetProjectCategory: PropTypes.object,
+  fetchEditProject: PropTypes.object,
+  fetchProjectsById: PropTypes.object,
+}
+
+export default connect(mapStateToProps)(EditProject);

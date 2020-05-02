@@ -12,9 +12,6 @@ import content from './LangLearnMore';
 
 import './StyleLearnMore.css';
 
-// import imgwall1 from '/assets/explore-banner.jpg';
-
-
 const { Title } = Typography;
 
 export class LearnMore extends Component {
@@ -51,39 +48,39 @@ export const ImageGallerySection = () => (
       animation={{ x: 0, opacity: 1, playScale: [1, 1.5] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall4" src="/assets/imgwall4.jpg" />
+      <img alt="wall4" className="learnmore-image imgwall4" src="/assets/imgwall4.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.6] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall7" src="/assets/imgwall7.jpg" />
+      <img alt="wall7" className="learnmore-image imgwall7" src="/assets/imgwall7.jpg" />
     </Parallax>
     <Parallax
       animation={{ opacity: 1, playScale: [0.9, 1.2] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall2" src="/assets/imgwall2.jpg" />
+      <img alt="wall2" className="learnmore-image imgwall2" src="/assets/imgwall2.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.4] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall3" src="/assets/imgwall3.jpg" />
+      <img alt="wall3" className="learnmore-image imgwall3" src="/assets/imgwall3.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.7] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall6" src="/assets/imgwall6.jpg" />
+      <img alt="wall6" className="learnmore-image imgwall6" src="/assets/imgwall6.jpg" />
     </Parallax>
     <Parallax
       animation={{ x: 0, opacity: 1, playScale: [1, 1.8] }}
       style={{ opacity: 0 }}
     >
-      <img className="learnmore-image imgwall5" src="/assets/imgwall5.jpg" />
+      <img alt="wall5" className="learnmore-image imgwall5" src="/assets/imgwall5.jpg" />
     </Parallax>
-    <img className="learnmore-image imgwall1" src="/assets/imgwall1.jpg" />
+    <img alt="wall1" className="learnmore-image imgwall1" src="/assets/imgwall1.jpg" />
   </div >
 );
 
@@ -109,6 +106,7 @@ export const Advertisement = ({ lang, theme }) => (
 
 Advertisement.propTypes = {
   lang: PropTypes.string,
+  theme: PropTypes.string,
 }
 
 export const StartProject = ({ lang, theme }) => (
@@ -120,4 +118,5 @@ export const StartProject = ({ lang, theme }) => (
 
 StartProject.propTypes = {
   lang: PropTypes.string,
+  theme: PropTypes.string,
 }

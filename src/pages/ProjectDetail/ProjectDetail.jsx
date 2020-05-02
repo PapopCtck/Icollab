@@ -140,7 +140,7 @@ export class ProjectDetail extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.fetchProjectsById !== this.props.fetchProjectsById) {
       const fetchProjectsById = this.props.fetchProjectsById;
-      this.setState({ projectDetailAll: fetchProjectsById }, () => console.log(this.state));
+      this.setState({ projectDetailAll: fetchProjectsById });
     }
   }
 

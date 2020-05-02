@@ -36,16 +36,16 @@ export class Explore extends Component {
       const resultProjects = fetchGetProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
       const roleNeeded = fetchGetProjects.RoleNeeded;
       const jobTitles = this.handleJobList(roleNeeded);
-      this.setState({ resultProjects, roleNeeded, jobTitles }, () => console.log(this.state));
+      this.setState({ resultProjects, roleNeeded, jobTitles });
     }
     if (prevProps.fetchSearchProjects !== this.props.fetchSearchProjects) {
       const fetchSearchProjects = this.props.fetchSearchProjects.data;
       const resultProjects = fetchSearchProjects.Project.sort((a, b) => this.dateSort(a.created, b.created))
-      this.setState({ resultProjects }, () => console.log(this.state));
+      this.setState({ resultProjects });
     }
     if (prevProps.fetchGetProjectCategory !== this.props.fetchGetProjectCategory) {
       const fetchGetProjectCategory = this.props.fetchGetProjectCategory;
-      this.setState({ projectCategory: fetchGetProjectCategory }, () => console.log(this.state));
+      this.setState({ projectCategory: fetchGetProjectCategory });
     }
   }
 
@@ -56,7 +56,7 @@ export class Explore extends Component {
   }
 
   handleSearch = (searchQuery) => {
-    if (searchQuery !== '') { this.props.dispatch(fetchSearchProjects(searchQuery)).then(res => { if (res.data.Project.length == 0) { this.setState({ resultProjects: [] }) } }) }
+    if (searchQuery !== '') { this.props.dispatch(fetchSearchProjects(searchQuery)).then(res => { if (res.data.Project.length === 0) { this.setState({ resultProjects: [] }) } }) }
   }
 
   handleSearchChange = (e) => {
@@ -68,19 +68,16 @@ export class Explore extends Component {
       if (checkedFilter.length !== 0) {
         resultProjects = resultProjects.filter((project) => checkedFilter.includes(project.projectlevel));
       }
-      this.setState({ resultProjects }, () => console.log(this.state))
+      this.setState({ resultProjects })
     }
   }
 
   handleCheck = (e) => {
     let { resultProjects, checkedFilter } = this.state;
-    console.log(e.target);
     if (e.target.checked === true) {
       checkedFilter.push(e.target.id);
-      console.log(checkedFilter)
     } else {
       checkedFilter = checkedFilter.filter(id => id !== e.target.id);
-      console.log(checkedFilter);
     }
     let sortedProject = null;
     if (checkedFilter.length === 0) {
@@ -89,7 +86,7 @@ export class Explore extends Component {
       this.setState({ resultProjects: sortedProject, checkedFilter }, () => this.handleFilter())
     } else {
       sortedProject = resultProjects.filter((project) => checkedFilter.includes(project.projectlevel));
-      this.setState({ resultProjects: sortedProject, checkedFilter }, () => console.log(this.state))
+      this.setState({ resultProjects: sortedProject, checkedFilter })
     }
   }
 
@@ -116,9 +113,7 @@ export class Explore extends Component {
 
   handleFilter = () => {
     const { location, jobfields, jobtitle, checkedFilter, roleNeeded } = this.state;
-    console.log(this.state);
     let newResultProject = this.props.fetchGetProjects.data.Project;
-    console.log(newResultProject)
     if (location) {
       newResultProject = newResultProject.filter((project) => project.location === location);
     }
@@ -133,7 +128,7 @@ export class Explore extends Component {
     if (checkedFilter.length !== 0) {
       newResultProject = newResultProject.filter((project) => checkedFilter.includes(project.projectlevel));
     }
-    this.setState({ resultProjects: newResultProject }, () => console.log(this.state));
+    this.setState({ resultProjects: newResultProject });
   }
 
   handleJobList = (roleNeeded) => {
@@ -192,5 +187,6 @@ export default connect(mapStateToProps)(Explore);
 Explore.propTypes = {
   fetchGetProjects: PropTypes.object,
   fetchSearchProjects: PropTypes.object,
+  fetchGetProjectCategory: PropTypes.object,
   dispatch: PropTypes.func,
 }
