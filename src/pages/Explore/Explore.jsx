@@ -133,7 +133,7 @@ export class Explore extends Component {
 
   handleJobList = (roleNeeded) => {
     if (!roleNeeded || roleNeeded.length === 0) {
-      return;
+      return [];
     }
     return [...new Set(roleNeeded.map(job => job.jobtitle))];
   }
