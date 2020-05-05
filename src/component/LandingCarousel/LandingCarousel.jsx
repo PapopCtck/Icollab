@@ -26,12 +26,13 @@ export class LandingCarousel extends Component {
   render() {
     const { featuredProject, appTheme, roleNeeded } = this.props;
     const { activeChoice } = this.state;
-
+    let roleArr = null;
     if (!featuredProject) {
-      //todo add loading and error
-      return alert('error');
+      return null;
     }
-    const roleArr = roleNeeded.filter(obj => obj.project_uid === featuredProject[activeChoice].project_uid)
+    if (featuredProject.length !== 0) {
+      roleArr = roleNeeded.filter(obj => obj.project_uid === featuredProject[activeChoice].project_uid)
+    }
     return (
       featuredProject.length !== 0 ?
         <div className="landing-carousel-container">
@@ -83,6 +84,6 @@ export default LandingCarousel;
 LandingCarousel.propTypes = {
   children: PropTypes.any,
   featuredProject: PropTypes.array,
-  appTheme: PropTypes.string, 
+  appTheme: PropTypes.string,
   roleNeeded: PropTypes.array,
 }
